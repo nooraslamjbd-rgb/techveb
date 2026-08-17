@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BackToTop from "@/components/ui/BackToTop";
+import CookieConsent from "@/components/ui/CookieConsent";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -31,6 +33,14 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -66,6 +76,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteConfig.url,
+    types: {
+      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+    },
   },
 };
 
@@ -93,11 +106,35 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+              logo: `${siteConfig.url}/logo.png`,
+              description: siteConfig.description,
+              sameAs: Object.values(siteConfig.social).filter(Boolean),
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: siteConfig.email,
+                telephone: siteConfig.phone,
+                contactType: "customer service",
+              },
+            }),
+          }}
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#0060E0" />
       </head>
       <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
+        <CookieConsent />
       </body>
     </html>
   );

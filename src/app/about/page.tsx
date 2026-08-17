@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
@@ -89,7 +90,7 @@ export default function AboutPage() {
           <p>
             Have a question, suggestion, or want to collaborate? We would love to
             hear from you. Visit our{" "}
-            <a href="/contact">contact page</a> or reach out to us directly at{" "}
+            <Link href="/contact">contact page</Link> or reach out to us directly at{" "}
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
           </p>
         </div>

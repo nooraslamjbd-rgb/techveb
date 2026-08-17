@@ -11,6 +11,8 @@ export interface PostFrontmatter {
   category: string;
   tags: string[];
   image?: string;
+  imageCredit?: string;
+  imageCreditUrl?: string;
   featured?: boolean;
   readingTime?: string;
 }

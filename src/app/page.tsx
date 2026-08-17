@@ -4,7 +4,6 @@ import { getAllPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
-import JsonLd from "@/components/seo/JsonLd";
 
 export default function Home() {
   const blogPosts = getAllPosts("blog");
@@ -16,53 +15,23 @@ export default function Home() {
   const featured = allPosts.find((p) => p.featured) || allPosts[0];
   const latestPosts = allPosts.filter((p) => p.slug !== featured?.slug).slice(0, 6);
 
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.png`,
-    description: siteConfig.description,
-    contactPoint: {
-      "@type": "ContactPoint",
-      email: siteConfig.email,
-      telephone: siteConfig.phone,
-      contactType: "customer service",
-    },
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/blog?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
-  };
-
   return (
     <>
-      <JsonLd data={orgJsonLd} />
-      <JsonLd data={websiteJsonLd} />
-
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-background via-background to-primary/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(0,96,224,0.08),transparent_50%)]" />
-        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="hero-gradient relative">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/80 backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               Technology &amp; AI Insights
             </div>
-            <h1 className="mb-6 font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Your Gateway to the{" "}
-              <span className="text-primary">Future of Tech</span>
+              <span className="bg-gradient-to-r from-primary-light to-accent bg-clip-text text-transparent">
+                Future of Tech
+              </span>
             </h1>
-            <p className="mb-8 max-w-xl text-lg leading-relaxed text-muted">
+            <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/70">
               Stay informed with the latest in artificial intelligence, technology
               trends, in-depth product reviews, and expert guides. Making technology
               accessible for everyone.
@@ -70,13 +39,13 @@ export default function Home() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/blog"
-                className="rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                className="rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
               >
                 Explore Articles
               </Link>
               <Link
                 href="/ai-tools"
-                className="rounded-xl border border-border bg-surface px-6 py-3 text-sm font-semibold transition-colors hover:bg-surface-hover"
+                className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/30"
               >
                 AI Tools Guide
               </Link>
@@ -90,6 +59,9 @@ export default function Home() {
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center justify-between">
             <h2 className="font-heading text-2xl font-bold">Featured</h2>
+            <Link href="/blog" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
+              View all &rarr;
+            </Link>
           </div>
           <ArticleCard
             post={featured}
@@ -102,15 +74,7 @@ export default function Home() {
       {/* Latest Articles */}
       {latestPosts.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="font-heading text-2xl font-bold">Latest Articles</h2>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-            >
-              View all &rarr;
-            </Link>
-          </div>
+          <h2 className="mb-8 font-heading text-2xl font-bold">Latest Articles</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {latestPosts.map((post) => {
               const dir =
@@ -139,18 +103,19 @@ export default function Home() {
                   ? "/ai-tools"
                   : "/blog"
               }
-              className="group rounded-xl border border-border bg-surface p-6 transition-all hover:shadow-lg hover:-translate-y-1"
-              style={
-                {
-                  "--cat-color": cat.color,
-                } as React.CSSProperties
-              }
+              className="group rounded-xl border border-border bg-surface p-6 card-hover"
             >
               <div
                 className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg text-white font-bold text-sm"
                 style={{ backgroundColor: cat.color }}
               >
-                {cat.label.charAt(0)}
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {cat.slug === "ai" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />}
+                  {cat.slug === "tech-news" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />}
+                  {cat.slug === "product-reviews" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />}
+                  {cat.slug === "tutorials" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />}
+                  {cat.slug === "cloud" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />}
+                </svg>
               </div>
               <h3 className="font-heading font-semibold group-hover:text-primary transition-colors">
                 {cat.label}

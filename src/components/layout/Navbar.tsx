@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -11,18 +11,23 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/logo.png"
-            alt="TechVeb"
-            width={36}
-            height={36}
-            className="rounded-lg"
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="relative h-9 w-9 overflow-hidden rounded-lg ring-1 ring-border group-hover:ring-primary/30 transition-all">
+            <Image
+              src="/logo.png"
+              alt="TechVeb"
+              fill
+              className="object-contain p-0.5"
+              priority
+            />
+          </div>
           <span className="font-heading text-xl font-bold tracking-tight">
             Tech<span className="text-primary">Veb</span>
           </span>
@@ -38,13 +43,16 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                     isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-surface hover:text-foreground"
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-primary" />
+                  )}
                 </Link>
               </li>
             );
@@ -85,7 +93,7 @@ export default function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="border-t border-border bg-background px-4 pb-4 md:hidden">
+        <div className="animate-slide-down border-t border-border bg-background px-4 pb-4 md:hidden">
           <ul className="space-y-1 pt-2">
             {siteConfig.navItems.map((item) => {
               const isActive =
@@ -96,7 +104,6 @@ export default function Navbar() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    onClick={() => setMobileOpen(false)}
                     className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                       isActive
                         ? "bg-primary/10 text-primary"

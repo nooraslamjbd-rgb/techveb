@@ -6,14 +6,18 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/private/"],
+        disallow: ["/api/", "/admin/", "/dashboard/"],
       },
       {
         userAgent: "GPTBot",
         allow: "/",
       },
       {
-        userAgent: "ClaudeBot",
+        userAgent: "ChatGPT-User",
+        allow: "/",
+      },
+      {
+        userAgent: "OAI-SearchBot",
         allow: "/",
       },
       {
@@ -21,8 +25,20 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
       {
+        userAgent: "ClaudeBot",
+        allow: "/",
+      },
+      {
+        userAgent: "anthropic-ai",
+        allow: "/",
+      },
+      {
         userAgent: "Google-Extended",
         allow: "/",
+      },
+      {
+        userAgent: "Bytespider",
+        disallow: "/",
       },
     ],
     sitemap: "https://techveb.com/sitemap.xml",

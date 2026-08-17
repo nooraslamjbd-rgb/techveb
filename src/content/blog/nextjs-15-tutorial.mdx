@@ -1,0 +1,233 @@
+---
+title: "Next.js 15 Tutorial: Building a Modern Web App from Scratch"
+description: "Step-by-step tutorial to build a production-ready web application with Next.js 15, React 19, TypeScript, and Tailwind CSS. From setup to deployment."
+date: "2026-08-01"
+author: "TechVeb Team"
+category: "coding"
+tags: ["Next.js", "React", "TypeScript", "web development", "tutorial"]
+image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80"
+imageCredit: "Photo by Ilya Pavlov on Unsplash"
+imageCreditUrl: "https://unsplash.com/@ilyapavlov"
+---
+
+Next.js 15 brings Turbopack as the default bundler, React 19 with Server Components, and improved caching. This tutorial walks you through building a modern, production-ready application from scratch.
+
+<div className="key-takeaways">
+<h3>Key Takeaways</h3>
+- Next.js 15 uses Turbopack for 70% faster builds than webpack
+- React Server Components are the default for zero-bundle-size rendering
+- The App Router provides file-based routing with layouts and loading states
+- Deployment to Vercel takes 30 seconds with zero configuration
+- The complete project is available on GitHub for reference
+</div>
+
+## Prerequisites
+
+- Node.js 18.17 or later
+- Basic TypeScript knowledge
+- A code editor (VS Code recommended)
+- A Vercel account (free tier is sufficient)
+
+## Step 1: Create a New Project
+
+Open your terminal and run:
+
+```bash
+npx create-next-app@latest techveb-app --typescript --tailwind --eslint --app --src-dir
+cd techveb-app
+npm run dev
+```
+
+This sets up a Next.js 15 project with TypeScript, Tailwind CSS v4, ESLint, and the App Router.
+
+## Step 2: Project Structure
+
+The App Router uses a file-system based routing approach:
+
+```
+src/
+├── app/
+│   ├── layout.tsx        # Root layout (wraps all pages)
+│   ├── page.tsx          # Homepage
+│   ├── globals.css       # Global styles
+│   └── about/
+│       └── page.tsx      # /about route
+├── components/
+│   └── ui/
+│       └── Button.tsx    # Reusable components
+├── lib/
+│   └── utils.ts          # Utility functions
+└── public/
+    └── images/           # Static assets
+```
+
+## Step 3: Root Layout
+
+Every Next.js app needs a root layout. This wraps all pages and provides consistent structure:
+
+```typescript
+// src/app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "My App",
+  description: "Built with Next.js 15",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
+}
+```
+
+## Step 4: Building a Page with Server Components
+
+Next.js 15 Server Components run on the server by default, sending zero JavaScript to the client:
+
+```typescript
+// src/app/page.tsx
+import Link from "next/link";
+
+export default function HomePage() {
+  return (
+    <main className="max-w-4xl mx-auto p-8">
+      <h1 className="text-4xl font-bold mb-4">
+        Welcome to My App
+      </h1>
+      <p className="text-lg text-gray-600 mb-8">
+        Built with Next.js 15 and React 19
+      </p>
+      <Link
+        href="/about"
+        className="bg-blue-600 text-white px-6 py-3 rounded-lg"
+      >
+        About Us
+      </Link>
+    </main>
+  );
+}
+```
+
+## Step 5: Dynamic Routes with Params
+
+Next.js 15 uses `Promise`-based params:
+
+```typescript
+// src/app/blog/[slug]/page.tsx
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  return (
+    <article className="max-w-3xl mx-auto p-8">
+      <h1>Blog Post: {slug}</h1>
+    </article>
+  );
+}
+```
+
+## Step 6: Data Fetching
+
+Server Components can fetch data directly without useEffect:
+
+```typescript
+// src/app/posts/page.tsx
+async function getPosts() {
+  const res = await fetch("https://api.example.com/posts", {
+    next: { revalidate: 3600 }, // ISR: revalidate every hour
+  });
+  return res.json();
+}
+
+export default async function PostsPage() {
+  const posts = await getPosts();
+
+  return (
+    <div>
+      {posts.map((post) => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+```
+
+## Step 7: Client Components
+
+When you need interactivity (state, event handlers, browser APIs), use the "use client" directive:
+
+```typescript
+// src/components/ui/Counter.tsx
+"use client";
+
+import { useState } from "react";
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button
+      onClick={() => setCount(count + 1)}
+      className="bg-blue-600 text-white px-4 py-2 rounded"
+    >
+      Count: {count}
+    </button>
+  );
+}
+```
+
+## Step 8: Deployment
+
+Deploy to Vercel in 30 seconds:
+
+```bash
+npx vercel
+```
+
+Vercel automatically detects Next.js, builds your app, and deploys it with:
+- Automatic SSL
+- Global CDN
+- Preview deployments for every push
+- Analytics and speed insights
+
+## Frequently Asked Questions
+
+<div className="faq-section">
+
+<div className="faq-item">
+<h3>Is Next.js 15 stable?</h3>
+<p>Yes. Next.js 15 is production-ready and used by companies like Netflix, Twitch, TikTok, and Hulu. It has been stable since its official release and receives regular security updates.</p>
+</div>
+
+<div className="faq-item">
+<h3>Should I learn Next.js or React?</h3>
+<p>Learn React first (the fundamentals), then Next.js (which builds on React). Next.js adds routing, server rendering, and optimizations that React alone does not provide. Most job listings for React developers now expect Next.js knowledge.</p>
+</div>
+
+<div className="faq-item">
+<h3>Is Next.js free?</h3>
+<p>Yes. Next.js is completely free and open source under the MIT license. Vercel offers generous free hosting for Next.js apps. You only pay if you need enterprise features or high-traffic capacity.</p>
+</div>
+
+</div>
+
+## Conclusion
+
+Next.js 15 makes building modern web applications faster and more intuitive than ever. With Server Components, Turbopack, and the App Router, you get excellent performance out of the box. Start with this tutorial, experiment, and you will be building production-ready apps in no time.

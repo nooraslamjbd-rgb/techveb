@@ -1,0 +1,16 @@
+{
+  "name": "TechVeb",
+  "short_name": "TechVeb",
+  "description": "AI & Technology Blog - News, Reviews, Tutorials",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F1C",
+  "theme_color": "#0060E0",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
