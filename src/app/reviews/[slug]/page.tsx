@@ -83,7 +83,7 @@ export default async function ReviewPostPage({
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo.png` },
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo-square.png` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

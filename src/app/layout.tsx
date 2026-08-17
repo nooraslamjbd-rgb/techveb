@@ -38,8 +38,7 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.png", type: "image/png", sizes: "32x32" },
     ],
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: siteConfig.title,
@@ -114,7 +113,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: siteConfig.name,
               url: siteConfig.url,
-              logo: `${siteConfig.url}/logo.png`,
+              logo: `${siteConfig.url}/logo-square.png`,
               description: siteConfig.description,
               sameAs: Object.values(siteConfig.social).filter(Boolean),
               contactPoint: {
@@ -127,6 +126,7 @@ export default function RootLayout({
           }}
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#0060E0" />
       </head>
       <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>

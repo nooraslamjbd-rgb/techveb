@@ -61,12 +61,12 @@ export default function Navbar() {
       >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative h-9 w-9 overflow-hidden rounded-lg ring-1 ring-border group-hover:ring-primary/30 transition-all">
+            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-border group-hover:ring-primary/30 transition-all">
               <Image
-                src="/logo.png"
+                src="/logo-square.png"
                 alt="TechVeb"
                 fill
-                className="object-contain p-0.5"
+                className="object-contain p-1"
                 priority
               />
             </div>
