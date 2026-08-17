@@ -18,8 +18,30 @@ export const siteConfig = {
   },
   navItems: [
     { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
-    { label: "Reviews", href: "/reviews" },
+    {
+      label: "Blog",
+      href: "/blog",
+      children: [
+        { label: "AI & Machine Learning", href: "/blog?cat=ai" },
+        { label: "Tech News", href: "/blog?cat=tech-news" },
+        { label: "Cloud & DevOps", href: "/blog?cat=cloud" },
+        { label: "Cybersecurity", href: "/blog?cat=cybersecurity" },
+        { label: "Programming", href: "/blog?cat=tutorials" },
+        { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
+        { label: "Gaming", href: "/blog?cat=gaming" },
+      ],
+    },
+    {
+      label: "Reviews",
+      href: "/reviews",
+      children: [
+        { label: "Laptops & PCs", href: "/reviews?cat=laptops" },
+        { label: "Phones & Tablets", href: "/reviews?cat=phones" },
+        { label: "Audio & Peripherals", href: "/reviews?cat=audio" },
+        { label: "Smart Home", href: "/reviews?cat=smart-home" },
+        { label: "Software & Apps", href: "/reviews?cat=software" },
+      ],
+    },
     { label: "AI Tools", href: "/ai-tools" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
@@ -49,5 +71,8 @@ export const siteConfig = {
     { slug: "product-reviews", label: "Product Reviews", color: "#F59E0B" },
     { slug: "tutorials", label: "Tutorials & Guides", color: "#8B5CF6" },
     { slug: "cloud", label: "Cloud Computing", color: "#EC4899" },
+    { slug: "cybersecurity", label: "Cybersecurity", color: "#EF4444" },
+    { slug: "gaming", label: "Gaming Tech", color: "#F97316" },
+    { slug: "emerging-tech", label: "Emerging Tech", color: "#06B6D4" },
   ],
 };

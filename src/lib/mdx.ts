@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { getDirFromCategory } from "./category-utils";
+
+export { getDirFromCategory };
 
 export interface PostFrontmatter {
   title: string;
@@ -114,6 +117,11 @@ export function formatDate(dateString: string): string {
     month: "long",
     day: "numeric",
   });
+}
+
+export function getAllPostsFromAllDirs(): Post[] {
+  const dirs = ["blog", "reviews", "ai-tools"];
+  return dirs.flatMap((dir) => getAllPosts(dir));
 }
 
 export function getAllCategories(dir: string): { category: string; count: number }[] {
