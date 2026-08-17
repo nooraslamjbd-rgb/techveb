@@ -27,7 +27,7 @@ export default function Home() {
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(0,96,224,0.15),transparent_60%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="max-w-3xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/80 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
@@ -44,7 +44,7 @@ export default function Home() {
               trends, in-depth product reviews, and expert guides. Making technology
               accessible for everyone.
             </p>
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap mb-8">
               <Link
                 href="/blog"
                 className="rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
@@ -65,9 +65,9 @@ export default function Home() {
 
       {/* Featured Hero Card */}
       {featured && (
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
-            <h2 className="font-heading text-2xl font-bold">Featured</h2>
+            <h2 className="font-heading text-xl font-bold sm:text-2xl">Featured</h2>
             <Link
               href="/blog"
               className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
@@ -79,7 +79,7 @@ export default function Home() {
             href={`/${getDirFromCategory(featured.category)}/${featured.slug}`}
             className="group relative block overflow-hidden rounded-2xl border border-border"
           >
-            <div className="relative h-[300px] sm:h-[400px] w-full">
+            <div className="relative h-[220px] sm:h-[300px] lg:h-[400px] w-full">
               {featured.image ? (
                 <Image
                   src={featured.image}
@@ -93,7 +93,7 @@ export default function Home() {
                 <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
                 <div className="mb-3 flex items-center gap-3">
                   <span
                     className="inline-flex items-center rounded-md px-2.5 py-1 text-xs font-bold uppercase text-white"
@@ -133,9 +133,9 @@ export default function Home() {
 
       {/* Top News / Trending */}
       {topNews.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="mb-6 flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-500/10">
+            <span className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-lg bg-red-500/10">
               <svg className="h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"
@@ -144,16 +144,16 @@ export default function Home() {
                 />
               </svg>
             </span>
-            <h2 className="font-heading text-2xl font-bold">Trending Now</h2>
+            <h2 className="font-heading text-xl font-bold sm:text-2xl">Trending Now</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {topNews.map((post, idx) => (
               <Link
                 key={post.slug}
                 href={`/${getDirFromCategory(post.category)}/${post.slug}`}
-                className="group flex gap-4 rounded-xl border border-border bg-surface p-4 card-hover"
+                className="group flex gap-3 sm:gap-4 rounded-xl border border-border bg-surface p-3 sm:p-4 card-hover"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 font-heading text-lg font-bold text-primary">
+                <span className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 font-heading text-base sm:text-lg font-bold text-primary">
                   {idx + 1}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -176,9 +176,9 @@ export default function Home() {
 
       {/* Latest Articles */}
       {latestPosts.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="font-heading text-2xl font-bold">Latest Articles</h2>
+            <h2 className="font-heading text-xl font-bold sm:text-2xl">Latest Articles</h2>
             <Link
               href="/blog"
               className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
@@ -199,8 +199,8 @@ export default function Home() {
       )}
 
       {/* Categories */}
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="mb-8 font-heading text-2xl font-bold">Explore Topics</h2>
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <h2 className="mb-6 sm:mb-8 font-heading text-xl font-bold sm:text-2xl">Explore Topics</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {siteConfig.categories.map((cat) => {
             const href =
@@ -213,7 +213,7 @@ export default function Home() {
               <Link
                 key={cat.slug}
                 href={href}
-                className="group rounded-xl border border-border bg-surface p-6 card-hover"
+                className="group rounded-xl border border-border bg-surface p-4 sm:p-6 card-hover"
               >
                 <div
                   className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg text-white font-bold text-sm"
@@ -239,7 +239,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-8 lg:px-8">
         <NewsletterCTA />
       </div>
     </>

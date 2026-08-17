@@ -106,7 +106,7 @@ export default async function BlogPostPage({
       <ReadingProgress />
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Blog", href: "/blog" },
@@ -114,9 +114,9 @@ export default async function BlogPostPage({
           ]}
         />
 
-        <article className="mx-auto max-w-3xl">
+        <article className="mx-auto max-w-3xl px-0 sm:px-0">
           {post.image && (
-            <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
+            <div className="relative mb-6 sm:mb-8 aspect-[16/9] overflow-hidden rounded-none sm:rounded-2xl border-0 sm:border border-border">
               <Image
                 src={post.image}
                 alt={post.title}
