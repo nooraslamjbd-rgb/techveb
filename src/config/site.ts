@@ -29,18 +29,13 @@ export const siteConfig = {
         { label: "Programming", href: "/blog?cat=tutorials" },
         { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
         { label: "Gaming", href: "/blog?cat=gaming" },
+        { label: "General", href: "/blog?cat=blog" },
+        { label: "Coding", href: "/blog?cat=coding" },
       ],
     },
     {
       label: "Reviews",
       href: "/reviews",
-      children: [
-        { label: "Laptops & PCs", href: "/reviews?cat=laptops" },
-        { label: "Phones & Tablets", href: "/reviews?cat=phones" },
-        { label: "Audio & Peripherals", href: "/reviews?cat=audio" },
-        { label: "Smart Home", href: "/reviews?cat=smart-home" },
-        { label: "Software & Apps", href: "/reviews?cat=software" },
-      ],
     },
     { label: "AI Tools", href: "/ai-tools" },
     { label: "About", href: "/about" },
@@ -74,5 +69,7 @@ export const siteConfig = {
     { slug: "cybersecurity", label: "Cybersecurity", color: "#EF4444" },
     { slug: "gaming", label: "Gaming Tech", color: "#F97316" },
     { slug: "emerging-tech", label: "Emerging Tech", color: "#06B6D4" },
+    { slug: "blog", label: "General", color: "#6366F1" },
+    { slug: "coding", label: "Coding", color: "#14B8A6" },
   ],
 };

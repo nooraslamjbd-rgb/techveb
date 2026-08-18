@@ -208,7 +208,7 @@ export default function Home() {
                 ? "/reviews"
                 : cat.slug === "ai"
                 ? "/ai-tools"
-                : "/blog";
+                : `/blog?cat=${cat.slug}`;
             return (
               <Link
                 key={cat.slug}

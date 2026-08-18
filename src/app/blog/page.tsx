@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { getAllPosts, getAllCategories, getAllTags } from "@/lib/mdx";
+import Link from "next/link";
+import { getAllPosts, getAllCategories, getPostsByCategory } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -11,33 +13,117 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://techveb.com/blog" },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts("blog");
+function getCategoryLabel(cat: string): string {
+  const found = siteConfig.categories.find((c) => c.slug === cat);
+  return found?.label || cat;
+}
+
+function getCategoryColor(cat: string): string {
+  const found = siteConfig.categories.find((c) => c.slug === cat);
+  return found?.color || "#0060E0";
+}
+
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ cat?: string; q?: string }>;
+}) {
+  const params = await searchParams;
+  const activeCategory = params.cat || null;
+  const query = params.q || "";
+
+  const allPosts = getAllPosts("blog");
   const categories = getAllCategories("blog");
-  const tags = getAllTags("blog");
+
+  let posts = activeCategory
+    ? getPostsByCategory("blog", activeCategory)
+    : allPosts;
+
+  if (query) {
+    const q = query.toLowerCase();
+    posts = posts.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q))
+    );
+  }
+
+  const pageTitle = activeCategory
+    ? `${getCategoryLabel(activeCategory)} Articles`
+    : "Blog";
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <Breadcrumbs items={[{ label: "Blog" }]} />
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <Breadcrumbs
+        items={
+          activeCategory
+            ? [
+                { label: "Blog", href: "/blog" },
+                { label: getCategoryLabel(activeCategory) },
+              ]
+            : [{ label: "Blog" }]
+        }
+      />
 
-      <div className="mb-10">
-        <h1 className="mb-3 font-heading text-3xl font-bold sm:text-4xl">Blog</h1>
+      <div className="mb-8">
+        <h1 className="mb-3 font-heading text-3xl font-bold sm:text-4xl">
+          {pageTitle}
+        </h1>
         <p className="max-w-2xl text-muted">
-          Deep dives into technology, artificial intelligence, and the digital
-          trends shaping our future.
+          {activeCategory
+            ? `Showing all articles in ${getCategoryLabel(activeCategory)}.`
+            : "Deep dives into technology, artificial intelligence, and the digital trends shaping our future."}
         </p>
       </div>
 
       {categories.length > 0 && (
         <div className="mb-8 flex flex-wrap gap-2">
+          <Link
+            href="/blog"
+            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+              !activeCategory
+                ? "bg-primary text-white"
+                : "bg-primary/10 text-primary hover:bg-primary/20"
+            }`}
+          >
+            All ({allPosts.length})
+          </Link>
           {categories.map((cat) => (
-            <span
+            <Link
               key={cat.category}
-              className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+              href={`/blog?cat=${cat.category}`}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                activeCategory === cat.category
+                  ? "text-white"
+                  : "hover:opacity-80"
+              }`}
+              style={{
+                backgroundColor:
+                  activeCategory === cat.category
+                    ? getCategoryColor(cat.category)
+                    : `${getCategoryColor(cat.category)}15`,
+                color:
+                  activeCategory === cat.category
+                    ? "#fff"
+                    : getCategoryColor(cat.category),
+              }}
             >
-              {cat.category} ({cat.count})
-            </span>
+              {getCategoryLabel(cat.category)} ({cat.count})
+            </Link>
           ))}
+        </div>
+      )}
+
+      {query && (
+        <div className="mb-6 flex items-center gap-2 text-sm text-muted">
+          <span>
+            {posts.length} result{posts.length !== 1 ? "s" : ""} for &ldquo;
+            {query}&rdquo;
+          </span>
+          <Link href="/blog" className="text-primary hover:underline">
+            Clear
+          </Link>
         </div>
       )}
 
@@ -49,10 +135,20 @@ export default function BlogPage() {
         </div>
       ) : (
         <div className="rounded-xl border border-border bg-surface py-16 text-center">
-          <p className="text-lg text-muted">Articles coming soon!</p>
+          <p className="text-lg text-muted">No articles found.</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            We are working on bringing you the best content.
+            {activeCategory
+              ? "Try a different category or browse all articles."
+              : "We are working on bringing you the best content."}
           </p>
+          {activeCategory && (
+            <Link
+              href="/blog"
+              className="mt-4 inline-block rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
+            >
+              Browse All Articles
+            </Link>
+          )}
         </div>
       )}
 
