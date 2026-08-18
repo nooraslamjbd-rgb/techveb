@@ -44,6 +44,18 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "Bytespider",
         disallow: "/",
       },
+      {
+        userAgent: "Amazonbot",
+        allow: "/",
+      },
+      {
+        userAgent: "Meta-ExternalAgent",
+        allow: "/",
+      },
+      {
+        userAgent: "Applebot-Extended",
+        allow: "/",
+      },
     ],
     sitemap: "https://techveb.com/sitemap.xml",
   };

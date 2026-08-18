@@ -22,7 +22,7 @@ export async function generateMetadata({
   const { tag } = await params;
   const decoded = decodeURIComponent(tag);
   return {
-    title: `#${decoded}`,
+    title: `#${decoded} Articles`,
     description: `All articles tagged with "${decoded}" on TechVeb.`,
     alternates: { canonical: `${siteConfig.url}/tags/${tag}` },
   };

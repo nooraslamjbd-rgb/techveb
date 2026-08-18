@@ -34,7 +34,7 @@ export async function generateMetadata({
   const label = cat?.label || slug;
   const description = categoryDescriptions[slug] || `Explore all ${label} articles, guides, and reviews on TechVeb.`;
   return {
-    title: `${label} - Technology News & Articles`,
+    title: `${label} | ${siteConfig.name}`,
     description,
     alternates: { canonical: `${siteConfig.url}/category/${slug}` },
     openGraph: {
@@ -43,6 +43,11 @@ export async function generateMetadata({
       url: `${siteConfig.url}/category/${slug}`,
       siteName: siteConfig.name,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${label} | ${siteConfig.name}`,
+      description,
     },
   };
 }

@@ -3,7 +3,7 @@ import { getAllPosts, getAllTags } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://techveb.com";
+  const baseUrl = siteConfig.url;
   const now = new Date();
 
   const staticPages = [

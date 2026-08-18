@@ -29,6 +29,17 @@ export async function generateMetadata({
     title: `${name} - Author`,
     description: author?.bio || `Articles written by ${name} on TechVeb.`,
     alternates: { canonical: `${siteConfig.url}/author/${slug}` },
+    openGraph: {
+      title: `${name} - Author | ${siteConfig.name}`,
+      description: author?.bio || `Articles written by ${name} on TechVeb.`,
+      url: `${siteConfig.url}/author/${slug}`,
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${name} - Author | ${siteConfig.name}`,
+      description: author?.bio || `Articles written by ${name} on TechVeb.`,
+    },
   };
 }
 

@@ -20,6 +20,7 @@ import Comments from "@/components/ui/Comments";
 import NewsletterInline from "@/components/ui/NewsletterInline";
 import ArticleFeedback from "@/components/ui/ArticleFeedback";
 import TimeAgo from "@/components/ui/TimeAgo";
+import FAQ from "@/components/ui/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -36,7 +37,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} | ${siteConfig.name} AI Tools`,
+    title: post.title,
     description: post.description,
     alternates: { canonical: `${siteConfig.url}/ai-tools/${slug}` },
     openGraph: {
@@ -77,7 +78,7 @@ export default async function AiToolPostPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "Article",
     headline: post.title,
     description: post.description,
     author: { "@type": "Person", name: post.author },
@@ -94,8 +95,7 @@ export default async function AiToolPostPage({
       "@type": "WebPage",
       "@id": `${siteConfig.url}/ai-tools/${slug}`,
     },
-    applicationCategory: "AI Tool",
-    operatingSystem: "Web",
+    articleSection: "AI Tools",
     keywords: post.tags?.join(", "),
     wordCount: Math.ceil(post.content.split(/\s+/).length),
   };
@@ -202,6 +202,7 @@ export default async function AiToolPostPage({
               <div className="mt-10">
                 <ArticleFeedback />
               </div>
+              {post.faq && post.faq.length > 0 && <FAQ items={post.faq} />}
               <NewsletterInline />
               <AuthorBox />
               <RelatedArticles posts={related} dir="ai-tools" />

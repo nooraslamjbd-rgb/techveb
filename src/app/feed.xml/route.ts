@@ -20,7 +20,7 @@ export async function GET() {
         const dir = getDirFromCategory(post.category);
         const link = `${siteConfig.url}/${dir}/${post.slug}`;
         const imageTag = post.image
-          ? `      <enclosure url="${post.image}" type="image/jpeg" length="0"/>\n`
+          ? `      <enclosure url="${post.image}" type="image/png"/>\n`
           : "";
         return `    <item>
       <title><![CDATA[${post.title}]]></title>
@@ -38,9 +38,9 @@ ${imageTag}    </item>`;
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>${siteConfig.name}</title>
+    <title><![CDATA[${siteConfig.name}]]></title>
     <link>${siteConfig.url}</link>
-    <description>${siteConfig.description}</description>
+    <description><![CDATA[${siteConfig.description}]]></description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml"/>

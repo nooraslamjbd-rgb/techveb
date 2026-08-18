@@ -20,6 +20,7 @@ import Comments from "@/components/ui/Comments";
 import NewsletterInline from "@/components/ui/NewsletterInline";
 import ArticleFeedback from "@/components/ui/ArticleFeedback";
 import TimeAgo from "@/components/ui/TimeAgo";
+import FAQ from "@/components/ui/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -201,6 +202,8 @@ export default async function BlogPostPage({
               <div className="mt-10">
                 <ArticleFeedback />
               </div>
+
+              {post.faq && post.faq.length > 0 && <FAQ items={post.faq} />}
 
               <NewsletterInline />
 

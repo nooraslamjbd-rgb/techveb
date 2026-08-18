@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   description:
     "Learn about TechVeb - your trusted source for technology news, AI insights, and expert product reviews.",
   alternates: { canonical: "https://techveb.com/about" },
+  openGraph: {
+    title: "About Us | TechVeb",
+    description: "Learn about TechVeb - your trusted source for technology news, AI insights, and expert product reviews.",
+    url: "https://techveb.com/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | TechVeb",
+    description: "Learn about TechVeb - your trusted source for technology news, AI insights, and expert product reviews.",
+  },
 };
 
 export default function AboutPage() {

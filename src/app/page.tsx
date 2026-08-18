@@ -10,7 +10,7 @@ import TrendingTicker from "@/components/ui/TrendingTicker";
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "TechVeb - Technology, AI & Innovation Hub",
+  title: { absolute: "TechVeb - Technology, AI & Innovation Hub" },
   description:
     "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides. Stay informed with 500+ in-depth articles.",
   alternates: { canonical: "https://techveb.com" },

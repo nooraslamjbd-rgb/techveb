@@ -20,6 +20,7 @@ import Comments from "@/components/ui/Comments";
 import NewsletterInline from "@/components/ui/NewsletterInline";
 import ArticleFeedback from "@/components/ui/ArticleFeedback";
 import TimeAgo from "@/components/ui/TimeAgo";
+import FAQ from "@/components/ui/FAQ";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -36,7 +37,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} | ${siteConfig.name} Reviews`,
+    title: post.title,
     description: post.description,
     alternates: { canonical: `${siteConfig.url}/reviews/${slug}` },
     openGraph: {
@@ -94,15 +95,16 @@ export default async function ReviewPostPage({
       "@type": "WebPage",
       "@id": `${siteConfig.url}/reviews/${slug}`,
     },
-    reviewBody: post.description,
+    reviewBody: post.content?.slice(0, 500),
     itemReviewed: {
       "@type": "Product",
       name: post.title,
       image: post.image || "/og-default.png",
+      brand: { "@type": "Brand", name: post.title.split(" ")[0] },
     },
     reviewRating: {
       "@type": "Rating",
-      ratingValue: 4,
+      ratingValue: Math.max(3, Math.min(5, Math.round(post.content?.split(/\s+/).length > 500 ? 4.5 : 4))),
       bestRating: 5,
       worstRating: 1,
     },
@@ -213,6 +215,7 @@ export default async function ReviewPostPage({
               <div className="mt-10">
                 <ArticleFeedback />
               </div>
+              {post.faq && post.faq.length > 0 && <FAQ items={post.faq} />}
               <NewsletterInline />
               <AuthorBox />
               <RelatedArticles posts={related} dir="reviews" />

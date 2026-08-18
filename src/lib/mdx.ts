@@ -18,6 +18,7 @@ export interface PostFrontmatter {
   imageCreditUrl?: string;
   featured?: boolean;
   readingTime?: string;
+  faq?: { question: string; answer: string }[];
 }
 
 export interface Post extends PostFrontmatter {
