@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, getDirFromCategory } from "@/lib/mdx";
@@ -5,6 +6,14 @@ import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import HomeSearchBar from "@/components/ui/HomeSearchBar";
+import JsonLd from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "TechVeb - Technology, AI & Innovation Hub",
+  description:
+    "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides. Stay informed with 500+ in-depth articles.",
+  alternates: { canonical: "https://techveb.com" },
+};
 
 export default function Home() {
   const blogPosts = getAllPosts("blog");
@@ -22,8 +31,30 @@ export default function Home() {
     .filter((p) => p.slug !== featured?.slug)
     .slice(0, 9);
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo-square.png` },
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <>
+      <JsonLd data={websiteJsonLd} />
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(0,96,224,0.15),transparent_60%)]" />

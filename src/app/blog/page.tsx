@@ -4,6 +4,7 @@ import { getAllPosts, getAllCategories, getPostsByCategory } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -53,7 +54,38 @@ export default async function BlogPage({
     ? `${getCategoryLabel(activeCategory)} Articles`
     : "Blog";
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: pageTitle,
+    description: activeCategory
+      ? `All articles in ${getCategoryLabel(activeCategory)} category on TechVeb.`
+      : "Explore the latest technology articles, AI insights, and expert guides on TechVeb.",
+    url: `${siteConfig.url}/blog${activeCategory ? `?cat=${activeCategory}` : ""}`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
+  const itemListJsonLd = posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: pageTitle,
+    numberOfItems: posts.length,
+    itemListElement: posts.slice(0, 20).map((post, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      name: post.title,
+    })),
+  } : null;
+
   return (
+    <>
+      <JsonLd data={collectionJsonLd} />
+      {itemListJsonLd && <JsonLd data={itemListJsonLd} />}
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       <Breadcrumbs
         items={
@@ -156,5 +188,6 @@ export default async function BlogPage({
         <NewsletterCTA />
       </div>
     </div>
+    </>
   );
 }

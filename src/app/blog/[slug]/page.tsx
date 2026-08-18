@@ -15,6 +15,8 @@ import AuthorBox from "@/components/blog/AuthorBox";
 import RelatedArticles from "@/components/blog/RelatedArticles";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
+import ShareButtons from "@/components/ui/ShareButtons";
+import Comments from "@/components/ui/Comments";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -68,7 +70,7 @@ export default async function BlogPostPage({
 
   const related = getPostsByCategory("blog", post.category)
     .filter((p) => p.slug !== slug)
-    .slice(0, 3);
+    .slice(0, 6);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -89,6 +91,9 @@ export default async function BlogPostPage({
       "@type": "WebPage",
       "@id": `${siteConfig.url}/blog/${slug}`,
     },
+    keywords: post.tags?.join(", "),
+    articleSection: post.category,
+    wordCount: Math.ceil(post.content.split(/\s+/).length),
   };
 
   const breadcrumbJsonLd = {
@@ -161,6 +166,9 @@ export default async function BlogPostPage({
                 ))}
               </div>
             )}
+            <div className="mt-4">
+              <ShareButtons title={post.title} url={`/blog/${slug}`} description={post.description} />
+            </div>
           </header>
 
           <div className="flex gap-8">
@@ -178,6 +186,7 @@ export default async function BlogPostPage({
 
               <AuthorBox />
               <RelatedArticles posts={related} dir="blog" />
+              <Comments slug={slug} />
             </div>
             <div className="hidden w-64 shrink-0 lg:block">
               <TableOfContents />

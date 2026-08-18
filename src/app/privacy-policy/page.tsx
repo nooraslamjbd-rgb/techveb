@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="prose max-w-none">
         <p className="text-sm text-muted-foreground">
-          Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          Last updated: August 1, 2026
         </p>
 
         <h2>Introduction</h2>

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts, getAllTags } from "@/lib/mdx";
+import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://techveb.com";
@@ -37,5 +38,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...blogPages, ...reviewPages, ...aiToolPages];
+  const categoryPages = siteConfig.categories.map((cat) => ({
+    url: `${baseUrl}/category/${cat.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  const allTags = getAllTags("blog")
+    .concat(getAllTags("reviews"))
+    .concat(getAllTags("ai-tools"));
+  const uniqueTags = [...new Map(allTags.map((t) => [t.tag, t])).values()];
+  const tagPages = uniqueTags.map((t) => ({
+    url: `${baseUrl}/tags/${encodeURIComponent(t.tag)}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.4,
+  }));
+
+  const authorPages = [
+    { url: `${baseUrl}/author/techveb-team`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 },
+  ];
+
+  return [
+    ...staticPages,
+    ...blogPages,
+    ...reviewPages,
+    ...aiToolPages,
+    ...categoryPages,
+    ...tagPages,
+    ...authorPages,
+  ];
 }

@@ -1,5 +1,7 @@
 import { getAllPosts } from "@/lib/mdx";
+import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
+import { getDirFromCategory } from "@/lib/category-utils";
 
 export async function GET() {
   const posts = getAllPosts("blog");
@@ -14,26 +16,39 @@ export async function GET() {
 
   const items = allItems
     .map(
-      (post) => `    <item>
+      (post) => {
+        const dir = getDirFromCategory(post.category);
+        const link = `${siteConfig.url}/${dir}/${post.slug}`;
+        const imageTag = post.image
+          ? `      <enclosure url="${post.image}" type="image/jpeg" length="0"/>\n`
+          : "";
+        return `    <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>https://techveb.com/${post.section.toLowerCase().replace(" ", "-")}/${post.slug}</link>
+      <link>${link}</link>
       <description><![CDATA[${post.description}]]></description>
+      <category>${post.category}</category>
       <category>${post.section}</category>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <guid isPermaLink="true">https://techveb.com/${post.section.toLowerCase().replace(" ", "-")}/${post.slug}</guid>
-    </item>`
+      <guid isPermaLink="true">${link}</guid>
+${imageTag}    </item>`;
+      }
     )
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>TechVeb</title>
-    <link>https://techveb.com</link>
-    <description>AI & Technology News, Reviews, and Tutorials</description>
+    <title>${siteConfig.name}</title>
+    <link>${siteConfig.url}</link>
+    <description>${siteConfig.description}</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="https://techveb.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>${siteConfig.url}/logo.png</url>
+      <title>${siteConfig.name}</title>
+      <link>${siteConfig.url}</link>
+    </image>
 ${items}
   </channel>
 </rss>`;

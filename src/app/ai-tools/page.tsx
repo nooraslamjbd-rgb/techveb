@@ -4,6 +4,7 @@ import { getAllPosts, getAllCategories, getPostsByCategory } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -38,7 +39,38 @@ export default async function AiToolsPage({
     ? getPostsByCategory("ai-tools", activeCategory)
     : allPosts;
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: activeCategory ? `${getCategoryLabel(activeCategory)} AI Tools` : "AI Tools & Guides",
+    description: activeCategory
+      ? `All ${getCategoryLabel(activeCategory)} AI tool guides on TechVeb.`
+      : "Your comprehensive guide to the best AI tools available today.",
+    url: `${siteConfig.url}/ai-tools${activeCategory ? `?cat=${activeCategory}` : ""}`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
+  const itemListJsonLd = posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Tools",
+    numberOfItems: posts.length,
+    itemListElement: posts.slice(0, 20).map((post, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${siteConfig.url}/ai-tools/${post.slug}`,
+      name: post.title,
+    })),
+  } : null;
+
   return (
+    <>
+      <JsonLd data={collectionJsonLd} />
+      {itemListJsonLd && <JsonLd data={itemListJsonLd} />}
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       <Breadcrumbs
         items={
@@ -131,5 +163,6 @@ export default async function AiToolsPage({
         <NewsletterCTA />
       </div>
     </div>
+    </>
   );
 }
