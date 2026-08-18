@@ -66,16 +66,23 @@ async function optimize() {
   console.log("logo-square.png:", (fs.statSync(logoSquare).size / 1024).toFixed(0) + "KB");
 
   // === FAVICON ===
-  // 3. favicon.png (32x32 - proper favicon size)
-  const fav32 = path.join(PUBLIC, "favicon.png");
-  const fav32Buf = await sharp(origFav)
+  // 3. favicon-32x32.png
+  const fav32Png = path.join(PUBLIC, "favicon-32x32.png");
+  await sharp(origFav)
     .resize(32, 32, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png({ quality: 100 })
-    .toBuffer();
-  fs.writeFileSync(fav32, fav32Buf);
-  console.log("favicon.png:", (fs.statSync(fav32).size / 1024).toFixed(0) + "KB");
+    .png({ quality: 100, compressionLevel: 9 })
+    .toFile(fav32Png);
+  console.log("favicon-32x32.png:", (fs.statSync(fav32Png).size / 1024).toFixed(0) + "KB");
 
-  // 4. favicon.ico (proper BMP-based, multi-size: 16, 32, 48)
+  // 4. favicon-16x16.png
+  const fav16Png = path.join(PUBLIC, "favicon-16x16.png");
+  await sharp(origFav)
+    .resize(16, 16, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png({ quality: 100, compressionLevel: 9 })
+    .toFile(fav16Png);
+  console.log("favicon-16x16.png:", (fs.statSync(fav16Png).size / 1024).toFixed(0) + "KB");
+
+  // 5. favicon.ico (proper BMP-based, multi-size: 16, 32, 48)
   const icoPath = path.join(PUBLIC, "favicon.ico");
   const sizes = [16, 32, 48];
   const icoImages = [];
@@ -116,7 +123,7 @@ async function optimize() {
   fs.writeFileSync(icoPath, ico);
   console.log("favicon.ico:", (fs.statSync(icoPath).size / 1024).toFixed(0) + "KB");
 
-  // 5. apple-touch-icon.png (180x180 - required for iOS)
+  // 6. apple-touch-icon.png (180x180 - required for iOS)
   const appleIcon = path.join(PUBLIC, "apple-touch-icon.png");
   await sharp(origFav)
     .resize(180, 180, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
@@ -124,7 +131,7 @@ async function optimize() {
     .toFile(appleIcon);
   console.log("apple-touch-icon.png:", (fs.statSync(appleIcon).size / 1024).toFixed(0) + "KB");
 
-  // 6. PWA icons (192x192, 512x512)
+  // 7. PWA icons (192x192, 512x512)
   for (const sz of [192, 512]) {
     const iconPath = path.join(PUBLIC, `icon-${sz}.png`);
     await sharp(origFav)
