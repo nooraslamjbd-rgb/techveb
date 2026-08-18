@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: {
+    workerThreads: true,
+  },
   async headers() {
     return [
       {

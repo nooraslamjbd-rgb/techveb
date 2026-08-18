@@ -17,6 +17,9 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
 import ShareButtons from "@/components/ui/ShareButtons";
 import Comments from "@/components/ui/Comments";
+import NewsletterInline from "@/components/ui/NewsletterInline";
+import ArticleFeedback from "@/components/ui/ArticleFeedback";
+import TimeAgo from "@/components/ui/TimeAgo";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -156,7 +159,7 @@ export default async function AiToolPostPage({
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <span className="font-medium text-foreground">{post.author}</span>
               <span className="h-1 w-1 rounded-full bg-muted-foreground" />
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <TimeAgo date={post.date} />
               {post.updated && (
                 <>
                   <span className="h-1 w-1 rounded-full bg-muted-foreground" />
@@ -196,6 +199,10 @@ export default async function AiToolPostPage({
                 />
               </div>
 
+              <div className="mt-10">
+                <ArticleFeedback />
+              </div>
+              <NewsletterInline />
               <AuthorBox />
               <RelatedArticles posts={related} dir="ai-tools" />
               <Comments slug={slug} />

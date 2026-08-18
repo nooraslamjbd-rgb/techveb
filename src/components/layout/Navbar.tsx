@@ -144,12 +144,31 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
+            <Link
+              href="/feed.xml"
+              className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"
+              aria-label="RSS Feed"
+              target="_blank"
+            >
+              <svg className="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+              </svg>
+            </Link>
             <div className="hidden sm:flex">
               <DarkModeToggle />
             </div>
             <div className="sm:hidden">
               <DarkModeToggle />
             </div>
+            <Link
+              href="/contact"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/20"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Subscribe
+            </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-surface md:hidden"
@@ -185,7 +204,7 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 Search articles...
-                <kbd className="ml-auto rounded border border-border bg-background px-1.5 py-0.5 text-[10px]">⌘K</kbd>
+                <kbd className="ml-auto rounded border border-border bg-background px-1.5 py-0.5 text-[10px]">Ctrl+K</kbd>
               </button>
             </div>
             <ul className="space-y-0.5">

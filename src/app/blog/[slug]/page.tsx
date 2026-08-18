@@ -17,6 +17,9 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
 import ShareButtons from "@/components/ui/ShareButtons";
 import Comments from "@/components/ui/Comments";
+import NewsletterInline from "@/components/ui/NewsletterInline";
+import ArticleFeedback from "@/components/ui/ArticleFeedback";
+import TimeAgo from "@/components/ui/TimeAgo";
 import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateStaticParams() {
@@ -74,7 +77,7 @@ export default async function BlogPostPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": post.category === "tech-news" ? "NewsArticle" : "BlogPosting",
     headline: post.title,
     description: post.description,
     author: { "@type": "Person", name: post.author },
@@ -106,6 +109,8 @@ export default async function BlogPostPage({
     ],
   };
 
+  const dir = "blog";
+
   return (
     <>
       <ReadingProgress />
@@ -132,6 +137,15 @@ export default async function BlogPostPage({
               />
             </div>
           )}
+          {post.imageCredit && (
+            <p className="-mt-4 mb-6 text-center text-xs text-muted-foreground">
+              {post.imageCreditUrl ? (
+                <>Photo: <a href={post.imageCreditUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">{post.imageCredit}</a></>
+              ) : (
+                <>Photo: {post.imageCredit}</>
+              )}
+            </p>
+          )}
 
           <header className="mb-8">
             <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
@@ -144,7 +158,7 @@ export default async function BlogPostPage({
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <span className="font-medium text-foreground">{post.author}</span>
               <span className="h-1 w-1 rounded-full bg-muted-foreground" />
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <TimeAgo date={post.date} />
               {post.updated && (
                 <>
                   <span className="h-1 w-1 rounded-full bg-muted-foreground" />
@@ -184,8 +198,15 @@ export default async function BlogPostPage({
                 />
               </div>
 
+              <div className="mt-10">
+                <ArticleFeedback />
+              </div>
+
+              <NewsletterInline />
+
               <AuthorBox />
-              <RelatedArticles posts={related} dir="blog" />
+
+              <RelatedArticles posts={related} dir={dir} />
               <Comments slug={slug} />
             </div>
             <div className="hidden w-64 shrink-0 lg:block">

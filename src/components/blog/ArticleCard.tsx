@@ -35,10 +35,12 @@ export default function ArticleCard({
   post,
   dir,
   featured = false,
+  compact = false,
 }: {
   post: Post;
   dir: string;
   featured?: boolean;
+  compact?: boolean;
 }) {
   const href = `/${dir}/${post.slug}`;
 
@@ -81,6 +83,37 @@ export default function ArticleCard({
             <span className="h-1 w-1 rounded-full bg-muted-foreground" />
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </div>
+        </div>
+      </Link>
+    );
+  }
+
+  if (compact) {
+    return (
+      <Link
+        href={href}
+        className="group flex gap-3 rounded-xl border border-border bg-surface p-3 transition-all card-hover"
+      >
+        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+          {post.image ? (
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="64px"
+            />
+          ) : (
+            <ImageFallback title={post.title} category={post.category} />
+          )}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="line-clamp-2 text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+            {post.title}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {post.readingTime} · {formatDate(post.date)}
+          </p>
         </div>
       </Link>
     );

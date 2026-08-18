@@ -10,12 +10,23 @@ const socialIcons: { key: keyof typeof siteConfig.social; label: string; path: s
 
 const hasSocial = socialIcons.some((s) => siteConfig.social[s.key]);
 
+const allCategories = [
+  { label: "AI & ML", href: "/blog?cat=ai" },
+  { label: "Tech News", href: "/blog?cat=tech-news" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Cybersecurity", href: "/blog?cat=cybersecurity" },
+  { label: "Cloud", href: "/blog?cat=cloud" },
+  { label: "AI Tools", href: "/ai-tools" },
+  { label: "Gaming", href: "/blog?cat=gaming" },
+  { label: "Programming", href: "/blog?cat=tutorials" },
+];
+
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2 lg:col-span-1">
+        <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm">
                 <Image src="/logo-square.png" alt="TechVeb" fill className="object-contain p-0.5" />
@@ -50,6 +61,19 @@ export default function Footer() {
                 })}
               </div>
             )}
+            <div className="mt-4">
+              <a
+                href="/feed.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                </svg>
+                RSS Feed
+              </a>
+            </div>
           </div>
 
           {siteConfig.footerLinks.map((group) => (
@@ -74,20 +98,19 @@ export default function Footer() {
 
           <div>
             <h3 className="mb-4 font-heading text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Contact
+              Topics
             </h3>
-            <ul className="space-y-2.5 text-sm text-muted">
-              <li>
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition-colors">
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li>
-                <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="hover:text-primary transition-colors">
-                  {siteConfig.phone}
-                </a>
-              </li>
-              <li>{siteConfig.address}</li>
+            <ul className="space-y-2.5">
+              {allCategories.map((cat) => (
+                <li key={cat.href}>
+                  <Link
+                    href={cat.href}
+                    className="text-sm text-muted hover:text-primary transition-colors"
+                  >
+                    {cat.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
