@@ -1,4 +1,4 @@
-import { getAllPostsFromAllDirs, getDirFromCategory } from "@/lib/mdx";
+import { getAllPostsFromAllDirs } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -9,7 +9,7 @@ export async function GET() {
   );
 
   const sections = sorted.map((post) => {
-    const dir = getDirFromCategory(post.category);
+    const dir = post.dir;
     const url = `${siteConfig.url}/${dir}/${post.slug}`;
     return `## ${post.title}
 

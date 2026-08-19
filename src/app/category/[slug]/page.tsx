@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPostsFromAllDirs, getDirFromCategory } from "@/lib/mdx";
+import { getAllPostsFromAllDirs } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
@@ -68,7 +68,7 @@ export default async function CategoryPage({
     .filter((p) => p.category === slug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const dir = getDirFromCategory(slug);
+  const dir = posts[0]?.dir || "blog";
   const featuredPost = posts[0];
   const remainingPosts = posts.slice(1);
 

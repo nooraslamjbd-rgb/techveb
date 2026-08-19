@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { getDirFromCategory } from "@/lib/category-utils";
 
 interface SearchArticle {
   slug: string;
@@ -78,7 +77,7 @@ export default function HomeSearchBar() {
           {results.map((article) => (
             <Link
               key={article.slug}
-              href={`/${getDirFromCategory(article.category)}/${article.slug}`}
+              href={`/${article.dir}/${article.slug}`}
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-surface transition-colors"
             >
               <span

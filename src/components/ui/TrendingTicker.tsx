@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPostsFromAllDirs, getDirFromCategory } from "@/lib/mdx";
+import { getAllPostsFromAllDirs } from "@/lib/mdx";
 
 export default function TrendingTicker() {
   const allPosts = getAllPostsFromAllDirs()
@@ -25,7 +25,7 @@ export default function TrendingTicker() {
           {allPosts.map((post) => (
             <Link
               key={post.slug}
-              href={`/${getDirFromCategory(post.category)}/${post.slug}`}
+              href={`/${post.dir}/${post.slug}`}
               className="shrink-0 text-xs font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
             >
               {post.title}

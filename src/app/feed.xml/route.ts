@@ -1,7 +1,6 @@
 import { getAllPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
-import { getDirFromCategory } from "@/lib/category-utils";
 
 export async function GET() {
   const posts = getAllPosts("blog");
@@ -17,7 +16,7 @@ export async function GET() {
   const items = allItems
     .map(
       (post) => {
-        const dir = getDirFromCategory(post.category);
+        const dir = post.dir;
         const link = `${siteConfig.url}/${dir}/${post.slug}`;
         const imageTag = post.image
           ? `      <enclosure url="${post.image}" type="image/png"/>\n`

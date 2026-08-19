@@ -24,6 +24,7 @@ export interface PostFrontmatter {
 export interface Post extends PostFrontmatter {
   slug: string;
   content: string;
+  dir: string;
 }
 
 const contentDir = path.join(process.cwd(), "src", "content");
@@ -51,6 +52,7 @@ function getFile(dir: string, slug: string): Post | null {
   return {
     slug,
     ...fm,
+    dir,
     readingTime: `${minutes} min read`,
     content,
   };

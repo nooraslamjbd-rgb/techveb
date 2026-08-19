@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPostsFromAllDirs, getAllTags, getDirFromCategory } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllTags } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
@@ -87,7 +87,7 @@ export default async function TagPage({
               <ArticleCard
                 key={post.slug}
                 post={post}
-                dir={getDirFromCategory(post.category)}
+                dir={post.dir}
               />
             ))}
           </div>

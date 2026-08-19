@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts, getDirFromCategory } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
@@ -105,7 +105,7 @@ export default function Home() {
           <div>
             {featured && (
               <Link
-                href={`/${getDirFromCategory(featured.category)}/${featured.slug}`}
+                href={`/${featured.dir}/${featured.slug}`}
                 className="group relative block overflow-hidden rounded-2xl border border-border"
               >
                 {featured.featured && (
@@ -186,7 +186,7 @@ export default function Home() {
               {topNews.map((post, idx) => (
                 <Link
                   key={post.slug}
-                  href={`/${getDirFromCategory(post.category)}/${post.slug}`}
+                  href={`/${post.dir}/${post.slug}`}
                   className={`group flex gap-3 px-4 py-3.5 transition-colors hover:bg-surface-hover ${
                     idx < topNews.length - 1 ? "border-b border-border" : ""
                   }`}
@@ -233,7 +233,7 @@ export default function Home() {
               <ArticleCard
                 key={post.slug}
                 post={post}
-                dir={getDirFromCategory(post.category)}
+                dir={post.dir}
               />
             ))}
           </div>
@@ -264,7 +264,7 @@ export default function Home() {
               <ArticleCard
                 key={post.slug}
                 post={post}
-                dir={getDirFromCategory(post.category)}
+                dir={post.dir}
               />
             ))}
           </div>
@@ -295,7 +295,7 @@ export default function Home() {
               <ArticleCard
                 key={post.slug}
                 post={post}
-                dir={getDirFromCategory(post.category)}
+                dir={post.dir}
               />
             ))}
           </div>
@@ -321,7 +321,7 @@ export default function Home() {
                 <ArticleCard
                   key={post.slug}
                   post={post}
-                  dir={getDirFromCategory(post.category)}
+                  dir={post.dir}
                 />
               ))}
             </div>
@@ -339,7 +339,7 @@ export default function Home() {
               {latestSidebar.map((post, idx) => (
                 <Link
                   key={post.slug}
-                  href={`/${getDirFromCategory(post.category)}/${post.slug}`}
+                  href={`/${post.dir}/${post.slug}`}
                   className={`group flex gap-3 px-4 py-3 transition-colors hover:bg-surface-hover ${
                     idx < latestSidebar.length - 1 ? "border-b border-border" : ""
                   }`}

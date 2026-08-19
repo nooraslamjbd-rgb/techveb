@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPostsFromAllDirs, getDirFromCategory } from "@/lib/mdx";
+import { getAllPostsFromAllDirs } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
@@ -111,7 +111,7 @@ export default async function AuthorPage({
               <ArticleCard
                 key={post.slug}
                 post={post}
-                dir={getDirFromCategory(post.category)}
+                dir={post.dir}
               />
             ))}
           </div>
