@@ -68,6 +68,16 @@ export function getAllPosts(dir: string): Post[] {
   const posts = slugs
     .map((slug) => getFile(dir, slug))
     .filter((p): p is Post => p !== null)
+    .filter((p) => (p as unknown as Record<string, unknown>).status !== "draft")
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return posts;
+}
+
+export function getAllPostsAdmin(dir: string): Post[] {
+  const slugs = getFiles(dir);
+  const posts = slugs
+    .map((slug) => getFile(dir, slug))
+    .filter((p): p is Post => p !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   return posts;
 }
@@ -123,6 +133,11 @@ export function formatDate(dateString: string): string {
 export function getAllPostsFromAllDirs(): Post[] {
   const dirs = ["blog", "reviews", "ai-tools"];
   return dirs.flatMap((dir) => getAllPosts(dir));
+}
+
+export function getAllPostsFromAllDirsAdmin(): Post[] {
+  const dirs = ["blog", "reviews", "ai-tools"];
+  return dirs.flatMap((dir) => getAllPostsAdmin(dir));
 }
 
 export function getAllCategories(dir: string): { category: string; count: number }[] {
