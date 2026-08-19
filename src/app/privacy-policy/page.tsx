@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   description:
     "TechVeb privacy policy. Learn how we collect, use, and protect your personal information.",
   alternates: { canonical: "https://techveb.com/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy | TechVeb",
+    description: "TechVeb privacy policy. Learn how we collect, use, and protect your personal information.",
+    url: "https://techveb.com/privacy-policy",
+    siteName: "TechVeb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | TechVeb",
+    description: "TechVeb privacy policy. Learn how we collect, use, and protect your personal information.",
+  },
 };
 
 export default function PrivacyPolicyPage() {

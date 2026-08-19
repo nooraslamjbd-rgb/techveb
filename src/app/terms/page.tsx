@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   description:
     "TechVeb terms of service. Read the rules and guidelines for using our website and services.",
   alternates: { canonical: "https://techveb.com/terms" },
+  openGraph: {
+    title: "Terms of Service | TechVeb",
+    description: "TechVeb terms of service. Read the rules and guidelines for using our website and services.",
+    url: "https://techveb.com/terms",
+    siteName: "TechVeb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | TechVeb",
+    description: "TechVeb terms of service. Read the rules and guidelines for using our website and services.",
+  },
 };
 
 export default function TermsPage() {

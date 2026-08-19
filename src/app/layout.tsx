@@ -98,6 +98,21 @@ export default function RootLayout({
     >
       <head>
         <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-VSCWBGYHE7"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VSCWBGYHE7');
+            `,
+          }}
+        />
+        <meta name="google-site-verification" content="fjBae2Y3Z8RAUzEueFcIf6AE2W-C_-ydQq_neNTS5_c" />
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
