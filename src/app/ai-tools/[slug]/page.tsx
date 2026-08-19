@@ -99,6 +99,10 @@ export default async function AiToolPostPage({
     articleSection: "AI Tools",
     keywords: post.tags?.join(", "),
     wordCount: Math.ceil(post.content.split(/\s+/).length),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".prose", "h1"],
+    },
   };
 
   const breadcrumbJsonLd = {

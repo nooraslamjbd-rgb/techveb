@@ -19,19 +19,22 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (!isAdminRoute(pathname)) return NextResponse.next();
-  if (isPublicAdminRoute(pathname)) return NextResponse.next();
 
-  const session = request.cookies.get("admin_session");
+  const response = isPublicAdminRoute(pathname)
+    ? NextResponse.next()
+    : (() => {
+        const session = request.cookies.get("admin_session");
+        if (!session || session.value !== EXPECTED_HASH) {
+          if (pathname.startsWith("/api/")) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+          }
+          return NextResponse.redirect(new URL("/admin", request.url));
+        }
+        return NextResponse.next();
+      })();
 
-  if (!session || session.value !== EXPECTED_HASH) {
-    if (pathname.startsWith("/api/")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    const loginUrl = new URL("/admin", request.url);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  return NextResponse.next();
+  response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  return response;
 }
 
 export const config = {

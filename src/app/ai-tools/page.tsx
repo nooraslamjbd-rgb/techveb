@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   description:
     "Discover the best AI tools and software for productivity, creativity, and automation. Expert comparisons and guides.",
   alternates: { canonical: "https://techveb.com/ai-tools" },
+  openGraph: {
+    title: "AI Tools | TechVeb",
+    description: "Discover the best AI tools and software for productivity, creativity, and automation.",
+    url: "https://techveb.com/ai-tools",
+    siteName: "TechVeb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Tools | TechVeb",
+    description: "Discover the best AI tools and software for productivity, creativity, and automation.",
+  },
 };
 
 const PAGE_SIZE = 25;

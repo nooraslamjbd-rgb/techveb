@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   description:
     "In-depth, honest product reviews on the latest tech gadgets, smartphones, laptops, and software. Make informed buying decisions.",
   alternates: { canonical: "https://techveb.com/reviews" },
+  openGraph: {
+    title: "Product Reviews | TechVeb",
+    description: "In-depth, honest product reviews on the latest tech gadgets, smartphones, laptops, and software.",
+    url: "https://techveb.com/reviews",
+    siteName: "TechVeb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Product Reviews | TechVeb",
+    description: "In-depth, honest product reviews on the latest tech gadgets, smartphones, laptops, and software.",
+  },
 };
 
 const PAGE_SIZE = 25;

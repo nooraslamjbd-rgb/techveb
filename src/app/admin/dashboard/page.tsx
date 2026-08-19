@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { categoryColorMap } from "@/lib/use-categories";
 
 interface Article {
   slug: string;
@@ -20,19 +21,6 @@ interface Stats {
   published: number;
   drafts: number;
 }
-
-const categoryColors: Record<string, string> = {
-  ai: "bg-blue-500/15 text-blue-400",
-  "tech-news": "bg-emerald-500/15 text-emerald-400",
-  "product-reviews": "bg-amber-500/15 text-amber-400",
-  tutorials: "bg-violet-500/15 text-violet-400",
-  cloud: "bg-pink-500/15 text-pink-400",
-  cybersecurity: "bg-red-500/15 text-red-400",
-  gaming: "bg-orange-500/15 text-orange-400",
-  "emerging-tech": "bg-cyan-500/15 text-cyan-400",
-  blog: "bg-indigo-500/15 text-indigo-400",
-  coding: "bg-teal-500/15 text-teal-400",
-};
 
 export default function AdminDashboard() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -118,7 +106,7 @@ export default function AdminDashboard() {
               </div>
               <span
                 className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                  categoryColors[article.category] || "bg-gray-500/15 text-gray-400"
+                  categoryColorMap[article.category] || "bg-gray-500/15 text-gray-400"
                 }`}
               >
                 {article.category}

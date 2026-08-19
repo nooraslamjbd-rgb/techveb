@@ -99,6 +99,10 @@ export default async function BlogPostPage({
     keywords: post.tags?.join(", "),
     articleSection: post.category,
     wordCount: Math.ceil(post.content.split(/\s+/).length),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".prose", "h1"],
+    },
   };
 
   const breadcrumbJsonLd = {

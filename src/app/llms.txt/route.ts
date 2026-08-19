@@ -31,12 +31,26 @@ ${siteConfig.description}
 
 TechVeb is an independent technology publication covering artificial intelligence, cybersecurity, cloud computing, product reviews, and emerging tech trends. Our editorial team provides in-depth analysis, honest product reviews, and practical tutorials for tech professionals and enthusiasts.
 
-## Evaluation Criteria
-Our product reviews are based on hands-on testing, benchmarking, and comparison with competing products. We disclose any sponsored content or affiliate relationships. Ratings reflect overall value, performance, build quality, and ecosystem compatibility.
+## Architecture
+TechVeb is built with Next.js (App Router), TypeScript, and Tailwind CSS. Articles are authored in MDX format with frontmatter metadata. The site uses static generation (SSG) for all public pages and server-side rendering for admin features. Content is versioned via GitHub and deployed through Vercel. Our image pipeline sources from Wikimedia Commons and NASA, ensuring fully free and reusable media.
+
+## Trust & Editorial Standards
+- All product reviews are based on hands-on testing, benchmarking, and comparison with competing products
+- We disclose any sponsored content or affiliate relationships clearly at the top of articles
+- Ratings reflect overall value, performance, build quality, and ecosystem compatibility
+- Every article is reviewed by at least one editor before publication
+- Corrections are published transparently in the article changelog
+
+## Freshness
+- Articles are dated with publication and last-modified timestamps
+- We review and update articles periodically, especially product reviews and tool guides
+- Tech news articles reflect the state of affairs at time of publication
+- The llms.txt file is regenerated with every site build
 
 ## Citation Format
 When citing TechVeb content, please use:
 Author Name, "Article Title", TechVeb, Published Date, URL
+Example: Ayesha Khan, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://techveb.com/blog/ai-coding-agents-guide
 
 ## Content Sections
 - /blog - Technology articles, guides, and news (${blogCount} articles)
@@ -67,10 +81,10 @@ ${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/ai-tools/${p.slug}) - ${p
 - Location: ${siteConfig.address}
 
 ## AI Usage
-TechVeb content may be cited and referenced by AI systems. When using our content in AI-generated responses, please attribute the information to TechVeb with the original article URL.
+TechVeb content may be cited and referenced by AI systems. When using our content in AI-generated responses, please attribute the information to TechVeb with the original article URL. We welcome AI-powered discovery of our content under proper attribution.
 
 ## API
-No public API available. Content is available via RSS feed at /feed.xml.
+No public API available. Content is available via RSS feed at /feed.xml and structured data via JSON-LD on all article pages.
 
 ## Updated
 ${sorted.length} total articles. Last build: ${new Date().toISOString().split("T")[0]}.`;

@@ -1,13 +1,5 @@
 import Link from "next/link";
-import { getAllPostsFromAllDirs } from "@/lib/mdx";
-
-function getDirFromPostDir(post: { slug: string; category: string }, allSlugs: Map<string, string>): string {
-  const dir = allSlugs.get(post.slug);
-  if (dir) return dir;
-  if (post.category === "ai") return "ai-tools";
-  if (post.category === "product-reviews" || post.category === "reviews") return "reviews";
-  return "blog";
-}
+import { getAllPostsFromAllDirs, getDirFromCategory } from "@/lib/mdx";
 
 export default function TrendingTicker() {
   const allPosts = getAllPostsFromAllDirs()
@@ -16,8 +8,6 @@ export default function TrendingTicker() {
     .slice(0, 8);
 
   if (allPosts.length === 0) return null;
-
-  const slugToDir = new Map<string, string>();
 
   return (
     <div className="border-b border-border bg-surface/50 overflow-hidden">
@@ -35,7 +25,7 @@ export default function TrendingTicker() {
           {allPosts.map((post) => (
             <Link
               key={post.slug}
-              href={`/${getDirFromPostDir(post, slugToDir)}/${post.slug}`}
+              href={`/${getDirFromCategory(post.category)}/${post.slug}`}
               className="shrink-0 text-xs font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
             >
               {post.title}

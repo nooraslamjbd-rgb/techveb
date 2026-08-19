@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   description:
     "Explore the latest technology articles, AI insights, product reviews, and expert guides on TechVeb.",
   alternates: { canonical: "https://techveb.com/blog" },
+  openGraph: {
+    title: "Blog | TechVeb",
+    description: "Explore the latest technology articles, AI insights, product reviews, and expert guides on TechVeb.",
+    url: "https://techveb.com/blog",
+    siteName: "TechVeb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | TechVeb",
+    description: "Explore the latest technology articles, AI insights, product reviews, and expert guides on TechVeb.",
+  },
 };
 
 const PAGE_SIZE = 25;

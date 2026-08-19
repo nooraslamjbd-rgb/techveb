@@ -25,6 +25,18 @@ export async function generateMetadata({
     title: `#${decoded} Articles`,
     description: `All articles tagged with "${decoded}" on TechVeb.`,
     alternates: { canonical: `${siteConfig.url}/tags/${tag}` },
+    openGraph: {
+      title: `#${decoded} Articles | TechVeb`,
+      description: `All articles tagged with "${decoded}" on TechVeb.`,
+      url: `${siteConfig.url}/tags/${tag}`,
+      siteName: "TechVeb",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `#${decoded} Articles | TechVeb`,
+      description: `All articles tagged with "${decoded}" on TechVeb.`,
+    },
   };
 }
 

@@ -2,24 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { categories } from "@/lib/use-categories";
 
 interface FaqItem {
   question: string;
   answer: string;
 }
-
-const categories = [
-  { value: "ai", label: "Artificial Intelligence" },
-  { value: "tech-news", label: "Tech News" },
-  { value: "product-reviews", label: "Product Reviews" },
-  { value: "tutorials", label: "Tutorials & Guides" },
-  { value: "cloud", label: "Cloud Computing" },
-  { value: "cybersecurity", label: "Cybersecurity" },
-  { value: "gaming", label: "Gaming Tech" },
-  { value: "emerging-tech", label: "Emerging Tech" },
-  { value: "blog", label: "General" },
-  { value: "coding", label: "Coding" },
-];
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -190,7 +178,7 @@ export default function NewArticlePage() {
               <label className="mb-1 block text-xs text-gray-400">Category</label>
               <select value={category} onChange={(e) => setCategory(e.target.value)}
                 className="w-full rounded-lg border border-[#1E293B] bg-[#080B14] px-3 py-2 text-sm text-white outline-none focus:border-[#0060E0]">
-                {categories.map((c) => (<option key={c.value} value={c.value}>{c.label}</option>))}
+                {categories.map((c) => (<option key={c.slug} value={c.slug}>{c.label}</option>))}
               </select>
             </div>
             <div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
+import { categoryColorMap, categoryLabelMap } from "@/lib/use-categories";
 
 interface Article {
   slug: string;
@@ -14,32 +15,6 @@ interface Article {
   dir: string;
   tags: string[];
 }
-
-const categoryColors: Record<string, string> = {
-  ai: "bg-blue-500/15 text-blue-400",
-  "tech-news": "bg-emerald-500/15 text-emerald-400",
-  "product-reviews": "bg-amber-500/15 text-amber-400",
-  tutorials: "bg-violet-500/15 text-violet-400",
-  cloud: "bg-pink-500/15 text-pink-400",
-  cybersecurity: "bg-red-500/15 text-red-400",
-  gaming: "bg-orange-500/15 text-orange-400",
-  "emerging-tech": "bg-cyan-500/15 text-cyan-400",
-  blog: "bg-indigo-500/15 text-indigo-400",
-  coding: "bg-teal-500/15 text-teal-400",
-};
-
-const categoryLabels: Record<string, string> = {
-  ai: "AI",
-  "tech-news": "Tech News",
-  "product-reviews": "Reviews",
-  tutorials: "Tutorials",
-  cloud: "Cloud",
-  cybersecurity: "Security",
-  gaming: "Gaming",
-  "emerging-tech": "Emerging",
-  blog: "General",
-  coding: "Coding",
-};
 
 export default function ArticlesPage() {
   const router = useRouter();
@@ -219,16 +194,16 @@ export default function ArticlesPage() {
                       {article.title}
                     </Link>
                     <p className="mt-0.5 truncate text-xs text-gray-500 md:hidden">
-                      {categoryLabels[article.category] || article.category}
+                      {categoryLabelMap[article.category] || article.category}
                     </p>
                   </td>
                   <td className="hidden px-4 py-3 md:table-cell">
                     <span
                       className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-                        categoryColors[article.category] || "bg-gray-500/15 text-gray-400"
+                        categoryColorMap[article.category] || "bg-gray-500/15 text-gray-400"
                       }`}
                     >
-                      {categoryLabels[article.category] || article.category}
+                      {categoryLabelMap[article.category] || article.category}
                     </span>
                   </td>
                   <td className="hidden whitespace-nowrap px-4 py-3 text-gray-400 sm:table-cell">

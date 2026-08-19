@@ -76,6 +76,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteConfig.url,
+    languages: {
+      "en": siteConfig.url,
+    },
     types: {
       "application/rss+xml": `${siteConfig.url}/feed.xml`,
     },
@@ -116,16 +119,27 @@ export default function RootLayout({
               url: siteConfig.url,
               logo: `${siteConfig.url}/logo-square.png`,
               description: siteConfig.description,
-              sameAs: Object.values(siteConfig.social).filter(Boolean),
-              contactPoint: {
-                "@type": "ContactPoint",
-                email: siteConfig.email,
-                telephone: siteConfig.phone,
-                contactType: "customer service",
-              },
-            }),
-          }}
-        />
+            sameAs: Object.values(siteConfig.social).filter(Boolean),
+            contactPoint: {
+              "@type": "ContactPoint",
+              email: siteConfig.email,
+              telephone: siteConfig.phone,
+              contactType: "customer service",
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SiteNavigationElement",
+            name: siteConfig.navItems.map((n) => n.label),
+            url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
+          }),
+        }}
+      />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#0060E0" />
