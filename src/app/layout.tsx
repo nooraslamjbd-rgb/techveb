@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -83,6 +84,9 @@ export const metadata: Metadata = {
       "application/rss+xml": `${siteConfig.url}/feed.xml`,
     },
   },
+  verification: {
+    google: "fjBae2Y3Z8RAUzEueFcIf6AE2W-C_-ydQq_neNTS5_c",
+  },
 };
 
 export default function RootLayout({
@@ -97,22 +101,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-VSCWBGYHE7"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-VSCWBGYHE7');
-            `,
-          }}
-        />
-        <meta name="google-site-verification" content="fjBae2Y3Z8RAUzEueFcIf6AE2W-C_-ydQq_neNTS5_c" />
-        <script
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#0060E0" />
+      </head>
+      <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
+        <Script
+          id="dark-mode-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -124,8 +120,26 @@ export default function RootLayout({
             `,
           }}
         />
-        <script
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VSCWBGYHE7"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VSCWBGYHE7');
+            `,
+          }}
+        />
+        <Script
+          id="org-jsonld"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -134,32 +148,29 @@ export default function RootLayout({
               url: siteConfig.url,
               logo: `${siteConfig.url}/logo-square.png`,
               description: siteConfig.description,
-            sameAs: Object.values(siteConfig.social).filter(Boolean),
-            contactPoint: {
-              "@type": "ContactPoint",
-              email: siteConfig.email,
-              telephone: siteConfig.phone,
-              contactType: "customer service",
-            },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SiteNavigationElement",
-            name: siteConfig.navItems.map((n) => n.label),
-            url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
-          }),
-        }}
-      />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#0060E0" />
-      </head>
-      <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
+              sameAs: Object.values(siteConfig.social).filter(Boolean),
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: siteConfig.email,
+                telephone: siteConfig.phone,
+                contactType: "customer service",
+              },
+            }),
+          }}
+        />
+        <Script
+          id="nav-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              name: siteConfig.navItems.map((n) => n.label),
+              url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
+            }),
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
