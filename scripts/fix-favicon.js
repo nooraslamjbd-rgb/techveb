@@ -5,20 +5,20 @@ const fs = require("fs");
 const PUBLIC = path.join(__dirname, "..", "public");
 
 async function createBlueFavicon() {
-  const svg = `<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#0060E0;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#004BB0;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <rect width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
+  const size = 512;
+  const svg = `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${size}" height="${size}" rx="96" ry="96" fill="#0060E0"/>
     <text x="256" y="340" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="280" fill="white" text-anchor="middle" letter-spacing="-10">TV</text>
   </svg>`;
 
   const outputPath = path.join(PUBLIC, "favicon-original.png");
-  await sharp(Buffer.from(svg)).png({ quality: 100 }).toFile(outputPath);
-  console.log("Created blue favicon-original.png (512x512, #0060E0)");
+  await sharp(Buffer.from(svg))
+    .png({ quality: 100 })
+    .toFile(outputPath);
+
+  const buf = fs.readFileSync(outputPath);
+  const meta = await sharp(buf).metadata();
+  console.log(`favicon-original.png: ${meta.width}x${meta.height}, ${Math.round(buf.length/1024)}KB`);
 }
 
 async function generateICO(png32Buffer, size) {
@@ -116,15 +116,15 @@ async function optimize() {
   console.log("apple-touch-icon.png:", (fs.statSync(appleIcon).size / 1024).toFixed(0) + "KB");
 
   for (const sz of [192, 512]) {
-    const iconPath = path.join(PUBLIC, "icon-" + sz + ".png");
+    const iconPath = path.join(PUBLIC, `icon-${sz}.png`);
     await sharp(origFav)
       .resize(sz, sz, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png({ quality: 90, compressionLevel: 9 })
       .toFile(iconPath);
-    console.log("icon-" + sz + ".png:", (fs.statSync(iconPath).size / 1024).toFixed(0) + "KB");
+    console.log(`icon-${sz}.png:`, (fs.statSync(iconPath).size / 1024).toFixed(0) + "KB");
   }
 
-  console.log("\nAll favicon assets regenerated (blue #0060E0)!");
+  console.log("\nAll favicon assets regenerated!");
 }
 
 createBlueFavicon()
