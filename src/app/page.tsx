@@ -44,7 +44,9 @@ export default function Home() {
     .filter((p) => p.category === "tech-news" && !topNews.find((t) => t.slug === p.slug) && p.slug !== featured?.slug)
     .slice(0, 4);
 
-  const mostRead = allPosts.slice(0, 5);
+  const latestSidebar = allPosts
+    .filter((p) => p.slug !== featured?.slug)
+    .slice(0, 5);
 
   const websiteJsonLd = {
     "@context": "https://schema.org",
@@ -106,6 +108,12 @@ export default function Home() {
                 href={`/${getDirFromCategory(featured.category)}/${featured.slug}`}
                 className="group relative block overflow-hidden rounded-2xl border border-border"
               >
+                {featured.featured && (
+                  <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1 rounded-md bg-accent px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-lg">
+                    <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.538 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    Featured
+                  </span>
+                )}
                 <div className="relative h-[260px] sm:h-[340px] lg:h-[420px] w-full">
                   {featured.image ? (
                     <Image
@@ -141,6 +149,12 @@ export default function Home() {
                     <p className="max-w-2xl text-sm text-white/70 line-clamp-2 sm:text-base">
                       {featured.description}
                     </p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-lg bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm hover:bg-white/25 transition-colors">
+                        Read Article
+                        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      </span>
+                    </div>
                     <div className="mt-3 flex items-center gap-3 text-xs text-white/50">
                       <span className="font-medium text-white/70">{featured.author}</span>
                       <span>·</span>
@@ -319,15 +333,15 @@ export default function Home() {
               <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <h2 className="font-heading text-lg font-bold">Most Read</h2>
+              <h2 className="font-heading text-lg font-bold">Latest</h2>
             </div>
             <div className="rounded-xl border border-border bg-surface overflow-hidden">
-              {mostRead.map((post, idx) => (
+              {latestSidebar.map((post, idx) => (
                 <Link
                   key={post.slug}
                   href={`/${getDirFromCategory(post.category)}/${post.slug}`}
                   className={`group flex gap-3 px-4 py-3 transition-colors hover:bg-surface-hover ${
-                    idx < mostRead.length - 1 ? "border-b border-border" : ""
+                    idx < latestSidebar.length - 1 ? "border-b border-border" : ""
                   }`}
                 >
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 font-heading text-xs font-bold text-primary">

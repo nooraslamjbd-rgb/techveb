@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -102,12 +103,6 @@ export default async function ReviewPostPage({
       image: post.image || "/og-default.png",
       brand: { "@type": "Brand", name: post.title.split(" ")[0] },
     },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: Math.max(3, Math.min(5, Math.round(post.content?.split(/\s+/).length > 500 ? 4.5 : 4))),
-      bestRating: 5,
-      worstRating: 1,
-    },
     keywords: post.tags?.join(", "),
     articleSection: post.category,
     wordCount: Math.ceil(post.content.split(/\s+/).length),
@@ -185,12 +180,13 @@ export default async function ReviewPostPage({
             {post.tags && post.tags.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span
+                  <Link
                     key={tag}
-                    className="rounded-full bg-surface px-2.5 py-0.5 text-xs text-muted-foreground border border-border"
+                    href={`/tags/${tag}`}
+                    className="rounded-full bg-surface px-2.5 py-0.5 text-xs text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors"
                   >
                     #{tag}
-                  </span>
+                  </Link>
                 ))}
               </div>
             )}

@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://techveb.com/ai-tools" },
 };
 
+const PAGE_SIZE = 25;
+
 function getCategoryLabel(cat: string): string {
   const found = siteConfig.categories.find((c) => c.slug === cat);
   return found?.label || cat;
@@ -24,20 +26,35 @@ function getCategoryColor(cat: string): string {
   return found?.color || "#0060E0";
 }
 
+function buildHref(base: string, params: Record<string, string | null>) {
+  const entries = Object.entries(params).filter(([, v]) => v);
+  const qs = entries.length ? "?" + new URLSearchParams(entries as [string, string][]).toString() : "";
+  return base + qs;
+}
+
 export default async function AiToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cat?: string }>;
+  searchParams: Promise<{ cat?: string; page?: string; sort?: string }>;
 }) {
   const params = await searchParams;
   const activeCategory = params.cat || null;
+  const sort = params.sort === "oldest" ? "oldest" : params.sort === "title" ? "title" : "newest";
+  const currentPage = Math.max(1, parseInt(params.page || "1", 10) || 1);
 
   const allPosts = getAllPosts("ai-tools");
   const categories = getAllCategories("ai-tools");
 
-  const posts = activeCategory
+  let posts = activeCategory
     ? getPostsByCategory("ai-tools", activeCategory)
     : allPosts;
+
+  if (sort === "oldest") posts = [...posts].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  else if (sort === "title") posts = [...posts].sort((a, b) => a.title.localeCompare(b.title));
+
+  const totalPages = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedPosts = posts.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -54,18 +71,20 @@ export default async function AiToolsPage({
     },
   };
 
-  const itemListJsonLd = posts.length > 0 ? {
+  const itemListJsonLd = paginatedPosts.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "AI Tools",
-    numberOfItems: posts.length,
-    itemListElement: posts.slice(0, 20).map((post, idx) => ({
+    numberOfItems: paginatedPosts.length,
+    itemListElement: paginatedPosts.map((post, idx) => ({
       "@type": "ListItem",
-      position: idx + 1,
+      position: (safePage - 1) * PAGE_SIZE + idx + 1,
       url: `${siteConfig.url}/ai-tools/${post.slug}`,
       name: post.title,
     })),
   } : null;
+
+  const sortParams: Record<string, string | null> = { cat: activeCategory, sort: sort !== "newest" ? sort : null };
 
   return (
     <>
@@ -134,9 +153,28 @@ export default async function AiToolsPage({
         </div>
       )}
 
-      {posts.length > 0 ? (
+      <div className="mb-6 flex items-center justify-between">
+        <p className="text-sm text-muted-foreground">
+          {posts.length} tool{posts.length !== 1 ? "s" : ""}
+          {safePage > 1 && ` — page ${safePage} of ${totalPages}`}
+        </p>
+        <div className="flex items-center gap-1">
+          <span className="text-xs text-muted-foreground mr-1">Sort:</span>
+          {(["newest", "oldest", "title"] as const).map((s) => (
+            <Link
+              key={s}
+              href={buildHref("/ai-tools", { ...sortParams, page: null, sort: s === "newest" ? null : s })}
+              className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${sort === s ? "bg-primary text-white" : "bg-surface text-muted-foreground hover:text-foreground"}`}
+            >
+              {s === "newest" ? "Newest" : s === "oldest" ? "Oldest" : "A\u2013Z"}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {paginatedPosts.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {paginatedPosts.map((post) => (
             <ArticleCard key={post.slug} post={post} dir="ai-tools" />
           ))}
         </div>
@@ -157,6 +195,29 @@ export default async function AiToolsPage({
             </Link>
           )}
         </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav className="mt-8 flex items-center justify-center gap-1" aria-label="Pagination">
+          {safePage > 1 && (
+            <Link href={buildHref("/ai-tools", { ...sortParams, page: String(safePage - 1) })} className="rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
+              &larr; Prev
+            </Link>
+          )}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).filter((p) => p === 1 || p === totalPages || Math.abs(p - safePage) <= 2).map((p, i, arr) => (
+            <span key={p} className="flex items-center">
+              {i > 0 && p - arr[i - 1] > 1 && <span className="px-1 text-muted-foreground">...</span>}
+              <Link href={buildHref("/ai-tools", { ...sortParams, page: p === 1 ? null : String(p) })} className={`rounded-lg px-3 py-2 text-xs font-medium transition-colors ${p === safePage ? "bg-primary text-white" : "bg-surface text-muted-foreground hover:text-foreground"}`}>
+                {p}
+              </Link>
+            </span>
+          ))}
+          {safePage < totalPages && (
+            <Link href={buildHref("/ai-tools", { ...sortParams, page: String(safePage + 1) })} className="rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Next &rarr;
+            </Link>
+          )}
+        </nav>
       )}
 
       <div className="mt-12">

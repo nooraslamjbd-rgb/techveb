@@ -11,7 +11,7 @@ const socialIcons: { key: keyof typeof siteConfig.social; label: string; path: s
 const hasSocial = socialIcons.some((s) => siteConfig.social[s.key]);
 
 const allCategories = [
-  { label: "AI & ML", href: "/blog?cat=ai" },
+  { label: "AI & ML", href: "/ai-tools" },
   { label: "Tech News", href: "/blog?cat=tech-news" },
   { label: "Reviews", href: "/reviews" },
   { label: "Cybersecurity", href: "/blog?cat=cybersecurity" },
@@ -19,6 +19,8 @@ const allCategories = [
   { label: "AI Tools", href: "/ai-tools" },
   { label: "Gaming", href: "/blog?cat=gaming" },
   { label: "Programming", href: "/blog?cat=tutorials" },
+  { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
+  { label: "General", href: "/blog?cat=blog" },
 ];
 
 export default function Footer() {

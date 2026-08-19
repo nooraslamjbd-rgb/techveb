@@ -48,6 +48,10 @@ export default function NewsletterCTA() {
             </svg>
             <span className="font-medium">Thanks for subscribing! Check your email to confirm.</span>
           </div>
+          <p className="mt-2 text-center text-xs text-white/60">
+            Or subscribe via{" "}
+            <a href="/feed.xml" target="_blank" className="underline hover:text-white/80">RSS feed</a>
+          </p>
         </div>
       ) : (
         <form

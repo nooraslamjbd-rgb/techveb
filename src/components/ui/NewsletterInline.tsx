@@ -36,6 +36,9 @@ export default function NewsletterInline() {
         {status === "success" ? (
           <div className="rounded-xl bg-green-500/10 px-4 py-3 text-sm font-medium text-green-600 dark:text-green-400">
             Thanks for subscribing! Check your email to confirm.
+            <span className="block text-xs font-normal text-muted-foreground mt-1">
+              Or subscribe via <a href="/feed.xml" target="_blank" className="underline hover:text-primary">RSS feed</a>
+            </span>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-2 sm:flex-row">
