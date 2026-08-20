@@ -12,11 +12,11 @@ export const siteConfig = {
   phone: "+92 313 6473379",
   address: "Pakistan",
   social: {
-    twitter: "",
-    linkedin: "",
-    youtube: "",
-    facebook: "",
-    github: "",
+    twitter: "" as string,
+    linkedin: "" as string,
+    youtube: "" as string,
+    facebook: "" as string,
+    github: "" as string,
   },
   navItems: [
     { label: "Home", href: "/" },

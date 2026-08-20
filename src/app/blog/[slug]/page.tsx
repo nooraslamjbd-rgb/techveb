@@ -85,7 +85,7 @@ export default async function BlogPostPage({
     author: { "@type": "Person", name: post.author },
     datePublished: post.date,
     dateModified: post.updated || post.date,
-    image: post.image || "/og-default.png",
+    image: post.image ? (post.image.startsWith("http") ? post.image : `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}`) : `${siteConfig.url}/og-default.png`,
     url: `${siteConfig.url}/blog/${slug}`,
     publisher: {
       "@type": "Organization",

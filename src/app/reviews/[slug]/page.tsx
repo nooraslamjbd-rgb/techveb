@@ -79,13 +79,13 @@ export default async function ReviewPostPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Review",
+    "@type": "Article",
     headline: post.title,
     description: post.description,
     author: { "@type": "Person", name: post.author },
     datePublished: post.date,
     dateModified: post.updated || post.date,
-    image: post.image || "/og-default.png",
+    image: post.image ? `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}` : `${siteConfig.url}/og-default.png`,
     url: `${siteConfig.url}/reviews/${slug}`,
     publisher: {
       "@type": "Organization",
@@ -95,13 +95,6 @@ export default async function ReviewPostPage({
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/reviews/${slug}`,
-    },
-    reviewBody: post.content?.slice(0, 500),
-    itemReviewed: {
-      "@type": "Product",
-      name: post.title,
-      image: post.image || "/og-default.png",
-      brand: { "@type": "Brand", name: post.title.split(" ")[0] },
     },
     keywords: post.tags?.join(", "),
     articleSection: post.category,

@@ -14,6 +14,22 @@ export const metadata: Metadata = {
   description:
     "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides. Stay informed with 500+ in-depth articles.",
   alternates: { canonical: "https://techveb.com" },
+  openGraph: {
+    title: "TechVeb - Technology, AI & Innovation Hub",
+    description:
+      "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides.",
+    url: "https://techveb.com",
+    siteName: "TechVeb",
+    type: "website",
+    images: [{ url: "https://techveb.com/og-default.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TechVeb - Technology, AI & Innovation Hub",
+    description:
+      "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides.",
+    images: ["https://techveb.com/og-default.png"],
+  },
 };
 
 export default function Home() {
