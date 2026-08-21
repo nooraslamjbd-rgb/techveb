@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts, getAllTags } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts, getAllTags } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -50,6 +50,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const newsPages = getAllNewsPosts().map((post) => ({
+    url: `${baseUrl}/news/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
   const categoryPages = siteConfig.categories.map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
     lastModified: now,
@@ -77,6 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogPages,
     ...reviewPages,
     ...aiToolPages,
+    ...newsPages,
     ...categoryPages,
     ...tagPages,
     ...authorPages,

@@ -19,6 +19,8 @@ export interface PostFrontmatter {
   featured?: boolean;
   readingTime?: string;
   faq?: { question: string; answer: string }[];
+  source?: string;
+  sourceLink?: string;
 }
 
 export interface Post extends PostFrontmatter {
@@ -135,6 +137,14 @@ export function formatDate(dateString: string): string {
 export function getAllPostsFromAllDirs(): Post[] {
   const dirs = ["blog", "reviews", "ai-tools"];
   return dirs.flatMap((dir) => getAllPosts(dir));
+}
+
+export function getAllNewsPosts(): Post[] {
+  return getAllPosts("news");
+}
+
+export function getNewsPost(slug: string): Post | null {
+  return getPost("news", slug);
 }
 
 export function getAllPostsFromAllDirsAdmin(): Post[] {
