@@ -108,6 +108,9 @@ export default function Home() {
             { label: "Recipes", href: "/recipes", icon: "🍛", color: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-600" },
             { label: "Horoscope", href: "/horoscope", icon: "🔮", color: "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600" },
             { label: "Dictionary", href: "/dictionary", icon: "📖", color: "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600" },
+            { label: "Poetry", href: "/poetry", icon: "🪶", color: "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600" },
+            { label: "Quotes", href: "/quotes", icon: "💬", color: "bg-pink-500/10 hover:bg-pink-500/20 text-pink-600" },
+            { label: "Jokes", href: "/jokes", icon: "😂", color: "bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-600" },
             { label: "Education", href: "/education", icon: "🎓", color: "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600" },
             { label: "Islam", href: "/islam", icon: "☪️", color: "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600" },
           ].map((item) => (
