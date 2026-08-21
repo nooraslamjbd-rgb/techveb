@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedImage, { imageSizes } from "@/components/ui/OptimizedImage";
 import { formatDate, type Post } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 
@@ -52,12 +52,15 @@ export default function ArticleCard({
       >
         <div className="relative aspect-[16/9] overflow-hidden">
           {post.image ? (
-            <Image
+            <OptimizedImage
               src={post.image}
               alt={post.title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 800px"
+              sizes={imageSizes.featured}
+              quality={80}
+              category={post.category}
+              loading="eager"
             />
           ) : (
             <ImageFallback title={post.title} category={post.category} />
@@ -96,12 +99,14 @@ export default function ArticleCard({
       >
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
           {post.image ? (
-            <Image
+            <OptimizedImage
               src={post.image}
               alt={post.title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="64px"
+              sizes={imageSizes.compact}
+              quality={60}
+              category={post.category}
             />
           ) : (
             <ImageFallback title={post.title} category={post.category} />
@@ -126,12 +131,14 @@ export default function ArticleCard({
     >
       <div className="relative aspect-[16/9] overflow-hidden">
         {post.image ? (
-          <Image
+          <OptimizedImage
             src={post.image}
             alt={post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 400px"
+            sizes={imageSizes.card}
+            quality={75}
+            category={post.category}
           />
         ) : (
           <ImageFallback title={post.title} category={post.category} />

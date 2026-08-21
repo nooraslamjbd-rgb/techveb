@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import OptimizedImage, { imageSizes } from "@/components/ui/OptimizedImage";
 import { getAllPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
@@ -168,13 +168,15 @@ export default function Home() {
                 )}
                 <div className="relative h-[260px] sm:h-[340px] lg:h-[420px] w-full">
                   {featured.image ? (
-                    <Image
+                    <OptimizedImage
                       src={featured.image}
                       alt={featured.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 1200px) 100vw, 800px"
-                      priority
+                      sizes={imageSizes.featured}
+                      quality={80}
+                      category={featured.category}
+                      loading="eager"
                     />
                   ) : (
                     <div className="h-full w-full bg-gradient-to-br from-primary/20 to-accent/20" />

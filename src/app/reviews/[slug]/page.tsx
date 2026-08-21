@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import OptimizedImage, { imageSizes } from "@/components/ui/OptimizedImage";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import {
@@ -131,13 +131,16 @@ export default async function ReviewPostPage({
         <article className="mx-auto max-w-3xl px-0 sm:px-0">
           {post.image && (
             <div className="relative mb-6 sm:mb-8 aspect-[16/9] overflow-hidden rounded-none sm:rounded-2xl border-0 sm:border border-border">
-              <Image
+              <OptimizedImage
                 src={post.image}
                 alt={post.title}
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 768px"
+                sizes={imageSizes.hero}
+                quality={85}
+                category={post.category}
+                loading="eager"
               />
               {post.imageCredit && (
                 <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-[10px] text-muted-foreground">
