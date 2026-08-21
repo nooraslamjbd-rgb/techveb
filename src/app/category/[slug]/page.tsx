@@ -68,7 +68,6 @@ export default async function CategoryPage({
     .filter((p) => p.category === slug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const dir = posts[0]?.dir || "blog";
   const featuredPost = posts[0];
   const remainingPosts = posts.slice(1);
 
@@ -125,14 +124,14 @@ export default async function CategoryPage({
 
         {featuredPost && (
           <div className="mb-8">
-            <ArticleCard post={featuredPost} dir={dir} featured />
+            <ArticleCard post={featuredPost} dir={featuredPost.dir} featured />
           </div>
         )}
 
         {remainingPosts.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {remainingPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} dir={dir} />
+              <ArticleCard key={post.slug} post={post} dir={post.dir} />
             ))}
           </div>
         ) : (

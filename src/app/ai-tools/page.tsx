@@ -165,7 +165,7 @@ export default async function AiToolsPage({
         </div>
       )}
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted-foreground">
           {posts.length} tool{posts.length !== 1 ? "s" : ""}
           {safePage > 1 && ` — page ${safePage} of ${totalPages}`}

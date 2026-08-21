@@ -18,8 +18,11 @@ export async function GET() {
       (post) => {
         const dir = post.dir;
         const link = `${siteConfig.url}/${dir}/${post.slug}`;
+        const imageExt = post.image?.split('.').pop()?.toLowerCase() || 'png';
+        const mimeMap: Record<string, string> = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', avif: 'image/avif', gif: 'image/gif', svg: 'image/svg+xml' };
+        const mimeType = mimeMap[imageExt] || 'image/jpeg';
         const imageTag = post.image
-          ? `      <enclosure url="${post.image}" type="image/png"/>\n`
+          ? `      <enclosure url="${post.image}" type="${mimeType}"/>\n`
           : "";
         return `    <item>
       <title><![CDATA[${post.title}]]></title>

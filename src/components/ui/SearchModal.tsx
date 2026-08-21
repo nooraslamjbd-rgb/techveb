@@ -13,27 +13,10 @@ interface SearchArticle {
   dir: string;
 }
 
-const categoryColors: Record<string, string> = {
-  ai: "#0060E0",
-  "tech-news": "#10B981",
-  "product-reviews": "#F59E0B",
-  tutorials: "#8B5CF6",
-  cloud: "#EC4899",
-  cybersecurity: "#EF4444",
-  gaming: "#F97316",
-  "emerging-tech": "#06B6D4",
-};
+import categoriesData from "@/config/categories.json";
 
-const categoryLabels: Record<string, string> = {
-  ai: "AI",
-  "tech-news": "Tech News",
-  "product-reviews": "Reviews",
-  tutorials: "Programming",
-  cloud: "Cloud",
-  cybersecurity: "Security",
-  gaming: "Gaming",
-  "emerging-tech": "Emerging",
-};
+const categoryColors = Object.fromEntries(categoriesData.map((c) => [c.slug, c.color]));
+const categoryLabels = Object.fromEntries(categoriesData.map((c) => [c.slug, c.shortLabel || c.label]));
 
 export default function SearchModal({
   open,
@@ -203,7 +186,7 @@ export default function SearchModal({
           })}
         </div>
 
-        <div className="flex items-center gap-4 border-t border-border px-5 py-2.5 text-[10px] text-muted-foreground">
+        <div className="hidden sm:flex items-center gap-4 border-t border-border px-5 py-2.5 text-[10px] text-muted-foreground">
           <span className="flex items-center gap-1">
             <kbd className="rounded border border-border bg-surface px-1 py-0.5 text-[9px]">↑↓</kbd>
             Navigate

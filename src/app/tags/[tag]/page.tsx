@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ tag: string }>;
 }): Promise<Metadata> {
   const { tag } = await params;
-  const decoded = decodeURIComponent(tag);
+  const decoded = tag;
   return {
     title: `#${decoded} Articles`,
     description: `All articles tagged with "${decoded}" on TechVeb.`,
@@ -46,7 +46,7 @@ export default async function TagPage({
   params: Promise<{ tag: string }>;
 }) {
   const { tag } = await params;
-  const decoded = decodeURIComponent(tag);
+  const decoded = tag;
 
   const allPosts = getAllPostsFromAllDirs();
   const posts = allPosts

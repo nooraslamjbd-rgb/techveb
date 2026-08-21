@@ -182,7 +182,7 @@ export default async function AiToolPostPage({
                 {post.tags.map((tag) => (
                   <Link
                     key={tag}
-                    href={`/tags/${tag}`}
+                    href={`/tags/${encodeURIComponent(tag)}`}
                     className="rounded-full bg-surface px-2.5 py-0.5 text-xs text-muted-foreground border border-border hover:border-primary/30 hover:text-primary transition-colors"
                   >
                     #{tag}
@@ -216,6 +216,9 @@ export default async function AiToolPostPage({
               <AuthorBox />
               <RelatedArticles posts={related} dir="ai-tools" />
               <Comments slug={slug} />
+              <div className="xl:hidden">
+                <TableOfContents />
+              </div>
             </div>
             <div className="hidden w-64 shrink-0 lg:block">
               <TableOfContents />

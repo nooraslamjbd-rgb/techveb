@@ -9,7 +9,7 @@ export async function GET() {
   );
 
   const blogPosts = sorted
-    .filter((p) => p.category !== "product-reviews" && p.category !== "ai")
+    .filter((p) => p.category !== "product-reviews")
     .slice(0, 15);
   const reviews = sorted
     .filter((p) => p.category === "product-reviews")
@@ -17,7 +17,7 @@ export async function GET() {
   const aiTools = sorted.filter((p) => p.category === "ai").slice(0, 10);
 
   const blogCount = sorted.filter(
-    (p) => p.category !== "product-reviews" && p.category !== "ai"
+    (p) => p.category !== "product-reviews"
   ).length;
   const reviewCount = sorted.filter(
     (p) => p.category === "product-reviews"
@@ -68,13 +68,13 @@ Example: Ayesha Khan, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://t
 - Product Reviews
 
 ## Latest Articles
-${blogPosts.map((p) => `- [${p.title}](${siteConfig.url}/blog/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${blogPosts.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Latest Reviews
-${reviews.map((p) => `- [${p.title}](${siteConfig.url}/reviews/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${reviews.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Latest AI Tool Guides
-${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/ai-tools/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Contact
 - Email: ${siteConfig.email}

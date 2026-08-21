@@ -548,7 +548,7 @@ export default function MobilesPage() {
       {/* Brands */}
       <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <h2 className="mb-4 font-heading text-xl font-bold">Browse by Brand</h2>
-        <div className="grid grid-cols-5 gap-3 sm:grid-cols-5 lg:grid-cols-10">
+        <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-10">
           {brands.map((brand) => (
             <div
               key={brand.name}

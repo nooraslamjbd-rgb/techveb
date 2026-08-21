@@ -86,11 +86,11 @@ export default function LiveMarketTicker() {
             Live
           </span>
           <div className="relative overflow-hidden flex-1">
-            <div className="animate-marquee flex items-center gap-6 whitespace-nowrap">
+            <div className="animate-marquee flex items-center whitespace-nowrap">
               {[...items, ...items].map((item, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1.5 text-xs text-gray-300"
+                  className="inline-flex items-center gap-1.5 text-xs text-gray-300 mr-6"
                 >
                   <span className="font-medium">{item.label}</span>
                   <span className="text-white font-semibold">{item.value}</span>

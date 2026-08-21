@@ -40,10 +40,11 @@ export const siteConfig = {
     { label: "Sports", href: "/sports" },
     {
       label: "More",
-      href: "#",
+      href: "/blog",
       children: [
         { label: "Reviews", href: "/reviews" },
         { label: "AI Tools", href: "/ai-tools" },
+        { label: "Mobiles", href: "/mobiles" },
         { label: "Recipes", href: "/recipes" },
         { label: "Horoscope", href: "/horoscope" },
         { label: "Dictionary", href: "/dictionary" },
@@ -65,6 +66,7 @@ export const siteConfig = {
         { label: "News", href: "/news" },
         { label: "Product Reviews", href: "/reviews" },
         { label: "AI Tools", href: "/ai-tools" },
+        { label: "Mobiles", href: "/mobiles" },
       ],
     },
     {

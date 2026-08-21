@@ -83,14 +83,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {siteConfig.footerLinks.map((group) => (
-            <div key={group.title}>
+          {siteConfig.footerLinks.map((group, groupIdx) => (
+            <div key={`${group.title}-${groupIdx}`}>
               <h3 className="mb-4 font-heading text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                 {group.title}
               </h3>
               <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
+                {group.links.map((link, linkIdx) => (
+                  <li key={`${link.label}-${linkIdx}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-muted hover:text-primary transition-colors"
@@ -108,8 +108,8 @@ export default function Footer() {
               Topics
             </h3>
             <ul className="space-y-2.5">
-              {allCategories.map((cat) => (
-                <li key={cat.href}>
+              {allCategories.map((cat, catIdx) => (
+                <li key={`cat-${catIdx}`}>
                   <Link
                     href={cat.href}
                     className="text-sm text-muted hover:text-primary transition-colors"

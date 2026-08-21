@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPosts, getAllCategories, getPostsByCategory } from "@/lib/mdx";
+import { getAllPosts, getAllPostsFromAllDirs, getAllCategories, getPostsByCategory } from "@/lib/mdx";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -56,10 +56,14 @@ export default async function BlogPage({
   const currentPage = Math.max(1, parseInt(params.page || "1", 10) || 1);
 
   const allPosts = getAllPosts("blog");
+  const crossDirPosts = getAllPostsFromAllDirs();
   const categories = getAllCategories("blog");
 
+  const crossDirCategories = ["ai"];
   let posts = activeCategory
-    ? getPostsByCategory("blog", activeCategory)
+    ? (crossDirCategories.includes(activeCategory)
+        ? crossDirPosts.filter((p) => p.category === activeCategory)
+        : getPostsByCategory("blog", activeCategory))
     : allPosts;
 
   if (query) {
@@ -190,7 +194,7 @@ export default async function BlogPage({
         </div>
       )}
 
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted-foreground">
           {posts.length} article{posts.length !== 1 ? "s" : ""}
           {safePage > 1 && ` — page ${safePage} of ${totalPages}`}

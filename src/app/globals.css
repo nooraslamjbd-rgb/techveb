@@ -355,11 +355,17 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 60;
   background: var(--surface);
   border-top: 1px solid var(--border-color);
   padding: 1rem 1.5rem;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .cookie-banner {
+    bottom: 72px;
+  }
 }
 
 /* Smooth hover card effect */
@@ -469,6 +475,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 .animate-marquee:hover {

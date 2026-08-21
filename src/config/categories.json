@@ -1,12 +1,12 @@
 [
-  { "slug": "ai", "label": "Artificial Intelligence", "color": "#0060E0" },
-  { "slug": "tech-news", "label": "Tech News", "color": "#10B981" },
-  { "slug": "product-reviews", "label": "Product Reviews", "color": "#F59E0B" },
-  { "slug": "tutorials", "label": "Tutorials & Guides", "color": "#8B5CF6" },
-  { "slug": "cloud", "label": "Cloud Computing", "color": "#EC4899" },
-  { "slug": "cybersecurity", "label": "Cybersecurity", "color": "#EF4444" },
-  { "slug": "gaming", "label": "Gaming Tech", "color": "#F97316" },
-  { "slug": "emerging-tech", "label": "Emerging Tech", "color": "#06B6D4" },
-  { "slug": "blog", "label": "General", "color": "#6366F1" },
-  { "slug": "coding", "label": "Coding", "color": "#14B8A6" }
+  { "slug": "ai", "label": "Artificial Intelligence", "shortLabel": "AI", "color": "#0060E0" },
+  { "slug": "tech-news", "label": "Tech News", "shortLabel": "News", "color": "#10B981" },
+  { "slug": "product-reviews", "label": "Product Reviews", "shortLabel": "Reviews", "color": "#F59E0B" },
+  { "slug": "tutorials", "label": "Tutorials & Guides", "shortLabel": "Tutorials", "color": "#8B5CF6" },
+  { "slug": "cloud", "label": "Cloud Computing", "shortLabel": "Cloud", "color": "#EC4899" },
+  { "slug": "cybersecurity", "label": "Cybersecurity", "shortLabel": "Security", "color": "#EF4444" },
+  { "slug": "gaming", "label": "Gaming Tech", "shortLabel": "Gaming", "color": "#F97316" },
+  { "slug": "emerging-tech", "label": "Emerging Tech", "shortLabel": "Emerging", "color": "#06B6D4" },
+  { "slug": "blog", "label": "General", "shortLabel": "General", "color": "#6366F1" },
+  { "slug": "coding", "label": "Coding", "shortLabel": "Coding", "color": "#14B8A6" }
 ]

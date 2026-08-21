@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Head from "next/head";
+import { useState, useEffect } from "react";
 
 const dictionaryData: Record<string, { urdu: string; pronunciation: string; meaning: string; example: string; synonyms: string[]; category: string }> = {
   // Greetings & Common
@@ -210,6 +209,10 @@ export default function DictionaryPage() {
   const [results, setResults] = useState<[string, typeof dictionaryData[string]][]>([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.title = "English-Urdu Dictionary | TechVeb";
+  }, []);
+
   function handleSearch(value: string) {
     setSearch(value);
     setActiveCategory(null);
@@ -257,12 +260,6 @@ export default function DictionaryPage() {
 
   return (
     <>
-      <Head>
-        <title>English-Urdu Dictionary | TechVeb</title>
-        <meta name="description" content="Search English to Urdu dictionary with 100+ words, meanings, pronunciations, and examples." />
-        <link rel="canonical" href="https://techveb.com/dictionary" />
-      </Head>
-
       {/* Hero */}
       <section className="bg-gradient-to-b from-cyan-600/10 to-transparent">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">

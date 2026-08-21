@@ -19,11 +19,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NewsPage() {
+export default async function NewsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ cat?: string }>;
+}) {
+  const params = await searchParams;
+  const activeCategory = params.cat || null;
   const allPosts = getAllPosts("blog");
-  const newsPosts = allPosts
+  let newsPosts = allPosts
     .filter((p) => p.category === "tech-news")
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  if (activeCategory) {
+    newsPosts = allPosts
+      .filter((p) => p.category === activeCategory)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
 
   const breakingNews = newsPosts.slice(0, 1);
   const latestPosts = newsPosts.slice(1, 13);
@@ -165,13 +177,22 @@ export default function NewsPage() {
             <div className="rounded-xl border border-border bg-surface p-4">
               <h3 className="font-heading text-sm font-bold mb-3">Categories</h3>
               <div className="space-y-2">
-                {["Technology", "AI & ML", "Business", "Sports"].map((cat) => (
+                {[
+                  { label: "Tech News", slug: "tech-news" },
+                  { label: "Artificial Intelligence", slug: "ai" },
+                  { label: "Cloud Computing", slug: "cloud" },
+                  { label: "Cybersecurity", slug: "cybersecurity" },
+                ].map((cat) => (
                   <Link
-                    key={cat}
-                    href={`/news?cat=${cat.toLowerCase().replace(/ & /g, "-")}`}
-                    className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+                    key={cat.slug}
+                    href={`/news?cat=${cat.slug}`}
+                    className={`block text-sm transition-colors ${
+                      activeCategory === cat.slug
+                        ? "text-primary font-medium"
+                        : "text-muted-foreground hover:text-primary"
+                    }`}
                   >
-                    → {cat}
+                    → {cat.label}
                   </Link>
                 ))}
               </div>

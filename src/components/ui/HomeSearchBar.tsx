@@ -12,16 +12,9 @@ interface SearchArticle {
   dir: string;
 }
 
-const categoryColors: Record<string, string> = {
-  ai: "#0060E0",
-  "tech-news": "#10B981",
-  "product-reviews": "#F59E0B",
-  tutorials: "#8B5CF6",
-  cloud: "#EC4899",
-  cybersecurity: "#EF4444",
-  gaming: "#F97316",
-  "emerging-tech": "#06B6D4",
-};
+import categoriesData from "@/config/categories.json";
+
+const categoryColors = Object.fromEntries(categoriesData.map((c) => [c.slug, c.color]));
 
 export default function HomeSearchBar() {
   const [query, setQuery] = useState("");

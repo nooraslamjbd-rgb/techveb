@@ -90,7 +90,7 @@ export default function EducationPage() {
         <h2 className="font-heading text-xl font-bold mb-4 flex items-center gap-2">
           <span>📋</span> Board Results 2026
         </h2>
-        <div className="rounded-xl border border-border bg-surface overflow-hidden">
+        <div className="rounded-xl border border-border bg-surface overflow-x-auto">
           <div className="grid grid-cols-4 gap-4 px-4 py-2.5 border-b border-border text-xs font-medium text-muted-foreground">
             <span>Board</span>
             <span>Class</span>
@@ -138,7 +138,7 @@ export default function EducationPage() {
         <h2 className="font-heading text-xl font-bold mb-4 flex items-center gap-2">
           <span>💼</span> Latest Tech Jobs
         </h2>
-        <div className="rounded-xl border border-border bg-surface overflow-hidden">
+        <div className="rounded-xl border border-border bg-surface overflow-x-auto">
           {latestJobs.map((job, idx) => (
             <div key={idx} className={`flex items-center justify-between px-4 py-4 hover:bg-surface-hover transition-colors ${idx < latestJobs.length - 1 ? "border-b border-border" : ""}`}>
               <div>

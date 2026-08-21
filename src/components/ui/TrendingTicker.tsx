@@ -21,16 +21,19 @@ export default function TrendingTicker() {
             Trending
           </span>
         </div>
-        <div className="flex items-center gap-6 overflow-x-auto px-4 py-1.5" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          {allPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/${post.dir}/${post.slug}`}
-              className="shrink-0 text-xs font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-            >
-              {post.title}
-            </Link>
-          ))}
+        <div className="relative flex-1 overflow-hidden">
+          <div className="flex items-center gap-6 overflow-x-auto px-4 py-1.5" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            {allPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/${post.dir}/${post.slug}`}
+                className="shrink-0 text-xs font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {post.title}
+              </Link>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-background to-transparent" />
         </div>
       </div>
     </div>

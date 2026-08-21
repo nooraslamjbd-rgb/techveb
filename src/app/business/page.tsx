@@ -112,7 +112,7 @@ export default function BusinessPage() {
               <h2 className="font-heading text-xl font-bold mb-4 flex items-center gap-2">
                 <span>₿</span> Cryptocurrency
               </h2>
-              <div className="rounded-xl border border-border bg-surface overflow-hidden">
+              <div className="rounded-xl border border-border bg-surface overflow-x-auto">
                 <div className="grid grid-cols-4 gap-4 px-4 py-2.5 border-b border-border text-xs font-medium text-muted-foreground">
                   <span>Coin</span>
                   <span className="text-right">Price (USD)</span>

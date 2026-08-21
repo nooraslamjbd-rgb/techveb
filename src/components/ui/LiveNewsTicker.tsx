@@ -43,14 +43,14 @@ export default function LiveNewsTicker() {
             Breaking
           </span>
           <div className="relative overflow-hidden flex-1">
-            <div className="animate-marquee flex items-center gap-6 whitespace-nowrap">
+            <div className="animate-marquee flex items-center whitespace-nowrap">
               {[...news, ...news].map((item, idx) => (
                 <a
                   key={`${item.id}-${idx}`}
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mr-6"
                 >
                   <span className="shrink-0 text-[10px] font-bold text-blue-500">{item.source}</span>
                   <span className="font-medium text-foreground">{item.title}</span>
