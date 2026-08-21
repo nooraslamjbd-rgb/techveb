@@ -21,6 +21,11 @@ const allCategories = [
   { label: "Programming", href: "/blog?cat=tutorials" },
   { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
   { label: "General", href: "/blog?cat=blog" },
+  { label: "News", href: "/news" },
+  { label: "Business", href: "/business" },
+  { label: "Sports", href: "/sports" },
+  { label: "Education", href: "/education" },
+  { label: "Islam", href: "/islam" },
 ];
 
 export default function Footer() {

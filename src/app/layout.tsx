@@ -4,6 +4,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import CookieConsent from "@/components/ui/CookieConsent";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -174,6 +175,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileBottomNav />
         <BackToTop />
         <CookieConsent />
       </body>

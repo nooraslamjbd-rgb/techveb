@@ -20,6 +20,7 @@ export const siteConfig = {
   },
   navItems: [
     { label: "Home", href: "/" },
+    { label: "News", href: "/news" },
     {
       label: "Blog",
       href: "/blog",
@@ -35,11 +36,21 @@ export const siteConfig = {
         { label: "Coding", href: "/blog?cat=coding" },
       ],
     },
+    { label: "Business", href: "/business" },
+    { label: "Sports", href: "/sports" },
     {
-      label: "Reviews",
-      href: "/reviews",
+      label: "More",
+      href: "#",
+      children: [
+        { label: "Reviews", href: "/reviews" },
+        { label: "AI Tools", href: "/ai-tools" },
+        { label: "Recipes", href: "/recipes" },
+        { label: "Horoscope", href: "/horoscope" },
+        { label: "Dictionary", href: "/dictionary" },
+        { label: "Education", href: "/education" },
+        { label: "Islam", href: "/islam" },
+      ],
     },
-    { label: "AI Tools", href: "/ai-tools" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
@@ -48,8 +59,34 @@ export const siteConfig = {
       title: "Content",
       links: [
         { label: "Blog", href: "/blog" },
+        { label: "News", href: "/news" },
         { label: "Product Reviews", href: "/reviews" },
         { label: "AI Tools", href: "/ai-tools" },
+      ],
+    },
+    {
+      title: "Finance & Business",
+      links: [
+        { label: "Currency Rates", href: "/business" },
+        { label: "Gold Prices", href: "/business" },
+        { label: "Crypto", href: "/business" },
+        { label: "Fuel Prices", href: "/business" },
+      ],
+    },
+    {
+      title: "Lifestyle",
+      links: [
+        { label: "Recipes", href: "/recipes" },
+        { label: "Horoscope", href: "/horoscope" },
+        { label: "Dictionary", href: "/dictionary" },
+        { label: "Sports", href: "/sports" },
+      ],
+    },
+    {
+      title: "Education & Islam",
+      links: [
+        { label: "Education", href: "/education" },
+        { label: "Islam", href: "/islam" },
       ],
     },
     {

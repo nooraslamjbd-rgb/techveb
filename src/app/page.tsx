@@ -7,6 +7,12 @@ import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import HomeSearchBar from "@/components/ui/HomeSearchBar";
 import TrendingTicker from "@/components/ui/TrendingTicker";
+import LiveMarketTicker from "@/components/ui/LiveMarketTicker";
+import LiveNewsTicker from "@/components/ui/LiveNewsTicker";
+import CurrencyWidget from "@/components/ui/CurrencyWidget";
+import GoldWidget from "@/components/ui/GoldWidget";
+import CryptoWidget from "@/components/ui/CryptoWidget";
+import WeatherWidget from "@/components/ui/WeatherWidget";
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
@@ -88,7 +94,34 @@ export default function Home() {
   return (
     <>
       <JsonLd data={websiteJsonLd} />
+      <LiveNewsTicker />
+      <LiveMarketTicker />
       <TrendingTicker />
+
+      {/* Quick Links - News, Business, Sports, Education, Islam */}
+      <section className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center gap-3">
+          {[
+            { label: "News", href: "/news", icon: "📰", color: "bg-red-500/10 hover:bg-red-500/20 text-red-600" },
+            { label: "Business", href: "/business", icon: "💰", color: "bg-green-500/10 hover:bg-green-500/20 text-green-600" },
+            { label: "Sports", href: "/sports", icon: "🏏", color: "bg-orange-500/10 hover:bg-orange-500/20 text-orange-600" },
+            { label: "Recipes", href: "/recipes", icon: "🍛", color: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-600" },
+            { label: "Horoscope", href: "/horoscope", icon: "🔮", color: "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600" },
+            { label: "Dictionary", href: "/dictionary", icon: "📖", color: "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600" },
+            { label: "Education", href: "/education", icon: "🎓", color: "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600" },
+            { label: "Islam", href: "/islam", icon: "☪️", color: "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600" },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${item.color}`}
+            >
+              <span>{item.icon}</span>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Hero - Story-led */}
       <section className="hero-gradient relative overflow-hidden">
@@ -375,6 +408,30 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Live Market Preview */}
+      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-500/10">
+              <span className="text-lg">📊</span>
+            </div>
+            <h2 className="font-heading text-xl font-bold sm:text-2xl">Live Market Data</h2>
+          </div>
+          <Link
+            href="/business"
+            className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+          >
+            View all &rarr;
+          </Link>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <CurrencyWidget />
+          <GoldWidget />
+          <CryptoWidget />
+          <WeatherWidget />
         </div>
       </section>
 
