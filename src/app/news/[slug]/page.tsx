@@ -111,11 +111,28 @@ export default async function NewsPostPage({
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
+  // FAQ structured data for AEO
+  const faqJsonLd = post.faq && post.faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <ReadingProgress />
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
+      {faqJsonLd && <JsonLd data={faqJsonLd} />}
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs
           items={[
@@ -199,6 +216,24 @@ export default async function NewsPostPage({
 
           <div className="flex gap-8">
             <div className="flex-1 min-w-0">
+              {/* Key Takeaways (GEO optimized) */}
+              {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+                <div className="mb-8 rounded-xl border border-primary/20 bg-primary/5 p-6">
+                  <h2 className="flex items-center gap-2 text-lg font-bold mb-4">
+                    <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" /></svg>
+                    Key Takeaways
+                  </h2>
+                  <ul className="space-y-2">
+                    {post.keyTakeaways.map((kt, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-muted-foreground">
+                        <span className="text-primary font-bold shrink-0">→</span>
+                        <span>{kt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <div className="prose max-w-none">
                 <MDXRemote
                   source={post.content}
@@ -210,25 +245,34 @@ export default async function NewsPostPage({
                 />
               </div>
 
-              {post.sourceLink && (
-                <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-6 text-center">
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Want the complete story? Read the full article at the original source.
-                  </p>
-                  <a
-                    href={post.sourceLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
-                  >
-                    Read Full Article on {post.source} ↗
-                  </a>
+              {/* FAQ Section (AEO optimized) */}
+              {post.faq && post.faq.length > 0 && (
+                <div className="mt-8 rounded-xl border border-border bg-surface p-6">
+                  <h2 className="flex items-center gap-2 text-lg font-bold mb-4">
+                    <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg>
+                    Frequently Asked Questions
+                  </h2>
+                  <div className="space-y-3">
+                    {post.faq.map((item, i) => (
+                      <details key={i} className="group border border-border rounded-lg">
+                        <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-sm hover:bg-surface-hover transition-colors">
+                          <span>{item.question}</span>
+                          <svg className="w-5 h-5 text-muted-foreground shrink-0 ml-2 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                        </summary>
+                        <div className="px-4 pb-4 text-sm text-muted-foreground border-t border-border pt-3">
+                          {item.answer}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
                 </div>
               )}
 
-              <NewsletterInline />
+              <div className="mt-8">
+                <NewsletterInline />
+              </div>
               <AuthorBox />
-              <div className="xl:hidden">
+              <div className="lg:hidden">
                 <TableOfContents />
               </div>
             </div>

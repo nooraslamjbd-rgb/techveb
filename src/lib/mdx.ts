@@ -21,6 +21,8 @@ export interface PostFrontmatter {
   faq?: { question: string; answer: string }[];
   source?: string;
   sourceLink?: string;
+  language?: string;
+  keyTakeaways?: string[];
 }
 
 export interface Post extends PostFrontmatter {

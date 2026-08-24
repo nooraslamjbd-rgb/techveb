@@ -1,0 +1,36 @@
+﻿name: Auto-News Pipeline
+
+on:
+  schedule:
+    - cron: '0 */5 * * *'
+  workflow_dispatch:
+
+jobs:
+  auto-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Auto-News Pipeline
+        run: node scripts/auto-news/pipeline.mjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Auto-news: new articles from RSS sources'
+          file_pattern: 'src/content/news/ public/news/ public/search-index.json'
+          commit_user_name: 'TechVeb Auto-News Bot'
+          commit_user_email: 'auto@techveb.com'
