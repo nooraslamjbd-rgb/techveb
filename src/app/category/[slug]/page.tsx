@@ -1,24 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPostsFromAllDirs } from "@/lib/mdx";
+import { getCategoryMeta, getCategoryJsonLd } from "@/lib/category-utils";
 import ArticleCard from "@/components/blog/ArticleCard";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 import { siteConfig } from "@/config/site";
-
-const categoryDescriptions: Record<string, string> = {
-  ai: "Artificial intelligence is reshaping every industry. Stay updated on the latest AI models, breakthroughs, tools, and practical applications.",
-  "tech-news": "Breaking technology news, product launches, funding rounds, and industry developments from the world of tech.",
-  "product-reviews": "In-depth reviews and buying guides for the latest gadgets, software, and technology products.",
-  tutorials: "Step-by-step programming tutorials, coding guides, and developer resources to level up your skills.",
-  cloud: "Cloud computing news, guides, and reviews covering AWS, Azure, GCP, serverless, and DevOps.",
-  cybersecurity: "Cybersecurity news, threat analysis, security best practices, and privacy protection guides.",
-  gaming: "Gaming hardware, software, and technology coverage. Reviews, guides, and industry news for gamers.",
-  "emerging-tech": "Quantum computing, blockchain, AR/VR, robotics, and other frontier technologies shaping tomorrow.",
-  blog: "General technology commentary, opinion pieces, and industry analysis.",
-  coding: "Software development tools, frameworks, libraries, and coding best practices.",
-};
 
 export async function generateStaticParams() {
   return siteConfig.categories.map((cat) => ({ slug: cat.slug }));
@@ -32,22 +20,23 @@ export async function generateMetadata({
   const { slug } = await params;
   const cat = siteConfig.categories.find((c) => c.slug === slug);
   const label = cat?.label || slug;
-  const description = categoryDescriptions[slug] || `Explore all ${label} articles, guides, and reviews on TechVeb.`;
+  const meta = getCategoryMeta(slug);
   return {
-    title: `${label} | ${siteConfig.name}`,
-    description,
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
     alternates: { canonical: `${siteConfig.url}/category/${slug}` },
     openGraph: {
-      title: `${label} | ${siteConfig.name}`,
-      description,
+      title: meta.ogTitle,
+      description: meta.ogDescription,
       url: `${siteConfig.url}/category/${slug}`,
       siteName: siteConfig.name,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${label} | ${siteConfig.name}`,
-      description,
+      title: meta.twitterTitle,
+      description: meta.twitterDescription,
     },
   };
 }
@@ -61,7 +50,8 @@ export default async function CategoryPage({
   const cat = siteConfig.categories.find((c) => c.slug === slug);
   const label = cat?.label || slug;
   const color = cat?.color || "#0060E0";
-  const description = categoryDescriptions[slug] || `Explore all ${label} articles, guides, and reviews on TechVeb.`;
+  const meta = getCategoryMeta(slug);
+  const categoryUrl = `${siteConfig.url}/category/${slug}`;
 
   const allPosts = getAllPostsFromAllDirs();
   const posts = allPosts
@@ -71,25 +61,14 @@ export default async function CategoryPage({
   const featuredPost = posts[0];
   const remainingPosts = posts.slice(1);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: `${label} Articles`,
-    description,
-    url: `${siteConfig.url}/category/${slug}`,
-    isPartOf: {
-      "@type": "WebSite",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  };
+  const jsonLd = getCategoryJsonLd(slug, categoryUrl);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      { "@type": "ListItem", position: 2, name: label },
+      { "@type": "ListItem", position: 2, name: meta.schemaName, item: categoryUrl },
     ],
   };
 
@@ -116,7 +95,7 @@ export default async function CategoryPage({
             </div>
             <h1 className="font-heading text-3xl font-bold sm:text-4xl">{label}</h1>
           </div>
-          <p className="max-w-2xl text-muted text-lg">{description}</p>
+          <p className="max-w-2xl text-muted text-lg">{meta.description}</p>
           <p className="mt-2 text-sm text-muted-foreground">
             {posts.length} article{posts.length !== 1 ? "s" : ""} published
           </p>

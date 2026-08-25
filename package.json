@@ -1,39 +1,40 @@
 {
-    "name":  "techveb",
-    "version":  "0.1.0",
-    "private":  true,
-    "scripts":  {
-                    "dev":  "next dev",
-                    "build":  "node scripts/optimize-assets.js \u0026\u0026 node scripts/build-search-index.js \u0026\u0026 node scripts/generate-blur-placeholders.js \u0026\u0026 node --max-old-space-size=6144 node_modules/next/dist/bin/next build",
-                    "start":  "next start",
-                    "lint":  "eslint",
-                    "scrape-news":  "node scripts/scrape-news.mjs",
-                    "auto-news":  "node scripts/auto-news/pipeline.mjs"
-                },
-    "dependencies":  {
-                         "gray-matter":  "^4.0.3",
-                         "next":  "16.3.1",
-                         "next-mdx-remote":  "^6.0.0",
-                         "next-sitemap":  "^4.2.3",
-                         "react":  "19.2.8",
-                         "react-dom":  "19.2.8",
-                         "rehype-highlight":  "^7.0.2",
-                         "remark-gfm":  "^4.0.1"
-                     },
-    "devDependencies":  {
-                            "@tailwindcss/postcss":  "^4",
-                            "@types/jsdom":  "^30.0.0",
-                            "@types/node":  "^20",
-                            "@types/react":  "^19",
-                            "@types/react-dom":  "^19",
-                            "@types/turndown":  "^5.0.6",
-                            "eslint":  "^9",
-                            "eslint-config-next":  "16.3.1",
-                            "tailwindcss":  "^4",
-                            "typescript":  "^5",
-                            "cheerio":  "^1.2.0",
-                            "jsdom":  "^30.0.1",
-                            "@mozilla/readability":  "^0.6.0",
-                            "turndown":  "^7.2.4"
-                        }
+    "name": "techveb",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "node scripts/optimize-assets.js && node scripts/build-search-index.js && node scripts/generate-blur-placeholders.js && node --max-old-space-size=6144 node_modules/next/dist/bin/next build",
+        "start": "next start",
+        "lint": "eslint",
+        "scrape-news": "node scripts/scrape-news.mjs",
+        "auto-news": "node scripts/auto-news/pipeline.mjs",
+        "enhance-blog": "node scripts/auto-news/enhance-blog.mjs"
+    },
+    "dependencies": {
+        "gray-matter": "^4.0.3",
+        "next": "16.3.1",
+        "next-mdx-remote": "^6.0.0",
+        "next-sitemap": "^4.2.3",
+        "react": "19.2.8",
+        "react-dom": "19.2.8",
+        "rehype-highlight": "^7.0.2",
+        "remark-gfm": "^4.0.1"
+    },
+    "devDependencies": {
+        "@mozilla/readability": "^0.6.0",
+        "@tailwindcss/postcss": "^4",
+        "@types/jsdom": "^30.0.0",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "@types/turndown": "^5.0.6",
+        "cheerio": "^1.2.0",
+        "eslint": "^9",
+        "eslint-config-next": "16.3.1",
+        "jsdom": "^30.0.1",
+        "tailwindcss": "^4",
+        "turndown": "^7.2.4",
+        "typescript": "^5"
+    }
 }

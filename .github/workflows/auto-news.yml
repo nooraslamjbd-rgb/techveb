@@ -4,11 +4,15 @@ on:
   schedule:
     - cron: '0 */5 * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/**/*.mdx'
 
 jobs:
   auto-news:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,10 +31,18 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Enhance Blog Articles (SEO/AEO/GEO/LLMs)
+        run: node scripts/auto-news/enhance-blog.mjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Rebuild Search Index
+        run: node scripts/build-search-index.js
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'Auto-news: new articles from RSS sources'
-          file_pattern: 'src/content/news/ public/news/ public/search-index.json'
+          commit_message: 'Auto-enhance: SEO/AEO/GEO for articles'
+          file_pattern: 'src/content/ public/news/ public/search-index.json'
           commit_user_name: 'TechVeb Auto-News Bot'
           commit_user_email: 'auto@techveb.com'
