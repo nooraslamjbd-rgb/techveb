@@ -1,0 +1,82 @@
+---
+title: "Isolated-vm Flaw Lets Sandboxed JavaScript Escape to Host for Potential RCE"
+description: "Cybersecurity researchers have disclosed a critical security flaw in isolated-vm, a popular open-source sandbox with more than 2,900 stars and 190 forks on GitH"
+date: "2026-08-20"
+author: "TechVeb News"
+category: "cybersecurity"
+tags: ["cybersecurity", "security"]
+image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJ3-aEfGwe03ZMojsoiYaQ4TNjUiAPEFK-m68uY5JSlF8knbnGWOcBrqiB_4s6J47lPjyhQEuWdUMHnktRU6YfOcltn7_lXga77C8TNH4GOVAPrmIH_T0MsFKFkmQSMnvf42bnLlH0pC4BVMEpAZJLLTH51GpgfZybiZ_UWNLhKxx1oGi8PyD3bOUGG0_F/s1700-e365/nodejs.jpg"
+source: "The Hacker News"
+sourceLink: "https://thehackernews.com/2026/08/isolated-vm-flaw-lets-sandboxed.html"
+featured: false
+readingTime: "3 min read"
+---
+## Key Highlights
+
+- "A type confusion in ExternalCopy's handling of the transferList option lets code running inside the sandbox corrupt memory in the host process," Endor Labs researcher Cristian-Alexandru Staicu, who is credited with discovering and reporting the flaw, said in a technical write-up shared with The Hacker News.
+- "The most important takeaway is that what was not broken was the isolation primitive itself," Staicu said.
+- 1 released earlier this month.
+- The npm package has witnessed nearly 1 million downloads over the past week.
+- The vulnerability ("GHSA-864f-rcv7-6rh4"), which has yet to be assigned a CVE identifier, impacts all versions of the library before and including 7.
+
+Ravie LakshmananAug 20, 2026Vulnerability / Application Security Cybersecurity researchers have disclosed a critical security flaw in isolated-vm, a popular open-source sandbox with more than 2,900 stars and 190 forks on GitHub, that could allow attackers to escape the confines of the isolated environment.
+
+The vulnerability ("GHSA-864f-rcv7-6rh4"), which has yet to be assigned a CVE identifier, impacts all versions of the library before and including 7.
+
+0.
+
+0.
+
+It has been patched in versions 6.
+
+2.
+
+0 and 7.
+
+0.
+
+1 released earlier this month.
+
+Isolated-vm is a Node.
+
+js library for running untrusted JavaScript inside a V8 Isolate, an independent instance of the Google V8 JavaScript engine, allowing multiple sandboxed JavaScript environments to run concurrently without sharing data or interfering with each other.
+
+The npm package has witnessed nearly 1 million downloads over the past week.
+
+Because each V8 Isolate has a separate state and maintains its own heap, it is not possible to directly pass JavaScript objects from the main Node.
+
+js thread into a worker isolate.
+
+Isolated-vm exposes a class called ExternalCopy to securely serialize JavaScript objects out of the host isolate and deserialize them into the guest isolate.
+
+The vulnerability identified by Endor Labs resides in this component, allowing code running inside the sandbox to break out and corrupt memory in the host application.
+
+"A type confusion in ExternalCopy's handling of the transferList option lets code running inside the sandbox corrupt memory in the host process," Endor Labs researcher Cristian-Alexandru Staicu, who is credited with discovering and reporting the flaw, said in a technical write-up shared with The Hacker News.
+
+"Starting from nothing but a single ivm.
+
+Reference, the standard way hosts hand a sandbox any capability at all, we escalated the bug from a controlled-address crash all the way to hijacking the host's control flow, demonstrating a full guest-to-host sandbox escape.
+
+" Successful exploitation of the flaw allows memory corruption in the host process, causing the host process to crash with a segmentation fault (SIGSEGV).
+
+It can also lead to a guest-to-host sandbox escape and an erosion of the trust boundary that undermines the very purpose of isolated-vm.
+
+"Minimum demonstrated impact is a reliable, controlled-address crash (denial-of-service) triggerable by any guest that has been given an ivm.
+
+Reference (the standard way to grant a sandbox any capability)," project maintainer Marcel Laverdet said in an advisory.
+
+__Ravie Lakshmanan__Aug 20, 2026Vulnerability / Application Security
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJ3-aEfGwe03ZMojsoiYaQ4TNjUiAPEFK-m68uY5JSlF8knbnGWOcBrqiB_4s6J47lPjyhQEuWdUMHnktRU6YfOcltn7_lXga77C8TNH4GOVAPrmIH_T0MsFKFkmQSMnvf42bnLlH0pC4BVMEpAZJLLTH51GpgfZybiZ_UWNLhKxx1oGi8PyD3bOUGG0_F/s1700-e365/nodejs.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJ3-aEfGwe03ZMojsoiYaQ4TNjUiAPEFK-m68uY5JSlF8knbnGWOcBrqiB_4s6J47lPjyhQEuWdUMHnktRU6YfOcltn7_lXga77C8TNH4GOVAPrmIH_T0MsFKFkmQSMnvf42bnLlH0pC4BVMEpAZJLLTH51GpgfZybiZ_UWNLhKxx1oGi8PyD3bOUGG0_F/s1700-e365/nodejs.jpg)
+
+[![Cybersecurity](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8iAp2j8rqTq6aptj6yiYHC-B73UxnWI2NQMt0azp6OVLq9JkO8cpYokLWa8t_IKqrHKPsaM5D_lQ9Ip7kZTi3at4oYfzN1m1b_T4b6MuzBWtmlhdLcQ0nZHicD94rliREFDRewsKBQCTYrAAVNzYKj84_0EZskDUxvkc972s9fYAqcQGEQjVZTc0cr7TB/s728-e100/ThreatLocker-d.jpg)](https://thehackernews.uk/zero-trust-claude-d)
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMfsvQmmbFd-X8PGgHMFuzrHiMDs1T06796eoZw1yD6X_qvRRGkmeO6iEQC_NzOtAMZETGOrUvj0ahEVoEOF-brJwOQ7ViVeqevpjNWgDNAQ78uQyCIRtvtrHvhEdyjxOF0Ol4ps4q8WYMmi3-jYrjXLRHY-7ZhrNqIq59Z2QPS-zPVZeWnuCpXHct303P/s1700-e365/ExternalCopy.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMfsvQmmbFd-X8PGgHMFuzrHiMDs1T06796eoZw1yD6X_qvRRGkmeO6iEQC_NzOtAMZETGOrUvj0ahEVoEOF-brJwOQ7ViVeqevpjNWgDNAQ78uQyCIRtvtrHvhEdyjxOF0Ol4ps4q8WYMmi3-jYrjXLRHY-7ZhrNqIq59Z2QPS-zPVZeWnuCpXHct303P/s1700-e365/ExternalCopy.png)
+
+[![Cybersecurity](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuvAqH13TTYyJD3aI-pJcYl54BoxQWMHc2aFwW2HbYUa5IKCjvHlzpzkFwXLTuV8aytky8kqLBgkoOtC8VQM5CGR0N5BXBl8RSXl-PYx_vIPbiLywiqXIvTPmm18cdEm_C0heVB-3U8zfG7K27RCAurtJ7OvxEyfQ0sVV_RRx1N4ZMWkqKgEBmkcDgjD6I/s728-e100/code-d.png)](https://thehackernews.uk/corelight-d)
+
+"Maximum demonstrated impact is control-flow hijack of the host process, i.e., potential remote code execution in the host."
+
+Users who have isolated-vm installed in their developer environments are advised to update to the latest version for optimal protection. Additional details of the full exploit have been withheld so as to prevent bad actors from launching their own attacks.
+---
+*Originally reported by [The Hacker News](https://thehackernews.com/2026/08/isolated-vm-flaw-lets-sandboxed.html). TechVeb news desk.*

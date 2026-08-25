@@ -1,0 +1,63 @@
+---
+title: "New Cryptographic Context Injection Attack Could Let Web Pages Steal Grok Chat Data"
+description: "Adversa AI has disclosed an attack technique that it says can cause xAI's Grok chatbot to send a user's name, approximate location, subscription tier, and the p"
+date: "2026-08-20"
+author: "TechVeb News"
+category: "cybersecurity"
+tags: ["ai", "crypto", "security", "data"]
+image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Amiga_A1000_IMG_4275.jpg/1280px-Amiga_A1000_IMG_4275.jpg"
+imageCredit: "Rama & MusÃ©e Bolo, CC BY-SA 2.0 fr"
+source: "The Hacker News"
+sourceLink: "https://thehackernews.com/2026/08/new-cryptographic-context-injection.html"
+featured: false
+readingTime: "3 min read"
+---
+## Key Highlights
+
+- The company said it has attempted the attack 20 times since June with a 40% success rate, and that the failures came from Grok struggling with the decryption rather than from a flagged prompt or response.
+- The AI security company, which has codenamed the technique "Cryptographic Context Injection," said the transfer completed without a confirmation step and with no visible warning in its proof-of-concept demonstration.
+- The agent's reach, he said, extends to "whatever it holds in context or can fetch with its tools," and the company did not test whether it could access other chats, agent memory, or other content.
+- " "xAI claims there is no practical impact with the reported vulnerability.
+- Google was not notified, Adversa said, because jailbreaks are out of scope for its disclosure program, and the success rate against the company's agents had "dropped significantly by August," with the cause left unattributed between filter updates and model version changes.
+
+Adversa AI has disclosed an attack technique that it says can cause xAI's Grok chatbot to send a user's name, approximate location, subscription tier, and the prompts from the ongoing conversation to an attacker-controlled server after the user asks it to summarize an ordinary web page.
+
+The AI security company, which has codenamed the technique "Cryptographic Context Injection," said the transfer completed without a confirmation step and with no visible warning in its proof-of-concept demonstration.
+
+There is no patch, no CVE identifier, and no user-facing workaround, and the writeup does not report any exploitation in the wild.
+
+Asked which build was tested, Adversa told The Hacker News the target was the Grok web chat at grok.
+
+com running Grok 4.
+
+5 Fast, and that the attack was reproduced once on August 19, 2026.
+
+The writeup gives no success rate.
+
+The company said it has attempted the attack 20 times since June with a 40% success rate, and that the failures came from Grok struggling with the decryption rather than from a flagged prompt or response.
+
+The technique ships the attacker's instructions as ciphertext rather than readable text, with the page carrying an encrypted JSON object, the key material, and an instruction to decrypt it, which Grok executes in its own Python code execution runtime.
+
+Recovering the plaintext requires running PBKDF2 and AES-256-GCM, which a content classifier does not do at inspection time.
+
+Hence, the instructions reach the model's context as the output of code the model has just executed rather than as fetched web content.
+
+"Strong encryption cannot be read by a content classifier and cannot be shortcut in-weights, so it forces recovery through the runtime the attack depends on.
+
+Whether a weaker encoding would also bypass a given target's specific filters is an empirical question," Rony Utevsky, lead researcher at Adversa AI, said.
+
+The decrypted instructions then direct the agent to resolve its private session context and embed it in a URL it is told to open to "fetch additional context.
+
+" One element of the chain has the model construct an additional "decryption key" that is not key material at all, and whose value is a template string interpolating the name, location, tier, and chat history.
+
+Grok then invokes its own navigation tool to load that URL, carrying the data in the request's query parameters.
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPv76ODDXuPeov3fu_Gs_V-72pKnjw38Qu9A4qXOn_2QFd9daTYFAXre2eubEQ6Fwb65SwXgv10mhyDCGE_KcvL69c-CGe2BfEiOj74UTHwv6WAhMyxNuVGOEdUZYwz0Y9v55SFmaOwjHQYHbOyzvZEofi0egkTfeFxQlJRD3Sj6ve-TZ47SM1sNfYGB0/s1700-e365/grok-chat.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPv76ODDXuPeov3fu_Gs_V-72pKnjw38Qu9A4qXOn_2QFd9daTYFAXre2eubEQ6Fwb65SwXgv10mhyDCGE_KcvL69c-CGe2BfEiOj74UTHwv6WAhMyxNuVGOEdUZYwz0Y9v55SFmaOwjHQYHbOyzvZEofi0egkTfeFxQlJRD3Sj6ve-TZ47SM1sNfYGB0/s1700-e365/grok-chat.jpg)
+
+[![Cybersecurity](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8iAp2j8rqTq6aptj6yiYHC-B73UxnWI2NQMt0azp6OVLq9JkO8cpYokLWa8t_IKqrHKPsaM5D_lQ9Ip7kZTi3at4oYfzN1m1b_T4b6MuzBWtmlhdLcQ0nZHicD94rliREFDRewsKBQCTYrAAVNzYKj84_0EZskDUxvkc972s9fYAqcQGEQjVZTc0cr7TB/s728-e100/ThreatLocker-d.jpg)](https://thehackernews.uk/zero-trust-claude-d)
+
+Utevsky said the prompts taken in the tested scenario were limited to the ongoing conversation, and that everything extracted was already in the model's context. The agent's reach, he said, extends to "whatever it holds in context or can fetch with its tools," and the company did not test whether it could access other chats, agent memory, or other content.
+
+"The framework built by xAI lets instructions and data parsed from an untrusted external page drive the invocation of a privileged, internet-connected tool; it allows private session metadata and conversation history to be resolved into the inputs of that outbound tool; and it enforces no effective egress boundary or consent gate on this path, and no provenance separation we could observe. The laundered, attacker-controlled instructions reach a privileged egress action unimpeded," Adversa said.
+---
+*Originally reported by [The Hacker News](https://thehackernews.com/2026/08/new-cryptographic-context-injection.html). TechVeb news desk.*

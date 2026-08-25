@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -30,7 +28,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 
 # vercel
@@ -40,4 +38,14 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# temp utility scripts
+scripts/gen-*.js
+scripts/count-*.js
+scripts/articles-*.json
+scripts/gen-all.js
+scripts/gen-data.js
+scripts/gen-extra.js
+scripts/gen-extra2.js
+scripts/gen-final.js
+scripts/gen-p2.js
+scripts/gen-pages.js
