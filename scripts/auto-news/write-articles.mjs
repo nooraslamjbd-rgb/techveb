@@ -1,6 +1,18 @@
 import fs from "fs";
 import path from "path";
-import { CONFIG } from "./config.mjs";
+import { CONFIG, BLOCKED_IMAGE_DOMAINS } from "./config.mjs";
+
+function sanitizeContent(content) {
+  if (!content) return content;
+  const lines = content.split("\n");
+  const filtered = lines.filter((line) => {
+    for (const domain of BLOCKED_IMAGE_DOMAINS) {
+      if (line.includes(domain)) return false;
+    }
+    return true;
+  });
+  return filtered.join("\n").replace(/\n{3,}/g, "\n\n");
+}
 
 function generateMDX(article, imagePath) {
   const enhanced = article.enhanced;
@@ -58,14 +70,15 @@ function generateMDX(article, imagePath) {
   if (enhanced.keyTakeaways && enhanced.keyTakeaways.length > 0) {
     lines.push("## Key Takeaways", "");
     for (const kt of enhanced.keyTakeaways) {
-      lines.push(`- ${kt}`);
+      const safe = sanitizeContent(kt);
+      if (safe.trim()) lines.push(`- ${safe.trim()}`);
     }
     lines.push("");
   }
 
   // Main enhanced content
   if (enhanced.content) {
-    lines.push(enhanced.content, "");
+    lines.push(sanitizeContent(enhanced.content), "");
   } else {
     lines.push(article.description, "");
   }
@@ -75,7 +88,7 @@ function generateMDX(article, imagePath) {
     lines.push("## Frequently Asked Questions", "");
     for (const item of enhanced.faq) {
       lines.push(`### ${item.q}`, "");
-      lines.push(item.a, "");
+      lines.push(sanitizeContent(item.a), "");
     }
   }
 

@@ -63,3 +63,9 @@ export const VALID_CATEGORIES = [
   "sports", "business", "entertainment", "education", "mobiles",
   "emerging-tech", "coding",
 ];
+
+// Domains that block cross-origin browser loading (CORS/CORP/Cloudflare)
+// Strip image references from these domains in article body content
+export const BLOCKED_IMAGE_DOMAINS = [
+  "photo-cdn.urdupoint.com",
+];
