@@ -5,7 +5,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const CONFIG = {
   GEMINI_API_KEY: process.env.GEMINI_API_KEY || "AQ.Ab8RN6IUThn_afVbRS0CVp27TzQgc2QHervJZD-JAQbbzoAnQw",
-  GEMINI_API_URL: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+  GEMINI_API_URL: "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
 
   CONTENT_DIR: path.join(__dirname, "..", "..", "src", "content", "news"),
   NEWS_IMAGE_DIR: path.join(__dirname, "..", "..", "public", "news"),

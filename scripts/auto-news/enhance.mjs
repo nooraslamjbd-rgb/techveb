@@ -55,7 +55,7 @@ export async function enhanceArticle(article) {
           temperature: 0.7,
           topP: 0.9,
           topK: 40,
-          maxOutputTokens: 2048,
+          maxOutputTokens: 4096,
           responseMimeType: "application/json",
         },
       }),
@@ -79,11 +79,19 @@ export async function enhanceArticle(article) {
     try {
       parsed = JSON.parse(text);
     } catch {
-      // Try to extract JSON from the response
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        parsed = JSON.parse(jsonMatch[0]);
-      } else {
+      // Try to extract JSON by finding matching braces
+      const start = text.indexOf("{");
+      if (start === -1) { console.error("    Could not parse Gemini response"); return fallbackEnhance(article); }
+      let depth = 0;
+      let end = -1;
+      for (let i = start; i < text.length; i++) {
+        if (text[i] === "{") depth++;
+        else if (text[i] === "}") { depth--; if (depth === 0) { end = i; break; } }
+      }
+      if (end === -1) { console.error("    Could not parse Gemini response"); return fallbackEnhance(article); }
+      try {
+        parsed = JSON.parse(text.substring(start, end + 1));
+      } catch {
         console.error("    Could not parse Gemini response as JSON");
         return fallbackEnhance(article);
       }

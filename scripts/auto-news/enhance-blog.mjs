@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AQ.Ab8RN6IUThn_afVbRS0CVp27TzQgc2QHervJZD-JAQbbzoAnQw";
-const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent";
 
 const CONTENT_DIRS = [
   path.join(__dirname, "..", "..", "src", "content", "blog"),
@@ -61,7 +61,7 @@ async function callGemini(title, description, content, isUrdu) {
         generationConfig: {
           temperature: 0.7,
           topP: 0.9,
-          maxOutputTokens: 1024,
+          maxOutputTokens: 4096,
           responseMimeType: "application/json",
         },
       }),
@@ -81,9 +81,21 @@ async function callGemini(title, description, content, isUrdu) {
     try {
       parsed = JSON.parse(text);
     } catch {
-      const match = text.match(/\{[\s\S]*\}/);
-      if (match) parsed = JSON.parse(match[0]);
-      else return null;
+      // Try to extract JSON object by finding matching braces
+      const start = text.indexOf("{");
+      if (start === -1) return null;
+      let depth = 0;
+      let end = -1;
+      for (let i = start; i < text.length; i++) {
+        if (text[i] === "{") depth++;
+        else if (text[i] === "}") { depth--; if (depth === 0) { end = i; break; } }
+      }
+      if (end === -1) return null;
+      try {
+        parsed = JSON.parse(text.substring(start, end + 1));
+      } catch {
+        return null;
+      }
     }
 
     return {
