@@ -42,7 +42,8 @@ export default function Home() {
   const blogPosts = getAllPosts("blog");
   const reviews = getAllPosts("reviews");
   const aiTools = getAllPosts("ai-tools");
-  const allPosts = [...blogPosts, ...reviews, ...aiTools].sort(
+  const newsPosts = getAllPosts("news");
+  const allPosts = [...blogPosts, ...reviews, ...aiTools, ...newsPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 

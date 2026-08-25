@@ -30,6 +30,7 @@ function generateMDX(article, imagePath) {
     `sourceLink: "${article.link}"`,
     "featured: false",
     `readingTime: "${readTime} min read"`,
+    "views: 0",
   );
 
   // FAQ frontmatter (for structured data)

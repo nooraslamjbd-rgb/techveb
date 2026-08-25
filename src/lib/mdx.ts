@@ -137,7 +137,7 @@ export function formatDate(dateString: string): string {
 }
 
 export function getAllPostsFromAllDirs(): Post[] {
-  const dirs = ["blog", "reviews", "ai-tools"];
+  const dirs = ["blog", "reviews", "ai-tools", "news"];
   return dirs.flatMap((dir) => getAllPosts(dir));
 }
 
