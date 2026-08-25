@@ -42,10 +42,8 @@ RULES:
 - Output ONLY the JSON object, nothing else`;
 }
 
-export async function enhanceArticle(article, retryCount = 0) {
+export async function enhanceArticle(article) {
   const isUrdu = article.language === "ur";
-  const MAX_RETRIES = 3;
-  const RETRY_DELAY_MS = 30000;
 
   try {
     const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
@@ -63,16 +61,13 @@ export async function enhanceArticle(article, retryCount = 0) {
       }),
     });
 
-    if (response.status === 429 && retryCount < MAX_RETRIES) {
-      const waitSec = RETRY_DELAY_MS / 1000 * (retryCount + 1);
-      console.log(`\n    Rate limited. Waiting ${waitSec}s before retry ${retryCount + 1}/${MAX_RETRIES}...`);
-      await sleep(RETRY_DELAY_MS * (retryCount + 1));
-      return enhanceArticle(article, retryCount + 1);
-    }
-
     if (!response.ok) {
-      const err = await response.text();
-      console.error(`    Gemini API error: ${response.status} - ${err.substring(0, 200)}`);
+      if (response.status === 429) {
+        console.log(`\n    Gemini rate limited (429). Using fallback content.`);
+      } else {
+        const err = await response.text();
+        console.error(`    Gemini API error: ${response.status} - ${err.substring(0, 200)}`);
+      }
       return fallbackEnhance(article);
     }
 

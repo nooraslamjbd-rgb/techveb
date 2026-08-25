@@ -16,7 +16,7 @@ const CONTENT_DIRS = [
 ];
 
 const DELAY_MS = 3000;
-const MAX_RETRIES = 3;
+const MAX_RETRIES = 2;
 const MAX_FILES_PER_RUN = 20;
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -70,7 +70,7 @@ async function callGemini(title, description, content, isUrdu, retryCount = 0) {
     });
 
     if (response.status === 429 && retryCount < MAX_RETRIES) {
-      const waitSec = (retryCount + 1) * 30;
+      const waitSec = (retryCount + 1) * 10;
       console.log(`\n    Rate limited. Waiting ${waitSec}s before retry ${retryCount + 1}/${MAX_RETRIES}...`);
       await sleep(waitSec * 1000);
       return callGemini(title, description, content, isUrdu, retryCount + 1);
@@ -79,6 +79,7 @@ async function callGemini(title, description, content, isUrdu, retryCount = 0) {
     if (!response.ok) {
       const err = await response.text();
       console.error(`    Gemini error: ${response.status} - ${err.substring(0, 200)}`);
+      if (response.status === 429) return "quota";
       return null;
     }
 
@@ -201,6 +202,7 @@ async function enhanceFile(filePath) {
   const isUrdu = language === "ur";
 
   const result = await callGemini(title, description, content, isUrdu);
+  if (result === "quota") return "quota";
   if (!result) return "failed";
 
   const newFrontmatter = rebuildFrontmatter(result, frontmatter);
@@ -218,6 +220,7 @@ async function main() {
   let enhanced = 0;
   let skipped = 0;
   let failed = 0;
+  let quotaExhausted = false;
 
   for (const dir of CONTENT_DIRS) {
     if (!fs.existsSync(dir)) continue;
@@ -230,6 +233,10 @@ async function main() {
         console.log(`\n[LIMIT] Reached ${MAX_FILES_PER_RUN} enhanced files. Stopping.`);
         break;
       }
+      if (quotaExhausted) {
+        console.log(`\n[QUOTA] Gemini quota exhausted. Skipping remaining files.`);
+        break;
+      }
 
       const filePath = path.join(dir, file);
       totalFiles++;
@@ -238,12 +245,13 @@ async function main() {
       const result = await enhanceFile(filePath);
       if (result === "enhanced") { enhanced++; console.log(" ENHANCED"); }
       else if (result === "skipped") { skipped++; console.log(" SKIP (has FAQ+KT)"); }
+      else if (result === "quota") { quotaExhausted = true; failed++; console.log(" FAILED (quota)"); }
       else { failed++; console.log(" FAILED"); }
 
-      await sleep(DELAY_MS);
+      if (!quotaExhausted) await sleep(DELAY_MS);
     }
 
-    if (enhanced >= MAX_FILES_PER_RUN) break;
+    if (enhanced >= MAX_FILES_PER_RUN || quotaExhausted) break;
   }
 
   console.log(`\n========================================`);
