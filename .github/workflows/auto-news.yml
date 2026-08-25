@@ -51,3 +51,4 @@ jobs:
           file_pattern: 'src/content/ public/news/ public/search-index.json'
           commit_user_name: 'TechVeb Auto-News Bot'
           commit_user_email: 'auto@techveb.com'
+          push_options: '--force-with-lease'
