@@ -1,0 +1,919 @@
+[
+  {
+    "setup": "Why do programmers prefer dark mode?",
+    "punchline": "Because light attracts bugs!",
+    "category": "tech",
+    "rating": 4.5,
+    "likes": 28400
+  },
+  {
+    "setup": "Why do Java developers wear glasses?",
+    "punchline": "Because they can not C#!",
+    "category": "tech",
+    "rating": 4.3,
+    "likes": 24100
+  },
+  {
+    "setup": "What is a programmer favorite hangout place?",
+    "punchline": "Foo Bar!",
+    "category": "tech",
+    "rating": 4.2,
+    "likes": 19800
+  },
+  {
+    "setup": "Why was the JavaScript developer sad?",
+    "punchline": "Because he did not Node how to Express himself!",
+    "category": "tech",
+    "rating": 4.4,
+    "likes": 26700
+  },
+  {
+    "setup": "How many programmers does it take to change a light bulb?",
+    "punchline": "None - that is a hardware problem!",
+    "category": "tech",
+    "rating": 4.1,
+    "likes": 22300
+  },
+  {
+    "setup": "Why do programmers hate nature?",
+    "punchline": "It has too many bugs!",
+    "category": "tech",
+    "rating": 4,
+    "likes": 17600
+  },
+  {
+    "setup": "What is a computer least favorite food?",
+    "punchline": "Spam!",
+    "category": "tech",
+    "rating": 3.9,
+    "likes": 15400
+  },
+  {
+    "setup": "Why did the developer go broke?",
+    "punchline": "Because he used up all his cache!",
+    "category": "tech",
+    "rating": 4.2,
+    "likes": 21200
+  },
+  {
+    "setup": "What do you call a computer that sings?",
+    "punchline": "A-Dell!",
+    "category": "tech",
+    "rating": 3.8,
+    "likes": 14200
+  },
+  {
+    "setup": "Why do Python programmers have low self-esteem?",
+    "punchline": "They are constantly comparing themselves to others with self!",
+    "category": "tech",
+    "rating": 4.3,
+    "likes": 23800
+  },
+  {
+    "setup": "A SQL query walks into a bar, sees two tables and asks...",
+    "punchline": "Can I join you?",
+    "category": "tech",
+    "rating": 4.5,
+    "likes": 27100
+  },
+  {
+    "setup": "Why did the coder get fired?",
+    "punchline": "Because he did not ENOUGH!",
+    "category": "tech",
+    "rating": 4,
+    "likes": 18900
+  },
+  {
+    "setup": "What is a computer favorite snack?",
+    "punchline": "Microchips!",
+    "category": "tech",
+    "rating": 3.7,
+    "likes": 12800
+  },
+  {
+    "setup": "Why do programmers always mix up Halloween and Christmas?",
+    "punchline": "Because Oct 31 equals Dec 25!",
+    "category": "tech",
+    "rating": 4.6,
+    "likes": 31200
+  },
+  {
+    "setup": "Why did the website go to the doctor?",
+    "punchline": "Because it lost its domain!",
+    "category": "tech",
+    "rating": 3.9,
+    "likes": 16500
+  },
+  {
+    "setup": "What is a robot favorite type of music?",
+    "punchline": "Heavy metal!",
+    "category": "tech",
+    "rating": 3.8,
+    "likes": 13900
+  },
+  {
+    "setup": "Why do Java developers make terrible chefs?",
+    "punchline": "They can not handle the beans!",
+    "category": "tech",
+    "rating": 4.1,
+    "likes": 17800
+  },
+  {
+    "setup": "What did the router say to the doctor?",
+    "punchline": "It hurts when IP!",
+    "category": "tech",
+    "rating": 4.4,
+    "likes": 25600
+  },
+  {
+    "setup": "Why was the computer so cold?",
+    "punchline": "It left its Windows open!",
+    "category": "tech",
+    "rating": 4,
+    "likes": 20300
+  },
+  {
+    "setup": "What is a programmers favorite tea?",
+    "punchline": "Chai-thon!",
+    "category": "tech",
+    "rating": 3.6,
+    "likes": 11400
+  },
+  {
+    "setup": "Why do programmers prefer ice cream?",
+    "punchline": "Because they love arrays!",
+    "category": "tech",
+    "rating": 3.7,
+    "likes": 12200
+  },
+  {
+    "setup": "What happens when a bug fixes itself?",
+    "punchline": "Self-cleaning code!",
+    "category": "tech",
+    "rating": 3.5,
+    "likes": 9800
+  },
+  {
+    "setup": "Why was the JavaScript array lonely?",
+    "punchline": "It had no element!",
+    "category": "tech",
+    "rating": 4.2,
+    "likes": 22100
+  },
+  {
+    "setup": "What do you call 8 hobbits?",
+    "punchline": "A hobbyte!",
+    "category": "tech",
+    "rating": 4.3,
+    "likes": 24500
+  },
+  {
+    "setup": "Why do programmers always confuse Halloween and Christmas?",
+    "punchline": "Because DEC 25 = OCT 31!",
+    "category": "tech",
+    "rating": 4.6,
+    "likes": 29800
+  },
+  {
+    "setup": "I am afraid for the calendar.",
+    "punchline": "Its days are numbered!",
+    "category": "dad",
+    "rating": 4,
+    "likes": 31200
+  },
+  {
+    "setup": "What do you call a fake noodle?",
+    "punchline": "An impasta!",
+    "category": "dad",
+    "rating": 4.4,
+    "likes": 42800
+  },
+  {
+    "setup": "Why do not scientists trust atoms?",
+    "punchline": "Because they make up everything!",
+    "category": "dad",
+    "rating": 4.5,
+    "likes": 48300
+  },
+  {
+    "setup": "I used to hate facial hair...",
+    "punchline": "But then it grew on me!",
+    "category": "dad",
+    "rating": 4.2,
+    "likes": 35600
+  },
+  {
+    "setup": "What do you call a bear with no teeth?",
+    "punchline": "A gummy bear!",
+    "category": "dad",
+    "rating": 4.1,
+    "likes": 29400
+  },
+  {
+    "setup": "Why do not eggs tell jokes?",
+    "punchline": "They would crack each other up!",
+    "category": "dad",
+    "rating": 4,
+    "likes": 27800
+  },
+  {
+    "setup": "I am reading a book about anti-gravity.",
+    "punchline": "It is impossible to put down!",
+    "category": "dad",
+    "rating": 4.3,
+    "likes": 33500
+  },
+  {
+    "setup": "What did the ocean say to the beach?",
+    "punchline": "Nothing, it just waved!",
+    "category": "dad",
+    "rating": 3.9,
+    "likes": 25200
+  },
+  {
+    "setup": "Why did the scarecrow win an award?",
+    "punchline": "He was outstanding in his field!",
+    "category": "dad",
+    "rating": 4.6,
+    "likes": 52100
+  },
+  {
+    "setup": "What do you call a dog that does magic?",
+    "punchline": "A Labracadabrador!",
+    "category": "dad",
+    "rating": 4.2,
+    "likes": 30100
+  },
+  {
+    "setup": "Why can not you give Elsa a balloon?",
+    "punchline": "Because she will let it go!",
+    "category": "dad",
+    "rating": 4.1,
+    "likes": 28600
+  },
+  {
+    "setup": "I used to hate beard hair.",
+    "punchline": "But it grew on me!",
+    "category": "dad",
+    "rating": 3.8,
+    "likes": 22400
+  },
+  {
+    "setup": "What do you call a cheese that is not yours?",
+    "punchline": "Nacho cheese!",
+    "category": "dad",
+    "rating": 4.3,
+    "likes": 36700
+  },
+  {
+    "setup": "Why did the bicycle fall over?",
+    "punchline": "Because it was two-tired!",
+    "category": "dad",
+    "rating": 4.1,
+    "likes": 31800
+  },
+  {
+    "setup": "What do you call a sleeping dinosaur?",
+    "punchline": "A dino-snore!",
+    "category": "dad",
+    "rating": 3.9,
+    "likes": 26400
+  },
+  {
+    "setup": "Why do not oysters share their toys?",
+    "punchline": "Because they are shellfish!",
+    "category": "dad",
+    "rating": 4,
+    "likes": 24100
+  },
+  {
+    "setup": "What did the grape do when it got stepped on?",
+    "punchline": "Nothing, it just let out a little wine!",
+    "category": "dad",
+    "rating": 4.2,
+    "likes": 33200
+  },
+  {
+    "setup": "Why was the math book unhappy?",
+    "punchline": "Because it had too many problems!",
+    "category": "dad",
+    "rating": 4.4,
+    "likes": 39800
+  },
+  {
+    "setup": "What do you call a pile of cats?",
+    "punchline": "A meowtain!",
+    "category": "dad",
+    "rating": 3.8,
+    "likes": 21600
+  },
+  {
+    "setup": "Why did the man put his clock in the safe?",
+    "punchline": "He wanted to save time!",
+    "category": "dad",
+    "rating": 4,
+    "likes": 27300
+  },
+  {
+    "setup": "What do you call a fly with no wings?",
+    "punchline": "A walk!",
+    "category": "dad",
+    "rating": 4.1,
+    "likes": 29500
+  },
+  {
+    "setup": "Why did the tomato turn red?",
+    "punchline": "Because it saw the salad dressing!",
+    "category": "dad",
+    "rating": 4.3,
+    "likes": 35400
+  },
+  {
+    "setup": "What did the buffalo say when his son left for college?",
+    "punchline": "Bison!",
+    "category": "dad",
+    "rating": 4.2,
+    "likes": 31200
+  },
+  {
+    "setup": "Why did the cookie go to the hospital?",
+    "punchline": "Because it felt crummy!",
+    "category": "dad",
+    "rating": 4,
+    "likes": 26800
+  },
+  {
+    "setup": "What is a computer favorite candy?",
+    "punchline": "Lollipops!",
+    "category": "dad",
+    "rating": 3.7,
+    "likes": 18200
+  },
+  {
+    "setup": "Why do not eggs tell each other secrets?",
+    "punchline": "Because they might crack up!",
+    "category": "dad",
+    "rating": 3.9,
+    "likes": 24500
+  },
+  {
+    "setup": "Schrödinger cat walks into a bar...",
+    "punchline": "And does not.",
+    "category": "science",
+    "rating": 4.7,
+    "likes": 38200
+  },
+  {
+    "setup": "Helium walks into a bar.",
+    "punchline": "The bartender says we do not serve noble gases here. Helium does not react.",
+    "category": "science",
+    "rating": 4.5,
+    "likes": 34700
+  },
+  {
+    "setup": "What is a physicist favorite food?",
+    "punchline": "Fission chips!",
+    "category": "science",
+    "rating": 4.1,
+    "likes": 21300
+  },
+  {
+    "setup": "Why can you never trust atoms?",
+    "punchline": "They make up literally everything!",
+    "category": "science",
+    "rating": 4.3,
+    "likes": 26800
+  },
+  {
+    "setup": "Two atoms are walking down the street.",
+    "punchline": "One says I think I lost an electron. The other asks Are you sure? I am positive!",
+    "category": "science",
+    "rating": 4.6,
+    "likes": 36100
+  },
+  {
+    "setup": "What did the biologist wear on a first date?",
+    "punchline": "Designer genes!",
+    "category": "science",
+    "rating": 4,
+    "likes": 19500
+  },
+  {
+    "setup": "Why do chemists enjoy working with ammonia?",
+    "punchline": "Because it is pretty basic stuff!",
+    "category": "science",
+    "rating": 3.9,
+    "likes": 17200
+  },
+  {
+    "setup": "A photon checks into a hotel.",
+    "punchline": "The bellhop asks Need help with your luggage? The photon replies No thanks, I am traveling light!",
+    "category": "science",
+    "rating": 4.4,
+    "likes": 29800
+  },
+  {
+    "setup": "What do you call a group of 8 hobbits?",
+    "punchline": "A hobbyte!",
+    "category": "science",
+    "rating": 4.2,
+    "likes": 23400
+  },
+  {
+    "setup": "Why did the proton stay calm during the experiment?",
+    "punchline": "Because it had a positive charge!",
+    "category": "science",
+    "rating": 4,
+    "likes": 18900
+  },
+  {
+    "setup": "What is a chemist favorite book?",
+    "punchline": "Title: The Elements!",
+    "category": "science",
+    "rating": 3.8,
+    "likes": 14600
+  },
+  {
+    "setup": "Why did the neutron go to the party alone?",
+    "punchline": "Because it had no charge!",
+    "category": "science",
+    "rating": 4.1,
+    "likes": 20800
+  },
+  {
+    "setup": "What did one tectonic plate say when it bumped into the other?",
+    "punchline": "Sorry, my fault!",
+    "category": "science",
+    "rating": 4.3,
+    "likes": 25600
+  },
+  {
+    "setup": "Why is the sun so smart?",
+    "punchline": "Because it has a lot of degrees!",
+    "category": "science",
+    "rating": 4,
+    "likes": 19200
+  },
+  {
+    "setup": "What is the most untrustworthy mineral?",
+    "punchline": "Lies-ium!",
+    "category": "science",
+    "rating": 3.9,
+    "likes": 16400
+  },
+  {
+    "setup": "Why can not you trust atoms?",
+    "punchline": "They make up everything you see!",
+    "category": "science",
+    "rating": 4.3,
+    "likes": 24300
+  },
+  {
+    "setup": "What did the biologist say when he found two identical cells?",
+    "punchline": "This is mitosis!",
+    "category": "science",
+    "rating": 4.1,
+    "likes": 18100
+  },
+  {
+    "setup": "A neutron walks into a bar and asks how much for a drink.",
+    "punchline": "The bartender says for you, no charge.",
+    "category": "science",
+    "rating": 4.5,
+    "likes": 33600
+  },
+  {
+    "setup": "What is a plants favorite drink?",
+    "punchline": "Quiet water!",
+    "category": "science",
+    "rating": 3.7,
+    "likes": 12800
+  },
+  {
+    "setup": "Why do scientists hate the concept of absolute zero?",
+    "punchline": "Because it is zero fun!",
+    "category": "science",
+    "rating": 4.2,
+    "likes": 22500
+  },
+  {
+    "setup": "I told my wife she was drawing her eyebrows too high.",
+    "punchline": "She looked surprised.",
+    "category": "oneliner",
+    "rating": 4.2,
+    "likes": 32400
+  },
+  {
+    "setup": "I have a lot of growing up to do.",
+    "punchline": "I realized that the other day inside my fort.",
+    "category": "oneliner",
+    "rating": 4,
+    "likes": 21700
+  },
+  {
+    "setup": "I threw a boomerang years ago.",
+    "punchline": "I now live in constant fear.",
+    "category": "oneliner",
+    "rating": 4.3,
+    "likes": 28900
+  },
+  {
+    "setup": "My boss told me to have a good day.",
+    "punchline": "So I went home.",
+    "category": "oneliner",
+    "rating": 4.1,
+    "likes": 25600
+  },
+  {
+    "setup": "What is the difference between a well-dressed man on a bike and a poorly-dressed man on a unicycle?",
+    "punchline": "Attire.",
+    "category": "oneliner",
+    "rating": 3.8,
+    "likes": 16800
+  },
+  {
+    "setup": "My grandfather has the heart of a lion.",
+    "punchline": "And a lifetime ban from the zoo.",
+    "category": "oneliner",
+    "rating": 4.5,
+    "likes": 41200
+  },
+  {
+    "setup": "I told my wife the truth.",
+    "punchline": "I told her I was seeing a surgeon. She said she was seeing a psychiatrist.",
+    "category": "oneliner",
+    "rating": 4.2,
+    "likes": 24300
+  },
+  {
+    "setup": "I told my friend 10 jokes to make him laugh.",
+    "punchline": "Sadly, no pun in ten did.",
+    "category": "oneliner",
+    "rating": 4.4,
+    "likes": 27600
+  },
+  {
+    "setup": "What is the difference between a hippo and a Zippo?",
+    "punchline": "One is really heavy and the other is a little lighter.",
+    "category": "oneliner",
+    "rating": 4,
+    "likes": 19400
+  },
+  {
+    "setup": "I have an EpiPen.",
+    "punchline": "My friend gave it to me as he was dying. It seemed very important to him.",
+    "category": "oneliner",
+    "rating": 4.6,
+    "likes": 38500
+  },
+  {
+    "setup": "I was digging in our garden and found a chest full of gold coins.",
+    "punchline": "I was about to run inside and tell my wife, but then I remembered why I was digging the hole.",
+    "category": "oneliner",
+    "rating": 4.3,
+    "likes": 31200
+  },
+  {
+    "setup": "I think the horse is a great multiplier.",
+    "punchline": "It is always a bay-gone the next day.",
+    "category": "oneliner",
+    "rating": 3.9,
+    "likes": 15600
+  },
+  {
+    "setup": "My wife told me to stop impersonating a flamingo.",
+    "punchline": "I had to put my foot down.",
+    "category": "oneliner",
+    "rating": 4.1,
+    "likes": 23800
+  },
+  {
+    "setup": "I asked my wife what she wanted for her birthday.",
+    "punchline": "She said nothing would make her happier than a diamond ring.",
+    "category": "oneliner",
+    "rating": 4,
+    "likes": 20100
+  },
+  {
+    "setup": "Parallel lines have so much in common.",
+    "punchline": "It is a shame they will never meet.",
+    "category": "oneliner",
+    "rating": 4.2,
+    "likes": 26400
+  },
+  {
+    "setup": "I am on a seafood diet.",
+    "punchline": "I see food and I eat it.",
+    "category": "oneliner",
+    "rating": 4.4,
+    "likes": 34700
+  },
+  {
+    "setup": "I used to hate facial hair.",
+    "punchline": "But then it grew on me.",
+    "category": "oneliner",
+    "rating": 3.8,
+    "likes": 18200
+  },
+  {
+    "setup": "I told the gym I wanted a six-pack.",
+    "punchline": "They told me to stop drinking beer.",
+    "category": "oneliner",
+    "rating": 4.3,
+    "likes": 29300
+  },
+  {
+    "setup": "What is red and bad for your teeth?",
+    "punchline": "A brick.",
+    "category": "oneliner",
+    "rating": 3.7,
+    "likes": 14800
+  },
+  {
+    "setup": "My wife left a note on the fridge.",
+    "punchline": "It is not working, I can not take it anymore, I am going to my mom place.",
+    "category": "oneliner",
+    "rating": 4.1,
+    "likes": 22500
+  },
+  {
+    "setup": "What do you call an alligator in a vest?",
+    "punchline": "An investigator!",
+    "category": "animal",
+    "rating": 4.1,
+    "likes": 23600
+  },
+  {
+    "setup": "What do you call a fish without eyes?",
+    "punchline": "A fsh!",
+    "category": "animal",
+    "rating": 3.9,
+    "likes": 18900
+  },
+  {
+    "setup": "Why do seagulls fly over the sea?",
+    "punchline": "Because if they flew over the bay, they would be baygulls!",
+    "category": "animal",
+    "rating": 4,
+    "likes": 20100
+  },
+  {
+    "setup": "What do you call a sleeping bull?",
+    "punchline": "A bulldozer!",
+    "category": "animal",
+    "rating": 4.2,
+    "likes": 25800
+  },
+  {
+    "setup": "Why do not oysters share their toys?",
+    "punchline": "Because they are shellfish!",
+    "category": "animal",
+    "rating": 4.1,
+    "likes": 22400
+  },
+  {
+    "setup": "What do you call a deer with no eyes?",
+    "punchline": "No eye deer!",
+    "category": "animal",
+    "rating": 4.3,
+    "likes": 27600
+  },
+  {
+    "setup": "What do you call a dog that does yoga?",
+    "punchline": "A pretzel!",
+    "category": "animal",
+    "rating": 4,
+    "likes": 19300
+  },
+  {
+    "setup": "Why do cows have hooves instead of feet?",
+    "punchline": "Because they lactose!",
+    "category": "animal",
+    "rating": 4.2,
+    "likes": 24100
+  },
+  {
+    "setup": "What do you call a bear with no teeth?",
+    "punchline": "A gummy bear!",
+    "category": "animal",
+    "rating": 4.1,
+    "likes": 21800
+  },
+  {
+    "setup": "Why do not elephants use computers?",
+    "punchline": "They are afraid of the mouse!",
+    "category": "animal",
+    "rating": 4,
+    "likes": 18500
+  },
+  {
+    "setup": "What do you call a lazy kangaroo?",
+    "punchline": "Pouch potato!",
+    "category": "animal",
+    "rating": 4.2,
+    "likes": 23200
+  },
+  {
+    "setup": "What did the cat say to the tree?",
+    "punchline": "I am feline good up here!",
+    "category": "animal",
+    "rating": 3.9,
+    "likes": 16700
+  },
+  {
+    "setup": "Why do birds fly south in winter?",
+    "punchline": "Because it is too far to walk!",
+    "category": "animal",
+    "rating": 4.1,
+    "likes": 20600
+  },
+  {
+    "setup": "What do you call a dog magician?",
+    "punchline": "A Labracadabrador!",
+    "category": "animal",
+    "rating": 4.3,
+    "likes": 26100
+  },
+  {
+    "setup": "Why do not teddy bears ever finish dessert?",
+    "punchline": "Because they are already stuffed!",
+    "category": "animal",
+    "rating": 4,
+    "likes": 19800
+  },
+  {
+    "setup": "What do you call an artistic dog?",
+    "punchline": "A Picassoasso!",
+    "category": "animal",
+    "rating": 3.8,
+    "likes": 15200
+  },
+  {
+    "setup": "What is a cat favorite color?",
+    "punchline": "Purr-ple!",
+    "category": "animal",
+    "rating": 3.7,
+    "likes": 13600
+  },
+  {
+    "setup": "Why did the horse cross the road?",
+    "punchline": "Because the chicken had the day off!",
+    "category": "animal",
+    "rating": 4.1,
+    "likes": 21400
+  },
+  {
+    "setup": "What do frogs order at restaurants?",
+    "punchline": "French flies!",
+    "category": "animal",
+    "rating": 4.2,
+    "likes": 24800
+  },
+  {
+    "setup": "Why do ducks have feathers?",
+    "punchline": "To cover their butt quacks!",
+    "category": "animal",
+    "rating": 4,
+    "likes": 18900
+  },
+  {
+    "setup": "What do you call a programming language made of candy?",
+    "punchline": "SugarScript!",
+    "category": "programming",
+    "rating": 4.3,
+    "likes": 22800
+  },
+  {
+    "setup": "Why do programmers prefer dark mode?",
+    "punchline": "Because light attracts bugs!",
+    "category": "programming",
+    "rating": 4.5,
+    "likes": 31200
+  },
+  {
+    "setup": "How many programmers does it take to change a light bulb?",
+    "punchline": "None, that is a hardware problem!",
+    "category": "programming",
+    "rating": 4.2,
+    "likes": 26400
+  },
+  {
+    "setup": "What is a programmer favorite hangout place?",
+    "punchline": "Foo Bar!",
+    "category": "programming",
+    "rating": 4,
+    "likes": 20100
+  },
+  {
+    "setup": "Why do programmers hate nature?",
+    "punchline": "It has too many bugs!",
+    "category": "programming",
+    "rating": 4.1,
+    "likes": 18900
+  },
+  {
+    "setup": "What do you call a computer that sings?",
+    "punchline": "A-Dell!",
+    "category": "programming",
+    "rating": 3.8,
+    "likes": 15600
+  },
+  {
+    "setup": "Why did the programmer quit his job?",
+    "punchline": "Because he did not get arrays!",
+    "category": "programming",
+    "rating": 4.4,
+    "likes": 28700
+  },
+  {
+    "setup": "A programmer wife tells her husband go to the store and buy a loaf of bread. If they have eggs, buy a dozen.",
+    "punchline": "He comes home with 12 loaves.",
+    "category": "programming",
+    "rating": 4.6,
+    "likes": 35400
+  },
+  {
+    "setup": "What is a programmers favorite team?",
+    "punchline": "Git Hub!",
+    "category": "programming",
+    "rating": 4.1,
+    "likes": 22100
+  },
+  {
+    "setup": "Why do programmers always confuse Halloween and Christmas?",
+    "punchline": "Because Oct 31 equals Dec 25!",
+    "category": "programming",
+    "rating": 4.5,
+    "likes": 32800
+  },
+  {
+    "setup": "What is a programmers favorite place in the house?",
+    "punchline": "The recursive room!",
+    "category": "programming",
+    "rating": 3.9,
+    "likes": 17600
+  },
+  {
+    "setup": "Why did the JavaScript developer go to therapy?",
+    "punchline": "Because he had too many closure issues!",
+    "category": "programming",
+    "rating": 4.3,
+    "likes": 25300
+  },
+  {
+    "setup": "What is the object-oriented way to become wealthy?",
+    "punchline": "Inheritance!",
+    "category": "programming",
+    "rating": 4.4,
+    "likes": 29100
+  },
+  {
+    "setup": "Why do Python developers prefer low income?",
+    "punchline": "Because they hate classes!",
+    "category": "programming",
+    "rating": 4.2,
+    "likes": 23800
+  },
+  {
+    "setup": "There are only 10 types of people in the world.",
+    "punchline": "Those who understand binary and those who do not!",
+    "category": "programming",
+    "rating": 4.5,
+    "likes": 38200
+  },
+  {
+    "setup": "Why did the developer go broke?",
+    "punchline": "Because he used up all his cache!",
+    "category": "programming",
+    "rating": 4,
+    "likes": 19400
+  },
+  {
+    "setup": "What is a computers least favorite food?",
+    "punchline": "Spam!",
+    "category": "programming",
+    "rating": 3.9,
+    "likes": 16800
+  },
+  {
+    "setup": "A QA engineer walks into a bar.",
+    "punchline": "He orders 1 beer. He orders 0 beers. He orders 99999999 beers.",
+    "category": "programming",
+    "rating": 4.3,
+    "likes": 26500
+  },
+  {
+    "setup": "Why did the C++ programmer become a Buddhist?",
+    "punchline": "He wanted to find inner peace of mind!",
+    "category": "programming",
+    "rating": 4.1,
+    "likes": 21200
+  },
+  {
+    "setup": "What do you call a snake that is 3.14 meters long?",
+    "punchline": "A pi-thon!",
+    "category": "programming",
+    "rating": 4.2,
+    "likes": 24600
+  }
+]
