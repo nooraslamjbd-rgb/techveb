@@ -42,8 +42,10 @@ RULES:
 - Output ONLY the JSON object, nothing else`;
 }
 
-export async function enhanceArticle(article) {
+export async function enhanceArticle(article, retryCount = 0) {
   const isUrdu = article.language === "ur";
+  const MAX_RETRIES = 3;
+  const RETRY_DELAY_MS = 30000;
 
   try {
     const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
@@ -60,6 +62,13 @@ export async function enhanceArticle(article) {
         },
       }),
     });
+
+    if (response.status === 429 && retryCount < MAX_RETRIES) {
+      const waitSec = RETRY_DELAY_MS / 1000 * (retryCount + 1);
+      console.log(`\n    Rate limited. Waiting ${waitSec}s before retry ${retryCount + 1}/${MAX_RETRIES}...`);
+      await sleep(RETRY_DELAY_MS * (retryCount + 1));
+      return enhanceArticle(article, retryCount + 1);
+    }
 
     if (!response.ok) {
       const err = await response.text();
@@ -160,8 +169,8 @@ export async function enhanceAllArticles(articles) {
     enhanced.push({ ...article, enhanced: result });
     console.log(` OK (${result.category})`);
 
-    // Rate limit: Gemini free tier = 15 RPM
-    if (i < articles.length - 1) await sleep(CONFIG.AI_DELAY_MS);
+    // Rate limit: 3s between calls, Gemini free tier = 15 RPM
+    if (i < articles.length - 1) await sleep(3000);
   }
 
   console.log(`[ENHANCE] Done. ${enhanced.length} articles enhanced.`);

@@ -15,7 +15,9 @@ const CONTENT_DIRS = [
   path.join(__dirname, "..", "..", "src", "content", "reviews"),
 ];
 
-const DELAY_MS = 200;
+const DELAY_MS = 3000;
+const MAX_RETRIES = 3;
+const MAX_FILES_PER_RUN = 20;
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function buildPrompt(title, description, content, isUrdu) {
@@ -51,7 +53,7 @@ RULES:
 - Output ONLY the JSON`;
 }
 
-async function callGemini(title, description, content, isUrdu) {
+async function callGemini(title, description, content, isUrdu, retryCount = 0) {
   try {
     const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
       method: "POST",
@@ -66,6 +68,13 @@ async function callGemini(title, description, content, isUrdu) {
         },
       }),
     });
+
+    if (response.status === 429 && retryCount < MAX_RETRIES) {
+      const waitSec = (retryCount + 1) * 30;
+      console.log(`\n    Rate limited. Waiting ${waitSec}s before retry ${retryCount + 1}/${MAX_RETRIES}...`);
+      await sleep(waitSec * 1000);
+      return callGemini(title, description, content, isUrdu, retryCount + 1);
+    }
 
     if (!response.ok) {
       const err = await response.text();
@@ -217,6 +226,11 @@ async function main() {
     console.log(`[${category}] ${files.length} files`);
 
     for (const file of files) {
+      if (enhanced >= MAX_FILES_PER_RUN) {
+        console.log(`\n[LIMIT] Reached ${MAX_FILES_PER_RUN} enhanced files. Stopping.`);
+        break;
+      }
+
       const filePath = path.join(dir, file);
       totalFiles++;
       process.stdout.write(`  ${file.substring(0, 50)}...`);
@@ -228,6 +242,8 @@ async function main() {
 
       await sleep(DELAY_MS);
     }
+
+    if (enhanced >= MAX_FILES_PER_RUN) break;
   }
 
   console.log(`\n========================================`);

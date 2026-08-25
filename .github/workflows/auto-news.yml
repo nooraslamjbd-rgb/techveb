@@ -33,11 +33,13 @@ jobs:
         run: node scripts/auto-news/pipeline.mjs
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_NO_WARNINGS: 1
 
       - name: Enhance Blog Articles (SEO/AEO/GEO/LLMs)
         run: node scripts/auto-news/enhance-blog.mjs
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_NO_WARNINGS: 1
 
       - name: Rebuild Search Index
         run: node scripts/build-search-index.js
