@@ -104,8 +104,12 @@ export default function SearchModal({
   if (!open) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-start justify-center bg-black/60 backdrop-blur-sm pt-[10vh] px-4"
+    <dialog
+      open
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search articles"
+      className="fixed inset-0 z-[100] m-0 flex items-start justify-center border-0 bg-transparent pt-[10vh] px-4 backdrop:bg-black/60 backdrop:backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -120,7 +124,8 @@ export default function SearchModal({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search 500+ articles..."
+            placeholder="Search 600+ articles..."
+            aria-label="Search articles"
             className="flex-1 bg-transparent text-base text-foreground placeholder:text-muted-foreground outline-none"
           />
           <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded-md border border-border bg-surface px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
@@ -128,21 +133,21 @@ export default function SearchModal({
           </kbd>
         </div>
 
-        <div className="max-h-[60vh] overflow-y-auto p-2">
+        <div className="max-h-[60vh] overflow-y-auto p-2" role="listbox" aria-label="Search results">
           {loading && (
-            <div className="py-8 text-center text-sm text-muted-foreground">
+            <div className="py-8 text-center text-sm text-muted-foreground" role="status">
               Loading articles...
             </div>
           )}
 
           {!loading && query && results.length === 0 && (
-            <div className="py-8 text-center text-sm text-muted-foreground">
+            <div className="py-8 text-center text-sm text-muted-foreground" role="status">
               No results found for &ldquo;{query}&rdquo;
             </div>
           )}
 
           {!loading && !query && (
-            <div className="py-8 text-center text-sm text-muted-foreground">
+            <div className="py-8 text-center text-sm text-muted-foreground" role="status">
               Start typing to search articles, tutorials, and reviews...
             </div>
           )}
@@ -155,6 +160,8 @@ export default function SearchModal({
                 key={article.slug}
                 href={`/${article.dir}/${article.slug}`}
                 onClick={onClose}
+                role="option"
+                aria-selected={idx === activeIndex}
                 className={`flex items-start gap-3 rounded-xl px-4 py-3 transition-colors ${
                   idx === activeIndex
                     ? "bg-primary/10"
@@ -201,6 +208,6 @@ export default function SearchModal({
           </span>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

@@ -81,7 +81,7 @@ const dictionaryData: Record<string, { urdu: string; pronunciation: string; mean
   "earth": { urdu: "زمین", pronunciation: "zameen", meaning: "The planet on which we live", example: "The earth rotates on its axis.", synonyms: ["world", "globe", "planet"], category: "nature" },
 
   "snow": { urdu: "برف", pronunciation: "barf", meaning: "Frozen precipitation", example: "The mountains are covered in snow.", synonyms: ["ice", "frost"], category: "nature" },
-  "ocean": { urdu: " ocean", pronunciation: "ocean", meaning: "A very large expanse of sea", example: "The ocean is vast.", synonyms: ["sea", "waters"], category: "nature" },
+  "ocean": { urdu: "\u0633\u0645\u0646\u062f\u0631", pronunciation: "samundar", meaning: "A very large expanse of sea", example: "The ocean is vast.", synonyms: ["sea", "waters"], category: "nature" },
 
   // Animals
   "cat": { urdu: "بلی", pronunciation: "billi", meaning: "A small domesticated carnivorous mammal", example: "The cat is sleeping.", synonyms: ["feline", "kitten"], category: "animals" },
@@ -385,7 +385,7 @@ export default function DictionaryPage() {
               <p className="text-xs text-muted-foreground">Categories</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-primary">免费</p>
+              <p className="text-3xl font-bold text-primary">100%</p>
               <p className="text-xs text-muted-foreground">Always Free</p>
             </div>
           </div>

@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/education",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Education Hub - TechVeb",
+    description: "Jobs, results, admissions, and career guidance.",
+  },
 };
 
 const boardResults = [

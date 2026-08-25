@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/sports",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sports Hub - TechVeb",
+    description: "Live cricket scores and sports news.",
+  },
 };
 
 export default function SportsPage() {
@@ -141,7 +146,7 @@ export default function SportsPage() {
                 {["Cricket", "Football", "Gaming", "Formula 1"].map((sport) => (
                   <Link
                     key={sport}
-                    href={`/blog?search=${sport.toLowerCase()}`}
+                    href={`/blog?q=${sport.toLowerCase()}`}
                     className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     → {sport}

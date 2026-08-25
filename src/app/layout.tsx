@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import CookieConsent from "@/components/ui/CookieConsent";
+import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -107,6 +108,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#0060E0" />
       </head>
       <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-primary/50"
+        >
+          Skip to content
+        </a>
         <Script
           id="dark-mode-init"
           strategy="beforeInteractive"
@@ -121,59 +128,29 @@ export default function RootLayout({
             `,
           }}
         />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-VSCWBGYHE7"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-VSCWBGYHE7');
-            `,
-          }}
-        />
-        <Script
-          id="org-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: siteConfig.name,
-              url: siteConfig.url,
-              logo: `${siteConfig.url}/logo-square.png`,
-              description: siteConfig.description,
-              sameAs: Object.values(siteConfig.social).filter(Boolean),
-              contactPoint: {
-                "@type": "ContactPoint",
-                email: siteConfig.email,
-                telephone: siteConfig.phone,
-                contactType: "customer service",
-              },
-            }),
-          }}
-        />
-        <Script
-          id="nav-jsonld"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SiteNavigationElement",
-              name: siteConfig.navItems.map((n) => n.label),
-              url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
-            }),
-          }}
-        />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.url,
+          logo: `${siteConfig.url}/logo-square.png`,
+          description: siteConfig.description,
+          sameAs: Object.values(siteConfig.social).filter(Boolean),
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: siteConfig.email,
+            telephone: siteConfig.phone,
+            contactType: "customer service",
+          },
+        }} />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "SiteNavigationElement",
+          name: siteConfig.navItems.map((n) => n.label),
+          url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
+        }} />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <MobileBottomNav />
         <BackToTop />

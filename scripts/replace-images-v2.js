@@ -74,7 +74,8 @@ function parseFrontmatter(content) {
 }
 
 function replaceFrontmatterField(content, key, value) {
-  const escaped = `"${String(value).replace(/"/g, '\\"')}"`;
+  const cleaned = String(value).replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim();
+  const escaped = `"${cleaned.replace(/"/g, '\\"')}"`;
   const regex = new RegExp(`^${key}:.*$`, "m");
   if (regex.test(content)) {
     return content.replace(regex, `${key}: ${escaped}`);
@@ -125,7 +126,9 @@ function findBestImage(title, category, pool, usedUrls) {
     return anyUnused[idx];
   }
 
-  return null;
+  // Last resort: reuse any image from pool (better than no image)
+  const idx = hashStr(title) % pool.length;
+  return pool[idx];
 }
 
 // ─── Main ───────────────────────────────────────────────────────────

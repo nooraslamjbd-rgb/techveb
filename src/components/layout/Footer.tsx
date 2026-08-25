@@ -10,30 +10,12 @@ const socialIcons: { key: keyof typeof siteConfig.social; label: string; path: s
 
 const hasSocial = socialIcons.some((s) => siteConfig.social[s.key]);
 
-const allCategories = [
-  { label: "AI & ML", href: "/ai-tools" },
-  { label: "Tech News", href: "/blog?cat=tech-news" },
-  { label: "Reviews", href: "/reviews" },
-  { label: "Cybersecurity", href: "/blog?cat=cybersecurity" },
-  { label: "Cloud", href: "/blog?cat=cloud" },
-  { label: "AI Tools", href: "/ai-tools" },
-  { label: "Gaming", href: "/blog?cat=gaming" },
-  { label: "Programming", href: "/blog?cat=tutorials" },
-  { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
-  { label: "General", href: "/blog?cat=blog" },
-  { label: "News", href: "/news" },
-  { label: "Business", href: "/business" },
-  { label: "Sports", href: "/sports" },
-  { label: "Education", href: "/education" },
-  { label: "Islam", href: "/islam" },
-];
-
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+        <div className="grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm">
                 <Image src="/logo-square.png" alt="TechVeb" fill className="object-contain p-0.5" />
@@ -102,24 +84,6 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-
-          <div>
-            <h3 className="mb-4 font-heading text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Topics
-            </h3>
-            <ul className="space-y-2.5">
-              {allCategories.map((cat, catIdx) => (
-                <li key={`cat-${catIdx}`}>
-                  <Link
-                    href={cat.href}
-                    className="text-sm text-muted hover:text-primary transition-colors"
-                  >
-                    {cat.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="border-t border-border py-6 text-center text-sm text-muted-foreground">

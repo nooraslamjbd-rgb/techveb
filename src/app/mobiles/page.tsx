@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/mobiles",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mobile Phones - TechVeb",
+    description: "Compare latest mobile phone prices and specifications in Pakistan.",
+  },
 };
 
 interface Phone {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import OptimizedImage, { imageSizes } from "@/components/ui/OptimizedImage";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
@@ -69,6 +69,8 @@ export default function Home() {
   const latestSidebar = allPosts
     .filter((p) => p.slug !== featured?.slug)
     .slice(0, 5);
+
+  const latestNews = getAllNewsPosts().slice(0, 6);
 
   const websiteJsonLd = {
     "@context": "https://schema.org",
@@ -356,6 +358,53 @@ export default function Home() {
         </section>
       )}
 
+      {/* Latest News */}
+      {latestNews.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10">
+                <svg className="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h2 className="font-heading text-xl font-bold sm:text-2xl">Breaking News</h2>
+            </div>
+            <Link
+              href="/news"
+              className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+            >
+              View all &rarr;
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {latestNews.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/news/${post.slug}`}
+                className="group rounded-xl border border-border bg-surface p-4 hover:shadow-md hover:border-primary/30 transition-all"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-[10px] font-bold text-red-600 uppercase">
+                    {post.category}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">{post.source}</span>
+                </div>
+                <h3 className="font-heading text-sm font-bold line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                  {post.title}
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 mb-2">{post.description}</p>
+                <p className="text-[10px] text-muted-foreground">
+                  {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  {" · "}
+                  {post.readingTime}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Most Read + Latest Articles side by side */}
       <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
@@ -450,6 +499,8 @@ export default function Home() {
                 ? "/reviews"
                 : cat.slug === "ai"
                 ? "/ai-tools"
+                : cat.slug === "blog"
+                ? "/blog"
                 : `/blog?cat=${cat.slug}`;
             return (
               <Link
@@ -470,6 +521,8 @@ export default function Home() {
                     {cat.slug === "cybersecurity" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />}
                     {cat.slug === "gaming" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />}
                     {cat.slug === "emerging-tech" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />}
+                    {cat.slug === "blog" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />}
+                    {cat.slug === "coding" && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />}
                   </svg>
                 </div>
                 <h3 className="font-heading font-semibold group-hover:text-primary transition-colors text-sm sm:text-base">

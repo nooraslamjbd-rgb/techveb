@@ -5,17 +5,7 @@ const matter = require("gray-matter");
 const contentDir = path.join(__dirname, "..", "src", "content");
 const outDir = path.join(__dirname, "..", "public");
 
-const categoryDirMap = {
-  ai: "ai-tools",
-  "product-reviews": "reviews",
-  reviews: "reviews",
-};
-
-function getDir(category) {
-  return categoryDirMap[category] || "blog";
-}
-
-const dirs = ["blog", "reviews", "ai-tools"];
+const dirs = ["blog", "reviews", "ai-tools", "news"];
 const articles = [];
 
 dirs.forEach((dir) => {
@@ -27,7 +17,8 @@ dirs.forEach((dir) => {
     const raw = fs.readFileSync(path.join(fullDir, file), "utf-8");
     const { data, content } = matter(raw);
     const slug = file.replace(/\.mdx$/, "");
-    const catDir = getDir(data.category);
+
+    if (!data.title || !data.date) return;
 
     articles.push({
       slug,
@@ -36,7 +27,7 @@ dirs.forEach((dir) => {
       category: data.category || "",
       tags: data.tags || [],
       date: data.date || "",
-      dir: catDir,
+      dir: dir,
       featured: !!data.featured,
     });
   });
@@ -44,6 +35,13 @@ dirs.forEach((dir) => {
 
 articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+const now = new Date();
+const oneDayMs = 86400000;
+const filtered = articles.filter(a => {
+  const d = new Date(a.date);
+  return !isNaN(d.getTime()) && d.getTime() - now.getTime() < oneDayMs;
+});
+
 const outPath = path.join(outDir, "search-index.json");
-fs.writeFileSync(outPath, JSON.stringify(articles), "utf-8");
-console.log(`Built search index: ${articles.length} articles -> ${outPath}`);
+fs.writeFileSync(outPath, JSON.stringify(filtered), "utf-8");
+console.log(`Built search index: ${filtered.length} articles (filtered ${articles.length - filtered.length} future-dated) -> ${outPath}`);

@@ -216,7 +216,7 @@ export default async function ReviewPostPage({
               <AuthorBox />
               <RelatedArticles posts={related} dir="reviews" />
               <Comments slug={slug} />
-              <div className="xl:hidden">
+              <div className="lg:hidden">
                 <TableOfContents />
               </div>
             </div>

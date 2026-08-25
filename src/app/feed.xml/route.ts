@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -6,11 +6,13 @@ export async function GET() {
   const posts = getAllPosts("blog");
   const reviews = getAllPosts("reviews");
   const aiTools = getAllPosts("ai-tools");
+  const news = getAllNewsPosts();
 
   const allItems = [
     ...posts.map((p) => ({ ...p, section: "Blog" })),
     ...reviews.map((p) => ({ ...p, section: "Reviews" })),
     ...aiTools.map((p) => ({ ...p, section: "AI Tools" })),
+    ...news.map((p) => ({ ...p, section: "News", dir: "news" })),
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const items = allItems

@@ -220,7 +220,7 @@ export default async function BlogPostPage({
 
               <RelatedArticles posts={related} dir={dir} />
               <Comments slug={slug} />
-              <div className="xl:hidden">
+              <div className="lg:hidden">
                 <TableOfContents />
               </div>
             </div>

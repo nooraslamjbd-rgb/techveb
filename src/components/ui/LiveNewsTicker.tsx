@@ -48,8 +48,6 @@ export default function LiveNewsTicker() {
                 <a
                   key={`${item.id}-${idx}`}
                   href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mr-6"
                 >
                   <span className="shrink-0 text-[10px] font-bold text-blue-500">{item.source}</span>

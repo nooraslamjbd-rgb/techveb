@@ -39,7 +39,7 @@ function makeBlurPlaceholder(category?: string): string {
     coding: ["10b981", "059669"],
   };
   const colors = categoryColors[category || ""] || ["e2e8f0", "cbd5e1"];
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23${colors[0]}"/><stop offset="100%" stop-color="%23${colors[1]}"/></linearGradient></defs><rect width="32" height="32" fill="url(%23g)"/></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#${colors[0]}"/><stop offset="100%" stop-color="#${colors[1]}"/></linearGradient></defs><rect width="32" height="32" fill="url(%23g)"/></svg>`;
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
 
@@ -59,6 +59,7 @@ export default function OptimizedImage({
   quality = 75,
   loading = "lazy",
   sizes,
+  fill,
   ...props
 }: OptimizedImageProps) {
   const [hasError, setHasError] = useState(false);
@@ -83,7 +84,7 @@ export default function OptimizedImage({
     const gradient = getCategoryGradient(category || "");
     return (
       <div
-        className={`flex items-center justify-center bg-gradient-to-br ${gradient} ${className}`}
+        className={`flex items-center justify-center bg-gradient-to-br ${gradient} ${fill ? "h-full w-full" : ""} ${className}`}
         {...(props.style ? { style: props.style } : {})}
       >
         <span className="text-center text-sm font-semibold text-muted-foreground/50 line-clamp-2 px-4">
@@ -94,10 +95,11 @@ export default function OptimizedImage({
   }
 
   return (
-    <div className={`relative ${isLoaded ? "" : "bg-muted/30"}`}>
+    <div className={`relative ${fill ? "h-full w-full" : ""} ${isLoaded ? "" : "bg-muted/30"}`}>
       <Image
         src={src}
         alt={alt}
+        fill={fill}
         quality={quality}
         loading={loading}
         sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}

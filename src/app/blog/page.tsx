@@ -110,7 +110,7 @@ export default async function BlogPage({
     itemListElement: paginatedPosts.map((post, idx) => ({
       "@type": "ListItem",
       position: (safePage - 1) * PAGE_SIZE + idx + 1,
-      url: `${siteConfig.url}/blog/${post.slug}`,
+      url: `${siteConfig.url}/${post.dir}/${post.slug}`,
       name: post.title,
     })),
   } : null;
@@ -216,7 +216,7 @@ export default async function BlogPage({
       {paginatedPosts.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedPosts.map((post) => (
-            <ArticleCard key={post.slug} post={post} dir="blog" />
+            <ArticleCard key={post.slug} post={post} dir={post.dir} />
           ))}
         </div>
       ) : (

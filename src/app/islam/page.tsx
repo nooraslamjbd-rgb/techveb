@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/islam",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Islam - TechVeb",
+    description: "Prayer times, Quran, Islamic calendar, and Hadith.",
+  },
 };
 
 const prayerTimes = [
@@ -84,7 +89,7 @@ export default function IslamPage() {
       </section>
 
       {/* Ayat & Hadith of the Day */}
-      <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+      <section id="quran" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2">
           {/* Ayat */}
           <div className="rounded-xl border border-border bg-surface p-6">
@@ -104,7 +109,7 @@ export default function IslamPage() {
           </div>
 
           {/* Hadith */}
-          <div className="rounded-xl border border-border bg-surface p-6">
+          <div id="hadith" className="rounded-xl border border-border bg-surface p-6">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl">📜</span>
               <h3 className="font-heading font-bold">Hadith of the Day</h3>
@@ -139,8 +144,64 @@ export default function IslamPage() {
         </div>
       </section>
 
+      {/* Masnoon Duain */}
+      <section id="duain" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <h2 className="font-heading text-xl font-bold mb-4">Masnoon Duain</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: "Before Sleeping", arabic: "\u0627\u0644\u0644\u0647\u0648\u0645 \u0628\u0643\u064E \u0623\u064E\u0636\u064E\u0639\u0650\u062A\u064F \u0633\u064E\u0644\u064E\u0633\u064E \u0642\u064E\u0644\u0628\u0650\u064A", translation: "O Allah, I entrust my soul to You" },
+            { title: "Waking Up", arabic: "\u0627\u0644\u064D\u062D\u064E\u0645\u062F\u064F \u0644\u0650\u0644\u0651\u064E\u0644\u0650\u0647\u0650 \u0631\u064E\u0628\u0651\u064E \u0627\u0644\u0639\u064E\u0627\u0644\u064E\u0645\u0650\u064A\u0646\u064E", translation: "All praise is for Allah who gave us life" },
+            { title: "Before Eating", arabic: "\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064E\u0647\u0650 \u0627\u0644\u0631\u0651\u064E\u062D\u0652\u0645\u064E\u0646\u0650 \u0627\u0644\u0631\u0651\u064E\u062D\u0650\u064A\u0645\u0650", translation: "In the name of Allah, the Most Gracious, the Most Merciful" },
+          ].map((dua, i) => (
+            <div key={i} className="rounded-xl border border-border bg-surface p-5">
+              <p className="font-bold text-sm text-foreground mb-2">{dua.title}</p>
+              <p className="text-lg text-foreground font-arabic text-center mb-2" dir="rtl">{dua.arabic}</p>
+              <p className="text-xs text-muted-foreground italic">{dua.translation}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Islamic Names */}
+      <section id="names" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <h2 className="font-heading text-xl font-bold mb-4">Islamic Baby Names</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {[
+            { name: "Muhammad", meaning: "Praised", gender: "M" },
+            { name: "Fatima", meaning: "Captivating", gender: "F" },
+            { name: "Ali", meaning: "Elevated", gender: "M" },
+            { name: "Ayesha", meaning: "Alive, thriving", gender: "F" },
+            { name: "Omar", meaning: "Long-lived", gender: "M" },
+            { name: "Zainab", meaning: "Fragrant flower", gender: "F" },
+            { name: "Hasan", meaning: "Handsome", gender: "M" },
+            { name: "Maryam", meaning: "Pious", gender: "F" },
+          ].map((n, i) => (
+            <div key={i} className="rounded-lg border border-border bg-surface p-3 text-center">
+              <p className="font-bold text-foreground">{n.name}</p>
+              <p className="text-xs text-muted-foreground">{n.meaning}</p>
+              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded mt-1 inline-block ${n.gender === "M" ? "text-blue-600 bg-blue-500/10" : "text-pink-600 bg-pink-500/10"}`}>
+                {n.gender === "M" ? "Boy" : "Girl"}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Daily Reminders */}
+      <section id="reminders" className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <h2 className="font-heading text-xl font-bold mb-4">Daily Reminders</h2>
+        <div className="rounded-xl border border-border bg-surface p-6">
+          <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/20 p-4 mb-3">
+            <p className="text-sm leading-relaxed text-foreground italic">
+              &quot;Whoever puts his trust in Allah, He will be sufficient for him.&quot;
+            </p>
+          </div>
+          <p className="text-xs text-muted-foreground">— Prophet Muhammad &#xFDFB; (At-Tirmidhi 2389)</p>
+        </div>
+      </section>
+
       {/* Islamic Events */}
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <section id="calendar" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h2 className="font-heading text-xl font-bold mb-4">Upcoming Islamic Events</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[

@@ -57,7 +57,7 @@ export default function HomeSearchBar() {
           onChange={(e) => handleChange(e.target.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => setTimeout(() => setFocused(false), 200)}
-          placeholder="Search 500+ articles..."
+          placeholder="Search 600+ articles..."
           className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/40 outline-none"
         />
         <kbd className="mr-3 hidden sm:inline-flex items-center rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-medium text-white/40">

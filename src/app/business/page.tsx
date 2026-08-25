@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/business",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business & Finance - TechVeb",
+    description: "Real-time financial data for Pakistan - Currency, Gold, Crypto, Stocks.",
+  },
 };
 
 export default function BusinessPage() {

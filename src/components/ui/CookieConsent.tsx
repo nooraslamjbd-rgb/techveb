@@ -1,22 +1,55 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Script from "next/script";
+
+const GA_ID = "G-VSCWBGYHE7";
+
+function loadGA() {
+  if (document.getElementById("ga-script")) return;
+  const s1 = document.createElement("script");
+  s1.id = "ga-script";
+  s1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  s1.async = true;
+  document.head.appendChild(s1);
+
+  const s2 = document.createElement("script");
+  s2.id = "ga-config";
+  s2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}', { anonymize_ip: true });
+  `;
+  document.head.appendChild(s2);
+}
 
 export default function CookieConsent() {
   const [show, setShow] = useState(false);
+  const [consented, setConsented] = useState<boolean | null>(null);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
-    if (!consent) setShow(true);
+    if (consent === "accepted") {
+      setConsented(true);
+      loadGA();
+    } else if (consent === "declined") {
+      setConsented(false);
+    } else {
+      setShow(true);
+    }
   }, []);
 
   const accept = () => {
     localStorage.setItem("cookie-consent", "accepted");
+    setConsented(true);
     setShow(false);
+    loadGA();
   };
 
   const decline = () => {
     localStorage.setItem("cookie-consent", "declined");
+    setConsented(false);
     setShow(false);
   };
 

@@ -27,6 +27,8 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
+  const [focusedDropdown, setFocusedDropdown] = useState<string | null>(null);
+  const activeDropdown = hoveredDropdown || focusedDropdown;
   const [subscribeOpen, setSubscribeOpen] = useState(false);
   const [subEmail, setSubEmail] = useState("");
   const [subStatus, setSubStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -110,20 +112,31 @@ export default function Navbar() {
                   onMouseEnter={() => hasDropdown && setHoveredDropdown(item.href)}
                   onMouseLeave={() => hasDropdown && setHoveredDropdown(null)}>
                   <Link href={item.href}
+                    aria-haspopup={hasDropdown ? "true" : undefined}
+                    aria-expanded={hasDropdown ? activeDropdown === item.href : undefined}
+                    onKeyDown={(e) => {
+                      if (hasDropdown && (e.key === "Enter" || e.key === " ")) {
+                        e.preventDefault();
+                        setFocusedDropdown(activeDropdown === item.href ? null : item.href);
+                      } else if (e.key === "Escape") {
+                        setFocusedDropdown(null);
+                      }
+                    }}
+                    onBlur={() => setTimeout(() => setFocusedDropdown(null), 150)}
                     className={`relative flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}>
                     {item.label}
                     {hasDropdown && (
-                      <svg className={`h-3 w-3 transition-transform ${hoveredDropdown === item.href ? "rotate-180" : ""}`}
+                      <svg className={`h-3 w-3 transition-transform ${activeDropdown === item.href ? "rotate-180" : ""}`}
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     )}
                     {isActive && <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-primary" />}
                   </Link>
-                  {hasDropdown && hoveredDropdown === item.href && (
-                    <div className="absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-xl border border-border bg-background p-2 shadow-xl animate-slide-down">
+                  {hasDropdown && activeDropdown === item.href && (
+                    <div role="menu" className="absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-xl border border-border bg-background p-2 shadow-xl animate-slide-down">
                       {item.children!.map((child) => (
-                        <Link key={child.href} href={child.href}
+                        <Link key={child.href} href={child.href} role="menuitem"
                           className="block rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-surface hover:text-foreground transition-colors">
                           {child.label}
                         </Link>

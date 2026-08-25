@@ -216,7 +216,7 @@ export default async function AiToolPostPage({
               <AuthorBox />
               <RelatedArticles posts={related} dir="ai-tools" />
               <Comments slug={slug} />
-              <div className="xl:hidden">
+              <div className="lg:hidden">
                 <TableOfContents />
               </div>
             </div>

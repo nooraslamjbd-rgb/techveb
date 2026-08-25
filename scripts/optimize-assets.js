@@ -44,8 +44,8 @@ async function optimize() {
   const origFav = path.join(PUBLIC, "favicon-original.png");
 
   if (!fs.existsSync(origLogo) || !fs.existsSync(origFav)) {
-    console.error("Original files not found. Run restore-originals.js first.");
-    process.exit(1);
+    console.warn("Original files not found. Skipping asset optimization.");
+    return;
   }
 
   // === LOGO ===

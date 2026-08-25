@@ -12,11 +12,11 @@ export const siteConfig = {
   phone: "+92 313 6473379",
   address: "Pakistan",
   social: {
-    twitter: "" as string,
-    linkedin: "" as string,
+    twitter: "https://x.com/techveb" as string,
+    linkedin: "https://linkedin.com/company/techveb" as string,
     youtube: "" as string,
     facebook: "" as string,
-    github: "" as string,
+    github: "https://github.com/nooraslamjbd-rgb/techveb" as string,
   },
   navItems: [
     { label: "Home", href: "/" },
@@ -30,10 +30,9 @@ export const siteConfig = {
         { label: "Cloud & DevOps", href: "/blog?cat=cloud" },
         { label: "Cybersecurity", href: "/blog?cat=cybersecurity" },
         { label: "Programming", href: "/blog?cat=tutorials" },
-        { label: "Emerging Tech", href: "/blog?cat=emerging-tech" },
+        { label: "News", href: "/news" },
         { label: "Gaming", href: "/blog?cat=gaming" },
-        { label: "General", href: "/blog?cat=blog" },
-        { label: "Coding", href: "/blog?cat=coding" },
+        { label: "Reviews", href: "/reviews" },
       ],
     },
     { label: "Business", href: "/business" },
@@ -64,37 +63,8 @@ export const siteConfig = {
       links: [
         { label: "Blog", href: "/blog" },
         { label: "News", href: "/news" },
-        { label: "Product Reviews", href: "/reviews" },
+        { label: "Reviews", href: "/reviews" },
         { label: "AI Tools", href: "/ai-tools" },
-        { label: "Mobiles", href: "/mobiles" },
-      ],
-    },
-    {
-      title: "Finance & Business",
-      links: [
-        { label: "Currency Rates", href: "/business" },
-        { label: "Gold Prices", href: "/business" },
-        { label: "Crypto", href: "/business" },
-        { label: "Fuel Prices", href: "/business" },
-      ],
-    },
-    {
-      title: "Lifestyle",
-      links: [
-        { label: "Recipes", href: "/recipes" },
-        { label: "Horoscope", href: "/horoscope" },
-        { label: "Dictionary", href: "/dictionary" },
-        { label: "Poetry", href: "/poetry" },
-        { label: "Quotes", href: "/quotes" },
-        { label: "Jokes", href: "/jokes" },
-        { label: "Sports", href: "/sports" },
-      ],
-    },
-    {
-      title: "Education & Islam",
-      links: [
-        { label: "Education", href: "/education" },
-        { label: "Islam", href: "/islam" },
       ],
     },
     {

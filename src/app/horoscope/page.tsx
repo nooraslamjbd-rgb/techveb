@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "https://techveb.com/horoscope",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daily Horoscope - TechVeb",
+    description: "Daily horoscope predictions for all zodiac signs.",
+  },
 };
 
 const zodiacSigns = [
