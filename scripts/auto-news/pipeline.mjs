@@ -14,7 +14,7 @@ async function main() {
   console.log("========================================");
   console.log("  TechVeb Auto-News Pipeline");
   console.log(`  ${new Date().toISOString()}`);
-  console.log("========================================\n`);
+  console.log("========================================\n");
 
   try {
     // Step 1: Fetch news from all RSS sources
