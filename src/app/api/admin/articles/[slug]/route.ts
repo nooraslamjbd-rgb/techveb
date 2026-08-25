@@ -5,6 +5,22 @@ import { getDirFromCategory } from "@/lib/category-utils";
 
 export const dynamic = "force-dynamic";
 
+const ALLOWED_DIRS = ["blog", "reviews", "ai-tools", "news"];
+
+function validateDir(dir: string | null): string {
+  if (!dir || !ALLOWED_DIRS.includes(dir)) return "blog";
+  return dir;
+}
+
+function validateSlug(slug: string): boolean {
+  return /^[a-z0-9][a-z0-9\-]{0,200}$/.test(slug);
+}
+
+function sanitizeString(val: unknown, maxLen: number = 500): string {
+  if (typeof val !== "string") return "";
+  return val.slice(0, maxLen).trim();
+}
+
 interface RouteParams {
   params: Promise<{ slug: string }>;
 }
@@ -29,8 +45,11 @@ function buildFrontmatter(fields: Record<string, unknown>): string {
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
     const { slug } = await params;
+    if (!validateSlug(slug)) {
+      return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+    }
 
-    const dirs = ["blog", "reviews", "ai-tools"];
+    const dirs = ALLOWED_DIRS.filter(d => d !== "news");
     let post = null;
     let dir = "blog";
 
@@ -72,25 +91,37 @@ export async function GET(_request: Request, { params }: RouteParams) {
 export async function PUT(request: Request, { params }: RouteParams) {
   try {
     const { slug } = await params;
-    const body = await request.json();
-    const { title, description, date, author, category, tags, image, imageCredit, imageCreditUrl, featured, status, content, faq, dir: bodyDir } = body;
+    if (!validateSlug(slug)) {
+      return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+    }
 
-    const dir = bodyDir || getDirFromCategory(category || "blog");
-    const targetSlug = body.newSlug || slug;
+    const body = await request.json();
+    const title = sanitizeString(body.title, 200);
+    const description = sanitizeString(body.description, 500);
+    const content = sanitizeString(body.content, 100000);
+    const category = sanitizeString(body.category, 50);
+    const author = sanitizeString(body.author, 100);
+
+    if (!title) {
+      return NextResponse.json({ error: "Title is required" }, { status: 400 });
+    }
+
+    const dir = validateDir(body.dir || getDirFromCategory(category || "blog"));
+    const targetSlug = body.newSlug && validateSlug(body.newSlug) ? body.newSlug : slug;
 
     const frontmatter = buildFrontmatter({
       title,
       description,
-      date: date || new Date().toISOString().split("T")[0],
+      date: body.date || new Date().toISOString().split("T")[0],
       author: author || "TechVeb Team",
       category,
-      tags: tags || [],
-      image: image || undefined,
-      imageCredit: imageCredit || undefined,
-      imageCreditUrl: imageCreditUrl || undefined,
-      featured: featured || false,
-      status: status || "published",
-      faq: faq && faq.length > 0 ? faq : undefined,
+      tags: Array.isArray(body.tags) ? body.tags.slice(0, 20) : [],
+      image: sanitizeString(body.image, 500) || undefined,
+      imageCredit: sanitizeString(body.imageCredit, 200) || undefined,
+      imageCreditUrl: sanitizeString(body.imageCreditUrl, 500) || undefined,
+      featured: Boolean(body.featured),
+      status: ["published", "draft"].includes(body.status) ? body.status : "published",
+      faq: Array.isArray(body.faq) ? body.faq.slice(0, 20) : undefined,
     });
 
     const fullContent = `${frontmatter}\n\n${content || ""}`;
@@ -122,8 +153,12 @@ export async function PUT(request: Request, { params }: RouteParams) {
 export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { slug } = await params;
+    if (!validateSlug(slug)) {
+      return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+    }
+
     const { searchParams } = new URL(request.url);
-    const dir = searchParams.get("dir") || "blog";
+    const dir = validateDir(searchParams.get("dir"));
 
     const existing = await getFileContent(dir, slug);
     await deleteFile(dir, slug, existing.sha, `[Admin] Delete article: ${slug}`);

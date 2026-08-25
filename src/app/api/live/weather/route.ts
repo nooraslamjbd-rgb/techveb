@@ -1,8 +1,18 @@
 import { NextResponse } from "next/server";
 import { getWeather } from "@/lib/live-data";
+import { rateLimit, getRateLimitHeaders } from "@/lib/rate-limit";
 
 export async function GET(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "anonymous";
+    const rl = rateLimit(`weather:${ip}`, 20, 60000);
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { success: false, error: "Rate limit exceeded" },
+        { status: 429, headers: getRateLimitHeaders(rl) }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const city = searchParams.get("city") || "Karachi";
     const weather = await getWeather(city);

@@ -62,6 +62,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@techveb",
+    creator: "@techveb",
     title: siteConfig.title,
     description: siteConfig.description,
     images: ["/og-default.png"],

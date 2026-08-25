@@ -3,7 +3,32 @@ import { cookies } from "next/headers";
 const COOKIE_NAME = "admin_session";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-const EXPECTED_HASH = "76ff4df4cab09a291b7ea550cbc8c0daf8661795a10495b38af4d64dfee46a46";
+function getPasswordHash(): string {
+  const hash = process.env.ADMIN_PASSWORD_HASH;
+  if (!hash) throw new Error("ADMIN_PASSWORD_HASH env var not set");
+  return hash;
+}
+
+function getSessionSecret(): string {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) throw new Error("SESSION_SECRET env var not set");
+  return secret;
+}
+
+async function hmacSign(data: string, secret: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(data));
+  return Array.from(new Uint8Array(signature))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 export async function verifyPassword(password: string): Promise<boolean> {
   const encoder = new TextEncoder();
@@ -11,12 +36,16 @@ export async function verifyPassword(password: string): Promise<boolean> {
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-  return hashHex === EXPECTED_HASH;
+  return hashHex === getPasswordHash();
 }
 
 export async function setAdminSession(): Promise<void> {
   const store = await cookies();
-  store.set(COOKIE_NAME, EXPECTED_HASH, {
+  const tokenId = crypto.randomUUID();
+  const secret = getSessionSecret();
+  const signature = await hmacSign(tokenId, secret);
+  const sessionToken = `${tokenId}.${signature}`;
+  store.set(COOKIE_NAME, sessionToken, {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
@@ -36,8 +65,21 @@ export async function clearAdminSession(): Promise<void> {
   });
 }
 
+export async function verifySessionToken(token: string): Promise<boolean> {
+  try {
+    const [tokenId, signature] = token.split(".");
+    if (!tokenId || !signature) return false;
+    const secret = getSessionSecret();
+    const expectedSignature = await hmacSign(tokenId, secret);
+    return signature === expectedSignature;
+  } catch {
+    return false;
+  }
+}
+
 export async function isAdminAuthenticated(): Promise<boolean> {
   const store = await cookies();
   const session = store.get(COOKIE_NAME);
-  return session?.value === EXPECTED_HASH;
+  if (!session?.value) return false;
+  return verifySessionToken(session.value);
 }
