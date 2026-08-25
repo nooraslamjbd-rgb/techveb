@@ -25,10 +25,6 @@ export default function CategoriesPage() {
   const [editLabel, setEditLabel] = useState("");
   const [editColor, setEditColor] = useState("");
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
   async function fetchCategories() {
     try {
       const res = await fetch("/api/admin/categories");
@@ -41,6 +37,10 @@ export default function CategoriesPage() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   function generateSlug(label: string): string {
     return label
