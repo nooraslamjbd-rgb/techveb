@@ -9,6 +9,9 @@ on:
     paths:
       - 'src/content/**/*.mdx'
 
+permissions:
+  contents: write
+
 jobs:
   auto-news:
     runs-on: ubuntu-latest
