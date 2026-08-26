@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCategoriesFromGitHub } from "@/lib/categories";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 const GITHUB_REPO = process.env.GITHUB_REPO || "nooraslamjbd-rgb/techveb";
@@ -9,6 +10,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const categories = await getCategoriesFromGitHub();
 
     const res = await fetch(
@@ -25,9 +29,9 @@ export async function GET() {
 
     const data = await res.json();
     return NextResponse.json({ categories, sha: data.sha });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: "Failed to load categories", details: String(error) },
+      { error: "Failed to load categories" },
       { status: 500 }
     );
   }
@@ -35,6 +39,9 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { categories, sha } = await request.json();
 
     if (!Array.isArray(categories)) {
@@ -76,14 +83,13 @@ export async function PUT(request: Request) {
     );
 
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      return NextResponse.json({ error: `GitHub API error: ${res.status}`, details: err }, { status: 500 });
+      return NextResponse.json({ error: "GitHub API error" }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, categories });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: "Failed to update categories", details: String(error) },
+      { error: "Failed to update categories" },
       { status: 500 }
     );
   }

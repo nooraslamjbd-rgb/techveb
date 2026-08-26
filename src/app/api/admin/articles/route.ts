@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAllPostsFromAllDirsAdmin } from "@/lib/mdx";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,9 @@ interface ArticleSummary {
 
 export async function GET() {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const posts = getAllPostsFromAllDirsAdmin();
     const articles: ArticleSummary[] = posts.map((p) => ({
       slug: p.slug,
@@ -34,9 +38,9 @@ export async function GET() {
       dir: p.category === "ai" ? "ai-tools" : p.category === "product-reviews" ? "reviews" : "blog",
     }));
     return NextResponse.json({ articles, total: articles.length });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: "Failed to load articles", details: String(error) },
+      { error: "Failed to load articles" },
       { status: 500 }
     );
   }

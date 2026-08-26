@@ -2,6 +2,7 @@
   "name": "TechVeb - Technology, AI & Innovation Hub",
   "short_name": "TechVeb",
   "description": "Your go-to source for the latest in technology, artificial intelligence, product reviews, and digital innovation.",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#080B14",
@@ -9,6 +10,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/favicon.png",
@@ -23,7 +25,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["news", "technology", "business"],
-  "lang": "en",
-  "dir": "ltr"
+  "categories": ["news", "technology", "business"]
 }

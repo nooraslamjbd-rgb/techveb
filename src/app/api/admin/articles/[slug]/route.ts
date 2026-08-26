@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getPost } from "@/lib/mdx";
 import { getFileContent, createFile, updateFile, deleteFile } from "@/lib/github";
 import { getDirFromCategory } from "@/lib/category-utils";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -44,6 +45,9 @@ function buildFrontmatter(fields: Record<string, unknown>): string {
 
 export async function GET(_request: Request, { params }: RouteParams) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { slug } = await params;
     if (!validateSlug(slug)) {
       return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
@@ -83,13 +87,16 @@ export async function GET(_request: Request, { params }: RouteParams) {
       faq: post.faq || [],
       dir,
     });
-  } catch (error) {
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }
 
 export async function PUT(request: Request, { params }: RouteParams) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { slug } = await params;
     if (!validateSlug(slug)) {
       return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
@@ -145,13 +152,16 @@ export async function PUT(request: Request, { params }: RouteParams) {
     }
 
     return NextResponse.json({ success: true, slug: targetSlug });
-  } catch (error) {
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "Failed to update article" }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request, { params }: RouteParams) {
   try {
+    if (!(await isAdminAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { slug } = await params;
     if (!validateSlug(slug)) {
       return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
@@ -164,7 +174,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
     await deleteFile(dir, slug, existing.sha, `[Admin] Delete article: ${slug}`);
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "Failed to delete article" }, { status: 500 });
   }
 }

@@ -56,10 +56,8 @@ export default async function NewsPage({
   const remainingNews = allRemaining.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
   const latestBlogPosts = blogNews.slice(0, 6);
 
-  // Split into English and Urdu
-  const allNews = getAllNewsPosts();
-  const englishNews = allNews.filter((p) => p.language === "en").slice(0, 10);
-  const urduNews = allNews.filter((p) => p.language === "ur").slice(0, 10);
+  const englishNews = newsArticles.filter((p) => p.language === "en").slice(0, 10);
+  const urduNews = newsArticles.filter((p) => p.language === "ur").slice(0, 10);
 
   const newsJsonLd = {
     "@context": "https://schema.org",

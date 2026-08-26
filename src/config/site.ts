@@ -14,8 +14,6 @@ export const siteConfig = {
   social: {
     twitter: "https://x.com/techveb" as string,
     linkedin: "https://linkedin.com/company/techveb" as string,
-    youtube: "" as string,
-    facebook: "" as string,
     github: "https://github.com/nooraslamjbd-rgb/techveb" as string,
   },
   navItems: [

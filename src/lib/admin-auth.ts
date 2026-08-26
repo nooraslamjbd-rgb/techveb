@@ -31,12 +31,35 @@ async function hmacSign(data: string, secret: string): Promise<string> {
 }
 
 export async function verifyPassword(password: string): Promise<boolean> {
+  const stored = getPasswordHash();
   const encoder = new TextEncoder();
+  const parts = stored.split(":");
+  if (parts.length === 2) {
+    const [saltHex, hashHex] = parts;
+    const salt = Uint8Array.from(saltHex.match(/.{2}/g)!.map((b) => parseInt(b, 16)));
+    const keyMaterial = await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(password),
+      { name: "PBKDF2" },
+      false,
+      ["deriveBits"]
+    );
+    const derivedBits = await crypto.subtle.deriveBits(
+      { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+      keyMaterial,
+      256
+    );
+    const derivedHex = Array.from(new Uint8Array(derivedBits))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    return derivedHex === hashHex;
+  }
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-  return hashHex === getPasswordHash();
+  const hashHex = Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hashHex === stored;
 }
 
 export async function setAdminSession(): Promise<void> {

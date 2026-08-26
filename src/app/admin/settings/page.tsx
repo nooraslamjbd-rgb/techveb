@@ -38,7 +38,6 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
 
   function handleSave() {
-    // In production, this would save to a config file or database
     localStorage.setItem("techveb-settings", JSON.stringify(settings));
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -47,7 +46,10 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-white">Site Settings</h2>
+        <div>
+          <h2 className="text-xl font-bold text-white">Site Settings</h2>
+          <p className="text-xs text-gray-500 mt-1">Settings are saved to your browser. For persistent changes, edit src/config/site.ts.</p>
+        </div>
         <button
           onClick={handleSave}
           className="rounded-lg bg-[#0060E0] px-4 py-2 text-sm font-semibold text-white hover:bg-[#004BB0]"

@@ -104,6 +104,8 @@ const nextConfig: NextConfig = {
       { source: "/blog/prompt-engineering-guide-2026", destination: "/ai-tools/prompt-engineering-guide-2026", permanent: true },
       { source: "/blog/best-gaming-headsets-2026", destination: "/reviews/best-gaming-headsets-2026", permanent: true },
       { source: "/blog/best-gaming-monitors-2026", destination: "/reviews/best-gaming-monitors-2026", permanent: true },
+      { source: "/rss", destination: "/feed.xml", permanent: true },
+      { source: "/rss.xml", destination: "/feed.xml", permanent: true },
     ];
   },
   async headers() {
