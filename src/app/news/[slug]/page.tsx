@@ -18,6 +18,7 @@ import ShareButtons from "@/components/ui/ShareButtons";
 import NewsletterInline from "@/components/ui/NewsletterInline";
 import TimeAgo from "@/components/ui/TimeAgo";
 import JsonLd from "@/components/seo/JsonLd";
+import PageLang from "@/components/seo/PageLang";
 
 export async function generateStaticParams() {
   return getAllNewsPosts().map((post) => ({ slug: post.slug }));
@@ -129,6 +130,7 @@ export default async function NewsPostPage({
 
   return (
     <>
+      <PageLang lang={post.language === "ur" ? "ur" : "en"} dir={post.language === "ur" ? "rtl" : "ltr"} />
       <ReadingProgress />
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
@@ -141,7 +143,7 @@ export default async function NewsPostPage({
           ]}
         />
 
-        <article className="mx-auto max-w-3xl">
+        <article className="mx-auto max-w-3xl" lang={post.language === "ur" ? "ur" : undefined} dir={post.language === "ur" ? "rtl" : undefined}>
           {post.image && (
             <div className="relative mb-6 sm:mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
               <OptimizedImage

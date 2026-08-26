@@ -6,6 +6,7 @@ import ArticleCard from "@/components/blog/ArticleCard";
 import JsonLd from "@/components/seo/JsonLd";
 import TimeAgo from "@/components/ui/TimeAgo";
 import OptimizedImage from "@/components/ui/OptimizedImage";
+import PageLang from "@/components/seo/PageLang";
 
 export const metadata: Metadata = {
   title: "Breaking News - Live Tech & World News | TechVeb",
@@ -70,6 +71,7 @@ export default async function NewsPage({
 
   return (
     <>
+      <PageLang lang={activeLang === "ur" ? "ur" : "en"} dir={activeLang === "ur" ? "rtl" : "ltr"} />
       <JsonLd data={newsJsonLd} />
 
       {/* Hero Breaking News */}

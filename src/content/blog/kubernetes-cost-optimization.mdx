@@ -299,11 +299,11 @@ kubectl port-forward -n opencost svc/opencost 9090:9090
 
 <div className="faq-item">
 <h3>Will cost optimization affect performance?</h3>
-<p>When done correctly, no. Right-sizing is based on actual usage data — you're removing resources that were never used. Spot instances can affect availability if not configured properly, but with proper Pod Disruption Budgets and multi-AZ deployment, the impact is minimal. Start with non-critical workloads and expand gradually.</p>
+<p>When done correctly, no. Right-sizing is based on actual usage data -- you're removing resources that were never used. Spot instances can affect availability if not configured properly, but with proper Pod Disruption Budgets and multi-AZ deployment, the impact is minimal. Start with non-critical workloads and expand gradually.</p>
 </div>
 
 </div>
 
 ## Conclusion
 
-Kubernetes cost optimization isn't a one-time project — it's an ongoing practice. The biggest wins come from three strategies: right-sizing (remove waste), spot instances (use cheap capacity), and autoscaling (match demand). Companies implementing these strategies consistently save 30-50% on their cloud bills within 2-3 months. Start with OpenCost to measure your current waste, then systematically address the top offenders.
+Kubernetes cost optimization isn't a one-time project -- it's an ongoing practice. The biggest wins come from three strategies: right-sizing (remove waste), spot instances (use cheap capacity), and autoscaling (match demand). Companies implementing these strategies consistently save 30-50% on their cloud bills within 2-3 months. Start with OpenCost to measure your current waste, then systematically address the top offenders.

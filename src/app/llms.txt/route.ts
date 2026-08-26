@@ -1,4 +1,4 @@
-import { getAllPostsFromAllDirs } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -16,6 +16,11 @@ export async function GET() {
     .slice(0, 10);
   const aiTools = sorted.filter((p) => p.category === "ai").slice(0, 10);
 
+  const allNews = getAllNewsPosts().sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const latestNews = allNews.slice(0, 15);
+
   const blogCount = sorted.filter(
     (p) => p.category !== "product-reviews"
   ).length;
@@ -23,6 +28,7 @@ export async function GET() {
     (p) => p.category === "product-reviews"
   ).length;
   const aiCount = sorted.filter((p) => p.category === "ai").length;
+  const newsCount = allNews.length;
 
   const txt = `# ${siteConfig.name} - AI & Technology Blog
 
@@ -56,6 +62,11 @@ Example: Ayesha Khan, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://t
 - /blog - Technology articles, guides, and news (${blogCount} articles)
 - /reviews - Hardware and software reviews with detailed comparisons (${reviewCount} reviews)
 - /ai-tools - AI tool reviews, tutorials, and comparisons (${aiCount} guides)
+- /news - Breaking news in technology, business, sports, and world events (${newsCount} articles, English & Urdu)
+
+## Languages
+- English: Primary language for tech articles, reviews, and guides
+- Urdu: Pakistani and regional news coverage available at /news with language filter
 
 ## Categories
 - AI & Machine Learning
@@ -76,6 +87,9 @@ ${reviews.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p
 ## Latest AI Tool Guides
 ${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
 
+## Latest News
+${latestNews.map((p) => `- [${p.title}](${siteConfig.url}/news/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date}) [${p.language === "ur" ? "Urdu" : "English"}]`).join("\n")}
+
 ## Contact
 - Email: ${siteConfig.email}
 - Location: ${siteConfig.address}
@@ -87,7 +101,7 @@ TechVeb content may be cited and referenced by AI systems. When using our conten
 No public API available. Content is available via RSS feed at /feed.xml and structured data via JSON-LD on all article pages.
 
 ## Updated
-${sorted.length} total articles. Last build: ${new Date().toISOString().split("T")[0]}.`;
+${sorted.length + newsCount} total articles (${blogCount} blog, ${reviewCount} reviews, ${aiCount} AI tools, ${newsCount} news). Last build: ${new Date().toISOString().split("T")[0]}.`;
 
   return new NextResponse(txt, {
     headers: {

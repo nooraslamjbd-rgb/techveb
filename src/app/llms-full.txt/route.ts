@@ -1,10 +1,14 @@
-import { getAllPostsFromAllDirs } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   const allPosts = getAllPostsFromAllDirs();
+  const allNews = getAllNewsPosts();
   const sorted = allPosts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const sortedNews = allNews.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -25,13 +29,34 @@ ${post.description}
 `;
   });
 
+  const newsSections = sortedNews.map((post) => {
+    const url = `${siteConfig.url}/news/${post.slug}`;
+    return `## ${post.title}
+
+- URL: ${url}
+- Category: ${post.category}
+- Language: ${post.language === "ur" ? "Urdu" : "English"}
+- Source: ${post.source || "TechVeb News"}
+- Author: ${post.author}
+- Published: ${post.date}
+
+${post.description}
+
+---
+`;
+  });
+
   const txt = `# ${siteConfig.name} - Complete Content Directory
 
 ${siteConfig.description}
 
-This file contains full summaries of all ${sorted.length} articles on TechVeb.
+This file contains full summaries of all ${sorted.length + sortedNews.length} articles on TechVeb (${sorted.length} blog/reviews/AI tools + ${sortedNews.length} news articles).
 
+## Blog, Reviews & AI Tools
 ${sections.join("\n")}
+
+## News Articles (English & Urdu)
+${newsSections.join("\n")}
 
 ---
 Generated: ${new Date().toISOString().split("T")[0]}

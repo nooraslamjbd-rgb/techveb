@@ -5,7 +5,7 @@ import { getAllPosts, getAllNewsPosts } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
-import HomeSearchBar from "@/components/ui/HomeSearchBar";
+import HeroCarousel from "@/components/ui/HeroCarousel";
 import TrendingTicker from "@/components/ui/TrendingTicker";
 import LiveMarketTicker from "@/components/ui/LiveMarketTicker";
 import LiveNewsTicker from "@/components/ui/LiveNewsTicker";
@@ -54,6 +54,20 @@ export default function Home() {
   const latestPosts = allPosts
     .filter((p) => p.slug !== featured?.slug)
     .slice(0, 9);
+
+  const heroSlides = allPosts.slice(0, 5).map((p) => ({
+    slug: p.slug,
+    dir: p.dir,
+    title: p.title,
+    description: p.description,
+    image: p.image,
+    category: p.category,
+    date: p.date,
+    readingTime: p.readingTime || "3 min read",
+    author: p.author,
+    source: p.source,
+    language: p.language,
+  }));
 
   const aiPosts = allPosts
     .filter((p) => p.category === "ai" && p.slug !== featured?.slug)
@@ -129,29 +143,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hero - Story-led */}
-      <section className="hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(0,96,224,0.15),transparent_60%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <div className="mb-8 max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-white/80 backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-              Technology &amp; AI Insights
-            </div>
-            <h1 className="mb-4 font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Your Gateway to the{" "}
-              <span className="bg-gradient-to-r from-primary-light to-accent bg-clip-text text-transparent">
-                Future of Tech
-              </span>
-            </h1>
-            <p className="mb-8 max-w-xl text-lg leading-relaxed text-white/70">
-              Stay informed with the latest in artificial intelligence, technology
-              trends, in-depth product reviews, and expert guides.
-            </p>
-            <HomeSearchBar />
-          </div>
-        </div>
-      </section>
+      {/* Hero Carousel - Latest Stories */}
+      <HeroCarousel slides={heroSlides} />
 
       {/* Main Content: Hero Story + Top Headlines */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">

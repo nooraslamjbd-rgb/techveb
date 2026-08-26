@@ -11,7 +11,9 @@ export async function generateStaticParams() {
     .concat(getAllTags("reviews"))
     .concat(getAllTags("ai-tools"));
   const uniqueTags = [...new Map(allTags.map((t) => [t.tag, t])).values()];
-  return uniqueTags.map((t) => ({ tag: t.tag }));
+  return uniqueTags
+    .filter((t) => !/[\\/:*?"<>|]/.test(t.tag))
+    .map((t) => ({ tag: t.tag }));
 }
 
 export async function generateMetadata({

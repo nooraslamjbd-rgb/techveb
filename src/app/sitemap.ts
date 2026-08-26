@@ -55,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
     changeFrequency: "weekly" as const,
     priority: 0.8,
+    ...(post.language ? { languages: { [post.language === "ur" ? "ur" : "en"]: `${baseUrl}/news/${post.slug}` } } : {}),
   }));
 
   const categoryPages = siteConfig.categories.map((cat) => ({
