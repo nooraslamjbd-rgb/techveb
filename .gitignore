@@ -49,3 +49,6 @@ scripts/gen-extra2.js
 scripts/gen-final.js
 scripts/gen-p2.js
 scripts/gen-pages.js
+
+# generated blur placeholders (regenerated on build)
+/public/blur-placeholders/
