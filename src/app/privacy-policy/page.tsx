@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="prose max-w-none">
         <p className="text-sm text-muted-foreground">
-          Last updated: August 1, 2026
+          Last updated: August 27, 2026
         </p>
 
         <h2>Introduction</h2>
@@ -75,13 +75,31 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>
             <strong>Google Analytics:</strong> To analyze website traffic and usage
-            patterns.
+            patterns. Google Analytics is only loaded after you explicitly consent
+            to cookies via our cookie banner. When loaded, IP anonymization is
+            enabled.
           </li>
           <li>
             <strong>Google AdSense:</strong> To display advertisements. Google
             uses cookies to serve ads based on your prior visits to our website.
           </li>
+          <li>
+            <strong>Formspree:</strong> When you subscribe to our newsletter or
+            submit a contact form, your name, email, and message are sent to
+            Formspree (formspree.io) for delivery. Formspree processes this data
+            on our behalf and does not use it for independent purposes.
+          </li>
         </ul>
+
+        <h2>Cookie Consent</h2>
+        <p>
+          We respect your privacy choices. A cookie consent banner is displayed on
+          your first visit. Analytics tracking (Google Analytics) and advertising
+          cookies (Google AdSense) are only loaded after you click &quot;Accept.&quot;
+          If you decline, no tracking cookies are set and your browsing experience
+          remains unaffected. You may change your preference at any time by
+          clearing your browser&apos;s local storage.
+        </p>
 
         <h2>Data Protection Rights (GDPR)</h2>
         <p>

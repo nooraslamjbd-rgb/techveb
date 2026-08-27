@@ -1,4 +1,4 @@
 Contact: mailto:nooraslamjbd@gmail.com
+Contact: https://x.com/techveb
 Preferred-Languages: en
-Canonical: https://techveb.com/.well-known/security.txt
 Policy: https://techveb.com/privacy-policy

@@ -29,7 +29,7 @@ export default function TermsPage() {
 
       <div className="prose max-w-none">
         <p className="text-sm text-muted-foreground">
-          Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          Last updated: August 27, 2026
         </p>
 
         <h2>1. Acceptance of Terms</h2>
