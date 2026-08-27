@@ -138,14 +138,15 @@ async function rewriteArticle(filePath, category) {
 
   if (!newContent) return "failed";
 
-  const remaining = hasTemplatePhrases(newContent);
-  if (remaining.length > 0) {
-    console.log(`    Still has template phrases: ${remaining[0].substring(0, 40)}... Retrying once...`);
+  if (hasTemplatePhrases(newContent).length > 0) {
+    console.log(`    Still has template phrases: ${hasTemplatePhrases(newContent)[0].substring(0, 40)}... Retrying once...`);
     const retryPrompt = `IMPORTANT: The previous output contained template phrases. Rewrite AGAIN avoiding these EXACT phrases: "In today's rapidly evolving digital landscape", "According to recent industry reports", "Research from Gartner indicates". Write a completely fresh article.\n\n${prompt}`;
     const retryContent = await callGroq(retryPrompt);
     if (retryContent && hasTemplatePhrases(retryContent).length === 0) {
       return saveRewrittenFile(filePath, raw, frontmatter, retryContent, description);
     }
+    console.log("    Still contains template phrases after retry. Marking failed (will retry on next run).");
+    return "failed";
   }
 
   if (wordCount(newContent) < 100) {
