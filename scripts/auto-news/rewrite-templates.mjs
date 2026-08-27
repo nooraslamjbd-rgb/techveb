@@ -184,7 +184,12 @@ function saveRewrittenFile(filePath, raw, frontmatter, newBody, oldDescription) 
   }
   lines.push("---");
 
-  const cleanedBody = newBody.replace(/^```markdown\s*/i, "").replace(/^```\s*/gm, "").replace(/\s*```$/gm, "").trim();
+  const cleanedBody = newBody
+    .replace(/^```markdown\s*/i, "")
+    .replace(/^```\s*/gm, "")
+    .replace(/\s*```$/gm, "")
+    .replace(/<(?=\d)/g, "&lt;")
+    .trim();
   fs.writeFileSync(filePath, `${lines.join("\n")}\n\n${cleanedBody}\n`, "utf-8");
   return "rewritten";
 }

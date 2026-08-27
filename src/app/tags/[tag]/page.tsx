@@ -63,9 +63,26 @@ export default async function TagPage({
     url: `${siteConfig.url}/tags/${tag}`,
   };
 
+  const postsJsonLd = posts.slice(0, 12).map((post, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${siteConfig.url}/${post.dir}/${post.slug}`,
+    name: post.title,
+  }));
+
+  const itemListJsonLd = postsJsonLd.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `#${decoded} articles on TechVeb`,
+        itemListElement: postsJsonLd,
+      }
+    : null;
+
   return (
     <>
       <JsonLd data={jsonLd} />
+      {itemListJsonLd && <JsonLd data={itemListJsonLd} />}
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs
           items={[

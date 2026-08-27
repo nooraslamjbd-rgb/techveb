@@ -63,6 +63,13 @@ export default async function CategoryPage({
 
   const jsonLd = getCategoryJsonLd(slug, categoryUrl);
 
+  const itemListJsonLd = posts.slice(0, 12).map((post, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${siteConfig.url}/${post.dir}/${post.slug}`,
+    name: post.title,
+  }));
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -72,9 +79,19 @@ export default async function CategoryPage({
     ],
   };
 
+  const postsJsonLd = itemListJsonLd.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `${label} articles on ${siteConfig.name}`,
+        itemListElement: itemListJsonLd,
+      }
+    : null;
+
   return (
     <>
       <JsonLd data={jsonLd} />
+      {postsJsonLd && <JsonLd data={postsJsonLd} />}
       <JsonLd data={breadcrumbJsonLd} />
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs

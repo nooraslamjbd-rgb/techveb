@@ -90,6 +90,9 @@ export default function robots(): MetadataRoute.Robots {
         disallow: DISALLOW,
       },
     ],
-    sitemap: "https://techveb.com/sitemap.xml",
+    sitemap: [
+      "https://techveb.com/sitemap.xml",
+      "https://techveb.com/news-sitemap.xml",
+    ],
   };
 }
