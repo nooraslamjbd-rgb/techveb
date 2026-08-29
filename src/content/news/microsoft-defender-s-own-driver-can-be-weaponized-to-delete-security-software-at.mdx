@@ -61,10 +61,6 @@ It then installs the driver as a service via direct HKLM registry writes using T
 
 When loaded, BTR.
 
-[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCbsmb6Wk8pQKWQmByAl5wnZQEVjS7ZYiHrlsHRM7VlcoPL7s30TaoTReoaQ4LI8Oy3KfKlIRHn9sN_7bjEKd_FWPHi1V0JR6LERepKBWSdJOk6cSUNgfIN2KVc6ydfbTILTy11owREYfpO7K11gFQV00l6qf1zl5rzF28jPhcN744yTvRAA-EjyDSBXs/s1700-e365/windows.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCbsmb6Wk8pQKWQmByAl5wnZQEVjS7ZYiHrlsHRM7VlcoPL7s30TaoTReoaQ4LI8Oy3KfKlIRHn9sN_7bjEKd_FWPHi1V0JR6LERepKBWSdJOk6cSUNgfIN2KVc6ydfbTILTy11owREYfpO7K11gFQV00l6qf1zl5rzF28jPhcN744yTvRAA-EjyDSBXs/s1700-e365/windows.jpg)
-
-[![Cybersecurity](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8iAp2j8rqTq6aptj6yiYHC-B73UxnWI2NQMt0azp6OVLq9JkO8cpYokLWa8t_IKqrHKPsaM5D_lQ9Ip7kZTi3at4oYfzN1m1b_T4b6MuzBWtmlhdLcQ0nZHicD94rliREFDRewsKBQCTYrAAVNzYKj84_0EZskDUxvkc972s9fYAqcQGEQjVZTc0cr7TB/s728-e100/ThreatLocker-d.jpg)](https://thehackernews.uk/zero-trust-claude-d)
-
 A second trigger mode schedules those operations for the next reboot.
 
 The driver then executes during what Vinopal calls the "golden window," the interval after the filesystem becomes writable but before Defender's user-mode services have started, allowing BTR.sys to physically remove security binaries such as `WdFilter.sys` and `MsMpEng.exe` before they can lock themselves.

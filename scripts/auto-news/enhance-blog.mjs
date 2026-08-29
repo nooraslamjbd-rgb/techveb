@@ -20,6 +20,18 @@ const MAX_RETRIES = 2;
 const MAX_FILES_PER_RUN = 20;
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+// Strip external/placeholder images from body content to avoid copyright hotlinks.
+function stripExternalImages(content) {
+  if (!content) return content;
+  let text = content;
+  text = text.replace(/\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)/g, "");
+  text = text.replace(/\[\]\(https?:\/\/[^\s)]+\)/g, "");
+  text = text.replace(/!\[[^\]]*\]\((https?:\/\/[^)\s]+|data:image\/[^)]*)\)/g, "");
+  text = text.replace(/^\s*https?:\/\/[^\s]+\.(?:jpg|jpeg|png|webp|gif)\s*\n?/gim, "");
+  text = text.replace(/^\s*(Image source,.*|Image caption,?.*|Figure caption,?.*)\s*\n?/gim, "");
+  return text.replace(/\n{3,}/g, "\n\n");
+}
+
 function buildPrompt(title, description, content, isUrdu) {
   const lang = isUrdu ? "Urdu (اردو)" : "English";
   return `You are an expert SEO/AEO/GEO/LLMs content editor for TechVeb (techveb.com).
@@ -211,7 +223,7 @@ async function enhanceFile(filePath) {
   if (!result) return "failed";
 
   const newFrontmatter = rebuildFrontmatter(result, frontmatter);
-  fs.writeFileSync(filePath, `${newFrontmatter}\n${content}`, "utf-8");
+  fs.writeFileSync(filePath, `${newFrontmatter}\n${stripExternalImages(content)}`, "utf-8");
   return "enhanced";
 }
 

@@ -4,7 +4,17 @@ import { CONFIG, BLOCKED_IMAGE_DOMAINS } from "./config.mjs";
 
 function sanitizeContent(content) {
   if (!content) return content;
-  const lines = content.split("\n");
+  let text = content;
+  // Remove linked images e.g. [![alt](http...)](#) and [] (http...)
+  text = text.replace(/\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)/g, "");
+  text = text.replace(/\[\]\(https?:\/\/[^\s)]+\)/g, "");
+  // Remove markdown images whose source is external (http/https) or a data URI placeholder
+  text = text.replace(/!\[[^\]]*\]\((https?:\/\/[^)\s]+|data:image\/[^)]*)\)/g, "");
+  // Remove bare external image URLs on their own line
+  text = text.replace(/^\s*https?:\/\/[^\s]+\.(?:jpg|jpeg|png|webp|gif)\s*\n?/gim, "");
+  // Remove common orphan caption lines
+  text = text.replace(/^\s*(Image source,.*|Image caption,?.*|Figure caption,?.*)\s*\n?/gim, "");
+  const lines = text.split("\n");
   const filtered = lines.filter((line) => {
     for (const domain of BLOCKED_IMAGE_DOMAINS) {
       if (line.includes(domain)) return false;
