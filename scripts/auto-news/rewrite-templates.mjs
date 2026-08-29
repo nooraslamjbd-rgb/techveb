@@ -179,6 +179,11 @@ function saveRewrittenFile(filePath, raw, frontmatter, newBody, oldDescription) 
       lines.push(`${key}: ${value}`);
     } else if (typeof value === "number") {
       lines.push(`${key}: ${value}`);
+    } else if (key === "date") {
+      const d = new Date(value || Date.now());
+      const todayDate = new Date().toISOString().split("T")[0];
+      const clamped = !isNaN(d.getTime()) && d.getTime() > Date.now() ? todayDate : (value || todayDate);
+      lines.push(`date: "${clamped}"`);
     } else {
       lines.push(`${key}: "${String(value || "").replace(/"/g, '\\"')}"`);
     }

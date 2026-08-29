@@ -145,6 +145,11 @@ function rebuildFrontmatter(data, originalFrontmatter) {
       lines.push(`description: "${data.description.replace(/"/g, '\\"')}"`);
     } else if (key === "tags" && data.tags) {
       lines.push(`tags: [${data.tags.map(t => `"${t}"`).join(", ")}]`);
+    } else if (key === "date") {
+      const d = new Date(value || Date.now());
+      const todayDate = new Date().toISOString().split("T")[0];
+      const clamped = !isNaN(d.getTime()) && d.getTime() > Date.now() ? todayDate : (value || todayDate);
+      lines.push(`date: "${clamped}"`);
     } else if (Array.isArray(value)) {
       if (value.length === 0) {
         lines.push(`${key}: []`);
