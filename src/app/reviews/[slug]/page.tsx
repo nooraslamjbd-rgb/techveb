@@ -115,11 +115,43 @@ export default async function ReviewPostPage({
     ],
   };
 
+  // ItemList + Product schema for ranked "best in" articles (rich results / AEO)
+  const productsJsonLd =
+    post.products && post.products.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: post.title,
+          numberOfItems: post.products.length,
+          itemListElement: post.products.map((p, i) => ({
+            "@type": "ListItem",
+            position: p.position || i + 1,
+            item: {
+              "@type": "Product",
+              name: p.name,
+              description: p.description || post.description,
+              brand: p.brand ? { "@type": "Brand", name: p.brand } : undefined,
+              image: p.image
+                ? (p.image.startsWith("http") ? p.image : `${siteConfig.url}${p.image.startsWith("/") ? "" : "/"}${p.image}`)
+                : `${siteConfig.url}/og-default.png`,
+              ...(p.price
+                ? { offers: { "@type": "Offer", price: p.price, priceCurrency: p.priceCurrency || "USD", availability: "https://schema.org/InStock" } }
+                : {}),
+              ...(p.ratingValue
+                ? { aggregateRating: { "@type": "AggregateRating", ratingValue: p.ratingValue, reviewCount: p.reviewCount || "1", bestRating: p.bestRating || "5" } }
+                : {}),
+              ...(p.url ? { url: p.url } : {}),
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
       <ReadingProgress />
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
+      {productsJsonLd && <JsonLd data={productsJsonLd} />}
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs
           items={[

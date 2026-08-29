@@ -23,6 +23,19 @@ export interface PostFrontmatter {
   sourceLink?: string;
   language?: string;
   keyTakeaways?: string[];
+  products?: {
+    name: string;
+    description?: string;
+    brand?: string;
+    price?: string;
+    priceCurrency?: string;
+    ratingValue?: string;
+    reviewCount?: string;
+    bestRating?: string;
+    image?: string;
+    url?: string;
+    position?: number;
+  }[];
 }
 
 export interface Post extends PostFrontmatter {
