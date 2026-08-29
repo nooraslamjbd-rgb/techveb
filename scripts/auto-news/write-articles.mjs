@@ -14,6 +14,10 @@ function sanitizeContent(content) {
   text = text.replace(/^\s*https?:\/\/[^\s]+\.(?:jpg|jpeg|png|webp|gif)\s*\n?/gim, "");
   // Remove common orphan caption lines
   text = text.replace(/^\s*(Image source,.*|Image caption,?.*|Figure caption,?.*)\s*\n?/gim, "");
+  // Strip raw CSS/style blocks injected by upstream scrapers (e.g. `body { margin:0; ... }`)
+  text = text.replace(/<style[\s\S]*?<\/style>/gi, "");
+  text = text.replace(/(?:body|html|\*|p|div|img|h[1-6])\s*\{[^}]*\}\s*/gi, "");
+  text = text.replace(/@media[^\{]*\{[^}]*\}\s*/gi, "");
   const lines = text.split("\n");
   const filtered = lines.filter((line) => {
     for (const domain of BLOCKED_IMAGE_DOMAINS) {

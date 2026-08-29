@@ -29,6 +29,10 @@ function stripExternalImages(content) {
   text = text.replace(/!\[[^\]]*\]\((https?:\/\/[^)\s]+|data:image\/[^)]*)\)/g, "");
   text = text.replace(/^\s*https?:\/\/[^\s]+\.(?:jpg|jpeg|png|webp|gif)\s*\n?/gim, "");
   text = text.replace(/^\s*(Image source,.*|Image caption,?.*|Figure caption,?.*)\s*\n?/gim, "");
+  // Strip raw CSS/style blocks injected by upstream scrapers (e.g. `body { margin:0; ... }`)
+  text = text.replace(/<style[\s\S]*?<\/style>/gi, "");
+  text = text.replace(/(?:body|html|\*|p|div|img|h[1-6])\s*\{[^}]*\}\s*/gi, "");
+  text = text.replace(/@media[^\{]*\{[^}]*\}\s*/gi, "");
   return text.replace(/\n{3,}/g, "\n\n");
 }
 
