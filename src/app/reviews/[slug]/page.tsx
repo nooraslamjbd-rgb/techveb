@@ -53,13 +53,13 @@ export async function generateMetadata({
       tags: post.tags,
       images: post.image
         ? [{ url: post.image, width: 1200, height: 630, alt: post.title }]
-        : [{ url: "/og-default.png", width: 1200, height: 630, alt: post.title }],
+        : [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: post.image ? [post.image] : ["/og-default.png"],
+      images: post.image ? [post.image] : ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
     },
   };
 }
@@ -85,12 +85,12 @@ export default async function ReviewPostPage({
     author: { "@type": "Person", name: post.author },
     datePublished: post.date,
     dateModified: post.updated || post.date,
-    image: post.image ? `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}` : `${siteConfig.url}/og-default.png`,
+    image: post.image ? `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}` : `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png`,
     url: `${siteConfig.url}/reviews/${slug}`,
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo-square.png` },
+      logo: { "@type": "ImageObject", url: `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -133,7 +133,7 @@ export default async function ReviewPostPage({
               brand: p.brand ? { "@type": "Brand", name: p.brand } : undefined,
               image: p.image
                 ? (p.image.startsWith("http") ? p.image : `${siteConfig.url}${p.image.startsWith("/") ? "" : "/"}${p.image}`)
-                : `${siteConfig.url}/og-default.png`,
+                : `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png`,
               ...(p.price
                 ? { offers: { "@type": "Offer", price: p.price, priceCurrency: p.priceCurrency || "USD", availability: "https://schema.org/InStock" } }
                 : {}),

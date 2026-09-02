@@ -2,8 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true,
+    loader: "custom",
+    loaderFile: "./src/lib/cloudinary-loader.ts",
     remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "images-assets.nasa.gov" },
       { protocol: "https", hostname: "techcrunch.com" },
@@ -123,7 +125,7 @@ const nextConfig: NextConfig = {
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://adservice.google.com https://adservice.google.de",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-            "img-src 'self' data: blob: https://upload.wikimedia.org https://images-assets.nasa.gov https://techcrunch.com https://platform.theverge.com https://cdn.arstechnica.net https://media.wired.com https://ichef.bbci.co.uk https://blogger.googleusercontent.com https://cdn.sanity.io https://fdn.gsmarena.com https://wp.technologyreview.com https://assets-prd.ignimgs.com https://img1.hscicdn.com https://cloudfront-us-east-1.images.arcpublishing.com https://media.cnn.com https://cdn.cnn.com https://i.espncricinfo.com https://www.aaj.tv https://www.bolnewsurdu.com https://urdu.arynews.tv https://www.express.pk https://www.dawn.com https://blep-images.s3.amazonaws.com https://pagead2.googlesyndication.com https://www.google.com https://www.google.co.uk",
+            "img-src 'self' data: blob: https://res.cloudinary.com https://upload.wikimedia.org https://images-assets.nasa.gov https://techcrunch.com https://platform.theverge.com https://cdn.arstechnica.net https://media.wired.com https://ichef.bbci.co.uk https://blogger.googleusercontent.com https://cdn.sanity.io https://fdn.gsmarena.com https://wp.technologyreview.com https://assets-prd.ignimgs.com https://img1.hscicdn.com https://cloudfront-us-east-1.images.arcpublishing.com https://media.cnn.com https://cdn.cnn.com https://i.espncricinfo.com https://www.aaj.tv https://www.bolnewsurdu.com https://urdu.arynews.tv https://www.express.pk https://www.dawn.com https://blep-images.s3.amazonaws.com https://pagead2.googlesyndication.com https://www.google.com https://www.google.co.uk",
             "font-src 'self' https://fonts.gstatic.com",
             "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://formspree.io https://pagead2.googlesyndication.com",
             "frame-src https://pagead2.googlesyndication.com https://www.google.com https://tpc.googlesyndication.com",
@@ -138,32 +140,12 @@ const nextConfig: NextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       {
-        source: "/favicon.png",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
-        source: "/logo.png",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
-        source: "/logo-square.png",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
-        source: "/apple-touch-icon.png",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      {
         source: "/site.webmanifest",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
       },
       {
         source: "/llms.txt",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
-      },
-      {
-        source: "/(.*)\\.(jpg|jpeg|png|gif|ico|svg|webp|avif)",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
     ];
   },

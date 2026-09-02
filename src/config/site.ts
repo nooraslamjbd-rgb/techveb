@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Your go-to source for the latest in technology, artificial intelligence, product reviews, and digital innovation. Stay informed with expert insights and in-depth analysis.",
   url: "https://techveb.com",
-  ogImage: "/og-default.png",
+  ogImage: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png",
   author: "TechVeb Team",
   email: "nooraslamjbd@gmail.com",
   phone: "+92 313 6473379",

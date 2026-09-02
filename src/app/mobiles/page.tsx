@@ -117,7 +117,7 @@ function getAllPosts(dir: string): Phone[] {
         name,
         brand,
         price,
-        image: String(data._image_ || `/phones/${slug}.jpg`),
+        image: String(data._image_ || "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png"),
         ...badgeInfo,
         rating: ratingFor(price, slug),
         released: String(data.date || section(content, "Released") || ""),

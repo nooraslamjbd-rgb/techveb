@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/favicon.ico", sizes: "any" },
+      { url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/favicon-16x16.png", type: "image/png", sizes: "16x16" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/apple-touch-icon.png",
   },
   openGraph: {
     title: siteConfig.title,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/og-default.png",
+        url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png",
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     creator: "@techveb",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/og-default.png"],
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
   },
   robots: {
     index: true,
@@ -106,8 +106,11 @@ export default function RootLayout({
     >
       <head>
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/apple-touch-icon.png" />
         <meta name="theme-color" content="#0060E0" />
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images-assets.nasa.gov" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
       <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
         <a
@@ -135,7 +138,7 @@ export default function RootLayout({
           "@type": "Organization",
           name: siteConfig.name,
           url: siteConfig.url,
-          logo: `${siteConfig.url}/logo-square.png`,
+          logo: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png",
           description: siteConfig.description,
           sameAs: Object.values(siteConfig.social).filter(Boolean),
           contactPoint: {
@@ -148,8 +151,8 @@ export default function RootLayout({
         <JsonLd data={{
           "@context": "https://schema.org",
           "@type": "SiteNavigationElement",
-          name: siteConfig.navItems.map((n) => n.label),
-          url: siteConfig.navItems.map((n) => `${siteConfig.url}${n.href}`),
+          name: ["Home", "News", "Blog", "Business", "Sports", "AI Tools", "Reviews", "Mobiles", "Recipes", "Horoscope", "Dictionary", "Poetry", "Quotes", "Jokes", "Education", "Islam", "About", "Contact"],
+          url: ["/", "/news", "/blog", "/business", "/sports", "/ai-tools", "/reviews", "/mobiles", "/recipes", "/horoscope", "/dictionary", "/poetry", "/quotes", "/jokes", "/education", "/islam", "/about", "/contact"].map((p) => `${siteConfig.url}${p}`),
         }} />
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>

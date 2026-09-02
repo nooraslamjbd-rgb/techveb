@@ -27,14 +27,14 @@ export const metadata: Metadata = {
     url: "https://techveb.com",
     siteName: "TechVeb",
     type: "website",
-    images: [{ url: "https://techveb.com/og-default.png", width: 1200, height: 630 }],
+    images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "TechVeb - Technology, AI & Innovation Hub",
     description:
       "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides.",
-    images: ["https://techveb.com/og-default.png"],
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
   },
 };
 
@@ -96,7 +96,7 @@ export default function Home() {
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
-      logo: { "@type": "ImageObject", url: `${siteConfig.url}/logo-square.png` },
+      logo: { "@type": "ImageObject", url: `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png` },
     },
     potentialAction: {
       "@type": "SearchAction",
@@ -114,6 +114,11 @@ export default function Home() {
       <LiveNewsTicker />
       <LiveMarketTicker />
       <TrendingTicker />
+
+      {/* H1 for SEO - visually hidden but important for Google */}
+      <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+        <h1 className="sr-only">TechVeb - Pakistan's #1 Technology, AI & News Hub</h1>
+      </div>
 
       {/* Quick Links - News, Business, Sports, Education, Islam */}
       <section className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">

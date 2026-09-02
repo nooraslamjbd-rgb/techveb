@@ -13,7 +13,7 @@ export const CONFIG = {
 
   CONTENT_DIR: path.join(__dirname, "..", "..", "src", "content", "news"),
   NEWS_IMAGE_DIR: path.join(__dirname, "..", "..", "public", "news"),
-  LOGO_PATH: path.join(__dirname, "..", "..", "public", "logo-square.png"),
+  LOGO_PATH: path.join(__dirname, "assets", "logo-square.png"),
   WIKIMEDIA_POOL: path.join(__dirname, "..", ".wikimedia-images.json"),
 
   MAX_ARTICLES: 15,

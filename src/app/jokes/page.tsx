@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Jokes & Humor - Funny Jokes, Memes & Puns | TechVeb",
   description: "Enjoy the best collection of jokes, puns, and humor. Tech jokes, dad jokes, programming jokes, and more.",
   alternates: { canonical: "https://techveb.com/jokes" },
-  openGraph: { title: "Jokes & Humor - TechVeb", description: "Enjoy the best collection of jokes, puns, and humor.", url: "https://techveb.com/jokes", type: "website" },
+  openGraph: { title: "Jokes & Humor - TechVeb", description: "Enjoy the best collection of jokes, puns, and humor.", url: "https://techveb.com/jokes", type: "website", images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "Jokes & Humor" }] },
   twitter: { card: "summary_large_image", title: "Jokes & Humor - TechVeb", description: "Enjoy the best collection of jokes, puns, and humor." },
 };
 

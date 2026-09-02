@@ -11,11 +11,13 @@ export const metadata: Metadata = {
     description: "Daily horoscope predictions for all zodiac signs.",
     url: "https://techveb.com/horoscope",
     type: "website",
+    images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "Daily Horoscope" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Daily Horoscope - TechVeb",
     description: "Daily horoscope predictions for all zodiac signs.",
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
   },
 };
 

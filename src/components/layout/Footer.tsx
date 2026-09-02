@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm">
-                <Image src="/logo-square.png" alt="TechVeb" fill className="object-contain p-0.5" />
+                <Image src="https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png" alt="TechVeb" fill className="object-contain p-0.5" />
               </div>
               <span className="font-heading text-lg font-bold">
                 Tech<span className="text-primary">Veb</span>

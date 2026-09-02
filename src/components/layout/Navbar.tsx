@@ -96,7 +96,7 @@ export default function Navbar() {
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-border group-hover:ring-primary/30 transition-all">
-              <Image src="/logo-square.png" alt="TechVeb" fill className="object-contain p-1" priority />
+              <Image src="https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png" alt="TechVeb" fill className="object-contain p-1" priority />
             </div>
             <span className="font-heading text-xl font-bold tracking-tight">
               Tech<span className="text-primary">Veb</span>

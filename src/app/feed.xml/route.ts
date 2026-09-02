@@ -49,7 +49,7 @@ ${imageTag}    </item>`;
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteConfig.url}/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>${siteConfig.url}/logo.png</url>
+      <url>https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo.png</url>
       <title>${siteConfig.name}</title>
       <link>${siteConfig.url}</link>
     </image>

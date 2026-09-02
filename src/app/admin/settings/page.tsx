@@ -28,7 +28,7 @@ export default function SettingsPage() {
     address: "Pakistan",
     googleAnalyticsId: "",
     searchConsoleVerification: "",
-    ogDefaultImage: "/og-default.png",
+    ogDefaultImage: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png",
     twitterHandle: "",
     facebookUrl: "",
     linkedinUrl: "",

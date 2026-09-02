@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "node scripts/optimize-assets.js && node scripts/build-search-index.js && node scripts/generate-blur-placeholders.js && node --max-old-space-size=6144 node_modules/next/dist/bin/next build",
+        "build": "node scripts/optimize-assets.js && node scripts/build-search-index.js && node --max-old-space-size=6144 node_modules/next/dist/bin/next build",
         "start": "next start",
         "lint": "eslint",
         "scrape-news": "node scripts/scrape-news.mjs",
@@ -12,6 +12,7 @@
         "enhance-blog": "node scripts/auto-news/enhance-blog.mjs"
     },
     "dependencies": {
+        "cloudinary": "^2.11.0",
         "gray-matter": "^4.0.3",
         "next": "16.3.1",
         "next-mdx-remote": "^6.0.0",

@@ -33,7 +33,7 @@ export default function ArticleSchema({
     headline: title,
     description,
     url,
-    image: image || "https://techveb.com/og-default.png",
+    image: image || "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png",
     datePublished,
     dateModified: dateModified || datePublished,
     author: {
@@ -46,7 +46,7 @@ export default function ArticleSchema({
       name: publisher,
       logo: {
         "@type": "ImageObject",
-        url: "https://techveb.com/logo-square.png",
+        url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/logo-square.png",
       },
     },
     mainEntityOfPage: {
