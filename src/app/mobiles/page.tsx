@@ -1,5 +1,147 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import JsonLd from "@/components/seo/JsonLd";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+const PKR_PER_USD = 278;
+const PKR_PER_EUR = 302;
+const PKR_PER_INR = 3.25;
+
+function parsePrice(raw: string): number {
+  const str = String(raw || "");
+  const usd = str.match(/\$\s*([\d,.]+)/);
+  const eur = str.match(/€\s*([\d,.]+)/);
+  const inr = str.match(/₹\s*([\d,.]+)/);
+  const anyNum = str.match(/([\d,.]+)\s*(?:USD|EUR|GBP)/i);
+  let amount = 0;
+  let rate = PKR_PER_USD;
+  if (usd) {
+    amount = parseFloat(usd[1].replace(/,/g, ""));
+  } else if (eur) {
+    amount = parseFloat(eur[1].replace(/,/g, ""));
+    rate = PKR_PER_EUR;
+  } else if (inr) {
+    amount = parseFloat(inr[1].replace(/,/g, ""));
+    rate = PKR_PER_INR;
+  } else if (anyNum) {
+    amount = parseFloat(anyNum[1].replace(/,/g, ""));
+    if (/EUR/i.test(str)) rate = PKR_PER_EUR;
+  } else {
+    const fallback = str.match(/([\d,.]+)/);
+    amount = fallback ? parseFloat(fallback[1].replace(/,/g, "")) : 0;
+  }
+  return Math.round(amount * rate);
+}
+
+function section(content: string, label: string): string {
+  const line = content.split("\n").find((l) => l.startsWith(`**${label}:**`));
+  return line ? line.slice(label.length + 4).trim() : "";
+}
+
+function specKey(sectionText: string, k: string): string {
+  for (const part of sectionText.split(" - ")) {
+    if (part.startsWith(`**${k}:**`)) {
+      return part.slice(k.length + 4).trim();
+    }
+  }
+  return "";
+}
+
+function mpList(sectionText: string, max = 3): string {
+  const mps = (sectionText || "").match(/\d+\s*MP/g);
+  return mps ? mps.slice(0, max).join(" + ") : "50 MP";
+}
+
+function shortProcessor(s: string): string {
+  const clean = (s || "").split("(")[0];
+  const known = clean.match(
+    /(Snapdragon[^,]*|Dimensity[^,]*|Exynos[^,]*|Helio[^,]*|Tensor[^,]*|Apple\s+[AB]\d+\s+(?:Pro\s+)?\w+|Kirin[^,]*|Unisoc[^,]*|MediaTek[^,]*)/i
+  );
+  return (known ? known[1].trim() : clean.trim() || "Octa-core").slice(0, 34);
+}
+
+const BADGE_BY_CATEGORY: Record<string, { badge: string; badgeColor: string }> = {
+  flagship: { badge: "Flagship", badgeColor: "bg-blue-500/10 text-blue-400" },
+  "upper-mid": { badge: "Hot Pick", badgeColor: "bg-purple-500/10 text-purple-400" },
+  mid: { badge: "Best Seller", badgeColor: "bg-cyan-500/10 text-cyan-400" },
+  budget: { badge: "Budget Pick", badgeColor: "bg-green-500/10 text-green-400" },
+};
+
+function categoryForPrice(price: number): string {
+  if (price >= 200000) return "flagship";
+  if (price >= 100000) return "upper-mid";
+  if (price >= 50000) return "mid";
+  return "budget";
+}
+
+function ratingFor(price: number, slug: string): number {
+  const base: Record<string, number> = { flagship: 4.7, "upper-mid": 4.5, mid: 4.3, budget: 4.0 };
+  const cat = categoryForPrice(price);
+  const h = slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+  return Number((base[cat] + (h % 4) * 0.05).toFixed(1));
+}
+
+function getAllPosts(dir: string): Phone[] {
+  const fullDir = path.join(process.cwd(), "src", "content", dir);
+  const files = fs.readdirSync(fullDir).filter((f) => f.endsWith(".mdx"));
+  return files
+    .map((file) => {
+      const raw = fs.readFileSync(path.join(fullDir, file), "utf-8");
+      const { data, content } = matter(raw);
+      const slug = file.replace(/\.mdx$/, "");
+      const name = String(data.title || "").trim();
+      const brand = section(content, "Brand") || String(data.tags?.[0] || "") || name.split(" ")[0];
+      const price = parsePrice(String(data._price_ || ""));
+      if (!price) return null;
+      const category = categoryForPrice(price);
+      const badgeInfo = BADGE_BY_CATEGORY[category] || BADGE_BY_CATEGORY.mid;
+      const displaySection = section(content, "Display");
+      const platformSection = section(content, "Platform");
+      const memorySection = section(content, "Memory");
+      const bodySection = section(content, "Body");
+      const batterySection = section(content, "Battery");
+      const mainCamSection = section(content, "Main Camera");
+      const selfieSection = section(content, "Selfie camera");
+      const networkSection = section(content, "Network");
+      const internal = specKey(memorySection, "Internal");
+      const storage = internal.match(/([\d.]+\s*GB)/)?.[1] || "128GB";
+      const ramMatch = internal.match(/([\d.]+\s*GB\s*RAM)/);
+      const ram = ramMatch ? ramMatch[1].replace(/\s*RAM/, "") : "8GB";
+      const sizeIn = (specKey(displaySection, "Size").match(/([\d.]+)\s*inches/) || [])[1] || "6.5";
+      const refresh = (displaySection.match(/(\d+Hz)/) || [])[1] || "120Hz";
+      const ip = content.match(/IP\d\d/) || [];
+      return {
+        id: slug,
+        name,
+        brand,
+        price,
+        image: String(data._image_ || `/phones/${slug}.jpg`),
+        ...badgeInfo,
+        rating: ratingFor(price, slug),
+        released: String(data.date || section(content, "Released") || ""),
+        os: specKey(platformSection, "OS").split(",")[0] || "Android",
+        display: specKey(displaySection, "Type").split(",")[0] || "AMOLED",
+        displaySize: `${sizeIn}"`,
+        displayRefresh: refresh,
+        processor: shortProcessor(specKey(platformSection, "Chipset")),
+        ram,
+        storage,
+        mainCamera: mpList(specKey(mainCamSection, "Dual") || specKey(mainCamSection, "Triple") || specKey(mainCamSection, "Quad") || specKey(mainCamSection, "Single") || mainCamSection),
+        selfieCamera: mpList(specKey(selfieSection, "Single") || specKey(selfieSection, "Dual") || selfieSection, 2),
+        battery: specKey(batterySection, "Type") || "5000mAh",
+        charging: specKey(batterySection, "Charging") || "25W",
+        weight: specKey(bodySection, "Weight") || "200g",
+        waterResistant: ip[0] || "None",
+        fiveG: /5G/.test(networkSection) || /5G/.test(platformSection),
+        nfc: /NFC/.test(content),
+        category,
+      };
+    })
+    .filter((p): p is Phone => p !== null)
+    .sort((a, b) => b.price - a.price || a.name.localeCompare(b.name));
+}
 
 export const metadata: Metadata = {
   title: "Mobile Phones - Compare Prices & Specs in Pakistan | TechVeb",
@@ -48,451 +190,7 @@ interface Phone {
   category: string;
 }
 
-const phones: Phone[] = [
-  // Flagships
-  {
-    id: "s26-ultra",
-    name: "Samsung Galaxy S26 Ultra",
-    brand: "Samsung",
-    price: 289999,
-    originalPrice: 319999,
-    image: "📱",
-    badge: "Flagship",
-    badgeColor: "bg-blue-500/10 text-blue-400",
-    rating: 4.8,
-    released: "2026-02",
-    os: "Android 16, One UI 8",
-    display: "Dynamic AMOLED 2X",
-    displaySize: '6.9"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8 Elite",
-    ram: "12GB",
-    storage: "256GB",
-    mainCamera: "200MP + 50MP + 10MP + 10MP",
-    selfieCamera: "12MP",
-    battery: "5000mAh",
-    charging: "45W",
-    weight: "218g",
-    waterResistant: "IP68",
-    fiveG: true,
-    nfc: true,
-    category: "flagship",
-  },
-  {
-    id: "iphone-17-pro-max",
-    name: "iPhone 17 Pro Max",
-    brand: "Apple",
-    price: 349999,
-    image: "📱",
-    badge: "New",
-    badgeColor: "bg-emerald-500/10 text-emerald-400",
-    rating: 4.9,
-    released: "2026-03",
-    os: "iOS 20",
-    display: "Super Retina XDR OLED",
-    displaySize: '6.9"',
-    displayRefresh: "120Hz ProMotion",
-    processor: "Apple A19 Pro",
-    ram: "8GB",
-    storage: "256GB",
-    mainCamera: "48MP + 48MP + 12MP",
-    selfieCamera: "24MP",
-    battery: "4685mAh",
-    charging: "27W",
-    weight: "227g",
-    waterResistant: "IP68",
-    fiveG: true,
-    nfc: true,
-    category: "flagship",
-  },
-  {
-    id: "pixel-10-pro",
-    name: "Google Pixel 10 Pro",
-    brand: "Google",
-    price: 189999,
-    image: "📱",
-    badge: "AI Camera",
-    badgeColor: "bg-green-500/10 text-green-400",
-    rating: 4.7,
-    released: "2026-01",
-    os: "Android 16, Stock",
-    display: "LTPO OLED",
-    displaySize: '6.7"',
-    displayRefresh: "120Hz",
-    processor: "Google Tensor G5",
-    ram: "12GB",
-    storage: "128GB",
-    mainCamera: "50MP + 48MP + 48MP",
-    selfieCamera: "42MP",
-    battery: "5100mAh",
-    charging: "30W",
-    weight: "210g",
-    waterResistant: "IP68",
-    fiveG: true,
-    nfc: true,
-    category: "flagship",
-  },
-  {
-    id: "samsung-z-fold7",
-    name: "Samsung Galaxy Z Fold 7",
-    brand: "Samsung",
-    price: 449999,
-    image: "📱",
-    badge: "Foldable",
-    badgeColor: "bg-purple-500/10 text-purple-400",
-    rating: 4.6,
-    released: "2026-07",
-    os: "Android 16, One UI 8",
-    display: "Dynamic AMOLED 2X",
-    displaySize: '7.6" (inner) / 6.3" (outer)',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8 Elite",
-    ram: "16GB",
-    storage: "512GB",
-    mainCamera: "50MP + 12MP + 10MP",
-    selfieCamera: "10MP (under-display)",
-    battery: "4400mAh",
-    charging: "25W",
-    weight: "239g",
-    waterResistant: "IPX8",
-    fiveG: true,
-    nfc: true,
-    category: "flagship",
-  },
-
-  // Upper Mid-Range
-  {
-    id: "oneplus-14",
-    name: "OnePlus 14",
-    brand: "OnePlus",
-    price: 149999,
-    image: "📱",
-    badge: "Popular",
-    badgeColor: "bg-purple-500/10 text-purple-400",
-    rating: 4.7,
-    released: "2026-01",
-    os: "Android 16, OxygenOS 16",
-    display: "LTPO AMOLED",
-    displaySize: '6.82"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8 Elite",
-    ram: "16GB",
-    storage: "256GB",
-    mainCamera: "50MP + 50MP + 50MP",
-    selfieCamera: "32MP",
-    battery: "6000mAh",
-    charging: "100W",
-    weight: "213g",
-    waterResistant: "IP69",
-    fiveG: true,
-    nfc: true,
-    category: "upper-mid",
-  },
-  {
-    id: "xiaomi-16-pro",
-    name: "Xiaomi 16 Pro",
-    brand: "Xiaomi",
-    price: 129999,
-    originalPrice: 139999,
-    image: "📱",
-    badge: "Value",
-    badgeColor: "bg-amber-500/10 text-amber-400",
-    rating: 4.6,
-    released: "2026-02",
-    os: "Android 16, HyperOS 3",
-    display: "LTPO AMOLED",
-    displaySize: '6.73"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8 Elite",
-    ram: "12GB",
-    storage: "512GB",
-    mainCamera: "50MP + 50MP + 32MP",
-    selfieCamera: "32MP",
-    battery: "5500mAh",
-    charging: "90W",
-    weight: "205g",
-    waterResistant: "IP68",
-    fiveG: true,
-    nfc: true,
-    category: "upper-mid",
-  },
-  {
-    id: "realme-gt7-pro",
-    name: "Realme GT 7 Pro",
-    brand: "Realme",
-    price: 89999,
-    image: "📱",
-    badge: "Performance",
-    badgeColor: "bg-red-500/10 text-red-400",
-    rating: 4.5,
-    released: "2026-01",
-    os: "Android 16, Realme UI 6",
-    display: "LTPO AMOLED",
-    displaySize: '6.78"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8 Elite",
-    ram: "12GB",
-    storage: "256GB",
-    mainCamera: "50MP + 8MP + 50MP",
-    selfieCamera: "32MP",
-    battery: "6500mAh",
-    charging: "120W",
-    weight: "218g",
-    waterResistant: "IP69",
-    fiveG: true,
-    nfc: true,
-    category: "upper-mid",
-  },
-  {
-    id: "oppo-reno-13-pro",
-    name: "Oppo Reno 13 Pro",
-    brand: "Oppo",
-    price: 99999,
-    image: "📱",
-    badge: "Camera",
-    badgeColor: "bg-pink-500/10 text-pink-400",
-    rating: 4.4,
-    released: "2026-03",
-    os: "Android 16, ColorOS 16",
-    display: "AMOLED",
-    displaySize: '6.83"',
-    displayRefresh: "120Hz",
-    processor: "Dimensity 8300",
-    ram: "12GB",
-    storage: "256GB",
-    mainCamera: "50MP + 8MP + 50MP",
-    selfieCamera: "50MP",
-    battery: "5800mAh",
-    charging: "80W",
-    weight: "195g",
-    waterResistant: "IP65",
-    fiveG: true,
-    nfc: true,
-    category: "upper-mid",
-  },
-
-  // Mid-Range
-  {
-    id: "samsung-a56",
-    name: "Samsung Galaxy A56",
-    brand: "Samsung",
-    price: 64999,
-    originalPrice: 69999,
-    image: "📱",
-    badge: "Best Seller",
-    badgeColor: "bg-cyan-500/10 text-cyan-400",
-    rating: 4.3,
-    released: "2026-03",
-    os: "Android 16, One UI 8",
-    display: "Super AMOLED",
-    displaySize: '6.7"',
-    displayRefresh: "120Hz",
-    processor: "Exynos 1580",
-    ram: "8GB",
-    storage: "128GB",
-    mainCamera: "50MP + 12MP + 5MP",
-    selfieCamera: "32MP",
-    battery: "5000mAh",
-    charging: "45W",
-    weight: "190g",
-    waterResistant: "IP67",
-    fiveG: true,
-    nfc: true,
-    category: "mid",
-  },
-  {
-    id: "pixel-9a",
-    name: "Google Pixel 9a",
-    brand: "Google",
-    price: 74999,
-    image: "📱",
-    badge: "AI Power",
-    badgeColor: "bg-green-500/10 text-green-400",
-    rating: 4.5,
-    released: "2026-05",
-    os: "Android 16, Stock",
-    display: "OLED",
-    displaySize: '6.3"',
-    displayRefresh: "120Hz",
-    processor: "Google Tensor G4",
-    ram: "8GB",
-    storage: "128GB",
-    mainCamera: "48MP + 13MP",
-    selfieCamera: "13MP",
-    battery: "4500mAh",
-    charging: "23W",
-    weight: "186g",
-    waterResistant: "IP67",
-    fiveG: true,
-    nfc: true,
-    category: "mid",
-  },
-  {
-    id: "nothing-phone-3",
-    name: "Nothing Phone (3)",
-    brand: "Nothing",
-    price: 79999,
-    image: "📱",
-    badge: "Unique Design",
-    badgeColor: "bg-gray-500/10 text-gray-400",
-    rating: 4.4,
-    released: "2026-07",
-    os: "Android 16, Nothing OS 3",
-    display: "LTPO AMOLED",
-    displaySize: '6.7"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 7+ Gen 3",
-    ram: "12GB",
-    storage: "256GB",
-    mainCamera: "50MP + 50MP",
-    selfieCamera: "32MP",
-    battery: "5000mAh",
-    charging: "45W",
-    weight: "195g",
-    waterResistant: "IP65",
-    fiveG: true,
-    nfc: true,
-    category: "mid",
-  },
-  {
-    id: "poco-f7-pro",
-    name: "POCO F7 Pro",
-    brand: "Xiaomi",
-    price: 59999,
-    image: "📱",
-    badge: "Budget King",
-    badgeColor: "bg-orange-500/10 text-orange-400",
-    rating: 4.5,
-    released: "2026-03",
-    os: "Android 16, HyperOS 3",
-    display: "AMOLED",
-    displaySize: '6.67"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 8s Gen 4",
-    ram: "12GB",
-    storage: "256GB",
-    mainCamera: "50MP + 8MP",
-    selfieCamera: "20MP",
-    battery: "6000mAh",
-    charging: "67W",
-    weight: "208g",
-    waterResistant: "IP64",
-    fiveG: true,
-    nfc: true,
-    category: "mid",
-  },
-
-  // Budget
-  {
-    id: "samsung-a16",
-    name: "Samsung Galaxy A16",
-    brand: "Samsung",
-    price: 34999,
-    image: "📱",
-    badge: "Budget",
-    badgeColor: "bg-green-500/10 text-green-400",
-    rating: 4.0,
-    released: "2026-01",
-    os: "Android 16, One UI 8",
-    display: "Super AMOLED",
-    displaySize: '6.7"',
-    displayRefresh: "90Hz",
-    processor: "Exynos 1330",
-    ram: "4GB",
-    storage: "128GB",
-    mainCamera: "50MP + 5MP + 2MP",
-    selfieCamera: "13MP",
-    battery: "5000mAh",
-    charging: "25W",
-    weight: "192g",
-    waterResistant: "IP54",
-    fiveG: false,
-    nfc: false,
-    category: "budget",
-  },
-  {
-    id: "infinix-note-50-pro",
-    name: "Infinix Note 50 Pro",
-    brand: "Infinix",
-    price: 45999,
-    originalPrice: 49999,
-    image: "📱",
-    badge: "Large Battery",
-    badgeColor: "bg-amber-500/10 text-amber-400",
-    rating: 4.2,
-    released: "2026-04",
-    os: "Android 15, XOS 15",
-    display: "AMOLED",
-    displaySize: '6.78"',
-    displayRefresh: "120Hz",
-    processor: "Helio G100",
-    ram: "8GB",
-    storage: "256GB",
-    mainCamera: "108MP + 2MP",
-    selfieCamera: "32MP",
-    battery: "5500mAh",
-    charging: "45W",
-    weight: "198g",
-    waterResistant: "IP54",
-    fiveG: false,
-    nfc: true,
-    category: "budget",
-  },
-  {
-    id: "realme-c75",
-    name: "Realme C75",
-    brand: "Realme",
-    price: 29999,
-    image: "📱",
-    badge: "Entry",
-    badgeColor: "bg-teal-500/10 text-teal-400",
-    rating: 3.9,
-    released: "2026-02",
-    os: "Android 15, Realme UI 5",
-    display: "IPS LCD",
-    displaySize: '6.72"',
-    displayRefresh: "90Hz",
-    processor: "Helio G85",
-    ram: "6GB",
-    storage: "128GB",
-    mainCamera: "50MP + 0.3MP",
-    selfieCamera: "8MP",
-    battery: "6000mAh",
-    charging: "33W",
-    weight: "204g",
-    waterResistant: "IP64",
-    fiveG: false,
-    nfc: false,
-    category: "budget",
-  },
-  {
-    id: "redmi-note-15-pro",
-    name: "Redmi Note 15 Pro",
-    brand: "Xiaomi",
-    price: 42999,
-    image: "📱",
-    badge: "Popular",
-    badgeColor: "bg-red-500/10 text-red-400",
-    rating: 4.3,
-    released: "2026-01",
-    os: "Android 16, HyperOS 3",
-    display: "AMOLED",
-    displaySize: '6.67"',
-    displayRefresh: "120Hz",
-    processor: "Snapdragon 7s Gen 3",
-    ram: "8GB",
-    storage: "256GB",
-    mainCamera: "200MP + 8MP + 2MP",
-    selfieCamera: "16MP",
-    battery: "5500mAh",
-    charging: "67W",
-    weight: "189g",
-    waterResistant: "IP64",
-    fiveG: true,
-    nfc: true,
-    category: "budget",
-  },
-];
+const phones = getAllPosts("phones");
 
 const brands = [
   { name: "Samsung", icon: "📱", count: phones.filter((p) => p.brand === "Samsung").length },
@@ -600,7 +298,13 @@ export default function MobilesPage() {
                   <p className="text-sm font-semibold text-foreground">{phone.name}</p>
                   <p className="text-xs text-muted-foreground">{phone.brand} • {phone.processor}</p>
                 </div>
-                <span className="text-lg">{phone.image}</span>
+                <Image
+                  src={phone.image}
+                  alt={phone.name}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0 object-contain"
+                />
               </label>
             ))}
           </div>
@@ -617,7 +321,15 @@ export default function MobilesPage() {
                 <th className="p-3 text-left text-sm font-bold text-muted-foreground">Feature</th>
                 {phones.slice(0, 4).map((phone) => (
                   <th key={phone.id} className="p-3 text-center">
-                    <div className="text-2xl mb-1">{phone.image}</div>
+                    <div className="mb-1 flex justify-center">
+                      <Image
+                        src={phone.image}
+                        alt={phone.name}
+                        width={48}
+                        height={48}
+                        className="h-12 w-auto object-contain"
+                      />
+                    </div>
                     <p className="text-xs font-bold text-foreground">{phone.name}</p>
                     <p className="text-xs text-primary font-semibold">{formatPrice(phone.price)}</p>
                   </th>
@@ -665,8 +377,14 @@ export default function MobilesPage() {
               key={phone.id}
               className="group overflow-hidden rounded-xl border border-border bg-surface transition-all hover:shadow-lg"
             >
-              <div className="relative bg-gradient-to-br from-muted to-surface p-6 text-center">
-                <span className="text-6xl">{phone.image}</span>
+              <div className="relative flex items-center justify-center bg-gradient-to-br from-muted to-surface p-6">
+                <Image
+                  src={phone.image}
+                  alt={phone.name}
+                  width={160}
+                  height={160}
+                  className="h-36 w-auto object-contain"
+                />
                 <span
                   className={`absolute right-3 top-3 rounded px-2 py-0.5 text-[10px] font-bold ${phone.badgeColor}`}
                 >
