@@ -153,11 +153,13 @@ export const metadata: Metadata = {
     description: "Compare latest mobile phone prices and specifications in Pakistan.",
     url: "https://techveb.com/mobiles",
     type: "website",
+    images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "Mobile Phones - Compare Prices & Specs" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mobile Phones - TechVeb",
     description: "Compare latest mobile phone prices and specifications in Pakistan.",
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
   },
 };
 

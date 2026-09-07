@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: "Jobs, results, admissions, and career guidance.",
     url: "https://techveb.com/education",
     type: "website",
+    images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "TechVeb" }],
   },
   twitter: {
     card: "summary_large_image",

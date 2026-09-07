@@ -115,22 +115,6 @@ export default async function BlogPostPage({
     ],
   };
 
-  const faqJsonLd =
-    post.faq && post.faq.length > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: post.faq.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        }
-      : null;
-
   const dir = "blog";
 
   return (
@@ -138,7 +122,6 @@ export default async function BlogPostPage({
       <ReadingProgress />
       <JsonLd data={jsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
-      {faqJsonLd && <JsonLd data={faqJsonLd} />}
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Breadcrumbs
           items={[

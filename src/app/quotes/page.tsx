@@ -84,7 +84,7 @@ export default async function QuotesPage({ searchParams }: { searchParams: Promi
         </div>
         <div className="w-full shrink-0 space-y-6 lg:w-72">
           <div className="rounded-xl border border-border bg-surface p-5">
-            <h3 className="mb-4 font-heading text-lg font-bold text-foreground">Trending Quotes</h3>
+            <h2 className="mb-4 font-heading text-lg font-bold text-foreground">Trending Quotes</h2>
             <div className="space-y-3">
               {trending.map((q, idx) => (
                 <div key={idx} className="rounded-lg p-2 transition-colors hover:bg-background">
@@ -96,7 +96,7 @@ export default async function QuotesPage({ searchParams }: { searchParams: Promi
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-5">
-            <h3 className="mb-4 font-heading text-lg font-bold text-foreground">Top Authors</h3>
+            <h2 className="mb-4 font-heading text-lg font-bold text-foreground">Top Authors</h2>
             <div className="space-y-2">
               {topAuthors.map(author => (
                 <Link key={author} href={"/quotes?author=" + author.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className={"flex items-center justify-between rounded-lg p-2 transition-colors " + (sp.author === author.toLowerCase().replace(/[^a-z0-9]+/g, "-") ? "bg-primary/10 text-primary" : "hover:bg-background")}>
@@ -107,7 +107,7 @@ export default async function QuotesPage({ searchParams }: { searchParams: Promi
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-5">
-            <h3 className="mb-4 font-heading text-lg font-bold text-foreground">Stats</h3>
+            <h2 className="mb-4 font-heading text-lg font-bold text-foreground">Stats</h2>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between"><span className="text-muted-foreground">Total Quotes</span><span className="font-semibold">{quotes.length}</span></div>
               <div className="flex justify-between"><span className="text-muted-foreground">Categories</span><span className="font-semibold">{cats.length}</span></div>
