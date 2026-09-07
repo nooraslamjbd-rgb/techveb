@@ -117,7 +117,7 @@ export default function Home() {
 
       {/* H1 for SEO - visually hidden but important for Google */}
       <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
-        <h1 className="sr-only">TechVeb - Pakistan's #1 Technology, AI & News Hub</h1>
+        <h1 className="sr-only">TechVeb - Pakistan&apos;s #1 Technology, AI &amp; News Hub</h1>
       </div>
 
       {/* Quick Links - News, Business, Sports, Education, Islam */}
