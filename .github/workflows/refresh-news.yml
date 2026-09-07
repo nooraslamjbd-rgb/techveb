@@ -1,8 +1,7 @@
 name: Refresh News
 on:
-  schedule:
-    - cron: '0 */5 * * *'  # Every 5 hours
-  workflow_dispatch:  # Manual trigger
+  # Disabled: redundant with auto-news.yml (same schedule, raw image URLs incompatible with Cloudinary)
+  workflow_dispatch:  # Manual trigger only
 
 jobs:
   scrape:

@@ -33,6 +33,7 @@ jobs:
         run: node scripts/auto-news/pipeline.mjs
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
           NODE_NO_WARNINGS: 1
 
       - name: Enhance Blog Articles (SEO/AEO/GEO/LLMs)
@@ -47,8 +48,8 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'Auto-enhance: SEO/AEO/GEO for articles'
-          file_pattern: 'src/content/ public/news/ public/search-index.json'
+          commit_message: 'Auto-news: fresh articles + SEO/AEO/GEO enhancement'
+          file_pattern: 'src/content/ public/search-index.json'
           commit_user_name: 'TechVeb Auto-News Bot'
           commit_user_email: 'auto@techveb.com'
           push_options: '--force-with-lease'

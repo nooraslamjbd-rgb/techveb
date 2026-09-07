@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AQ.Ab8RN6IUThn_afVbRS0CVp27TzQgc2QHervJZD-JAQbbzoAnQw";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent";
 
 const CONTENT_DIRS = [

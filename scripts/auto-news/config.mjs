@@ -4,10 +4,10 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const CONFIG = {
-  GEMINI_API_KEY: process.env.GEMINI_API_KEY || "AQ.Ab8RN6IUThn_afVbRS0CVp27TzQgc2QHervJZD-JAQbbzoAnQw",
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
   GEMINI_API_URL: "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
 
-  GROQ_API_KEY: process.env.GROK_API_KEY || "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",
+  GROQ_API_KEY: process.env.GROK_API_KEY || process.env.GROQ_API_KEY || "",
   GROQ_API_URL: "https://api.groq.com/openai/v1/chat/completions",
   GROQ_MODEL: "openai/gpt-oss-20b",
 
