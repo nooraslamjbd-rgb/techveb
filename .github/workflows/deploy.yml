@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Auto-News Pipeline']
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: write
