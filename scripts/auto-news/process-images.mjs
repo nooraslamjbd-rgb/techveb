@@ -17,16 +17,18 @@ function loadImagePool() {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-async function downloadImage(url, timeoutMs = 15000) {
+async function downloadImage(url, timeoutMs = 15000, referer) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  const headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Accept": "image/*,*/*",
+  };
+  if (referer) headers["Referer"] = referer;
   try {
     const res = await fetch(url, {
       signal: ctrl.signal,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Accept": "image/*,*/*",
-      },
+      headers,
       redirect: "follow",
     });
     clearTimeout(t);
@@ -47,25 +49,51 @@ function getPoolImage(article) {
   return img.url;
 }
 
+function expandVariants(url) {
+  const variants = [url];
+  const m = url.match(/\/(\d{2,4})x(\d{2,4})\//);
+  if (m) {
+    for (const size of ["1200x630", "1600x900", "800x450", "960x540", "720x405"]) {
+      variants.push(url.replace(m[0], "/" + size + "/"));
+    }
+  }
+  return [...new Set(variants)];
+}
+
 export async function processArticleImage(article) {
   const slug = article.enhanced?.slug || article.slug;
   const publicId = `techveb/news/${slug}`;
+  const referer = article.link || undefined;
+
+  const candidates = [];
+  if (article.imageUrl) candidates.push({ url: article.imageUrl, src: "article" });
+  for (const img of (article.articleImages || []).slice(0, 6)) {
+    if (img?.src && img.src !== article.imageUrl) candidates.push({ url: img.src, src: "page" });
+  }
+  if (article.rssImage && article.rssImage !== article.imageUrl) candidates.push({ url: article.rssImage, src: "rss" });
 
   let imageBuffer = null;
+  let usedSrc = null;
 
-  if (article.imageUrl) {
-    imageBuffer = await downloadImage(article.imageUrl);
+  for (const cand of candidates) {
+    const urls = expandVariants(cand.url);
+    for (const url of urls) {
+      imageBuffer = await downloadImage(url, 15000, referer);
+      if (imageBuffer) { usedSrc = cand.src; break; }
+    }
+    if (imageBuffer) break;
   }
 
   if (!imageBuffer) {
     const poolUrl = getPoolImage(article);
     if (poolUrl) {
-      imageBuffer = await downloadImage(poolUrl);
+      imageBuffer = await downloadImage(poolUrl, 15000);
+      if (imageBuffer) usedSrc = "pool";
     }
   }
 
   if (!imageBuffer) {
-    console.log("    No image available");
+    console.log("    No source image available (all candidates + pool failed)");
     return null;
   }
 

@@ -129,29 +129,57 @@ async function fetchFeed(source) {
   } catch { return []; }
 }
 
+function pickLargestFromSrcset(srcset) {
+  if (!srcset) return null;
+  const candidates = srcset.split(",").map((part) => {
+    const m = part.trim().match(/^(\S+)(?:\s+(\d+)w)?/);
+    if (!m) return null;
+    return { url: m[1], width: m[2] ? parseInt(m[2], 10) : 0 };
+  }).filter(Boolean);
+  candidates.sort((a, b) => b.width - a.width);
+  return candidates[0] ? candidates[0].url : null;
+}
+
 function extractArticleImages(html, baseUrl) {
   const $ = cheerio.load(html);
   const images = [];
   const seen = new Set();
-  $("img").each((_, el) => {
-    let src = $(el).attr("src") || $(el).attr("data-src") || "";
+
+  const record = (raw, score) => {
+    let src = raw;
     if (!src || seen.has(src)) return;
-    const w = parseInt($(el).attr("width") || "0", 10);
-    const h = parseInt($(el).attr("height") || "0", 10);
-    if (w > 0 && w < 100) return;
-    if (h > 0 && h < 100) return;
+    if (src.startsWith("data:")) return;
     if (src.startsWith("//")) src = "https:" + src;
     else if (src.startsWith("/")) { try { src = new URL(src, baseUrl).href; } catch { return; } }
     else if (!src.startsWith("http")) { try { src = new URL(src, baseUrl).href; } catch { return; } }
-    if (/logo|icon|avatar|badge|sprite|pixel|tracking|spacer|blank/i.test(src)) return;
-    if (/\.(svg|gif)$/i.test(src)) return;
+    if (/logo|icon|avatar|badge|sprite|pixel|tracking|spacer|blank|placeholder|sprite/i.test(src)) return;
+    if (/\.(svg|gif|ico)$/i.test(src)) return;
+    if (/\/p\d+x\d+[.\/]|placeholder|preview-default|no-image|no_image|default-thumb|fallback|thumb_placeholder|p\dx\d\.(jpg|jpeg|png|webp)/i.test(src)) return;
     src = src.split("?")[0];
     seen.add(src);
-    images.push({ src, score: w * h || 400 * 300 });
+    images.push({ src, score });
+  };
+
+  $("img").each((_, el) => {
+    const el$ = $(el);
+    const srcset = pickLargestFromSrcset(el$.attr("srcset")) || pickLargestFromSrcset(el$.attr("data-srcset"));
+    const lazySrc = el$.attr("data-src") || el$.attr("data-lazy-src") || el$.attr("data-original") || el$.attr("data-image") || el$.attr("data-img") || "";
+    const src = lazySrc || srcset || el$.attr("src") || "";
+    if (!src) return;
+    if (lazySrc) {
+      // Lazily-loaded images carry the real URL; displayed width/height are just thumbnails.
+      record(src, 999999);
+      return;
+    }
+    const w = parseInt(el$.attr("width") || "0", 10);
+    const h = parseInt(el$.attr("height") || "0", 10);
+    if (w > 0 && w < 200) return;
+    if (h > 0 && h < 200) return;
+    record(src, w * h || (srcset ? 999999 : 400 * 300));
   });
-  $("meta[property='og:image']").each((_, el) => {
+  $("meta[property='og:image'], meta[property='og:image:secure_url']").each((_, el) => {
     const c = $(el).attr("content");
-    if (c && !seen.has(c)) { seen.add(c); images.unshift({ src: c.split("?")[0], score: 999999 }); }
+    if (c) record(c, 999999);
   });
   images.sort((a, b) => b.score - a.score);
   return images;
