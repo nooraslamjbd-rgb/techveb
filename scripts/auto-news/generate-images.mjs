@@ -8,7 +8,7 @@ cloudinary.config();
 
 const CONTENT_DIR = CONFIG.CONTENT_DIR;
 const PROGRESS_FILE = path.join(CONTENT_DIR, "..", ".fix-images-progress.json");
-const IMAGE_MODEL = "gemini-3.1-flash-lite-image";
+const IMAGE_MODEL = "gemini-2.5-flash-image";
 const IMAGE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${IMAGE_MODEL}:generateContent`;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -66,7 +66,7 @@ async function generateImage(article) {
       });
       if (res.status === 429) {
         const text = await res.text();
-        lastErr = `429 body=${text.substring(0, 300)} retryAfter=${res.headers.get("retry-after")} limits=${res.headers.get("x-ratelimit-remaining")}/${res.headers.get("x-ratelimit-limit")}`;
+        lastErr = `429 body=${text.substring(0, 600)} retryAfter=${res.headers.get("retry-after")} limits=${res.headers.get("x-ratelimit-remaining")}/${res.headers.get("x-ratelimit-limit")}`;
         await sleep(6000 * (attempt + 1));
         continue;
       }
