@@ -64,7 +64,12 @@ async function generateImage(article) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (res.status === 429) { await sleep(6000 * (attempt + 1)); lastErr = "429"; continue; }
+      if (res.status === 429) {
+        const text = await res.text();
+        lastErr = `429 body=${text.substring(0, 300)} retryAfter=${res.headers.get("retry-after")} limits=${res.headers.get("x-ratelimit-remaining")}/${res.headers.get("x-ratelimit-limit")}`;
+        await sleep(6000 * (attempt + 1));
+        continue;
+      }
       if (!res.ok) { lastErr = `${res.status}: ${(await res.text()).substring(0, 200)}`; await sleep(3000); continue; }
       const data = await res.json();
       const parts = data.candidates?.[0]?.content?.parts || [];
