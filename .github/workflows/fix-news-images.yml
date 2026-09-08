@@ -1,0 +1,51 @@
+name: Fix News Images (Gemini)
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Number of articles to generate images for (0 = all)'
+        required: false
+        default: '0'
+        type: string
+  schedule:
+    - cron: '0 3 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Gemini images for UrduPoint/BOL articles
+        run: node scripts/auto-news/generate-images.mjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          LIMIT: ${{ inputs.limit || '0' }}
+          NODE_NO_WARNINGS: 1
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'fix: generate contextual Gemini images for UrduPoint/BOL articles'
+          file_pattern: 'src/content/'
+          commit_user_name: 'TechVeb Auto-News Bot'
+          commit_user_email: 'auto@techveb.com'
+          push_options: '--force-with-lease'

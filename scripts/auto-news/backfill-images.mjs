@@ -31,13 +31,20 @@ async function extractImageCandidates(html, baseUrl) {
     if (src.startsWith("//")) src = "https:" + src;
     else if (src.startsWith("/")) { try { src = new URL(src, baseUrl).href; } catch { return; } }
     else if (!src.startsWith("http")) { try { src = new URL(src, baseUrl).href; } catch { return; } }
-    if (/logo|icon|avatar|badge|sprite|pixel|tracking|spacer|blank|placeholder|sprite/i.test(src)) return;
+    if (/logo|icon|avatar|badge|sprite|pixel|tracking|spacer|blank|placeholder|sprite|english-22/i.test(src)) return;
     if (/\.(svg|gif|ico)$/i.test(src)) return;
     if (/\/p\d+x\d+[.\/]|placeholder|preview-default|no-image|no_image|default-thumb|fallback|thumb_placeholder|p\dx\d\.(jpg|jpeg|png|webp)/i.test(src)) return;
+    if (src.includes("i.dawn.com/large/2026/05/03205649172e670")) return;
+    if (src.includes("i.dawn.com/large/2024/02/16125537351049d")) return;
     src = src.split("?")[0];
     seen.add(src);
     images.push({ src, score });
   };
+
+  $("meta[property='og:image'], meta[property='og:image:secure_url']").each((_, el) => {
+    const c = $(el).attr("content");
+    if (c) record(c, 10000000);
+  });
 
   $("img").each((_, el) => {
     const el$ = $(el);
@@ -54,11 +61,6 @@ async function extractImageCandidates(html, baseUrl) {
     if (w > 0 && w < 200) return;
     if (h > 0 && h < 200) return;
     record(src, w * h || (srcset ? 999999 : 400 * 300));
-  });
-
-  $("meta[property='og:image'], meta[property='og:image:secure_url']").each((_, el) => {
-    const c = $(el).attr("content");
-    if (c) record(c, 999999);
   });
 
   images.sort((a, b) => b.score - a.score);
