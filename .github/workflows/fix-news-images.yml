@@ -1,4 +1,4 @@
-name: Fix News Images (Gemini)
+name: Fix News Images (AI)
 
 on:
   workflow_dispatch:
@@ -33,10 +33,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate Gemini images for UrduPoint/BOL articles
+      - name: Generate AI images for UrduPoint/BOL articles
         run: node scripts/auto-news/generate-images.mjs
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
           LIMIT: ${{ inputs.limit || '0' }}
           NODE_NO_WARNINGS: 1
@@ -44,7 +43,7 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'fix: generate contextual Gemini images for UrduPoint/BOL articles'
+          commit_message: 'fix: generate contextual Pollinations AI images for UrduPoint/BOL articles'
           file_pattern: 'src/content/'
           commit_user_name: 'TechVeb Auto-News Bot'
           commit_user_email: 'auto@techveb.com'

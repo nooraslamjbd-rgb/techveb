@@ -8,8 +8,7 @@ cloudinary.config();
 
 const CONTENT_DIR = CONFIG.CONTENT_DIR;
 const PROGRESS_FILE = path.join(CONTENT_DIR, "..", ".fix-images-progress.json");
-const IMAGE_MODEL = "gemini-2.5-flash-image";
-const IMAGE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${IMAGE_MODEL}:generateContent`;
+const POLLINATIONS_URL = "https://image.pollinations.ai/prompt/";
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -32,56 +31,42 @@ function getArticleInfo(f, content) {
   return { slug, title, desc, link, image, host, isTarget };
 }
 
-function buildPrompt(title, desc, language) {
-  const langNote = language === "ur"
-    ? "The subject is Pakistani news in Urdu. Generate a culturally appropriate, neutral news illustration."
-    : "";
-  return `You are a news media photo editor. Create ONE professional, photorealistic 16:9 news photograph for an article, matching the subject exactly. No text overlays, no watermarks, no logos, no people's real faces — if people are unavoidable, show them from behind or at a distance. Neutral, credible press-photo style.
+function hashSeed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return (h >>> 0) % 2147483647;
+}
 
-${langNote}
-
-ARTICLE TITLE: ${title}
-ARTICLE SUMMARY: ${desc}
-
-Requirements:
-- 16:9 landscape, detailed, realistic, news-photography quality
-- Directly illustrates the subject of the article
-- Strictly one image, no collage
-- Do NOT include any text, letters, numbers, or captions in the image`;
+function buildPrompt(title, desc) {
+  const clean = [title, desc].join(" ").replace(/\s+/g, " ").trim().substring(0, 700);
+  return `Photorealistic professional news photograph, 16:9 wide, directly illustrating this news story, matching the subject exactly. No text, no watermark, no logo, no captions, no collage. Realistic lighting, credible press-photo quality. STORY: ${clean}`;
 }
 
 async function generateImage(article) {
-  const prompt = buildPrompt(article.title, article.desc, article.language);
-  const body = {
-    contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { responseModalities: ["TEXT", "IMAGE"] },
-  };
+  const seed = hashSeed(article.slug);
+  const prompt = encodeURIComponent(buildPrompt(article.title, article.desc));
+  const url = `${POLLINATIONS_URL}${prompt}?width=1200&height=630&seed=${seed}&nologo=true&model=flux&enhance=false&safe=true`;
   let lastErr = "";
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     try {
-      const res = await fetch(`${IMAGE_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (res.status === 429) {
-        const text = await res.text();
-        lastErr = `429 body=${text.substring(0, 600)} retryAfter=${res.headers.get("retry-after")} limits=${res.headers.get("x-ratelimit-remaining")}/${res.headers.get("x-ratelimit-limit")}`;
-        await sleep(6000 * (attempt + 1));
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 60000);
+      const res = await fetch(url, { signal: ctrl.signal });
+      clearTimeout(timer);
+      if (res.status === 429) { lastErr = "429"; await sleep(8000 * (attempt + 1)); continue; }
+      if (!res.ok) {
+        const body = (await res.text()).substring(0, 200);
+        lastErr = `${res.status}: ${body}`;
+        await sleep(5000);
         continue;
       }
-      if (!res.ok) { lastErr = `${res.status}: ${(await res.text()).substring(0, 200)}`; await sleep(3000); continue; }
-      const data = await res.json();
-      const parts = data.candidates?.[0]?.content?.parts || [];
-      for (const part of parts) {
-        if (part.inlineData && part.inlineData.data && part.inlineData.mimeType) {
-          return { buffer: Buffer.from(part.inlineData.data, "base64"), mime: part.inlineData.mimeType };
-        }
-      }
-      // fallbacks for text-only responses
-      if (parts.length) lastErr = "no inline image in response parts";
-      else lastErr = "empty response";
-    } catch (e) { lastErr = e.message; await sleep(2000); }
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (buf.length < 5000) { lastErr = `tiny buffer (${buf.length}b)`; await sleep(5000); continue; }
+      return { buffer: buf };
+    } catch (e) {
+      lastErr = e.name === "AbortError" ? "timeout(60s)" : e.message;
+      await sleep(3000);
+    }
   }
   return { error: lastErr };
 }
@@ -118,10 +103,8 @@ const targets = [];
 for (const f of files) {
   const c = fs.readFileSync(path.join(CONTENT_DIR, f), "utf-8");
   const info = getArticleInfo(f, c);
-  if (!info.isTarget) continue;      // only UrduPoint / BOL
+  if (!info.isTarget) continue;
   if (progress.has(info.slug)) continue;
-  const q = (c.match(/language:\s*"([^"]+)"/) || [])[1] || "en";
-  info.language = q;
   targets.push(info);
 }
 console.log(`Candidate UrduPoint/BOL images to generate: ${targets.length}${limit ? ` (limit ${limit})` : ""}`);
@@ -143,12 +126,12 @@ for (let i = 0; i < todo.length; i++) {
     fs.writeFileSync(f, newContent, "utf-8");
     progress.add(a.slug);
     saveProgress(progress);
-    console.log(`OK ${url.slice(0, 70)}`);
+    console.log(`OK ${url.slice(0, 80)}`);
     ok++;
   } catch (e) {
     console.log(`FAIL upload: ${e.message}`);
     fail++;
   }
-  await sleep(1000);
+  await sleep(1500);
 }
 console.log(`\nDONE ok=${ok} fail=${fail}`);
