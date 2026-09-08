@@ -8,7 +8,7 @@ cloudinary.config();
 
 const CONTENT_DIR = CONFIG.CONTENT_DIR;
 const PROGRESS_FILE = path.join(CONTENT_DIR, "..", ".fix-images-progress.json");
-const IMAGE_MODEL = "gemini-3.1-flash-image";
+const IMAGE_MODEL = "gemini-3.1-flash-lite-image";
 const IMAGE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${IMAGE_MODEL}:generateContent`;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
