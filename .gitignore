@@ -52,3 +52,6 @@ scripts/gen-pages.js
 
 # generated blur placeholders (regenerated on build)
 /public/blur-placeholders/
+
+# image-fix progress (tracked via Cloudinary/content state)
+src/content/.fix-images-progress.json
