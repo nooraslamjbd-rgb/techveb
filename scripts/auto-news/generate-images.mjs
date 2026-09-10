@@ -9,6 +9,7 @@ cloudinary.config();
 const CONTENT_DIR = CONFIG.CONTENT_DIR;
 const PROGRESS_FILE = path.join(CONTENT_DIR, "..", ".fix-images-progress.json");
 const POLLINATIONS_URL = "https://image.pollinations.ai/prompt/";
+const CONCURRENCY = parseInt(process.env.CONCURRENCY || "1", 10);
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -94,6 +95,36 @@ async function uploadAndSet(slug, buffer) {
   });
 }
 
+function writeArticle(slug, url) {
+  const f = path.join(CONTENT_DIR, slug + ".mdx");
+  let content = fs.readFileSync(f, "utf-8");
+  let newContent;
+  if (/^image:/m.test(content)) newContent = content.replace(/^image:.*$/m, `image: "${url}"`);
+  else newContent = content.replace(/^(language: ".*")$/m, `$1\nimage: "${url}"`);
+  fs.writeFileSync(f, newContent, "utf-8");
+}
+
+async function worker(todo, index, log) {
+  let ok = 0, fail = 0;
+  for (let i = index; i < todo.length; i += CONCURRENCY) {
+    const a = todo[i];
+    const gen = await generateImage(a);
+    if (gen.error || !gen.buffer) { log(`[${i + 1}/${todo.length}] FAIL (${gen.error})`); fail++; continue; }
+    try {
+      const url = await uploadAndSet(a.slug, gen.buffer);
+      writeArticle(a.slug, url);
+      progress.add(a.slug);
+      log(`[${i + 1}/${todo.length}] OK ${url.slice(0, 80)}`);
+      ok++;
+    } catch (e) {
+      log(`[${i + 1}/${todo.length}] FAIL upload: ${e.message}`);
+      fail++;
+    }
+    await sleep(400);
+  }
+  return { ok, fail };
+}
+
 // ---------- Main ----------
 const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith(".mdx"));
 const progress = readProgress();
@@ -107,31 +138,14 @@ for (const f of files) {
   if (progress.has(info.slug)) continue;
   targets.push(info);
 }
-console.log(`Candidate UrduPoint/BOL images to generate: ${targets.length}${limit ? ` (limit ${limit})` : ""}`);
+console.log(`Candidate UrduPoint/BOL images to generate: ${targets.length}${limit ? ` (limit ${limit})` : ""} with concurrency ${CONCURRENCY}`);
 
 const todo = limit ? targets.slice(0, limit) : targets;
+const log = (m) => { console.log(m); saveProgress(progress); };
 let ok = 0, fail = 0;
-for (let i = 0; i < todo.length; i++) {
-  const a = todo[i];
-  process.stdout.write(`[${i + 1}/${todo.length}] ${a.slug}... `);
-  const gen = await generateImage(a);
-  if (gen.error || !gen.buffer) { console.log(`FAIL (${gen.error})`); fail++; continue; }
-  try {
-    const url = await uploadAndSet(a.slug, gen.buffer);
-    const f = path.join(CONTENT_DIR, a.slug + ".mdx");
-    let content = fs.readFileSync(f, "utf-8");
-    let newContent;
-    if (/^image:/m.test(content)) newContent = content.replace(/^image:.*$/m, `image: "${url}"`);
-    else newContent = content.replace(/^(language: ".*")$/m, `$1\nimage: "${url}"`);
-    fs.writeFileSync(f, newContent, "utf-8");
-    progress.add(a.slug);
-    saveProgress(progress);
-    console.log(`OK ${url.slice(0, 80)}`);
-    ok++;
-  } catch (e) {
-    console.log(`FAIL upload: ${e.message}`);
-    fail++;
-  }
-  await sleep(1500);
+const workers = [];
+for (let w = 0; w < Math.min(CONCURRENCY, todo.length); w++) {
+  workers.push(worker(todo, w, log).then(res => { ok += res.ok; fail += res.fail; }));
 }
+await Promise.all(workers);
 console.log(`\nDONE ok=${ok} fail=${fail}`);
