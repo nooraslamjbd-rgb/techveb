@@ -93,7 +93,7 @@ async function fetchPage(url) {
 
 async function phash(buf) {
   try {
-    const { data } = await sharp(buf).resize(9, 8, { fit: "fill", position: "center" }).grayscale().raw().toBuffer();
+    const { data } = await sharp(buf).resize(9, 8, { fit: "fill", position: "center" }).grayscale().raw().toBuffer({ resolveWithObject: true });
     let hash = "";
     for (let y = 0; y < 8; y++) {
       let bits = 0;

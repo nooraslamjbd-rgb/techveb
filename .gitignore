@@ -55,3 +55,4 @@ scripts/gen-pages.js
 
 # image-fix progress (tracked via Cloudinary/content state)
 src/content/.fix-images-progress.json
+src/content/.audit-images.json
