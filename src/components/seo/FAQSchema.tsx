@@ -6,12 +6,18 @@ interface FAQItem {
 }
 
 export default function FAQSchema({ items }: { items: FAQItem[] }) {
-  if (items.length === 0) return null;
+  const validItems = (items || []).filter(
+    (item) =>
+      String(item.question || "").trim().length > 0 &&
+      String(item.answer || "").trim().length > 0
+  );
+
+  if (validItems.length === 0) return null;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    mainEntity: validItems.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

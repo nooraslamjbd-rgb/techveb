@@ -15,12 +15,18 @@ interface FAQProps {
 export default function FAQ({ items }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  if (!items || items.length === 0) return null;
+  const validItems = (items || []).filter(
+    (item) =>
+      String(item.question || "").trim().length > 0 &&
+      String(item.answer || "").trim().length > 0
+  );
+
+  if (validItems.length === 0) return null;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    mainEntity: validItems.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -38,7 +44,7 @@ export default function FAQ({ items }: FAQProps) {
           Frequently Asked Questions
         </h2>
         <div className="divide-y divide-border">
-          {items.map((item, idx) => (
+          {validItems.map((item, idx) => (
             <div key={idx} className="py-4 first:pt-0 last:pb-0">
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}

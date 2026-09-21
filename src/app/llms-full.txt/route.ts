@@ -1,4 +1,4 @@
-import { getAllPostsFromAllDirs, getAllNewsPosts } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -23,7 +23,7 @@ export async function GET() {
 - Published: ${post.date}
 ${post.updated ? `- Updated: ${post.updated}` : ""}
 
-${post.description}
+${post.description ? post.description : getPostDescription(post)}
 
 ---
 `;
@@ -40,7 +40,7 @@ ${post.description}
 - Author: ${post.author}
 - Published: ${post.date}
 
-${post.description}
+${post.description ? post.description : getPostDescription(post)}
 
 ---
 `;
@@ -64,7 +64,7 @@ Generated: ${new Date().toISOString().split("T")[0]}
 
   return new NextResponse(txt, {
     headers: {
-      "Content-Type": "text/plain",
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
     },
   });

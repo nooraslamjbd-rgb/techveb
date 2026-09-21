@@ -9,6 +9,7 @@ import {
   getPost,
   formatDate,
   getPostsByCategory,
+  getPostDescription,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -37,19 +38,22 @@ export async function generateMetadata({
   const post = getPost("reviews", slug);
   if (!post) return {};
 
+  const description = getPostDescription(post);
+
   return {
     title: post.title,
-    description: post.description,
+    description,
     alternates: { canonical: `${siteConfig.url}/reviews/${slug}` },
     openGraph: {
       title: post.title,
-      description: post.description,
+      description,
       url: `${siteConfig.url}/reviews/${slug}`,
       siteName: siteConfig.name,
       type: "article",
       publishedTime: post.date,
       modifiedTime: post.updated || post.date,
-      authors: [post.author],
+      section: post.category,
+      authors: [post.author || siteConfig.name],
       tags: post.tags,
       images: post.image
         ? [{ url: post.image, width: 1200, height: 630, alt: post.title }]
@@ -58,7 +62,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.description,
+      description,
       images: post.image ? [post.image] : ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
     },
   };
@@ -81,8 +85,8 @@ export default async function ReviewPostPage({
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
-    description: post.description,
-    author: { "@type": "Person", name: post.author },
+    description: getPostDescription(post),
+    author: { "@type": "Person", name: post.author || siteConfig.name },
     datePublished: post.date,
     dateModified: post.updated || post.date,
     image: post.image ? `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}` : `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png`,

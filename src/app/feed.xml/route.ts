@@ -1,4 +1,4 @@
-import { getAllPosts, getAllNewsPosts } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -29,7 +29,7 @@ export async function GET() {
         return `    <item>
       <title><![CDATA[${post.title}]]></title>
       <link>${link}</link>
-      <description><![CDATA[${post.description}]]></description>
+      <description><![CDATA[${post.description ? post.description : getPostDescription(post)}]]></description>
       <category>${post.category}</category>
       <category>${post.section}</category>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
@@ -59,7 +59,7 @@ ${items}
 
   return new NextResponse(xml, {
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/rss+xml; charset=utf-8",
       "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
     },
   });

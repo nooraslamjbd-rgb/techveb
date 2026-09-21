@@ -8,6 +8,7 @@ import {
   getAllNewsPosts,
   getNewsPost,
   formatDate,
+  getPostDescription,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -33,18 +34,22 @@ export async function generateMetadata({
   const post = getNewsPost(slug);
   if (!post) return {};
 
+  const description = getPostDescription(post);
+
   return {
-    title: `${post.title} | TechVeb News`,
-    description: post.description,
+    title: `${post.title.substring(0, 55)}`,
+    description,
     alternates: { canonical: `${siteConfig.url}/news/${slug}` },
     openGraph: {
-      title: post.title,
-      description: post.description,
+      title: post.title.substring(0, 55),
+      description,
       url: `${siteConfig.url}/news/${slug}`,
       siteName: siteConfig.name,
       type: "article",
       publishedTime: post.date,
-      authors: [post.author],
+      modifiedTime: post.updated || post.date,
+      section: post.category,
+      authors: [siteConfig.name],
       tags: post.tags,
       images: post.image
         ? [{ url: post.image, width: 1200, height: 630, alt: post.title }]
@@ -52,8 +57,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description,
+      title: post.title.substring(0, 55),
+      description,
       images: post.image ? [post.image] : ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
     },
   };
@@ -72,14 +77,16 @@ export default async function NewsPostPage({
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: post.title,
-    description: post.description,
-    author: { "@type": "Organization", name: post.source || "TechVeb News" },
+    description: getPostDescription(post),
+    author: { "@type": "Organization", name: siteConfig.name },
     datePublished: post.date,
     dateModified: post.updated || post.date,
     image: post.image
       ? (post.image.startsWith("http") ? post.image : `${siteConfig.url}${post.image.startsWith("/") ? "" : "/"}${post.image}`)
       : `https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png`,
     url: `${siteConfig.url}/news/${slug}`,
+    inLanguage: post.language === "ur" ? "ur" : "en",
+    articleSection: post.category,
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -113,11 +120,16 @@ export default async function NewsPostPage({
     .slice(0, 3);
 
   // FAQ structured data for AEO
-  const faqJsonLd = post.faq && post.faq.length > 0
+  const validFaq = (post.faq || []).filter(
+    (item) =>
+      String(item.question || "").trim().length > 0 &&
+      String(item.answer || "").trim().length > 0
+  );
+  const faqJsonLd = validFaq.length > 0
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: post.faq.map((item) => ({
+        mainEntity: validFaq.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: {
@@ -248,14 +260,14 @@ export default async function NewsPostPage({
               </div>
 
               {/* FAQ Section (AEO optimized) */}
-              {post.faq && post.faq.length > 0 && (
+              {validFaq.length > 0 && (
                 <div className="mt-8 rounded-xl border border-border bg-surface p-6">
                   <h2 className="flex items-center gap-2 text-lg font-bold mb-4">
                     <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg>
                     Frequently Asked Questions
                   </h2>
                   <div className="space-y-3">
-                    {post.faq.map((item, i) => (
+                    {validFaq.map((item, i) => (
                       <details key={i} className="group border border-border rounded-lg">
                         <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-sm hover:bg-surface-hover transition-colors">
                           <span>{item.question}</span>

@@ -44,6 +44,29 @@ export interface Post extends PostFrontmatter {
   dir: string;
 }
 
+export function excerptFromContent(content: string, length = 160): string {
+  const plain = (content || "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[#>*_`~|=\-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return plain.length > length ? `${plain.slice(0, length).trim()}…` : plain;
+}
+
+export function getPostDescription(
+  post: Pick<Post, "description" | "content">
+): string {
+  const desc = (post.description || "").trim();
+  if (desc) return desc;
+  return excerptFromContent(post.content || "");
+}
+
+export function isJunkSlug(slug: string): boolean {
+  return /^\d+(-\d+)*$/.test(slug);
+}
+
 const contentDir = path.join(process.cwd(), "src", "content");
 
 function getFiles(dir: string): string[] {

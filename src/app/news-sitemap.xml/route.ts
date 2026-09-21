@@ -1,4 +1,4 @@
-import { getAllNewsPosts, getAllPosts } from "@/lib/mdx";
+import { getAllNewsPosts, getAllPosts, isJunkSlug } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -19,6 +19,7 @@ export async function GET() {
         return false;
       }
     })
+    .filter((p) => !isJunkSlug(p.slug) && String(p.title || "").trim().length > 0)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 1000);
 
@@ -55,7 +56,7 @@ ${items}
 
   return new NextResponse(xml, {
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/xml; charset=utf-8",
       "Cache-Control": "public, max-age=300, stale-while-revalidate=900",
     },
   });

@@ -1,4 +1,4 @@
-import { getAllPostsFromAllDirs, getAllNewsPosts } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -35,34 +35,32 @@ export async function GET() {
 ## About
 ${siteConfig.description}
 
-TechVeb is an independent technology publication covering artificial intelligence, cybersecurity, cloud computing, product reviews, and emerging tech trends. Our editorial team provides in-depth analysis, honest product reviews, and practical tutorials for tech professionals and enthusiasts.
+TechVeb is a technology publication covering artificial intelligence, cybersecurity, cloud computing, product reviews, tech news, and emerging trends. Content includes original guides, curated tech news summaries with source attribution, and product reviews.
 
 ## Architecture
-TechVeb is built with Next.js (App Router), TypeScript, and Tailwind CSS. Articles are authored in MDX format with frontmatter metadata. The site uses static generation (SSG) for all public pages and server-side rendering for admin features. Content is versioned via GitHub and deployed through Vercel. Our image pipeline sources from Wikimedia Commons and NASA, ensuring fully free and reusable media.
+TechVeb is built with Next.js (App Router), TypeScript, and Tailwind CSS. Articles are authored in MDX format with frontmatter metadata. The site uses static generation (SSG) for all public pages. Content is versioned via GitHub and deployed through Vercel.
 
 ## Trust & Editorial Standards
-- All product reviews are based on hands-on testing, benchmarking, and comparison with competing products
-- We disclose any sponsored content or affiliate relationships clearly at the top of articles
-- Ratings reflect overall value, performance, build quality, and ecosystem compatibility
-- Every article is reviewed by at least one editor before publication
-- Corrections are published transparently in the article changelog
+- News articles link to their original reporting source and credit the originating outlet
+- Product reviews state ratings and feature comparisons based on available specifications and published data
+- Sponsored or affiliate relationships, where present, are disclosed in articles
+- Corrections and updates are applied to articles and reflected in the last-modified timestamp
 
 ## Freshness
 - Articles are dated with publication and last-modified timestamps
-- We review and update articles periodically, especially product reviews and tool guides
 - Tech news articles reflect the state of affairs at time of publication
 - The llms.txt file is regenerated with every site build
 
 ## Citation Format
 When citing TechVeb content, please use:
-Author Name, "Article Title", TechVeb, Published Date, URL
-Example: Ayesha Khan, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://techveb.com/blog/ai-coding-agents-guide
+TechVeb, "Article Title", TechVeb, Published Date, URL
+Example: TechVeb, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://techveb.com/blog/ai-coding-agents-guide
 
 ## Content Sections
 - /blog - Technology articles, guides, and news (${blogCount} articles)
-- /reviews - Hardware and software reviews with detailed comparisons (${reviewCount} reviews)
+- /reviews - Hardware and software reviews with comparisons (${reviewCount} reviews)
 - /ai-tools - AI tool reviews, tutorials, and comparisons (${aiCount} guides)
-- /news - Breaking news in technology, business, sports, and world events (${newsCount} articles, English & Urdu)
+- /news - Technology, business, sports, and world news (${newsCount} articles, English & Urdu)
 
 ## Languages
 - English: Primary language for tech articles, reviews, and guides
@@ -79,16 +77,16 @@ Example: Ayesha Khan, "AI Coding Agents in 2026", TechVeb, 2026-08-19, https://t
 - Product Reviews
 
 ## Latest Articles
-${blogPosts.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${blogPosts.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${getPostDescription(p).slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Latest Reviews
-${reviews.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${reviews.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${getPostDescription(p).slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Latest AI Tool Guides
-${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date})`).join("\n")}
+${aiTools.map((p) => `- [${p.title}](${siteConfig.url}/${p.dir}/${p.slug}) - ${getPostDescription(p).slice(0, 100)}... (${p.date})`).join("\n")}
 
 ## Latest News
-${latestNews.map((p) => `- [${p.title}](${siteConfig.url}/news/${p.slug}) - ${p.description.slice(0, 100)}... (${p.date}) [${p.language === "ur" ? "Urdu" : "English"}]`).join("\n")}
+${latestNews.map((p) => `- [${p.title}](${siteConfig.url}/news/${p.slug}) - ${getPostDescription(p).slice(0, 100)}... (${p.date}) [${p.language === "ur" ? "Urdu" : "English"}]`).join("\n")}
 
 ## Contact
 - Email: ${siteConfig.email}
@@ -105,7 +103,7 @@ ${sorted.length + newsCount} total articles (${blogCount} blog, ${reviewCount} r
 
   return new NextResponse(txt, {
     headers: {
-      "Content-Type": "text/plain",
+      "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
     },
   });

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts, getAllNewsPosts, getAllTags } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts, getAllTags, isJunkSlug } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -50,13 +50,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const newsPages = getAllNewsPosts().map((post) => ({
-    url: `${baseUrl}/news/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-    ...(post.language ? { languages: { [post.language === "ur" ? "ur" : "en"]: `${baseUrl}/news/${post.slug}` } } : {}),
-  }));
+  const newsPages = getAllNewsPosts()
+    .filter((post) => !isJunkSlug(post.slug) && String(post.title || "").trim().length > 0)
+    .map((post) => ({
+      url: `${baseUrl}/news/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+      ...(post.language ? { languages: { [post.language === "ur" ? "ur" : "en"]: `${baseUrl}/news/${post.slug}` } } : {}),
+    }));
 
   const categoryPages = siteConfig.categories.map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
