@@ -8,6 +8,7 @@ import {
   getAllNewsPosts,
   getNewsPost,
   getPostDescription,
+  stripSourceAttribution,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -242,7 +243,7 @@ export default async function NewsPostPage({
 
               <div className="prose max-w-none">
                 <MDXRemote
-                  source={post.content}
+                  source={stripSourceAttribution(post.content)}
                   options={{
                     mdxOptions: {
                       remarkPlugins: [remarkGfm],

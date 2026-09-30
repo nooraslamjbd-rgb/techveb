@@ -67,6 +67,13 @@ export function isJunkSlug(slug: string): boolean {
   return /^\d+(-\d+)*$/.test(slug);
 }
 
+export function stripSourceAttribution(content: string): string {
+  return (content || "").replace(
+    /^\*{0,1}\s*Originally reported by[^\n]*\n?/gm,
+    ""
+  );
+}
+
 const contentDir = path.join(process.cwd(), "src", "content");
 
 function getFiles(dir: string): string[] {
