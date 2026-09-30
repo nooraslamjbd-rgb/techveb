@@ -4,29 +4,29 @@ import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  const now = new Date();
+  const staticLastMod = new Date("2026-08-15T00:00:00.000Z");
 
   const staticPages = [
-    { url: baseUrl, lastModified: now, changeFrequency: "weekly" as const, priority: 1 },
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/reviews`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/ai-tools`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/news`, lastModified: now, changeFrequency: "daily" as const, priority: 0.8 },
-    { url: `${baseUrl}/business`, lastModified: now, changeFrequency: "daily" as const, priority: 0.7 },
-    { url: `${baseUrl}/sports`, lastModified: now, changeFrequency: "daily" as const, priority: 0.7 },
-    { url: `${baseUrl}/mobiles`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 },
-    { url: `${baseUrl}/recipes`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${baseUrl}/horoscope`, lastModified: now, changeFrequency: "daily" as const, priority: 0.6 },
-    { url: `${baseUrl}/dictionary`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${baseUrl}/poetry`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/quotes`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/jokes`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/education`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${baseUrl}/islam`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
-    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: baseUrl, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 1 },
+    { url: `${baseUrl}/blog`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${baseUrl}/reviews`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/ai-tools`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/news`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.8 },
+    { url: `${baseUrl}/business`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
+    { url: `${baseUrl}/sports`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
+    { url: `${baseUrl}/mobiles`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: `${baseUrl}/recipes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
+    { url: `${baseUrl}/horoscope`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.6 },
+    { url: `${baseUrl}/dictionary`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${baseUrl}/poetry`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
+    { url: `${baseUrl}/quotes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
+    { url: `${baseUrl}/jokes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
+    { url: `${baseUrl}/education`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
+    { url: `${baseUrl}/islam`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
+    { url: `${baseUrl}/about`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${baseUrl}/contact`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${baseUrl}/privacy-policy`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${baseUrl}/terms`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 
   const blogPages = getAllPosts("blog").map((post) => ({
@@ -62,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categoryPages = siteConfig.categories.map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
-    lastModified: now,
+    lastModified: staticLastMod,
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
@@ -73,13 +73,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const uniqueTags = [...new Map(allTags.map((t) => [t.tag, t])).values()];
   const tagPages = uniqueTags.map((t) => ({
     url: `${baseUrl}/tags/${encodeURIComponent(t.tag)}`,
-    lastModified: now,
+    lastModified: staticLastMod,
     changeFrequency: "weekly" as const,
     priority: 0.4,
   }));
 
   const authorPages = [
-    { url: `${baseUrl}/author/techveb-team`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${baseUrl}/author/techveb-team`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
   ];
 
   return [

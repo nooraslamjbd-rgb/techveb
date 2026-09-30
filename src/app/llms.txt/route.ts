@@ -41,7 +41,7 @@ TechVeb is a technology publication covering artificial intelligence, cybersecur
 TechVeb is built with Next.js (App Router), TypeScript, and Tailwind CSS. Articles are authored in MDX format with frontmatter metadata. The site uses static generation (SSG) for all public pages. Content is versioned via GitHub and deployed through Vercel.
 
 ## Trust & Editorial Standards
-- News articles link to their original reporting source and credit the originating outlet
+- News articles report current events and are dated with publication timestamps
 - Product reviews state ratings and feature comparisons based on available specifications and published data
 - Sponsored or affiliate relationships, where present, are disclosed in articles
 - Corrections and updates are applied to articles and reflected in the last-modified timestamp

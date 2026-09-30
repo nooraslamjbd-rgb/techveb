@@ -36,8 +36,6 @@ ${post.description ? post.description : getPostDescription(post)}
 - URL: ${url}
 - Category: ${post.category}
 - Language: ${post.language === "ur" ? "Urdu" : "English"}
-- Source: ${post.source || "TechVeb News"}
-- Author: ${post.author}
 - Published: ${post.date}
 
 ${post.description ? post.description : getPostDescription(post)}

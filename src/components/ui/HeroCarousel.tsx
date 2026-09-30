@@ -87,9 +87,6 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
                   <span className="inline-flex items-center rounded-md bg-primary px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
                     {slide.category}
                   </span>
-                  {slide.source && (
-                    <span className="text-xs text-white/50">via {slide.source}</span>
-                  )}
                   <span className="text-xs text-white/50">{slide.readingTime}</span>
                 </div>
                 <h2 className="mb-2 font-heading text-xl font-bold text-white sm:text-2xl lg:text-3xl group-hover:text-primary-light transition-colors line-clamp-3">

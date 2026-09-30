@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllNewsPosts, getAllPosts } from "@/lib/mdx";
-import { siteConfig } from "@/config/site";
 import ArticleCard from "@/components/blog/ArticleCard";
 import JsonLd from "@/components/seo/JsonLd";
 import TimeAgo from "@/components/ui/TimeAgo";
@@ -108,11 +107,6 @@ export default async function NewsPage({
                 )}
                 <div className="flex flex-col justify-center p-6 lg:p-8">
                   <div className="mb-3 flex items-center gap-2">
-                    {heroArticle.source && (
-                      <span className="text-xs font-bold uppercase px-2 py-0.5 rounded bg-primary/10 text-primary">
-                        {heroArticle.source}
-                      </span>
-                    )}
                     {heroArticle.language === "ur" && (
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-green-500/10 text-green-700">
                         &#1575;&#1585;&#1583;&#1610;&#1608;
@@ -165,11 +159,6 @@ export default async function NewsPage({
                 )}
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    {article.source && (
-                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary/10 text-primary">
-                        {article.source}
-                      </span>
-                    )}
                     <TimeAgo date={article.date} />
                   </div>
                   <h3 className="font-heading text-sm font-bold line-clamp-2 group-hover:text-primary transition-colors mb-2">
@@ -216,11 +205,6 @@ export default async function NewsPage({
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-green-500/10 text-green-700">
                       &#1575;&#1585;&#1583;&#1610;&#1608;
                     </span>
-                    {article.source && (
-                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary/10 text-primary">
-                        {article.source}
-                      </span>
-                    )}
                     <TimeAgo date={article.date} />
                   </div>
                   <h3 className="font-heading text-sm font-bold line-clamp-2 group-hover:text-primary transition-colors mb-2">
@@ -322,11 +306,6 @@ export default async function NewsPage({
                 )}
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    {article.source && (
-                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-primary/10 text-primary">
-                        {article.source}
-                      </span>
-                    )}
                     {article.language === "ur" && (
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-green-500/10 text-green-700">
                         &#1575;&#1585;&#1583;&#1610;&#1608;

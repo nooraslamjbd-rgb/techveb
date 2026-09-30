@@ -65,7 +65,6 @@ export default function Home() {
     date: p.date,
     readingTime: p.readingTime || "3 min read",
     author: p.author,
-    source: p.source,
     language: p.language,
   }));
 
@@ -387,7 +386,6 @@ export default function Home() {
                   <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-[10px] font-bold text-red-600 uppercase">
                     {post.category}
                   </span>
-                  <span className="text-[10px] text-muted-foreground">{post.source}</span>
                 </div>
                 <h3 className="font-heading text-sm font-bold line-clamp-2 group-hover:text-primary transition-colors mb-2">
                   {post.title}

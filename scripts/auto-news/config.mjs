@@ -16,7 +16,7 @@ export const CONFIG = {
   LOGO_PATH: path.join(__dirname, "assets", "logo-square.png"),
   WIKIMEDIA_POOL: path.join(__dirname, "..", ".wikimedia-images.json"),
 
-  MAX_ARTICLES: 15,
+  MAX_ARTICLES: 8,
   ARTICLE_TIMEOUT_MS: 15000,
   RSS_TIMEOUT_MS: 10000,
   FETCH_DELAY_MS: 500,

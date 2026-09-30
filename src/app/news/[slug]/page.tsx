@@ -7,7 +7,6 @@ import remarkGfm from "remark-gfm";
 import {
   getAllNewsPosts,
   getNewsPost,
-  formatDate,
   getPostDescription,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
@@ -97,8 +96,6 @@ export default async function NewsPostPage({
       "@id": `${siteConfig.url}/news/${slug}`,
     },
     keywords: post.tags?.join(", "),
-    isBasedOn: post.sourceLink,
-    citation: post.sourceLink,
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: [".prose", "h1"],
@@ -177,11 +174,6 @@ export default async function NewsPostPage({
               <span className="rounded-full bg-red-500/10 px-3 py-1 text-xs font-bold text-red-600 uppercase">
                 News
               </span>
-              {post.source && (
-                <span className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-muted-foreground border border-border">
-                  via {post.source}
-                </span>
-              )}
             </div>
             <h1 className="mb-4 font-heading text-3xl font-bold leading-tight sm:text-4xl">
               {post.title}
@@ -196,14 +188,14 @@ export default async function NewsPostPage({
             {post.sourceLink && (
               <div className="mt-4 rounded-lg border border-border bg-surface p-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-muted-foreground">Originally reported by</span>
+                  <span className="text-muted-foreground">Read the full report</span>
                   <a
                     href={post.sourceLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-primary hover:underline"
                   >
-                    {post.source || "Source"} ↗
+                    Continue reading ↗
                   </a>
                 </div>
               </div>
@@ -311,8 +303,6 @@ export default async function NewsPostPage({
                     </h3>
                     <p className="text-xs text-muted-foreground line-clamp-2 mb-2">{rp.description}</p>
                     <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                      <span>{rp.source}</span>
-                      <span>·</span>
                       <TimeAgo date={rp.date} />
                     </div>
                   </Link>

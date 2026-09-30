@@ -20,17 +20,6 @@ const categoryColors: Record<string, string> = {
   sports: "bg-orange-500/10 text-orange-600",
 };
 
-const sourceIcons: Record<string, string> = {
-  "TechCrunch": "📱",
-  "The Verge": "⚡",
-  "Ars Technica": "🔬",
-  "MIT Technology Review": "🤖",
-  "Wired": "🔌",
-  "BBC Technology": "📺",
-  "Reuters Business": "💰",
-  "ESPN Cricinfo": "🏏",
-};
-
 function timeAgo(dateStr: string): string {
   try {
     const date = new Date(dateStr);
@@ -139,7 +128,6 @@ export default function LiveNewsFeed() {
           Live
         </span>
         <span>{filteredNews.length} articles</span>
-        <span>{new Set(filteredNews.map(n => n.source)).size} sources</span>
       </div>
 
       {/* News List */}
@@ -161,11 +149,6 @@ export default function LiveNewsFeed() {
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${categoryColors[item.category] || "bg-gray-500/10 text-gray-600"}`}>
                     {item.category.toUpperCase()}
                   </span>
-                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                    <span>{sourceIcons[item.source] || "📰"}</span>
-                    {item.source}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground">•</span>
                   <span className="text-[10px] text-muted-foreground">{timeAgo(item.pubDate)}</span>
                 </div>
                 <h3 className="font-heading font-semibold text-sm text-foreground group-hover:text-primary transition-colors mb-1 line-clamp-2">
