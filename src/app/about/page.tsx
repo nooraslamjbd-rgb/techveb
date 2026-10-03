@@ -83,21 +83,42 @@ export default function AboutPage() {
             </li>
           </ul>
 
-          <h2>Our Team</h2>
+          <h2>How We Work</h2>
           <p>
-            TechVeb is maintained by a dedicated team of technology enthusiasts
-            and professionals who bring years of experience in the tech industry.
-            We are committed to delivering accurate, timely, and valuable content
-            to our readers.
+            TechVeb is maintained by an editorial team of technology writers and
+            editors. Our guides, explainers, and reviews are researched from
+            publicly available information, official product documentation,
+            peer publications, and hands-on use where applicable. We clearly mark
+            opinion and analysis, and we fix errors promptly when they are
+            brought to our attention.
+          </p>
+          <p>
+            Some of our news briefs summarize and link to reports originally
+            published by established news agencies and technology publications.
+            We provide the original source link alongside those summaries so you
+            can always verify the details yourself.
           </p>
 
-          <h2>Why Trust Us</h2>
-          <p>
-            We prioritize accuracy, transparency, and integrity in everything we
-            publish. Our reviews are based on thorough testing, our articles are
-            backed by research, and our guides are written by people who actually
-            use the tools they write about.
-          </p>
+          <h2>Our Standards</h2>
+          <ul>
+            <li>
+              <strong>Transparency:</strong> We disclose how we produce content
+              and name sources and methods where relevant.
+            </li>
+            <li>
+              <strong>Corrections:</strong> We update and correct articles
+              whenever errors are reported via our contact page.
+            </li>
+            <li>
+              <strong>Editorial Independence:</strong> Advertising, when present,
+              is clearly labeled and never influences our reporting or
+              recommendations.
+            </li>
+            <li>
+              <strong>Respect for Others:</strong> We credit and link to sources,
+              use licensed images, and do not present others&apos; work as our own.
+            </li>
+          </ul>
 
           <h2>Get In Touch</h2>
           <p>

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Prayer times, Quran recitation, Islamic calendar, Hadith, and daily Islamic reminders.",
   alternates: { canonical: "https://techveb.com/islam" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Islam - TechVeb",
     description: "Prayer times, Quran, Islamic calendar, and Hadith.",

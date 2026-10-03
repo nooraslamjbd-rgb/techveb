@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Pakistani Recipes - Delicious Food Recipes | TechVeb",
   description: "Discover authentic Pakistani recipes - Biryani, Karahi, Haleem, Nihari, and more. Easy step-by-step cooking guides.",
   alternates: { canonical: "https://techveb.com/recipes" },
+  robots: { index: false, follow: true },
   openGraph: { title: "Pakistani Recipes - TechVeb", description: "Authentic Pakistani food recipes with step-by-step guides.", url: "https://techveb.com/recipes", type: "website", images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "Pakistani Recipes" }] },
   twitter: { card: "summary_large_image", title: "Pakistani Recipes - TechVeb", description: "Authentic Pakistani food recipes with step-by-step guides.", images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"] },
 };

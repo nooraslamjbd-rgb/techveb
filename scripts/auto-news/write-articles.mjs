@@ -18,6 +18,12 @@ function sanitizeContent(content) {
   text = text.replace(/<style[\s\S]*?<\/style>/gi, "");
   text = text.replace(/(?:body|html|\*|p|div|img|h[1-6])\s*\{[^}]*\}\s*/gi, "");
   text = text.replace(/@media[^\{]*\{[^}]*\}\s*/gi, "");
+  // Remove scraped source-attribution & social-follow leftovers (EN + UR)
+  text = text.replace(
+    /^\*{0,2}\s*(?:Originally reported by[^\n]*|(?:ہمارے تھریڈ اکاؤنٹ کو فالو کریں|Follow our Threads account|Follow us on Threads|Subscribe to our (?:youtube|channel|telegram|whatsapp) channel?)[^\n]*)\n?/gim,
+    ""
+  );
+  text = text.replace(/^\*{0,2}\s*(?:Also read|Also Read)[^\n]*\n?/gim, "");
   const lines = text.split("\n");
   const filtered = lines.filter((line) => {
     for (const domain of BLOCKED_IMAGE_DOMAINS) {
@@ -28,6 +34,15 @@ function sanitizeContent(content) {
   return filtered.join("\n").replace(/\n{3,}/g, "\n\n");
 }
 
+function fallbackDescription(content) {
+  const plain = (content || "").replace(/[#>*_`~|=\-\[\]()!]/g, "").replace(/\s+/g, " ").trim();
+  return plain.length > 160 ? `${plain.slice(0, 157).trim()}…` : plain;
+}
+
+function dedupKey(title) {
+  return (title || "").toLowerCase().replace(/[\s\p{P}\p{S}]+/gu, "");
+}
+
 function generateMDX(article, imagePath) {
   const enhanced = article.enhanced;
   const d = new Date(article.pubDate);
@@ -36,10 +51,14 @@ function generateMDX(article, imagePath) {
   const wordCount = (enhanced.content || "").split(/\s+/).filter(Boolean).length;
   const readTime = Math.max(1, Math.round(wordCount / 200));
 
+  const safeTitle = (t) => (t || "").replace(/"/g, '\\"');
+  const safeDesc = (enhanced.description || article.description || "").replace(/"/g, '\\"').trim().substring(0, 160);
+  const description = (safeDesc.length > 15) ? safeDesc : fallbackDescription(enhanced.content || article.description).substring(0, 160);
+
   const lines = [
     "---",
-    `title: "${(enhanced.title || article.title).replace(/"/g, '\\"')}"`,
-    `description: "${(enhanced.description || article.description).replace(/"/g, '\\"').substring(0, 160)}"`,
+    `title: "${safeTitle(enhanced.title || article.title)}"`,
+    `description: "${description.replace(/"/g, '\\"')}"`,
     `date: "${dateStr}"`,
     `author: "${CONFIG.AUTHOR}"`,
     `category: "${enhanced.category || article.category}"`,
@@ -106,26 +125,54 @@ function generateMDX(article, imagePath) {
     }
   }
 
-  // Attribution
-  lines.push("---", "");
-  lines.push(`*Originally reported by [${article.source}](${article.link}). Enhanced and optimized for search by TechVeb.*`);
-  lines.push("");
-
   return lines.join("\n");
+}
+
+function loadExistingTitles() {
+  const titles = new Set();
+  if (!fs.existsSync(CONFIG.CONTENT_DIR)) return titles;
+  for (const f of fs.readdirSync(CONFIG.CONTENT_DIR).filter((f) => f.endsWith(".mdx"))) {
+    try {
+      const raw = fs.readFileSync(path.join(CONFIG.CONTENT_DIR, f), "utf-8");
+      const m = raw.match(/^title:\s*"([^"]+)"/m);
+      if (m) titles.add(dedupKey(m[1]));
+    } catch {}
+  }
+  return titles;
 }
 
 export function writeArticles(articles, imagePaths) {
   console.log(`[WRITE] Writing ${articles.length} MDX files...`);
   fs.mkdirSync(CONFIG.CONTENT_DIR, { recursive: true });
 
+  const existingTitleKeys = loadExistingTitles();
+  const batchKeys = new Set();
   let written = 0;
+  let skipped = 0;
   for (const article of articles) {
     const slug = article.enhanced?.slug || article.slug;
     const filePath = path.join(CONFIG.CONTENT_DIR, `${slug}.mdx`);
+    const title = (article.enhanced?.title || article.title || "").trim();
+
+    // Guard: never write pure-numeric/junk slugs (unindexable + duplicate-prone)
+    if (/^\d+(-\d+)*$/.test(slug)) {
+      console.log(`  SKIP: ${slug} (numeric slug "${title.slice(0, 40)}")`);
+      skipped++;
+      continue;
+    }
 
     // Don't overwrite existing
     if (fs.existsSync(filePath)) {
       console.log(`  SKIP: ${slug} (exists)`);
+      skipped++;
+      continue;
+    }
+
+    // Title-based dedupe (both in-repo and within this batch)
+    const key = dedupKey(title);
+    if (!key || existingTitleKeys.has(key) || batchKeys.has(key)) {
+      console.log(`  SKIP: ${slug} (duplicate title "${title.slice(0, 50)}")`);
+      skipped++;
       continue;
     }
 
@@ -134,9 +181,11 @@ export function writeArticles(articles, imagePaths) {
 
     fs.writeFileSync(filePath, mdx, "utf-8");
     console.log(`  WROTE: ${slug}`);
+    existingTitleKeys.add(key);
+    batchKeys.add(key);
     written++;
   }
 
-  console.log(`[WRITE] Done. ${written} new files written.`);
+  console.log(`[WRITE] Done. ${written} new files written, ${skipped} skipped.`);
   return written;
 }

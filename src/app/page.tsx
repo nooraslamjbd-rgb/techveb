@@ -18,7 +18,7 @@ import JsonLd from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: { absolute: "TechVeb - Technology, AI & Innovation Hub" },
   description:
-    "Your go-to source for the latest in technology, artificial intelligence, product reviews, and expert guides. Stay informed with 500+ in-depth articles.",
+    "Your go-to source for the latest in technology, artificial intelligence, product reviews, expert guides, and tech news from around the world.",
   alternates: { canonical: "https://techveb.com" },
   openGraph: {
     title: "TechVeb - Technology, AI & Innovation Hub",
@@ -116,7 +116,7 @@ export default function Home() {
 
       {/* H1 for SEO - visually hidden but important for Google */}
       <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
-        <h1 className="sr-only">TechVeb - Pakistan&apos;s #1 Technology, AI &amp; News Hub</h1>
+        <h1 className="sr-only">TechVeb - Technology, AI &amp; Innovation Hub</h1>
       </div>
 
       {/* Quick Links - News, Business, Sports, Education, Islam */}

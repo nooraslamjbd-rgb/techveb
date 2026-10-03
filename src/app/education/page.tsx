@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Latest education news, job opportunities, board results, university admissions, and career guidance in Pakistan.",
   alternates: { canonical: "https://techveb.com/education" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Education Hub - TechVeb",
     description: "Jobs, results, admissions, and career guidance.",

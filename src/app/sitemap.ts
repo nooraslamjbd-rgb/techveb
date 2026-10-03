@@ -15,18 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/business`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
     { url: `${baseUrl}/sports`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
     { url: `${baseUrl}/mobiles`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.7 },
-    { url: `${baseUrl}/recipes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${baseUrl}/horoscope`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.6 },
-    { url: `${baseUrl}/dictionary`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
-    { url: `${baseUrl}/poetry`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/quotes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/jokes`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.5 },
-    { url: `${baseUrl}/education`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
-    { url: `${baseUrl}/islam`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.6 },
     { url: `${baseUrl}/about`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
     { url: `${baseUrl}/privacy-policy`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
     { url: `${baseUrl}/terms`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${baseUrl}/disclaimer`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 
   const blogPages = getAllPosts("blog").map((post) => ({

@@ -75,10 +75,11 @@ export default function TermsPage() {
 
         <h2>5. Product Reviews</h2>
         <p>
-          Our product reviews reflect our honest opinions based on testing and
-          research. Reviews may contain affiliate links, meaning we may earn a
-          commission if you purchase through our links, at no additional cost to
-          you. This does not influence our editorial content or ratings.
+          Our product reviews and guides reflect our editorial opinions based on
+          research and available information. If we ever use affiliate links or
+          sponsored content, they will be clearly disclosed at the point of use,
+          and any advertising will be labeled separately from editorial content.
+          Currently, TechVeb does not use affiliate links.
         </p>
 
         <h2>6. Limitation of Liability</h2>

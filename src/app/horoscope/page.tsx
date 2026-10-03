@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "Read your daily horoscope for all 12 zodiac signs. Love, career, health predictions and lucky numbers.",
   alternates: { canonical: "https://techveb.com/horoscope" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Daily Horoscope - TechVeb",
     description: "Daily horoscope predictions for all zodiac signs.",

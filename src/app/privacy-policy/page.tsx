@@ -81,8 +81,13 @@ export default function PrivacyPolicyPage() {
             enabled.
           </li>
           <li>
-            <strong>Google AdSense:</strong> To display advertisements. Google
-            uses cookies to serve ads based on your prior visits to our website.
+            <strong>Google AdSense:</strong> If and when advertising is enabled,
+            Google may use cookies to display and measure ads. You may opt out of
+            personalized advertising at{" "}
+            <a href="https://www.google.com/settings/ads" rel="nofollow noopener noreferrer">
+              Google Ads Settings
+            </a>
+            . Advertising cookies are only loaded after you accept cookies.
           </li>
           <li>
             <strong>Formspree:</strong> When you subscribe to our newsletter or

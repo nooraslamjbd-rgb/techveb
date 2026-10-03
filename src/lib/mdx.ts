@@ -69,7 +69,7 @@ export function isJunkSlug(slug: string): boolean {
 
 export function stripSourceAttribution(content: string): string {
   return (content || "").replace(
-    /^\*{0,1}\s*Originally reported by[^\n]*\n?/gm,
+    /^\*{0,2}\s*(?:Originally reported by[^\n]*|(?:ہمارے تھریڈ اکاؤنٹ کو فالو کریں|Follow our Threads account|Follow us on Threads)[^\n]*)\n?/gim,
     ""
   );
 }

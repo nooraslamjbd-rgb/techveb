@@ -72,6 +72,7 @@ export const siteConfig = {
         { label: "Contact", href: "/contact" },
         { label: "Privacy Policy", href: "/privacy-policy" },
         { label: "Terms of Service", href: "/terms" },
+        { label: "Disclaimer", href: "/disclaimer" },
       ],
     },
   ],
