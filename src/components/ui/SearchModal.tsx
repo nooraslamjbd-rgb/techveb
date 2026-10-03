@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface SearchArticle {
@@ -31,6 +32,7 @@ export default function SearchModal({
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const allArticles = useRef<SearchArticle[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (open && allArticles.current.length === 0) {
@@ -75,11 +77,11 @@ export default function SearchModal({
   const navigateResult = useCallback(
     (idx: number) => {
       if (results[idx]) {
-        window.location.href = `/${results[idx].dir}/${results[idx].slug}`;
+        router.push(`/${results[idx].dir}/${results[idx].slug}`);
         onClose();
       }
     },
-    [results, onClose]
+    [results, onClose, router]
   );
 
   useEffect(() => {

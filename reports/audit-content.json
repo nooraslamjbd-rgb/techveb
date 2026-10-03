@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-03T11:54:06.911Z",
+ "generatedAt": "2026-10-03T14:00:56.095Z",
  "dirs": [
   "news",
   "blog",
@@ -9,18 +9,18 @@
  ],
  "stats": {
   "news": {
-   "files": 1917,
-   "words": 902048,
-   "keep": 980,
-   "update": 929,
+   "files": 1956,
+   "words": 915734,
+   "keep": 1050,
+   "update": 906,
    "merge": 0,
-   "remove": 8,
+   "remove": 0,
    "dup": 0,
-   "thin": 474,
+   "thin": 497,
    "noDesc": 598,
-   "junk": 2,
-   "ur": 805,
-   "en": 1112
+   "junk": 1,
+   "ur": 798,
+   "en": 1158
   },
   "blog": {
    "files": 456,
@@ -80,190 +80,13 @@
   }
  },
  "visibleJunkByPattern": {
-  "ARY-SOCIAL": 2,
-  "URDU-THREADS-PLUG": 2,
-  "URDU-FOLLOW-PLUG": 2
+  "ARY-SOCIAL": 1,
+  "URDU-THREADS-PLUG": 1,
+  "URDU-FOLLOW-PLUG": 1
  },
- "srcAttributionCount": 1912,
- "dupGroups": [
-  {
-   "title": "کیا 10 روپے کا کرنسی نوٹ ختم ہورہا ہے؟ ڈپٹی گورنراسٹیٹ بینک ",
-   "titleNorm": "کیا 10 روپے کا کرنسی نوٹ ختم ہورہا ہے ڈپٹی گورنراسٹیٹ بینک",
-   "files": [
-    {
-     "dir": "news",
-     "file": "10.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "pakistan-sbi-considers-discontinuing-10-rupee-note.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "خنجراب پاس کے ذریعے چین سے درآمدات پر ریکارڈ 15 ارب روپے سرم",
-   "titleNorm": "خنجراب پاس کے ذریعے چین سے درآمدات پر ریکارڈ 15 ارب روپے سرم",
-   "files": [
-    {
-     "dir": "news",
-     "file": "15.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "khunjerab-pass-records-15-billion-pak-china-trade.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "اے ٹی ایم سے ایک ہزار کی ٹرانزیکشن پر 2 ہزار نکلنے لگے",
-   "titleNorm": "اے ٹی ایم سے ایک ہزار کی ٹرانزیکشن پر 2 ہزار نکلنے لگے",
-   "files": [
-    {
-     "dir": "news",
-     "file": "2.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "egypt-atm-glitch-doubles-cash-withdrawals.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "’27 ستمبر کو ہم نظام گرانے آ رہے ہیں، 20 لاکھ لوگ ہوں گے تو ",
-   "titleNorm": "27 ستمبر کو ہم نظام گرانے آ رہے ہیں 20 لاکھ لوگ ہوں گے تو",
-   "files": [
-    {
-     "dir": "news",
-     "file": "27-20.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "kp-advisor-announces-september-27-march.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "27 اگست سے مون سون بارشوں کے نئے سلسلے کی پیش گوئی، الرٹ جار",
-   "titleNorm": "27 اگست سے مون سون بارشوں کے نئے سلسلے کی پیش گوئی الرٹ جار",
-   "files": [
-    {
-     "dir": "news",
-     "file": "27.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "monsoon-new-wave-predicted-from-august-27.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "آزاد کشمیر قانون ساز اسمبلی میں مسلم لیگ ن کو31 نشستوں کے سا",
-   "titleNorm": "آزاد کشمیر قانون ساز اسمبلی میں مسلم لیگ ن کو31 نشستوں کے سا",
-   "files": [
-    {
-     "dir": "news",
-     "file": "31.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "pml-n-wins-31-seats-in-ajk-assembly-elections.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "اربوں روپے کی لاگت سے بنی سڑک صرف 40 دن میں ہی دھنس گئی",
-   "titleNorm": "اربوں روپے کی لاگت سے بنی سڑک صرف 40 دن میں ہی دھنس گئی",
-   "files": [
-    {
-     "dir": "news",
-     "file": "40.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "expressway-built-for-billions-collapses-in-40-days.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  },
-  {
-   "title": "ٹرمپ کا کینیڈا پر جوابی وار، مصنوعات پر ٹیرف بڑھا کر 50 فیصد",
-   "titleNorm": "ٹرمپ کا کینیڈا پر جوابی وار مصنوعات پر ٹیرف بڑھا کر 50 فیصد",
-   "files": [
-    {
-     "dir": "news",
-     "file": "50.mdx",
-     "decision": "REMOVE"
-    },
-    {
-     "dir": "news",
-     "file": "trump-announces-50-percent-tariffs-on-canada.mdx",
-     "decision": "KEEP"
-    }
-   ]
-  }
- ],
+ "srcAttributionCount": 1944,
+ "dupGroups": [],
  "records": [
-  {
-   "dir": "news",
-   "file": "1.mdx",
-   "slug": "1",
-   "title": "نیوکلیئر پاور پلانٹ چشمہ یونٹ-1 نے اٹامک انرجی کمیشن کا نیا ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 515,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-24",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "10.mdx",
-   "slug": "10",
-   "title": "کیا 10 روپے کا کرنسی نوٹ ختم ہورہا ہے؟ ڈپٹی گورنراسٹیٹ بینک ",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/pakistan-sbi-considers-discontinuing-10-rupee-note.mdx"
-   ],
-   "words": 488,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "100-600.mdx",
-   "slug": "100-600",
-   "title": "صرف 100 روپے میں 600 روپے کا پیٹرول ڈلوائیں، حکومت کا بڑا اع",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 381,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-24",
-   "junk": [],
-   "srcAttribution": true
-  },
   {
    "dir": "news",
    "file": "100-best-buy-gift-cards-will-be-60-at-stores-saturday.mdx",
@@ -277,55 +100,6 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "107.mdx",
-   "slug": "107",
-   "title": "خام تیل کی قیمت 107 ڈالرز سے تجاوز کر گئی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 344,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "11-50.mdx",
-   "slug": "11-50",
-   "title": "دفاعِ پاکستان لائیو پینٹنگ مقابلہ: فائنل 11 ستمبر کو ہوگا",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 377,
-   "language": "ur",
-   "category": "education",
-   "date": "2026-09-08",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "11.mdx",
-   "slug": "11",
-   "title": "فوجی اڈّے میں طالبان اہلکاروں کے کھانے میں زہر ملا دیا گیا؛ ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 273,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
    "junk": [],
    "srcAttribution": true
   },
@@ -363,88 +137,6 @@
   },
   {
    "dir": "news",
-   "file": "12.mdx",
-   "slug": "12",
-   "title": "ڈیموکریٹس کو ٹرمپ کی ریپبلکنز پارٹی پر 12 پوائنٹس کی برتری ح",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 485,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-30",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "120.mdx",
-   "slug": "120",
-   "title": "لانگ مارچ، دھرنوں سے ملکی معیشت کو یومیہ 120 ارب روپے کا نقص",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 407,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-20",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "125.mdx",
-   "slug": "125",
-   "title": "میٹا کے مالک اور انکی اہلیہ کا 125 ملین ڈالر سے چلنے والا فل",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 855,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "13.mdx",
-   "slug": "13",
-   "title": "ڈنمارک: 13 ویں صدی کی قدیم خانقاہ کے محفوظ آثار دریافت",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 239,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "130.mdx",
-   "slug": "130",
-   "title": "آبنائے ہرمز سے 130 ملین بیرل تیل کی نقل و حمل کا دعویٰ مذاق ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 371,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "14-infants-killed-in-fire-at-pims-gynae-ward-in-islamabad.mdx",
    "slug": "14-infants-killed-in-fire-at-pims-gynae-ward-in-islamabad",
    "title": "14 Infants Killed in Fire at PIMS Hospital Islamabad",
@@ -456,39 +148,6 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-26",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "14.mdx",
-   "slug": "14",
-   "title": "’ہمسایہ ملک میں 14 سال کا لڑکا کھیل رہا ہے، ہمارے ہاں ٹیلنٹ ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 451,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-11",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "144.mdx",
-   "slug": "144",
-   "title": "پنجاب بھر میں دفعہ 144 نافذ کر دی گئی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 344,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-23",
    "junk": [],
    "srcAttribution": true
   },
@@ -510,38 +169,6 @@
   },
   {
    "dir": "news",
-   "file": "15.mdx",
-   "slug": "15",
-   "title": "خنجراب پاس کے ذریعے چین سے درآمدات پر ریکارڈ 15 ارب روپے سرم",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/khunjerab-pass-records-15-billion-pak-china-trade.mdx"
-   ],
-   "words": 369,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "16-18.mdx",
-   "slug": "16-18",
-   "title": "16 سے 18 سال کے نوجوان جووینائل ڈرائیونگ پرمٹ کیسے حاصل کریں",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 267,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-19",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "16-member-nipa-delegation-gets-firsthand-insight-into-senate-s-legislative-overs.mdx",
    "slug": "16-member-nipa-delegation-gets-firsthand-insight-into-senate-s-legislative-overs",
    "title": "16-member NIPA delegation gets firsthand insight into Senate",
@@ -553,54 +180,6 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-08-28",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "16.mdx",
-   "slug": "16",
-   "title": "کراچی: شاہ لطیف ٹاؤن میں ڈکیتی مزاحمت پر 16 سالہ نوجوان قتل",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 453,
-   "language": "ur",
-   "category": "mobiles",
-   "date": "2026-08-31",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "168-47.mdx",
-   "slug": "168-47",
-   "title": "این اے 168 بہاولپور ضمنی انتخاب کا فارم 47 جاری",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 443,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-28",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "168.mdx",
-   "slug": "168",
-   "title": "این اے 168 میں ضمنی انتخاب، پولنگ شروع",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 314,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -622,230 +201,17 @@
   },
   {
    "dir": "news",
-   "file": "18.mdx",
-   "slug": "18",
-   "title": "آئی فون 18 پرو کے بگ پر ایپل کی نایاب تصدیق، اپ ڈیٹ جلد متوق",
-   "decision": "UPDATE",
+   "file": "2-civilians-martyred-in-firing-by-indian-forces-near-kasur-border-state-media.mdx",
+   "slug": "2-civilians-martyred-in-firing-by-indian-forces-near-kasur-border-state-media",
+   "title": "2 civilians martyred in firing by Indian forces near Kasur b",
+   "decision": "KEEP",
    "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
+    "OK"
    ],
-   "words": 458,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-26",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "180.mdx",
-   "slug": "180",
-   "title": "پی ٹی اے کا بڑا فیصلہ، پری پیڈ موبائل بیلنس کی کم از کم میعا",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 221,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-27",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "19-177.mdx",
-   "slug": "19-177",
-   "title": "پاکستان انڈر 19 نے انگلینڈ کو 177 رنز سے شکست دیدی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 241,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-10",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "19.mdx",
-   "slug": "19",
-   "title": "دبئی میں بیوٹی مصنوعات کی عالمی نمائش میں 19 پاکستانی کمپنیا",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 306,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2-1.mdx",
-   "slug": "2-1",
-   "title": "’’امریکیوں پر ہر 2 منٹ میں تقریباً 1 ملین ڈالر کا اضافی بوجھ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 345,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-08",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2-52.mdx",
-   "slug": "2-52",
-   "title": "تیسرا ٹیسٹ میچ: انگلینڈ کیخلاف پاکستان نے دوسری اننگز میں 2 ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 391,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-10",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2-6-8.mdx",
-   "slug": "2-6-8",
-   "title": "فتنہ الخوارج سے فائرنگ کا تبادلہ، پاک فوج کے 2 افسران سمیت 6",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 261,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2.mdx",
-   "slug": "2",
-   "title": "اے ٹی ایم سے ایک ہزار کی ٹرانزیکشن پر 2 ہزار نکلنے لگے",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/egypt-atm-glitch-doubles-cash-withdrawals.mdx"
-   ],
-   "words": 368,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [
-    "ARY-SOCIAL",
-    "URDU-THREADS-PLUG",
-    "URDU-FOLLOW-PLUG"
-   ],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "20-6.mdx",
-   "slug": "20-6",
-   "title": "لاہور: آذربائیجان کی 20 سالہ خاتون سے مبینہ زیادتی، مرکزی مل",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 341,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "20.mdx",
-   "slug": "20",
-   "title": "بیلجیئم میں خطرے کی گھنٹی بج گئی، مارکیٹ سے 20 لاکھ انڈے واپ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 547,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2026.mdx",
-   "slug": "2026",
-   "title": "کراچی میں پاک بحریہ کی اہم مشق ’سی اسپارک 2026‘ کا آغاز",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 411,
-   "language": "ur",
-   "category": "emerging-tech",
-   "date": "2026-09-02",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2027.mdx",
-   "slug": "2027",
-   "title": "خلیجی ملک میں حج رجسٹریشن 2027 کا آغاز",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 330,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-20",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "2029.mdx",
-   "slug": "2029",
-   "title": "جنگ جنوری 2029 تک جاری رہ سکتی ہے، امریکی سفیر",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 443,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "203.mdx",
-   "slug": "203",
-   "title": "پنجاب اسمبلی کے حلقہ پی پی 203 ساہیوال میں پولنگ کا شیڈول جا",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 251,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-23",
+   "words": 202,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -883,38 +249,6 @@
   },
   {
    "dir": "news",
-   "file": "22.mdx",
-   "slug": "22",
-   "title": "اسلام آباد کے سرکاری تعلیمی ادارے 22 ستمبر سے بند کرنے کا فی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 927,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "220.mdx",
-   "slug": "220",
-   "title": "کویت میں پولیس کا بڑا کریک ڈاؤن، 220 گرفتار",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 239,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "24-7-helpline-launched-to-prevent-diabetic-foot-amputations.mdx",
    "slug": "24-7-helpline-launched-to-prevent-diabetic-foot-amputations",
    "title": "24/7 helpline launched to prevent diabetic foot amputations",
@@ -927,22 +261,6 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-08-30",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "24.mdx",
-   "slug": "24",
-   "title": "24سال سے قید بچوں نے پہلی بار سورج کی روشنی دیکھی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 790,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-19",
    "junk": [],
    "srcAttribution": true
   },
@@ -964,54 +282,6 @@
   },
   {
    "dir": "news",
-   "file": "27-20.mdx",
-   "slug": "27-20",
-   "title": "’27 ستمبر کو ہم نظام گرانے آ رہے ہیں، 20 لاکھ لوگ ہوں گے تو ",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/kp-advisor-announces-september-27-march.mdx"
-   ],
-   "words": 418,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "27.mdx",
-   "slug": "27",
-   "title": "27 اگست سے مون سون بارشوں کے نئے سلسلے کی پیش گوئی، الرٹ جار",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/monsoon-new-wave-predicted-from-august-27.mdx"
-   ],
-   "words": 393,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "29.mdx",
-   "slug": "29",
-   "title": "صدر ٹرمپ کی مقبولیت کی شرح پہلی بار 29 فی صد رہ گئی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 384,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-22",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "2nd-mid-career-management-course-for-kp-technical-deptts-launched-at-uet-peshawa.mdx",
    "slug": "2nd-mid-career-management-course-for-kp-technical-deptts-launched-at-uet-peshawa",
    "title": "2nd Mid-Career Management Course for KP technical deptts lau",
@@ -1023,70 +293,6 @@
    "language": "ur",
    "category": "education",
    "date": "2026-09-07",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "3-0.mdx",
-   "slug": "3-0",
-   "title": "ایشین گیمز میں پاکستان ہاکی ٹیم نے چین کو 3-0 سے شکست دے دی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 298,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-24",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "3-150.mdx",
-   "slug": "3-150",
-   "title": "لاہور ایکسپو سینٹر میں 3 عالمی نمائشیں: $150M کاروبار متوقع",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 431,
-   "language": "ur",
-   "category": "business",
-   "date": "2026-09-11",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "3-2.mdx",
-   "slug": "3-2",
-   "title": "پاکستان میں 3 سالوں میں اہم شخصیات سمیت سوا 2 لاکھ شہری سائب",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 433,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-12",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "3-81.mdx",
-   "slug": "3-81",
-   "title": "لارڈز ٹیسٹ: انگلینڈ کی 261 رنز کی برتری، پاکستان مشکلات کا ش",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 490,
-   "language": "ur",
-   "category": "sports",
-   "date": "2026-08-28",
    "junk": [],
    "srcAttribution": true
   },
@@ -1140,22 +346,6 @@
   },
   {
    "dir": "news",
-   "file": "3.mdx",
-   "slug": "3",
-   "title": "بالی ووڈ کے 3 مشہور اداکاروں کے گرد گھیرا تنگ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 506,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-26",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "300m-spent-bottom-of-the-table-but-spurs-boss-de-zerbi-not-angry.mdx",
    "slug": "300m-spent-bottom-of-the-table-but-spurs-boss-de-zerbi-not-angry",
    "title": "De Zerbi Calm as Spurs Fall to Premier League Bottom",
@@ -1167,22 +357,6 @@
    "language": "en",
    "category": "sports",
    "date": "2026-08-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "31.mdx",
-   "slug": "31",
-   "title": "آزاد کشمیر قانون ساز اسمبلی میں مسلم لیگ ن کو31 نشستوں کے سا",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/pml-n-wins-31-seats-in-ajk-assembly-elections.mdx"
-   ],
-   "words": 396,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-24",
    "junk": [],
    "srcAttribution": true
   },
@@ -1204,49 +378,17 @@
   },
   {
    "dir": "news",
-   "file": "35-40.mdx",
-   "slug": "35-40",
-   "title": "حافظ نعیم نے پٹرولیم لیوی 35 سے 40 روپے کم کرنے کا مطالبہ نہ",
+   "file": "4-pakistani-crew-members-from-hijacked-oil-tanker-to-arrive-in-karachi-tomorrow-.mdx",
+   "slug": "4-pakistani-crew-members-from-hijacked-oil-tanker-to-arrive-in-karachi-tomorrow-",
+   "title": "4 Pakistani crew members from hijacked oil tanker to arrive ",
    "decision": "UPDATE",
    "reasons": [
-    "NUMERIC-SLUG"
+    "THIN-BODY"
    ],
-   "words": 337,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "36-3.mdx",
-   "slug": "36-3",
-   "title": "36 گھنٹے گزر گئے: سرکاری اسپتال سے لاپتا 3 سالہ عائشہ کو پول",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 455,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-21",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "362.mdx",
-   "slug": "362",
-   "title": "نیپال میں سیلاب سے مرنے والوں کی تعداد 362 ہوگئی، سیکڑوں افر",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 282,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-27",
+   "words": 197,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -1268,71 +410,6 @@
   },
   {
    "dir": "news",
-   "file": "4.mdx",
-   "slug": "4",
-   "title": "کولوراڈو میں امریکی فوج کا بلیک ہاک ہیلی کاپٹر تباہ، 4 افراد",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 381,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "40.mdx",
-   "slug": "40",
-   "title": "اربوں روپے کی لاگت سے بنی سڑک صرف 40 دن میں ہی دھنس گئی",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/expressway-built-for-billions-collapses-in-40-days.mdx"
-   ],
-   "words": 457,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "400-6.mdx",
-   "slug": "400-6",
-   "title": "آبنائے ہرمز میں 400 جہاز اور 6 ہزار ملاح پھنسے ہیں، اقوام مت",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 252,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "400.mdx",
-   "slug": "400",
-   "title": "الیکٹرک گاڑی چیری کیو متعارف، ایک چارج میں 400 کلومیٹر تک سف",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 507,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-07",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "40pc-of-pakistan-s-children-are-stunted-what-does-it-cost-the-country-s-economy.mdx",
    "slug": "40pc-of-pakistan-s-children-are-stunted-what-does-it-cost-the-country-s-economy",
    "title": "40pc of Pakistan's children are stunted. What does it cost t",
@@ -1344,38 +421,6 @@
    "language": "en",
    "category": "business",
    "date": "2026-08-29",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "449-130.mdx",
-   "slug": "449-130",
-   "title": "برمنگھم ٹیسٹ: پاکستان نے انگلینڈ کو 130 رنز کا ہدف دے دیا",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 429,
-   "language": "ur",
-   "category": "sports",
-   "date": "2026-09-11",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "45.mdx",
-   "slug": "45",
-   "title": "حکومت نے 45 بلٹ پروف گاڑیوں کی خریداری پر وضاحت جاری کردی",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 322,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-30",
    "junk": [],
    "srcAttribution": true
   },
@@ -1429,23 +474,6 @@
   },
   {
    "dir": "news",
-   "file": "5.mdx",
-   "slug": "5",
-   "title": "بلوچستان: سرانان میں دہشتگردوں کی فائرنگ سے 5 غیرمقامی مزدور",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 392,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "50-000-pakistanis-600-students-growing-trade-portugal-envoy-outlines-roadmap-for.mdx",
    "slug": "50-000-pakistanis-600-students-growing-trade-portugal-envoy-outlines-roadmap-for",
    "title": "50,000 Pakistanis, 600 students & growing trade: Portugal En",
@@ -1457,56 +485,6 @@
    "language": "ur",
    "category": "business",
    "date": "2026-09-19",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "50.mdx",
-   "slug": "50",
-   "title": "ٹرمپ کا کینیڈا پر جوابی وار، مصنوعات پر ٹیرف بڑھا کر 50 فیصد",
-   "decision": "REMOVE",
-   "reasons": [
-    "DUPLICATE-TITLE-OF:news/trump-announces-50-percent-tariffs-on-canada.mdx"
-   ],
-   "words": 296,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-24",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "52.mdx",
-   "slug": "52",
-   "title": "وزیراعظم اپنا گھر ہاؤسنگ اسکیم کے درخواست گزاروں کی تعداد می",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 597,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "56.mdx",
-   "slug": "56",
-   "title": "بھارت؛ اترپردیش میں شدید بارش، 56 افراد ہلاک",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 401,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -1528,22 +506,6 @@
   },
   {
    "dir": "news",
-   "file": "6-8.mdx",
-   "slug": "6-8",
-   "title": "ہنگو میں قافلے پر حملے میں کیپٹن اور لیفٹیننٹ سمیت 6 جوان شہ",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 315,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-20",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "6-days-left-to-save-up-to-200-to-techcrunch-disrupt-2026.mdx",
    "slug": "6-days-left-to-save-up-to-200-to-techcrunch-disrupt-2026",
    "title": "6 days left to save up to $200 to TechCrunch Disrupt 2026",
@@ -1555,38 +517,6 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-09-20",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "6.mdx",
-   "slug": "6",
-   "title": "سعودی عرب: ملازمین سے یہ کام کروانے پر 6 ماہ قید، ایک لاکھ ر",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 291,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-08",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "60.mdx",
-   "slug": "60",
-   "title": "دبئی کسٹمز ڈیوٹی کی معطلی میں 60 دن کی توسیع",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 324,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-24",
    "junk": [],
    "srcAttribution": true
   },
@@ -1609,17 +539,17 @@
   },
   {
    "dir": "news",
-   "file": "7.mdx",
-   "slug": "7",
-   "title": "ملتان ایئرپورٹ: غیر قانونی سفر پر 7 ڈی پورٹ مسافر گرفتار",
+   "file": "7-terrorists-eliminated-in-kp-s-north-waziristan-ibo-state-media.mdx",
+   "slug": "7-terrorists-eliminated-in-kp-s-north-waziristan-ibo-state-media",
+   "title": "7 terrorists eliminated in KP’s North Waziristan IBO: state ",
    "decision": "UPDATE",
    "reasons": [
-    "NUMERIC-SLUG"
+    "THIN-BODY"
    ],
-   "words": 478,
-   "language": "ur",
-   "category": "business",
-   "date": "2026-09-12",
+   "words": 186,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -1641,23 +571,6 @@
   },
   {
    "dir": "news",
-   "file": "8.mdx",
-   "slug": "8",
-   "title": "بیہودہ رقص، نازیبا اشارے؛ پنجاب میں 8 اسٹیج اداکاراؤں پر ایک",
-   "decision": "UPDATE",
-   "reasons": [
-    "NO-DESCRIPTION",
-    "NUMERIC-SLUG"
-   ],
-   "words": 298,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-08-25",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "81-000-warning-letters-sent-to-crypto-holders-in-hmrc-tax-crackdown.mdx",
    "slug": "81-000-warning-letters-sent-to-crypto-holders-in-hmrc-tax-crackdown",
    "title": "81,000 warning letters sent to crypto holders in HMRC tax crackdown",
@@ -1674,12 +587,12 @@
   },
   {
    "dir": "news",
-   "file": "81.mdx",
-   "slug": "81",
+   "file": "81-year-old-husband-video-wife-treatment.mdx",
+   "slug": "81-year-old-husband-video-wife-treatment",
    "title": "اہلیہ کے علاج کیلیے مسلسل جدوجہد، 81 سالہ شوہر کی ویڈیو نے س",
-   "decision": "UPDATE",
+   "decision": "KEEP",
    "reasons": [
-    "NUMERIC-SLUG"
+    "OK"
    ],
    "words": 586,
    "language": "ur",
@@ -1706,22 +619,6 @@
   },
   {
    "dir": "news",
-   "file": "9.mdx",
-   "slug": "9",
-   "title": "مسلح افواج کے 9 افسران کی سول سروس میں شمولیت منظور",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 337,
-   "language": "ur",
-   "category": "education",
-   "date": "2026-08-26",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
    "file": "97-year-old-woman-rescued-after-nepali-floods-looked-like-a-warrior.mdx",
    "slug": "97-year-old-woman-rescued-after-nepali-floods-looked-like-a-warrior",
    "title": "97-Year-Old Woman Rescued After Devastating Nepal Floods",
@@ -1733,22 +630,6 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-28",
-   "junk": [],
-   "srcAttribution": true
-  },
-  {
-   "dir": "news",
-   "file": "99.mdx",
-   "slug": "99",
-   "title": "حکومت نے پیٹرولیم لیوی کی مد میں ہدف سے 99 ارب زیادہ وصول کر",
-   "decision": "UPDATE",
-   "reasons": [
-    "NUMERIC-SLUG"
-   ],
-   "words": 340,
-   "language": "ur",
-   "category": "tech-news",
-   "date": "2026-09-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -2071,6 +952,22 @@
    "language": "ur",
    "category": "ai",
    "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "abhishek-tilak-and-spinners-secure-gold-for-india-at-asian-games-again.mdx",
+   "slug": "abhishek-tilak-and-spinners-secure-gold-for-india-at-asian-games-again",
+   "title": "Abhishek, Tilak and spinners secure gold for India at Asian ",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 72,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
    "junk": [],
    "srcAttribution": true
   },
@@ -2835,6 +1732,22 @@
   },
   {
    "dir": "news",
+   "file": "americans-1-million-extra-burden-every-two-minutes.mdx",
+   "slug": "americans-1-million-extra-burden-every-two-minutes",
+   "title": "’’امریکیوں پر ہر 2 منٹ میں تقریباً 1 ملین ڈالر کا اضافی بوجھ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 345,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-08",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "amid-distrust-tehran-wants-us-to-initiate-de-escalation.mdx",
    "slug": "amid-distrust-tehran-wants-us-to-initiate-de-escalation",
    "title": "Amid distrust, Tehran wants US to initiate de-escalation",
@@ -3219,6 +2132,22 @@
   },
   {
    "dir": "news",
+   "file": "apple-confirms-iphone-18-pro-bug-update-soon.mdx",
+   "slug": "apple-confirms-iphone-18-pro-bug-update-soon",
+   "title": "آئی فون 18 پرو کے بگ پر ایپل کی نایاب تصدیق، اپ ڈیٹ جلد متوق",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 458,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "apple-debuts-passport-shaped-foldable-phone-called-duo.mdx",
    "slug": "apple-debuts-passport-shaped-foldable-phone-called-duo",
    "title": "Apple debuts passport-shaped foldable phone, called Duo",
@@ -3455,6 +2384,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-08-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "army-s-top-brass-warns-of-decisive-force-against-any-may-9-like-situation.mdx",
+   "slug": "army-s-top-brass-warns-of-decisive-force-against-any-may-9-like-situation",
+   "title": "Army's top brass warns of 'decisive force' against any 'May ",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 174,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -3699,6 +2644,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-09-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "asian-games-pakistan-hockey-beat-china-3-0.mdx",
+   "slug": "asian-games-pakistan-hockey-beat-china-3-0",
+   "title": "ایشین گیمز میں پاکستان ہاکی ٹیم نے چین کو 3-0 سے شکست دے دی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 298,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-24",
    "junk": [],
    "srcAttribution": true
   },
@@ -4284,6 +3245,22 @@
   },
   {
    "dir": "news",
+   "file": "balochistan-5-workers-killed-in-terrorist-firing.mdx",
+   "slug": "balochistan-5-workers-killed-in-terrorist-firing",
+   "title": "بلوچستان: سرانان میں دہشتگردوں کی فائرنگ سے 5 غیرمقامی مزدور",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 392,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "balochistan-education-minister-distributes-books-to-college-libraries.mdx",
    "slug": "balochistan-education-minister-distributes-books-to-college-libraries",
    "title": "Balochistan Education Minister distributes books to college ",
@@ -4592,6 +3569,22 @@
   },
   {
    "dir": "news",
+   "file": "belgium-20-lakh-eggs-recalled.mdx",
+   "slug": "belgium-20-lakh-eggs-recalled",
+   "title": "بیلجیئم میں خطرے کی گھنٹی بج گئی، مارکیٹ سے 20 لاکھ انڈے واپ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 547,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "bellamy-wants-more-from-wales-after-loss-to-portugal.mdx",
    "slug": "bellamy-wants-more-from-wales-after-loss-to-portugal",
    "title": "Craig Bellamy Demands More After Wales Defeat to Portugal",
@@ -4651,6 +3644,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "birmingham-test-pakistan-set-england-130-target.mdx",
+   "slug": "birmingham-test-pakistan-set-england-130-target",
+   "title": "برمنگھم ٹیسٹ: پاکستان نے انگلینڈ کو 130 رنز کا ہدف دے دیا",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 429,
+   "language": "ur",
+   "category": "sports",
+   "date": "2026-09-11",
    "junk": [],
    "srcAttribution": true
   },
@@ -4795,6 +3804,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "bollywood-3-famous-actors-under-scrutiny.mdx",
+   "slug": "bollywood-3-famous-actors-under-scrutiny",
+   "title": "بالی ووڈ کے 3 مشہور اداکاروں کے گرد گھیرا تنگ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 506,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-26",
    "junk": [],
    "srcAttribution": true
   },
@@ -5284,6 +4309,22 @@
   },
   {
    "dir": "news",
+   "file": "can-west-indies-quell-india-s-batting-might-in-new-chandigarh-s-odi-debut.mdx",
+   "slug": "can-west-indies-quell-india-s-batting-might-in-new-chandigarh-s-odi-debut",
+   "title": "Can West Indies quell India's batting might in New Chandigar",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 85,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "can-you-eat-ultra-processed-foods-and-still-be-healthy-a-dietitian-analysed-my-w.mdx",
    "slug": "can-you-eat-ultra-processed-foods-and-still-be-healthy-a-dietitian-analysed-my-w",
    "title": "Can you eat ultra-processed foods and still be healthy? A di",
@@ -5653,6 +4694,22 @@
   },
   {
    "dir": "news",
+   "file": "chashma-nuclear-plant-unit-1-paec-record.mdx",
+   "slug": "chashma-nuclear-plant-unit-1-paec-record",
+   "title": "نیوکلیئر پاور پلانٹ چشمہ یونٹ-1 نے اٹامک انرجی کمیشن کا نیا ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 515,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "cherki-genius-and-wharton-excels-palace-v-man-city-player-ratings.mdx",
    "slug": "cherki-genius-and-wharton-excels-palace-v-man-city-player-ratings",
    "title": "Palace vs Man City Ratings: Cherki & Wharton Shine",
@@ -5664,6 +4721,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-08-28",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "chery-ev-launched-400-km-range.mdx",
+   "slug": "chery-ev-launched-400-km-range",
+   "title": "الیکٹرک گاڑی چیری کیو متعارف، ایک چارج میں 400 کلومیٹر تک سف",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 507,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-07",
    "junk": [],
    "srcAttribution": true
   },
@@ -5712,6 +4785,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-11",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "children-imprisoned-24-years-see-sunlight-first-time.mdx",
+   "slug": "children-imprisoned-24-years-see-sunlight-first-time",
+   "title": "24سال سے قید بچوں نے پہلی بار سورج کی روشنی دیکھی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 790,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-19",
    "junk": [],
    "srcAttribution": true
   },
@@ -6019,6 +5108,22 @@
    "language": "en",
    "category": "cybersecurity",
    "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "circuit-breaker-labs-hopes-to-make-ai-safer-for-your-kids-and-you.mdx",
+   "slug": "circuit-breaker-labs-hopes-to-make-ai-safer-for-your-kids-and-you",
+   "title": "Circuit Breaker Labs Builds AI Safety Testing Platform",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 334,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -6586,6 +5691,22 @@
   },
   {
    "dir": "news",
+   "file": "consumer-inflation-eases-to-10-3pc-in-september-from-11-1pc-in-august-official-d.mdx",
+   "slug": "consumer-inflation-eases-to-10-3pc-in-september-from-11-1pc-in-august-official-d",
+   "title": "Pakistan Consumer Inflation Drops to 10.3% in September",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 340,
+   "language": "en",
+   "category": "business",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "container-city.mdx",
    "slug": "container-city",
    "title": "Container city",
@@ -6743,6 +5864,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "crude-oil-price-crosses-107-dollars.mdx",
+   "slug": "crude-oil-price-crosses-107-dollars",
+   "title": "خام تیل کی قیمت 107 ڈالرز سے تجاوز کر گئی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 344,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-29",
    "junk": [],
    "srcAttribution": true
   },
@@ -6920,6 +6057,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-19",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "dark-cloud-hangs-over-cornell-campus-as-anger-at-frat-rape-investigation-grows.mdx",
+   "slug": "dark-cloud-hangs-over-cornell-campus-as-anger-at-frat-rape-investigation-grows",
+   "title": "'Dark cloud' hangs over Cornell campus as anger at frat rape",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 1293,
+   "language": "en",
+   "category": "cloud",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -7183,6 +6336,22 @@
   },
   {
    "dir": "news",
+   "file": "defence-pakistan-painting-competition-final-september-11.mdx",
+   "slug": "defence-pakistan-painting-competition-final-september-11",
+   "title": "دفاعِ پاکستان لائیو پینٹنگ مقابلہ: فائنل 11 ستمبر کو ہوگا",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 377,
+   "language": "ur",
+   "category": "education",
+   "date": "2026-09-08",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "defense-martyrs-day-observed-at-pakistan-embassy-kabul.mdx",
    "slug": "defense-martyrs-day-observed-at-pakistan-embassy-kabul",
    "title": "Defense, Martyrs Day observed at Pakistan Embassy Kabul",
@@ -7210,6 +6379,38 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-09-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "democrats-12-point-lead-over-republicans.mdx",
+   "slug": "democrats-12-point-lead-over-republicans",
+   "title": "ڈیموکریٹس کو ٹرمپ کی ریپبلکنز پارٹی پر 12 پوائنٹس کی برتری ح",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 485,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-30",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "denmark-13th-century-monastery-discovered.mdx",
+   "slug": "denmark-13th-century-monastery-discovered",
+   "title": "ڈنمارک: 13 ویں صدی کی قدیم خانقاہ کے محفوظ آثار دریافت",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 239,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
    "junk": [],
    "srcAttribution": true
   },
@@ -7953,6 +7154,38 @@
   },
   {
    "dir": "news",
+   "file": "dubai-beauty-products-expo-19-pakistani-companies.mdx",
+   "slug": "dubai-beauty-products-expo-19-pakistani-companies",
+   "title": "دبئی میں بیوٹی مصنوعات کی عالمی نمائش میں 19 پاکستانی کمپنیا",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 306,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "dubai-customs-duty-suspension-extended-60-days.mdx",
+   "slug": "dubai-customs-duty-suspension-extended-60-days",
+   "title": "دبئی کسٹمز ڈیوٹی کی معطلی میں 60 دن کی توسیع",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 324,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "dubai-customs-reinforces-city-s-position-as-key-global-trade-gateway-with-trade-.mdx",
    "slug": "dubai-customs-reinforces-city-s-position-as-key-global-trade-gateway-with-trade-",
    "title": "Dubai Customs reinforces city’s position as key global trade",
@@ -8067,6 +7300,22 @@
   },
   {
    "dir": "news",
+   "file": "ecp-proposes-holding-punjab-local-govt-elections-on-dec-14.mdx",
+   "slug": "ecp-proposes-holding-punjab-local-govt-elections-on-dec-14",
+   "title": "ECP proposes holding Punjab local govt elections on Dec 14",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 175,
+   "language": "en",
+   "category": "tech-news",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "ecp-reserves-verdict-on-maintainability-of-awaam-pakistan-s-appeal-against-its-d.mdx",
    "slug": "ecp-reserves-verdict-on-maintainability-of-awaam-pakistan-s-appeal-against-its-d",
    "title": "ECP reserves verdict on maintainability of Awaam Pakistan’s ",
@@ -8166,9 +7415,9 @@
    "file": "egypt-atm-glitch-doubles-cash-withdrawals.mdx",
    "slug": "egypt-atm-glitch-doubles-cash-withdrawals",
    "title": "اے ٹی ایم سے ایک ہزار کی ٹرانزیکشن پر 2 ہزار نکلنے لگے",
-   "decision": "KEEP",
+   "decision": "UPDATE",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "JUNK-BODY-LINES:ARY-SOCIAL|URDU-THREADS-PLUG|URDU-FOLLOW-PLUG"
    ],
    "words": 368,
    "language": "ur",
@@ -8442,6 +7691,22 @@
   },
   {
    "dir": "news",
+   "file": "england-call-up-crane-and-rest-archer-for-pakistan-series.mdx",
+   "slug": "england-call-up-crane-and-rest-archer-for-pakistan-series",
+   "title": "England Call Up Mason Crane for Pakistan Tri-Series Squad",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 372,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "england-captain-joe-root-shrugs-off-concerns-over-lbw-run-after-pakistan-test-se.mdx",
    "slug": "england-captain-joe-root-shrugs-off-concerns-over-lbw-run-after-pakistan-test-se",
    "title": "Joe Root Dismisses LBW Concerns After Pakistan Test Win",
@@ -8650,6 +7915,22 @@
   },
   {
    "dir": "news",
+   "file": "england-set-for-return-to-zimbabwe-as-2027-world-cup-draw-confirmed.mdx",
+   "slug": "england-set-for-return-to-zimbabwe-as-2027-world-cup-draw-confirmed",
+   "title": "England set for return to Zimbabwe as 2027 World Cup draw co",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 76,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": false
+  },
+  {
+   "dir": "news",
    "file": "england-survive-scare-to-seal-3-0-sweep-against-pakistan.mdx",
    "slug": "england-survive-scare-to-seal-3-0-sweep-against-pakistan",
    "title": "England survive scare to seal 3-0 sweep against Pakistan",
@@ -8661,6 +7942,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-12",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "england-test-pakistan-second-innings-score.mdx",
+   "slug": "england-test-pakistan-second-innings-score",
+   "title": "تیسرا ٹیسٹ میچ: انگلینڈ کیخلاف پاکستان نے دوسری اننگز میں 2 ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 391,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-10",
    "junk": [],
    "srcAttribution": true
   },
@@ -9107,7 +8404,7 @@
    "title": "اربوں روپے کی لاگت سے بنی سڑک صرف 40 دن میں ہی دھنس گئی",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 457,
    "language": "ur",
@@ -9257,6 +8554,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-22",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "fatima-sana-joins-perth-scorchers-for-wbbl-2026-27.mdx",
+   "slug": "fatima-sana-joins-perth-scorchers-for-wbbl-2026-27",
+   "title": "Fatima Sana joins Perth Scorchers for WBBL 2026-27",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 125,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
    "junk": [],
    "srcAttribution": true
   },
@@ -10537,6 +9850,22 @@
   },
   {
    "dir": "news",
+   "file": "google-releases-gemini-4-argon-called-its-most-powerful-model-yet.mdx",
+   "slug": "google-releases-gemini-4-argon-called-its-most-powerful-model-yet",
+   "title": "Google Unveils Gemini 4 Argon: AI Model for Cybersecurity",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 378,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-09-30",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "google-s-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more.mdx",
    "slug": "google-s-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more",
    "title": "Google’s AI Mode can now track flight prices, help book hote",
@@ -10601,6 +9930,22 @@
   },
   {
    "dir": "news",
+   "file": "google-thinks-spacex-s-starship-has-to-launch-1-800-times-before-space-data-cent.mdx",
+   "slug": "google-thinks-spacex-s-starship-has-to-launch-1-800-times-before-space-data-cent",
+   "title": "Google thinks SpaceX’s Starship has to launch 1,800 times be",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 1053,
+   "language": "en",
+   "category": "tech-news",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "gorilla-grodd-and-jimmy-olsen-show-gets-official-title-and-cast-list-as-dc-promi.mdx",
    "slug": "gorilla-grodd-and-jimmy-olsen-show-gets-official-title-and-cast-list-as-dc-promi",
    "title": "Gorilla Grodd and Jimmy Olsen Show Gets Official Title and Cast List as DC Promises True Crime Documentary With a Comedic Spin",
@@ -10612,6 +9957,22 @@
    "language": "en",
    "category": "gaming",
    "date": "2026-08-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "government-45-bulletproof-vehicles-clarification.mdx",
+   "slug": "government-45-bulletproof-vehicles-clarification",
+   "title": "حکومت نے 45 بلٹ پروف گاڑیوں کی خریداری پر وضاحت جاری کردی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 322,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-30",
    "junk": [],
    "srcAttribution": true
   },
@@ -11052,6 +10413,22 @@
   },
   {
    "dir": "news",
+   "file": "govts-should-be-allowed-to-complete-their-terms-cm-maryam.mdx",
+   "slug": "govts-should-be-allowed-to-complete-their-terms-cm-maryam",
+   "title": "Govts should be allowed to complete their terms: CM Maryam",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 163,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "guardians-of-arabian-sea-pakistan-navy-decisive-operations-thwarted-enemy-design.mdx",
    "slug": "guardians-of-arabian-sea-pakistan-navy-decisive-operations-thwarted-enemy-design",
    "title": "Guardians of Arabian sea: Pakistan Navy decisive operations ",
@@ -11213,6 +10590,22 @@
   },
   {
    "dir": "news",
+   "file": "hajj-registration-2027-begins.mdx",
+   "slug": "hajj-registration-2027-begins",
+   "title": "خلیجی ملک میں حج رجسٹریشن 2027 کا آغاز",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 330,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-20",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "hamas-leader-says-israel-to-campaign-off-gaza-s-blood-in-election.mdx",
    "slug": "hamas-leader-says-israel-to-campaign-off-gaza-s-blood-in-election",
    "title": "Hamas leader says Israel to campaign off Gaza's 'blood' in e",
@@ -11240,6 +10633,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-08-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "hangu-convoy-attack-6-soldiers-martyred.mdx",
+   "slug": "hangu-convoy-attack-6-soldiers-martyred",
+   "title": "ہنگو میں قافلے پر حملے میں کیپٹن اور لیفٹیننٹ سمیت 6 جوان شہ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 315,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-20",
    "junk": [],
    "srcAttribution": true
   },
@@ -11645,6 +11054,22 @@
   },
   {
    "dir": "news",
+   "file": "homemade-bombs-part-of-alleged-plot-on-manchester-s-jewish-community-court-told.mdx",
+   "slug": "homemade-bombs-part-of-alleged-plot-on-manchester-s-jewish-community-court-told",
+   "title": "Homemade bombs part of alleged plot on Manchester's Jewish c",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 721,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": false
+  },
+  {
+   "dir": "news",
    "file": "honor-turbo-5g-silently-unveiled.mdx",
    "slug": "honor-turbo-5g-silently-unveiled",
    "title": "Honor Turbo 5G silently unveiled",
@@ -12009,6 +11434,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "hundreds-of-french-high-schools-shut-as-new-violence-erupts.mdx",
+   "slug": "hundreds-of-french-high-schools-shut-as-new-violence-erupts",
+   "title": "French High School Protests Force Over 400 Closures",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 391,
+   "language": "en",
+   "category": "education",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -12720,6 +12161,22 @@
   },
   {
    "dir": "news",
+   "file": "incredible-red-bull-upgrade-enlivens-f1-in-malaysia.mdx",
+   "slug": "incredible-red-bull-upgrade-enlivens-f1-in-malaysia",
+   "title": "'Incredible' Red Bull upgrade enlivens F1 in Malaysia",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 1096,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": false
+  },
+  {
+   "dir": "news",
    "file": "indepe-ndent-power-producers-found-overcharging-users-through-costly-coal-procur.mdx",
    "slug": "indepe-ndent-power-producers-found-overcharging-users-through-costly-coal-procur",
    "title": "Indepe­ndent power producers found overcharging users throug",
@@ -12798,6 +12255,22 @@
    "date": "2026-09-29",
    "junk": [],
    "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "india-look-to-solidify-2027-world-cup-plans-west-indies-seek-more-bowling-bite.mdx",
+   "slug": "india-look-to-solidify-2027-world-cup-plans-west-indies-seek-more-bowling-bite",
+   "title": "India look to solidify 2027 World Cup plans, West Indies see",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 67,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-09-29",
+   "junk": [],
+   "srcAttribution": false
   },
   {
    "dir": "news",
@@ -13635,6 +13108,22 @@
   },
   {
    "dir": "news",
+   "file": "islamabad-government-educational-institutions-closed-from-september-22.mdx",
+   "slug": "islamabad-government-educational-institutions-closed-from-september-22",
+   "title": "اسلام آباد کے سرکاری تعلیمی ادارے 22 ستمبر سے بند کرنے کا فی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 927,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "islamabad-high-court-judge-questions-legal-status-of-afghan-students.mdx",
    "slug": "islamabad-high-court-judge-questions-legal-status-of-afghan-students",
    "title": "Islamabad High Court judge questions legal status of Afghan ",
@@ -14102,6 +13591,22 @@
   },
   {
    "dir": "news",
+   "file": "juvenile-driving-licence-16-to-18-guide.mdx",
+   "slug": "juvenile-driving-licence-16-to-18-guide",
+   "title": "16 سے 18 سال کے نوجوان جووینائل ڈرائیونگ پرمٹ کیسے حاصل کریں",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 267,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-19",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "kadowaki-fleming-hopes-india-t20i-is-first-step-in-a-long-history-of-playing-top.mdx",
    "slug": "kadowaki-fleming-hopes-india-t20i-is-first-step-in-a-long-history-of-playing-top",
    "title": "Kadowaki-Fleming hopes India T20I is 'first step in a long h",
@@ -14113,6 +13618,38 @@
    "language": "en",
    "category": "sports",
    "date": "2026-09-11",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "kamboj-debuts-siraj-and-reddy-back-as-india-bat.mdx",
+   "slug": "kamboj-debuts-siraj-and-reddy-back-as-india-bat",
+   "title": "Kamboj debuts, Siraj and Reddy back as India bat",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 74,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "kamboj-replaces-injured-prasidh-for-final-india-vs-west-indies-odi.mdx",
+   "slug": "kamboj-replaces-injured-prasidh-for-final-india-vs-west-indies-odi",
+   "title": "Kamboj replaces injured Prasidh for final India vs West Indi",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 84,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -14166,6 +13703,22 @@
   },
   {
    "dir": "news",
+   "file": "karachi-pakistan-navy-sea-spark-2026-exercise.mdx",
+   "slug": "karachi-pakistan-navy-sea-spark-2026-exercise",
+   "title": "کراچی میں پاک بحریہ کی اہم مشق ’سی اسپارک 2026‘ کا آغاز",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 411,
+   "language": "ur",
+   "category": "emerging-tech",
+   "date": "2026-09-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "karachi-police-briefly-detain-protesting-family-members-of-pakistani-sailors-hel.mdx",
    "slug": "karachi-police-briefly-detain-protesting-family-members-of-pakistani-sailors-hel",
    "title": "Karachi police briefly detain protesting family members of P",
@@ -14209,6 +13762,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-09-19",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "karachi-shah-latif-town-teen-killed-resisting-robbery.mdx",
+   "slug": "karachi-shah-latif-town-teen-killed-resisting-robbery",
+   "title": "کراچی: شاہ لطیف ٹاؤن میں ڈکیتی مزاحمت پر 16 سالہ نوجوان قتل",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 453,
+   "language": "ur",
+   "category": "mobiles",
+   "date": "2026-08-31",
    "junk": [],
    "srcAttribution": true
   },
@@ -14429,7 +13998,7 @@
    "title": "خنجراب پاس کے ذریعے چین سے درآمدات پر ریکارڈ 15 ارب روپے سرم",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 369,
    "language": "ur",
@@ -14557,7 +14126,7 @@
    "title": "’27 ستمبر کو ہم نظام گرانے آ رہے ہیں، 20 لاکھ لوگ ہوں گے تو ",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 418,
    "language": "ur",
@@ -14746,6 +14315,22 @@
   },
   {
    "dir": "news",
+   "file": "kuwait-police-crackdown-220-arrested.mdx",
+   "slug": "kuwait-police-crackdown-220-arrested",
+   "title": "کویت میں پولیس کا بڑا کریک ڈاؤن، 220 گرفتار",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 239,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "kuwaiti-foreign-minister-discusses-regional-developments-with-omani-qatari-count.mdx",
    "slug": "kuwaiti-foreign-minister-discusses-regional-developments-with-omani-qatari-count",
    "title": "کویت، عمان اور قطر کا علاقائی سلامتی اور بحری تحفظ پر رابطہ",
@@ -14794,6 +14379,22 @@
   },
   {
    "dir": "news",
+   "file": "lahore-azerbaijani-woman-alleged-rape-main-suspect.mdx",
+   "slug": "lahore-azerbaijani-woman-alleged-rape-main-suspect",
+   "title": "لاہور: آذربائیجان کی 20 سالہ خاتون سے مبینہ زیادتی، مرکزی مل",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 341,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "lahore-court-grants-police-6-day-remand-of-two-suspects-in-azeri-woman-s-gang-ra.mdx",
    "slug": "lahore-court-grants-police-6-day-remand-of-two-suspects-in-azeri-woman-s-gang-ra",
    "title": "Lahore court grants police 6-day remand of two suspects in A",
@@ -14810,6 +14411,22 @@
   },
   {
    "dir": "news",
+   "file": "lahore-expo-centre-3-exhibitions-150m-business.mdx",
+   "slug": "lahore-expo-centre-3-exhibitions-150m-business",
+   "title": "لاہور ایکسپو سینٹر میں 3 عالمی نمائشیں: $150M کاروبار متوقع",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 431,
+   "language": "ur",
+   "category": "business",
+   "date": "2026-09-11",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "lahore-police-arrest-pti-activist-planning-another-may-9.mdx",
    "slug": "lahore-police-arrest-pti-activist-planning-another-may-9",
    "title": "Lahore police arrest PTI activist ‘planning another May 9’",
@@ -14821,6 +14438,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-28",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "lahore-ranked-as-the-most-polluted-city-in-the-world-again.mdx",
+   "slug": "lahore-ranked-as-the-most-polluted-city-in-the-world-again",
+   "title": "Lahore ranked as the most polluted city in the world, again",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 174,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -15338,6 +14971,38 @@
   },
   {
    "dir": "news",
+   "file": "long-march-sit-ins-120-billion-daily-loss.mdx",
+   "slug": "long-march-sit-ins-120-billion-daily-loss",
+   "title": "لانگ مارچ، دھرنوں سے ملکی معیشت کو یومیہ 120 ارب روپے کا نقص",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 407,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-20",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "lords-test-england-261-runs-lead-pakistan.mdx",
+   "slug": "lords-test-england-261-runs-lead-pakistan",
+   "title": "لارڈز ٹیسٹ: انگلینڈ کی 261 رنز کی برتری، پاکستان مشکلات کا ش",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 490,
+   "language": "ur",
+   "category": "sports",
+   "date": "2026-08-28",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "lovable-s-annualized-revenue-crosses-600m-as-vibe-coding-takes-off.mdx",
    "slug": "lovable-s-annualized-revenue-crosses-600m-as-vibe-coding-takes-off",
    "title": "Lovable’s annualized revenue crosses $600M as vibe coding ta",
@@ -15528,6 +15193,22 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "man-city-not-above-the-rules-says-no-10-after-backlash-to-burnham-remarks.mdx",
+   "slug": "man-city-not-above-the-rules-says-no-10-after-backlash-to-burnham-remarks",
+   "title": "Man City not 'above the rules', says No 10 after backlash to",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 1004,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -15904,6 +15585,22 @@
   },
   {
    "dir": "news",
+   "file": "matthews-118-campbelle-96-power-west-indies-to-2-1-win-over-zimbabwe.mdx",
+   "slug": "matthews-118-campbelle-96-power-west-indies-to-2-1-win-over-zimbabwe",
+   "title": "Matthews 118, Campbelle 96 power West Indies to 2-1 win over",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 63,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-09-30",
+   "junk": [],
+   "srcAttribution": false
+  },
+  {
+   "dir": "news",
    "file": "maulana-amjad-highlights-pakistan-s-key-role-on-security-diplomatic-fronts.mdx",
    "slug": "maulana-amjad-highlights-pakistan-s-key-role-on-security-diplomatic-fronts",
    "title": "Maulana Amjad highlights Pakistan’s key role on security, di",
@@ -16188,6 +15885,22 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-18",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "meta-owner-125-million-dollar-foundation.mdx",
+   "slug": "meta-owner-125-million-dollar-foundation",
+   "title": "میٹا کے مالک اور انکی اہلیہ کا 125 ملین ڈالر سے چلنے والا فل",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 855,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
    "junk": [],
    "srcAttribution": true
   },
@@ -16498,6 +16211,22 @@
   },
   {
    "dir": "news",
+   "file": "missing-3-year-old-ayesha-govt-hospital-hunt.mdx",
+   "slug": "missing-3-year-old-ayesha-govt-hospital-hunt",
+   "title": "36 گھنٹے گزر گئے: سرکاری اسپتال سے لاپتا 3 سالہ عائشہ کو پول",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 455,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "miyawaki-plantation-launched-over-four-kanals-of-land-in-peshawar-city.mdx",
    "slug": "miyawaki-plantation-launched-over-four-kanals-of-land-in-peshawar-city",
    "title": "Miyawaki plantation launched over four kanals of land in Pes",
@@ -16599,7 +16328,7 @@
    "title": "27 اگست سے مون سون بارشوں کے نئے سلسلے کی پیش گوئی، الرٹ جار",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 393,
    "language": "ur",
@@ -16933,6 +16662,22 @@
   },
   {
    "dir": "news",
+   "file": "multan-airport-7-illegal-travellers-arrested.mdx",
+   "slug": "multan-airport-7-illegal-travellers-arrested",
+   "title": "ملتان ایئرپورٹ: غیر قانونی سفر پر 7 ڈی پورٹ مسافر گرفتار",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 478,
+   "language": "ur",
+   "category": "business",
+   "date": "2026-09-12",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "mumbai-cricket-association-awards-equal-pay-to-men-and-women-players.mdx",
    "slug": "mumbai-cricket-association-awards-equal-pay-to-men-and-women-players",
    "title": "Mumbai Cricket Association awards equal pay to men and women",
@@ -17062,6 +16807,22 @@
   },
   {
    "dir": "news",
+   "file": "na-168-bahawalpur-by-election-form-47.mdx",
+   "slug": "na-168-bahawalpur-by-election-form-47",
+   "title": "این اے 168 بہاولپور ضمنی انتخاب کا فارم 47 جاری",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 443,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-28",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "na-168-by-election-cheema-group-declares-wali-dad-as-its-candidate.mdx",
    "slug": "na-168-by-election-cheema-group-declares-wali-dad-as-its-candidate",
    "title": "NA-168 By-Election: Cheema Group declares Wali Dad as its ca",
@@ -17073,6 +16834,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-08-27",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "na-168-by-election-polling-begins.mdx",
+   "slug": "na-168-by-election-polling-begins",
+   "title": "این اے 168 میں ضمنی انتخاب، پولنگ شروع",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 314,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -17370,6 +17147,22 @@
   },
   {
    "dir": "news",
+   "file": "neighbouring-country-14-year-old-boy-talent.mdx",
+   "slug": "neighbouring-country-14-year-old-boy-talent",
+   "title": "’ہمسایہ ملک میں 14 سال کا لڑکا کھیل رہا ہے، ہمارے ہاں ٹیلنٹ ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 451,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-11",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "nepal-flood-death-toll-climbs-to-359-as-around-1-000-remain-missing.mdx",
    "slug": "nepal-flood-death-toll-climbs-to-359-as-around-1-000-remain-missing",
    "title": "Nepal Flood Death Toll Reaches 359 with 1,000 Missing",
@@ -17415,6 +17208,22 @@
    "date": "2026-08-29",
    "junk": [],
    "srcAttribution": false
+  },
+  {
+   "dir": "news",
+   "file": "nepal-floods-deaths-reach-362.mdx",
+   "slug": "nepal-floods-deaths-reach-362",
+   "title": "نیپال میں سیلاب سے مرنے والوں کی تعداد 362 ہوگئی، سیکڑوں افر",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 282,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-27",
+   "junk": [],
+   "srcAttribution": true
   },
   {
    "dir": "news",
@@ -17494,6 +17303,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-09-20",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "netanyahu-says-flydubai-flight-attacker-underwent-islamist-radical-indoctrinatio.mdx",
+   "slug": "netanyahu-says-flydubai-flight-attacker-underwent-islamist-radical-indoctrinatio",
+   "title": "Netanyahu says Flydubai flight attacker 'underwent Islamist ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 899,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -17739,6 +17564,22 @@
   },
   {
    "dir": "news",
+   "file": "nine-forces-officers-civil-service-posts.mdx",
+   "slug": "nine-forces-officers-civil-service-posts",
+   "title": "مسلح افواج کے 9 افسران کی سول سروس میں شمولیت منظور",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 337,
+   "language": "ur",
+   "category": "education",
+   "date": "2026-08-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "nipa-mid-career-management-course-officers-visit-sargodha.mdx",
    "slug": "nipa-mid-career-management-course-officers-visit-sargodha",
    "title": "NIPA Mid-Career management course officers visit Sargodha",
@@ -17798,6 +17639,22 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-08-26",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "no-more-cereal-at-the-end-of-the-aisle-new-rules-in-scotland-s-supermarkets.mdx",
+   "slug": "no-more-cereal-at-the-end-of-the-aisle-new-rules-in-scotland-s-supermarkets",
+   "title": "No more cereal at the end of the aisle? New rules in Scotlan",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 769,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -17974,6 +17831,22 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-09-10",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "northern-ireland-s-young-drivers-first-in-uk-to-get-restrictions-put-on-new-lice.mdx",
+   "slug": "northern-ireland-s-young-drivers-first-in-uk-to-get-restrictions-put-on-new-lice",
+   "title": "Northern Ireland's young drivers first in UK to get restrict",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 802,
+   "language": "en",
+   "category": "tech-news",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -18757,6 +18630,22 @@
   },
   {
    "dir": "news",
+   "file": "pakistan-2-5-lakh-cyber-fraud-victims-in-3-years.mdx",
+   "slug": "pakistan-2-5-lakh-cyber-fraud-victims-in-3-years",
+   "title": "پاکستان میں 3 سالوں میں اہم شخصیات سمیت سوا 2 لاکھ شہری سائب",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 433,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-12",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pakistan-7-other-muslim-nations-call-upon-israel-to-fulfil-its-commitment-under-.mdx",
    "slug": "pakistan-7-other-muslim-nations-call-upon-israel-to-fulfil-its-commitment-under-",
    "title": "Pakistan, 7 other Muslim nations call upon Israel to fulfil ",
@@ -18837,6 +18726,22 @@
   },
   {
    "dir": "news",
+   "file": "pakistan-army-2-officers-martyred-in-firing.mdx",
+   "slug": "pakistan-army-2-officers-martyred-in-firing",
+   "title": "فتنہ الخوارج سے فائرنگ کا تبادلہ، پاک فوج کے 2 افسران سمیت 6",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 261,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-21",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pakistan-army-announces-recruitment-for-jco-other-ranks.mdx",
    "slug": "pakistan-army-announces-recruitment-for-jco-other-ranks",
    "title": "Pakistan army announces recruitment for JCO, other ranks",
@@ -18880,6 +18785,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pakistan-beat-hong-kong-to-seal-asian-games-squash-silver-and-final-spot.mdx",
+   "slug": "pakistan-beat-hong-kong-to-seal-asian-games-squash-silver-and-final-spot",
+   "title": "Pakistan beat Hong Kong to seal Asian Games squash silver an",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 189,
+   "language": "en",
+   "category": "gaming",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -18993,6 +18914,22 @@
    "language": "ur",
    "category": "sports",
    "date": "2026-09-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pakistan-crush-india-3-0-to-storm-into-asian-games-volleyball-semi-finals.mdx",
+   "slug": "pakistan-crush-india-3-0-to-storm-into-asian-games-volleyball-semi-finals",
+   "title": "Pakistan crush India 3-0 to storm into Asian Games volleybal",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 200,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -19126,6 +19063,22 @@
   },
   {
    "dir": "news",
+   "file": "pakistan-fightback-in-vain-as-india-win-4-3-in-asian-games-hockey-semi-final.mdx",
+   "slug": "pakistan-fightback-in-vain-as-india-win-4-3-in-asian-games-hockey-semi-final",
+   "title": "Pakistan fightback in vain as India win 4-3 in Asian Games h",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 181,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pakistan-greenlights-200m-adb-loan-despite-questions-over-digitalisation-project.mdx",
    "slug": "pakistan-greenlights-200m-adb-loan-despite-questions-over-digitalisation-project",
    "title": "Pakistan greenlights $200m ADB loan despite questions over d",
@@ -19201,6 +19154,22 @@
    "language": "en",
    "category": "cybersecurity",
    "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pakistan-india-and-australia-in-same-2027-cricket-world-cup-group.mdx",
+   "slug": "pakistan-india-and-australia-in-same-2027-cricket-world-cup-group",
+   "title": "Pakistan, India and Australia in same 2027 Cricket World Cup",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 216,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -19514,6 +19483,22 @@
   },
   {
    "dir": "news",
+   "file": "pakistan-reach-asian-games-cricket-final-set-up-india-clash.mdx",
+   "slug": "pakistan-reach-asian-games-cricket-final-set-up-india-clash",
+   "title": "Pakistan reach Asian Games cricket final, set up India clash",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 188,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pakistan-reaffirms-commitment-to-nuclear-safety-security.mdx",
    "slug": "pakistan-reaffirms-commitment-to-nuclear-safety-security",
    "title": "Pakistan reaffirms commitment to nuclear safety & security",
@@ -19778,7 +19763,7 @@
    "title": "کیا 10 روپے کا کرنسی نوٹ ختم ہورہا ہے؟ ڈپٹی گورنراسٹیٹ بینک ",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 488,
    "language": "ur",
@@ -19998,6 +19983,22 @@
   },
   {
    "dir": "news",
+   "file": "pakistan-u19-beat-england-by-177-runs.mdx",
+   "slug": "pakistan-u19-beat-england-by-177-runs",
+   "title": "پاکستان انڈر 19 نے انگلینڈ کو 177 رنز سے شکست دیدی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 241,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-10",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pakistan-uganda-trade-must-move-beyond-diplomatic-ties-icci-president.mdx",
    "slug": "pakistan-uganda-trade-must-move-beyond-diplomatic-ties-icci-president",
    "title": "Pakistan-Uganda trade must move beyond diplomatic ties: ICCI",
@@ -20122,6 +20123,22 @@
    "language": "ur",
    "category": "business",
    "date": "2026-09-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pakistani-national-charged-with-defrauding-us-postal-service-of-126m.mdx",
+   "slug": "pakistani-national-charged-with-defrauding-us-postal-service-of-126m",
+   "title": "Pakistani national charged with defrauding US Postal Service",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 106,
+   "language": "en",
+   "category": "tech-news",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -20580,6 +20597,22 @@
   },
   {
    "dir": "news",
+   "file": "petrol-100-rupees-for-600-scheme.mdx",
+   "slug": "petrol-100-rupees-for-600-scheme",
+   "title": "صرف 100 روپے میں 600 روپے کا پیٹرول ڈلوائیں، حکومت کا بڑا اع",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 381,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "petrol-diesel-prices-cut-by-up-to-rs0-58-per-litre.mdx",
    "slug": "petrol-diesel-prices-cut-by-up-to-rs0-58-per-litre",
    "title": "Petrol, diesel prices cut by up to Rs0.58 per litre",
@@ -20656,6 +20689,38 @@
    "language": "en",
    "category": "ai",
    "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "petroleum-levy-99-billion-over-target.mdx",
+   "slug": "petroleum-levy-99-billion-over-target",
+   "title": "حکومت نے پیٹرولیم لیوی کی مد میں ہدف سے 99 ارب زیادہ وصول کر",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 340,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-27",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "petroleum-levy-cut-35-to-40-rupees-demand.mdx",
+   "slug": "petroleum-levy-cut-35-to-40-rupees-demand",
+   "title": "حافظ نعیم نے پٹرولیم لیوی 35 سے 40 روپے کم کرنے کا مطالبہ نہ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 337,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-29",
    "junk": [],
    "srcAttribution": true
   },
@@ -21014,6 +21079,22 @@
   },
   {
    "dir": "news",
+   "file": "pm-housing-scheme-applicants-cross-52-lakh.mdx",
+   "slug": "pm-housing-scheme-applicants-cross-52-lakh",
+   "title": "وزیراعظم اپنا گھر ہاؤسنگ اسکیم کے درخواست گزاروں کی تعداد می",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 597,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "pm-invites-achakzai-for-direct-talks.mdx",
    "slug": "pm-invites-achakzai-for-direct-talks",
    "title": "PM invites Achakzai for ‘direct talks’",
@@ -21137,6 +21218,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-08-31",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pm-shehbaz-met-trump-at-reception-banquet-on-unga-sidelines.mdx",
+   "slug": "pm-shehbaz-met-trump-at-reception-banquet-on-unga-sidelines",
+   "title": "PM Shehbaz met Trump at reception banquet on UNGA sidelines",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 181,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -21325,7 +21422,7 @@
    "title": "آزاد کشمیر قانون ساز اسمبلی میں مسلم لیگ ن کو31 نشستوں کے سا",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 396,
    "language": "ur",
@@ -21722,6 +21819,22 @@
   },
   {
    "dir": "news",
+   "file": "pp-203-sahiwal-polling-schedule.mdx",
+   "slug": "pp-203-sahiwal-polling-schedule",
+   "title": "پنجاب اسمبلی کے حلقہ پی پی 203 ساہیوال میں پولنگ کا شیڈول جا",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 251,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-23",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "ppp-chairman-bilawal-refutes-reports-of-his-engagement-wedding.mdx",
    "slug": "ppp-chairman-bilawal-refutes-reports-of-his-engagement-wedding",
    "title": "Bilawal Bhutto Refutes Wedding Rumors, Addresses PIMS Fire",
@@ -22013,6 +22126,22 @@
   },
   {
    "dir": "news",
+   "file": "pretorius-breaks-gayle-s-t20-record-score.mdx",
+   "slug": "pretorius-breaks-gayle-s-t20-record-score",
+   "title": "Pretorius Breaks Gayle's T20 Record Score With Unbeaten 188",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 375,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "priest-killed-and-four-injured-in-knife-attack-at-polish-abbey.mdx",
    "slug": "priest-killed-and-four-injured-in-knife-attack-at-polish-abbey",
    "title": "Priest killed and four injured in knife attack at Polish abb",
@@ -22174,6 +22303,22 @@
   },
   {
    "dir": "news",
+   "file": "protesters-across-spain-demand-action-over-housing-crisis.mdx",
+   "slug": "protesters-across-spain-demand-action-over-housing-crisis",
+   "title": "Protesters across Spain demand action over housing crisis",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 571,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": false
+  },
+  {
+   "dir": "news",
    "file": "pso-honours-dealer-network-as-cornerstone-of-pakistan-s-energy-security.mdx",
    "slug": "pso-honours-dealer-network-as-cornerstone-of-pakistan-s-energy-security",
    "title": "PSO honours dealer network as cornerstone of Pakistan's ener",
@@ -22201,6 +22346,22 @@
    "language": "en",
    "category": "business",
    "date": "2026-09-08",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "pta-prepaid-balance-minimum-validity-decision.mdx",
+   "slug": "pta-prepaid-balance-minimum-validity-decision",
+   "title": "پی ٹی اے کا بڑا فیصلہ، پری پیڈ موبائل بیلنس کی کم از کم میعا",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 221,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -22431,6 +22592,22 @@
   },
   {
    "dir": "news",
+   "file": "punjab-8-stage-actresses-booked-indecent-dance.mdx",
+   "slug": "punjab-8-stage-actresses-booked-indecent-dance",
+   "title": "بیہودہ رقص، نازیبا اشارے؛ پنجاب میں 8 اسٹیج اداکاراؤں پر ایک",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 298,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "punjab-acs-orders-accelerated-public-welfare-measures-stronger-civic-services.mdx",
    "slug": "punjab-acs-orders-accelerated-public-welfare-measures-stronger-civic-services",
    "title": "Punjab ACS orders accelerated public welfare measures, stron",
@@ -22586,6 +22763,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-09-07",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "punjab-section-144-imposed.mdx",
+   "slug": "punjab-section-144-imposed",
+   "title": "پنجاب بھر میں دفعہ 144 نافذ کر دی گئی",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 344,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-23",
    "junk": [],
    "srcAttribution": true
   },
@@ -23381,6 +23574,22 @@
   },
   {
    "dir": "news",
+   "file": "revenue-surge-subsidy-plans-sit-well-with-imf.mdx",
+   "slug": "revenue-surge-subsidy-plans-sit-well-with-imf",
+   "title": "Revenue surge, subsidy plans sit well with IMF",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 134,
+   "language": "en",
+   "category": "business",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "rich-nations-must-cut-debt-as-global-shocks-push-up-borrowing-costs-imf-chief-te.mdx",
    "slug": "rich-nations-must-cut-debt-as-global-shocks-push-up-borrowing-costs-imf-chief-te",
    "title": "Rich nations must cut debt as global shocks push up borrowin",
@@ -23408,6 +23617,22 @@
    "language": "en",
    "category": "business",
    "date": "2026-08-19",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "riot-police-clash-with-students-as-education-protests-rage-in-france.mdx",
+   "slug": "riot-police-clash-with-students-as-education-protests-rage-in-france",
+   "title": "Riot police clash with students as education protests rage i",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 351,
+   "language": "en",
+   "category": "education",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -24074,6 +24299,22 @@
   },
   {
    "dir": "news",
+   "file": "sammy-results-have-not-gone-our-way-but-we-continue-to-improve.mdx",
+   "slug": "sammy-results-have-not-gone-our-way-but-we-continue-to-improve",
+   "title": "Daren Sammy Sees Progress Despite WI's Series Loss To India",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 345,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "samsung-galaxy-z-flip8-unboxing.mdx",
    "slug": "samsung-galaxy-z-flip8-unboxing",
    "title": "Samsung Galaxy Z Flip8 unboxing",
@@ -24181,6 +24422,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-09-10",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "saudi-arabia-6-months-jail-for-employer-demand.mdx",
+   "slug": "saudi-arabia-6-months-jail-for-employer-demand",
+   "title": "سعودی عرب: ملازمین سے یہ کام کروانے پر 6 ماہ قید، ایک لاکھ ر",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 291,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-08",
    "junk": [],
    "srcAttribution": true
   },
@@ -25300,6 +25557,22 @@
   },
   {
    "dir": "news",
+   "file": "sindh-upgraded-schools-active-april-2027.mdx",
+   "slug": "sindh-upgraded-schools-active-april-2027",
+   "title": "سندھ کے تمام اپ گریڈ اسکول 2 اپریل 2027 سے فعال کرنے کا حکم",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 462,
+   "language": "ur",
+   "category": "education",
+   "date": "2026-10-02",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "siraj-to-lead-hyderabad-in-first-two-ranji-trophy-matches.mdx",
    "slug": "siraj-to-lead-hyderabad-in-first-two-ranji-trophy-matches",
    "title": "Siraj to lead Hyderabad in first two Ranji Trophy matches",
@@ -25520,6 +25793,22 @@
    "language": "en",
    "category": "ai",
    "date": "2026-09-27",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "south-africa-namibia-to-co-host-world-cup-qualifiers-from-february-26-to-march-2.mdx",
+   "slug": "south-africa-namibia-to-co-host-world-cup-qualifiers-from-february-26-to-march-2",
+   "title": "South Africa, Namibia to co-host World Cup Qualifiers from F",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 85,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-02",
    "junk": [],
    "srcAttribution": true
   },
@@ -26040,6 +26329,38 @@
   },
   {
    "dir": "news",
+   "file": "strait-of-hormuz-130-million-barrels-claim-questioned.mdx",
+   "slug": "strait-of-hormuz-130-million-barrels-claim-questioned",
+   "title": "آبنائے ہرمز سے 130 ملین بیرل تیل کی نقل و حمل کا دعویٰ مذاق ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 371,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "strait-of-hormuz-400-ships-6000-sailors-stranded.mdx",
+   "slug": "strait-of-hormuz-400-ships-6000-sailors-stranded",
+   "title": "آبنائے ہرمز میں 400 جہاز اور 6 ہزار ملاح پھنسے ہیں، اقوام مت",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 252,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-29",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "strategic-stability.mdx",
    "slug": "strategic-stability",
    "title": "Strategic stability",
@@ -26244,6 +26565,22 @@
    "language": "en",
    "category": "sports",
    "date": "2026-09-16",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "taliban-officials-poisoned-at-military-base.mdx",
+   "slug": "taliban-officials-poisoned-at-military-base",
+   "title": "فوجی اڈّے میں طالبان اہلکاروں کے کھانے میں زہر ملا دیا گیا؛ ",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 273,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
    "junk": [],
    "srcAttribution": true
   },
@@ -27551,12 +27888,28 @@
    "title": "ٹرمپ کا کینیڈا پر جوابی وار، مصنوعات پر ٹیرف بڑھا کر 50 فیصد",
    "decision": "KEEP",
    "reasons": [
-    "FINALIST-OF-DUP-GROUP"
+    "OK"
    ],
    "words": 296,
    "language": "ur",
    "category": "tech-news",
    "date": "2026-08-24",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "trump-approval-rating-falls-to-29-percent.mdx",
+   "slug": "trump-approval-rating-falls-to-29-percent",
+   "title": "صدر ٹرمپ کی مقبولیت کی شرح پہلی بار 29 فی صد رہ گئی",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 384,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-22",
    "junk": [],
    "srcAttribution": true
   },
@@ -28507,6 +28860,22 @@
   },
   {
    "dir": "news",
+   "file": "uae-says-investigation-launched-into-diverted-flydubai-flight.mdx",
+   "slug": "uae-says-investigation-launched-into-diverted-flydubai-flight",
+   "title": "UAE says investigation launched into diverted flydubai fligh",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 184,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "uae-strongly-condemns-hostile-iranian-attack-on-the-country.mdx",
    "slug": "uae-strongly-condemns-hostile-iranian-attack-on-the-country",
    "title": "اماراتی حدود میں ایرانی ڈرون حملہ: یو اے ای کی شدید مذمت",
@@ -28681,6 +29050,22 @@
    "language": "en",
    "category": "tech-news",
    "date": "2026-09-28",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "uk-iranian-dual-national-arrested-over-raf-fairford-incident-police-say.mdx",
+   "slug": "uk-iranian-dual-national-arrested-over-raf-fairford-incident-police-say",
+   "title": "UK-Iranian dual national arrested over RAF Fairford incident",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 530,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-01",
    "junk": [],
    "srcAttribution": true
   },
@@ -29153,6 +29538,22 @@
   },
   {
    "dir": "news",
+   "file": "us-army-black-hawk-helicopter-crash-colorado.mdx",
+   "slug": "us-army-black-hawk-helicopter-crash-colorado",
+   "title": "کولوراڈو میں امریکی فوج کا بلیک ہاک ہیلی کاپٹر تباہ، 4 افراد",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 381,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-08-25",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "us-army-secretary-submits-resignation-amid-reports-of-tensions-with-pentagon-chi.mdx",
    "slug": "us-army-secretary-submits-resignation-amid-reports-of-tensions-with-pentagon-chi",
    "title": "US army secretary submits resignation amid reports of tensio",
@@ -29405,6 +29806,22 @@
    "language": "ur",
    "category": "education",
    "date": "2026-09-11",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "uttar-pradesh-heavy-rains-56-dead.mdx",
+   "slug": "uttar-pradesh-heavy-rains-56-dead",
+   "title": "بھارت؛ اترپردیش میں شدید بارش، 56 افراد ہلاک",
+   "decision": "UPDATE",
+   "reasons": [
+    "NO-DESCRIPTION"
+   ],
+   "words": 401,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-27",
    "junk": [],
    "srcAttribution": true
   },
@@ -29686,6 +30103,22 @@
   },
   {
    "dir": "news",
+   "file": "wanderers-to-host-2027-men-s-odi-world-cup-final-as-well-as-india-vs-pakistan.mdx",
+   "slug": "wanderers-to-host-2027-men-s-odi-world-cup-final-as-well-as-india-vs-pakistan",
+   "title": "Wanderers to host 2027 men's ODI World Cup final as well as ",
+   "decision": "UPDATE",
+   "reasons": [
+    "THIN-BODY"
+   ],
+   "words": 104,
+   "language": "en",
+   "category": "sports",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "want-a-gears-of-war-lancer-replica-you-can-preorder-one-now.mdx",
    "slug": "want-a-gears-of-war-lancer-replica-you-can-preorder-one-now",
    "title": "Want a Gears of War Lancer Replica? You Can Preorder One Now",
@@ -29729,6 +30162,22 @@
    "language": "ur",
    "category": "tech-news",
    "date": "2026-09-08",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "war-could-continue-till-2029-us-ambassador.mdx",
+   "slug": "war-could-continue-till-2029-us-ambassador",
+   "title": "جنگ جنوری 2029 تک جاری رہ سکتی ہے، امریکی سفیر",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 443,
+   "language": "ur",
+   "category": "tech-news",
+   "date": "2026-09-21",
    "junk": [],
    "srcAttribution": true
   },
@@ -30217,6 +30666,22 @@
   },
   {
    "dir": "news",
+   "file": "what-s-gone-wrong-at-nike-how-the-world-s-sportswear-giant-lost-its-mojo.mdx",
+   "slug": "what-s-gone-wrong-at-nike-how-the-world-s-sportswear-giant-lost-its-mojo",
+   "title": "What's gone wrong at Nike? How the world's sportswear giant ",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 827,
+   "language": "en",
+   "category": "tech-news",
+   "date": "2026-10-01",
+   "junk": [],
+   "srcAttribution": true
+  },
+  {
+   "dir": "news",
    "file": "what-tariffs-will-really-cost-canadians-and-americans.mdx",
    "slug": "what-tariffs-will-really-cost-canadians-and-americans",
    "title": "What tariffs will really cost Canadians and Americans",
@@ -30646,6 +31111,22 @@
    "date": "2026-09-21",
    "junk": [],
    "srcAttribution": true
+  },
+  {
+   "dir": "news",
+   "file": "will-spain-s-housing-crisis-lead-to-a-snap-election.mdx",
+   "slug": "will-spain-s-housing-crisis-lead-to-a-snap-election",
+   "title": "Will Spain's housing crisis lead to a snap election?",
+   "decision": "KEEP",
+   "reasons": [
+    "OK"
+   ],
+   "words": 273,
+   "language": "en",
+   "category": "ai",
+   "date": "2026-10-03",
+   "junk": [],
+   "srcAttribution": false
   },
   {
    "dir": "news",
@@ -33484,7 +33965,7 @@
    "dir": "blog",
    "file": "css-grid-flexbox-guide-2026.mdx",
    "slug": "css-grid-flexbox-guide-2026",
-   "title": "CSS Grid and Flexbox: Complete Layout Guide 2026",
+   "title": "CSS Grid vs Flexbox: Modern Web Layout Guide 2026",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33500,7 +33981,7 @@
    "dir": "blog",
    "file": "cyber-resilience-guide-2026.mdx",
    "slug": "cyber-resilience-guide-2026",
-   "title": "Cyber Resilience Guide for Organizations 2026",
+   "title": "Enterprise Cyber Resilience Strategy Guide 2026",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33516,7 +33997,7 @@
    "dir": "blog",
    "file": "cybersecurity-ai-defense-2026.mdx",
    "slug": "cybersecurity-ai-defense-2026",
-   "title": "AI for Cybersecurity Defense in 2026",
+   "title": "AI for Cybersecurity Defense: 2026 Security Guide",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33580,7 +34061,7 @@
    "dir": "blog",
    "file": "cybersecurity-threats-2026.mdx",
    "slug": "cybersecurity-threats-2026",
-   "title": "Top Cybersecurity Threats in 2026 and How to Stay Safe",
+   "title": "Top Cybersecurity Threats in 2026 & Defense Strategies",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33628,7 +34109,7 @@
    "dir": "blog",
    "file": "data-privacy-laws-2026.mdx",
    "slug": "data-privacy-laws-2026",
-   "title": "Data Privacy Laws in 2026: GDPR, CCPA, and Beyond",
+   "title": "Data Privacy Laws 2026: GDPR, CCPA & Compliance Guide",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33644,7 +34125,7 @@
    "dir": "blog",
    "file": "data-sovereignty-guide-2026.mdx",
    "slug": "data-sovereignty-guide-2026",
-   "title": "Data Sovereignty Guide in 2026",
+   "title": "Data Sovereignty Guide 2026: Cloud Regions & GDPR",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33676,7 +34157,7 @@
    "dir": "blog",
    "file": "database-design-optimization.mdx",
    "slug": "database-design-optimization",
-   "title": "Database Design and Optimization Guide 2026",
+   "title": "Database Design & Query Optimization Guide 2026",
    "decision": "KEEP",
    "reasons": [
     "OK"
@@ -33692,7 +34173,7 @@
    "dir": "blog",
    "file": "database-design-patterns-every-backend-developer-needs.mdx",
    "slug": "database-design-patterns-every-backend-developer-needs",
-   "title": "Database Design Patterns Every Backend Developer Needs",
+   "title": "Top Database Design Patterns for Backend Developers",
    "decision": "UPDATE",
    "reasons": [
     "THIN-BODY"
@@ -33724,7 +34205,7 @@
    "dir": "blog",
    "file": "debugging-techniques-for-complex-software-systems.mdx",
    "slug": "debugging-techniques-for-complex-software-systems",
-   "title": "Debugging Techniques for Complex Software Systems",
+   "title": "Debugging Complex Software Systems: 2026 Guide",
    "decision": "UPDATE",
    "reasons": [
     "THIN-BODY"
@@ -33756,7 +34237,7 @@
    "dir": "blog",
    "file": "deno-vs-node-2026.mdx",
    "slug": "deno-vs-node-2026",
-   "title": "Deno vs Node.js in 2026: Which Should You Use?",
+   "title": "Deno vs Node.js in 2026: Which Runtime Should You Choose?",
    "decision": "KEEP",
    "reasons": [
     "OK"

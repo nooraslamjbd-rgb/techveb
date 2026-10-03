@@ -29,8 +29,6 @@ const catMeta: Record<string, { icon: string; color: string }> = {
   Kebabs: { icon: "meat", color: "bg-rose-500/10 text-rose-600" },
 };
 
-function slugify(n: string) { return n.toLowerCase().replace(/[^a-z0-9]+/g, "-"); }
-
 export default async function RecipesPage({ searchParams }: { searchParams: Promise<{ cat?: string; difficulty?: string }> }) {
   const sp = await searchParams;
   const recipes = recipesData as Recipe[];

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Script from "next/script";
 
 const GA_ID = "G-VSCWBGYHE7";
 
@@ -26,30 +25,24 @@ function loadGA() {
 
 export default function CookieConsent() {
   const [show, setShow] = useState(false);
-  const [consented, setConsented] = useState<boolean | null>(null);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
     if (consent === "accepted") {
-      setConsented(true);
       loadGA();
-    } else if (consent === "declined") {
-      setConsented(false);
-    } else {
+    } else if (consent !== "declined") {
       setShow(true);
     }
   }, []);
 
   const accept = () => {
     localStorage.setItem("cookie-consent", "accepted");
-    setConsented(true);
     setShow(false);
     loadGA();
   };
 
   const decline = () => {
     localStorage.setItem("cookie-consent", "declined");
-    setConsented(false);
     setShow(false);
   };
 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {

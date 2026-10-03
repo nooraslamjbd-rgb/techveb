@@ -17,10 +17,6 @@ interface GitHubFileContent {
   encoding: string;
 }
 
-interface GitHubDeleteResponse {
-  commit: { sha: string; message: string };
-}
-
 const headers = {
   Authorization: `Bearer ${GITHUB_TOKEN}`,
   Accept: "application/vnd.github.v3+json",

@@ -18,8 +18,6 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const cat = siteConfig.categories.find((c) => c.slug === slug);
-  const label = cat?.label || slug;
   const meta = getCategoryMeta(slug);
   return {
     title: meta.title,

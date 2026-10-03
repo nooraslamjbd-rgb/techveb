@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface CryptoPrice {
   id: string;
@@ -59,7 +60,7 @@ export default function CryptoWidget() {
           >
             <div className="flex items-center gap-2">
               {coin.image ? (
-                <img src={coin.image} alt={coin.name} className="w-5 h-5 rounded-full" />
+                <Image src={coin.image} alt={coin.name} width={20} height={20} unoptimized className="w-5 h-5 rounded-full" />
               ) : (
                 <span className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-[8px] text-white font-bold">
                   {coin.symbol[0]}

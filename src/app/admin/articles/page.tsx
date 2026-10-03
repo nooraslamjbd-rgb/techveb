@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import { categoryColorMap, categoryLabelMap } from "@/lib/use-categories";
 
@@ -17,7 +16,6 @@ interface Article {
 }
 
 export default function ArticlesPage() {
-  const router = useRouter();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");

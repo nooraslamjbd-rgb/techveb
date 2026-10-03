@@ -105,13 +105,6 @@ function getFile(dir: string, slug: string): Post | null {
   };
 }
 
-function estimateReadingTime(content: string): string {
-  const wordsPerMinute = 200;
-  const wordCount = content.split(/\s+/).length;
-  const minutes = Math.ceil(wordCount / wordsPerMinute);
-  return `${minutes} min read`;
-}
-
 export function getAllPosts(dir: string): Post[] {
   const slugs = getFiles(dir);
   const posts = slugs

@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import { CONFIG, BLOCKED_IMAGE_DOMAINS } from "./config.mjs";
 
+export const MIN_WORDS = 150;
+
 function sanitizeContent(content) {
   if (!content) return content;
   let text = content;
@@ -172,6 +174,15 @@ export function writeArticles(articles, imagePaths) {
     const key = dedupKey(title);
     if (!key || existingTitleKeys.has(key) || batchKeys.has(key)) {
       console.log(`  SKIP: ${slug} (duplicate title "${title.slice(0, 50)}")`);
+      skipped++;
+      continue;
+    }
+
+    // Quality gate: never write thin articles (keeps the sitemap/AdSense backlog from growing)
+    const cleanedBody = sanitizeContent(article.enhanced?.content || article.description || "");
+    const bodyWords = cleanedBody.split(/\s+/).filter(Boolean).length;
+    if (bodyWords < MIN_WORDS) {
+      console.log(`  SKIP: ${slug} (thin body ${bodyWords}w < ${MIN_WORDS}w "${title.slice(0, 50)}")`);
       skipped++;
       continue;
     }

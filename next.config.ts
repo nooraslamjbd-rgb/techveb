@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { URDU_SLUG_REDIRECTS } from "./scripts/re-slug/slug-map";
 
 const nextConfig: NextConfig = {
   images: {
@@ -108,6 +109,7 @@ const nextConfig: NextConfig = {
       { source: "/blog/best-gaming-monitors-2026", destination: "/reviews/best-gaming-monitors-2026", permanent: true },
       { source: "/rss", destination: "/feed.xml", permanent: true },
       { source: "/rss.xml", destination: "/feed.xml", permanent: true },
+      ...URDU_SLUG_REDIRECTS,
     ];
   },
   async headers() {

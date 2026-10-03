@@ -8,17 +8,6 @@ import { siteConfig } from "@/config/site";
 import DarkModeToggle from "../ui/DarkModeToggle";
 import SearchModal from "../ui/SearchModal";
 
-interface NavChild {
-  label: string;
-  href: string;
-}
-
-interface NavItem {
-  label: string;
-  href: string;
-  children?: NavChild[];
-}
-
 const NEWSLETTER_FORMSPREE = "https://formspree.io/f/xpwzknzl";
 
 export default function Navbar() {

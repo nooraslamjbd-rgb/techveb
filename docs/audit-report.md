@@ -108,3 +108,19 @@ CI deploy is triggered by push to `main` (`Deploy to Vercel` workflow). After th
 3. For the 8 removed duplicates, let them 404 naturally (no redirects configured); if GSC shows them heavily indexed, Request Indexing removal via URL Removal tool and re-crawl their old paths.
 4. For the 7-8 no-indexed boards, nothing to do — they stop appearing after recrawls.
 5. Watch Coverage report for "Submitted URL not indexed" on numeric-slug news; triage by setting `lastmod`, checking crawl rate, and manually requesting indexing for the top Urdu articles.
+
+---
+
+## H. Post-audit recommendations batch (this follow-up)
+
+Implemented after the initial audit round:
+
+1. **Pipeline thin-content gate** — `scripts/auto-news/write-articles.mjs` now exports `MIN_WORDS = 150` and skips any new article whose cleaned body is shorter, logging the reason. Existing thin backlog (474 news / 64 blog) is left untouched and remains an owner backlog; the gate stops it from growing.
+
+2. **Re-slugged the 58 numeric-slug news files** — real Urdu articles that were excluded from both sitemaps by `isJunkSlug` (`/^\d+(-\d+)*$/`). Each file was `git mv`'d to a readable English/hybrid slug built from its Urdu title (map: `scripts/re-slug/slug-map.ts`). `next.config.ts` now serves **permanent 301 redirects** (`/news/<old>` -> `/news/<new>`) so old URLs keep working and links are preserved. These articles are now eligible for indexing. The 8 duplicate moves in `_backup-2026-audit/` are untouched.
+
+3. **Lint cleanup** — removed the 13 pre-existing eslint warnings: unused imports/vars across `education`, `recipes`, `Navbar`, `CookieConsent` (dead `consented` state removed), `admin/articles/*`, `category/[slug]`, `lib/github.ts`, `lib/mdx.ts`; `SearchModal` now navigates with `useRouter().push()` instead of `window.location.href`; `<img>` -> `<Image unoptimized>` in the two admin previews and `CryptoWidget`. ESLint: 0 errors, 0 warnings.
+
+4. **AdSense monetization policy (decision)** — `AdSlot.tsx` remains unmounted; no ads are live or near-live. Recommended: **do not enable ads on the auto-news/rewritten stream** (external-RSS rewrites scraped from other outlets are the site's main AdSense-readiness blocker). If ads are enabled later, gate them with a `shouldShowAds(post)` helper that returns `false` for auto-news/rewritten or numeric-origin articles, so only original content (reviews, ai-tools, blog) is monetizable. Revisit this policy after the backlog items above are decided.
+
+5. **GSC note** — after this batch deploys, resubmit sitemaps and use URL Inspection on a few of the newly re-slugged articles to speed indexing. Sitemap was confirmed submitted.

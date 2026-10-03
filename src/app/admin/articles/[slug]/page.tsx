@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useParams } from "next/navigation";
+import NextImage from "next/image";
 import { useEffect, useState } from "react";
 import { categories } from "@/lib/use-categories";
 
@@ -234,7 +235,7 @@ export default function EditArticlePage() {
             )}
             {image && (
               <div className="relative overflow-hidden rounded-lg">
-                <img src={image} alt="Preview" className="h-32 w-full object-cover" />
+                <NextImage src={image} alt="Preview" width={400} height={160} unoptimized className="h-32 w-full object-cover" />
                 <button onClick={() => setImage("")}
                   className="absolute top-1 right-1 rounded-full bg-black/60 p-1 text-white hover:bg-black/80">
                   <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
