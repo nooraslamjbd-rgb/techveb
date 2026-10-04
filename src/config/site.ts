@@ -11,6 +11,19 @@ export const siteConfig = {
   email: "nooraslamjbd@gmail.com",
   phone: "+92 313 6473379",
   address: "Pakistan",
+  adsense: {
+    publisherId:
+      process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "pub-2205098459492564",
+    autoAdsEnabled: true,
+    slots: {
+      article: process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE || "",
+      sidebar: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || "",
+      listing: process.env.NEXT_PUBLIC_ADSENSE_SLOT_LISTING || "",
+    },
+  },
+  analytics: {
+    gaId: process.env.NEXT_PUBLIC_GA_ID || "G-VSCWBGYHE7",
+  },
   social: {
     twitter: "https://x.com/techveb" as string,
     linkedin: "https://linkedin.com/company/techveb" as string,

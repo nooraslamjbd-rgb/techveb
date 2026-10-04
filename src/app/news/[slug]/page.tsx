@@ -13,6 +13,7 @@ import {
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import AuthorBox from "@/components/blog/AuthorBox";
+import AdSlot from "@/components/ads/AdSlot";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
 import ShareButtons from "@/components/ui/ShareButtons";
@@ -278,6 +279,7 @@ export default async function NewsPostPage({
               <div className="mt-8">
                 <NewsletterInline />
               </div>
+              <AdSlot slot={siteConfig.adsense.slots.article} />
               <AuthorBox />
               <div className="lg:hidden">
                 <TableOfContents />

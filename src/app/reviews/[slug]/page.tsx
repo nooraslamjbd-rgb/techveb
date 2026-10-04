@@ -14,6 +14,7 @@ import {
 import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import AuthorBox from "@/components/blog/AuthorBox";
+import AdSlot from "@/components/ads/AdSlot";
 import RelatedArticles from "@/components/blog/RelatedArticles";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
@@ -249,6 +250,7 @@ export default async function ReviewPostPage({
               </div>
               {post.faq && post.faq.length > 0 && <FAQ items={post.faq} />}
               <NewsletterInline />
+              <AdSlot slot={siteConfig.adsense.slots.article} />
               <AuthorBox />
               <RelatedArticles posts={related} dir="reviews" />
               <Comments slug={slug} />

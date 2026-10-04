@@ -81,13 +81,15 @@ export default function PrivacyPolicyPage() {
             enabled.
           </li>
           <li>
-            <strong>Google AdSense:</strong> If and when advertising is enabled,
-            Google may use cookies to display and measure ads. You may opt out of
+            <strong>Google AdSense:</strong> We use Google AdSense to display
+            advertising. Google may use cookies and device identifiers to display
+            and measure ads, and to prevent ad fraud. Advertising is served in
+            accordance with Google Consent Mode v2. You may opt out of
             personalized advertising at{" "}
             <a href="https://www.google.com/settings/ads" rel="nofollow noopener noreferrer">
               Google Ads Settings
             </a>
-            . Advertising cookies are only loaded after you accept cookies.
+            .
           </li>
           <li>
             <strong>Formspree:</strong> When you subscribe to our newsletter or
@@ -97,14 +99,27 @@ export default function PrivacyPolicyPage() {
           </li>
         </ul>
 
-        <h2>Cookie Consent</h2>
+        <h2>Cookie Consent and Google Consent Mode v2</h2>
         <p>
           We respect your privacy choices. A cookie consent banner is displayed on
-          your first visit. Analytics tracking (Google Analytics) and advertising
-          cookies (Google AdSense) are only loaded after you click &quot;Accept.&quot;
-          If you decline, no tracking cookies are set and your browsing experience
-          remains unaffected. You may change your preference at any time by
-          clearing your browser&apos;s local storage.
+          your first visit. We implement Google Consent Mode v2, which sets
+          consent defaults to &quot;denied&quot; for analytics storage, advertising
+          storage, ad user data, and ad personalization before any Google script
+          loads.
+        </p>
+        <p>
+          If you click &quot;Accept,&quot; consent is granted for analytics and
+          advertising storage. If you click &quot;Decline,&quot; these signals
+          remain denied: no analytics cookies are set, no personalized
+          advertising is served, and your browsing experience is unaffected.
+        </p>
+        <p>
+          When consent is declined, Google AdSense may still serve limited,
+          non-personalized advertising using cookieless signals. Declining does
+          not remove ads from the site, and you can still read and use everything
+          without restriction. You may change your preference at any time by
+          clearing your browser&apos;s local storage, which will cause the banner
+          to appear again.
         </p>
 
         <h2>Data Protection Rights (GDPR)</h2>

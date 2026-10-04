@@ -8,6 +8,7 @@ import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import CookieConsent from "@/components/ui/CookieConsent";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
+import { CONSENT_MODE_SNIPPET } from "@/components/ads/consentMode";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -111,6 +112,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images-assets.nasa.gov" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <Script
+          id="consent-mode-v2"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: CONSENT_MODE_SNIPPET }}
+        />
       </head>
       <body className="flex min-h-full flex-col antialiased" style={{ fontFamily: "var(--font-body)" }}>
         <a
