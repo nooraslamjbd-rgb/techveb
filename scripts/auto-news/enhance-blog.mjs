@@ -1,4 +1,5 @@
 import fs from "fs";
+import { normalizeTitle } from "./text-utils.mjs";
 import path from "path";
 import matter from "gray-matter";
 import { fileURLToPath } from "url";
@@ -125,8 +126,8 @@ async function callGemini(title, description, content, isUrdu, retryCount = 0) {
     }
 
     return {
-      title: (parsed.title || title).substring(0, 60),
-      description: (parsed.description || description).substring(0, 160),
+      title: normalizeTitle(parsed.title || title),
+      description: normalizeDescription(parsed.description || description),
       tags: Array.isArray(parsed.tags) ? parsed.tags.slice(0, 8) : null,
       keyTakeaways: Array.isArray(parsed.keyTakeaways) ? parsed.keyTakeaways.slice(0, 5) : null,
       faq: Array.isArray(parsed.faq) ? parsed.faq.slice(0, 5) : null,

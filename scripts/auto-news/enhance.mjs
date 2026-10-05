@@ -1,4 +1,5 @@
 import { CONFIG, VALID_CATEGORIES } from "./config.mjs";
+import { normalizeTitle, normalizeDescription } from "./text-utils.mjs";
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -31,8 +32,8 @@ Return ONLY valid JSON (no markdown, no backticks) with this exact structure:
 }
 
 RULES:
-- Title: max 60 chars, include primary keyword, no clickbait
-- Description: max 160 chars, compelling, includes keyword
+- Title: max 70 chars, complete phrase, include primary keyword, no clickbait, never cut a word in half
+- Description: max 160 chars, compelling, includes keyword, must describe what the article is actually about
 - Tags: 5-8 relevant tags, lowercase
 - Key Takeaways: 5 concise bullet points (each max 15 words)
 - FAQ: 3-5 question-answer pairs, questions are what people actually search for
@@ -112,8 +113,8 @@ export async function enhanceArticle(article) {
     parsed.faq = Array.isArray(parsed.faq) ? parsed.faq.slice(0, 5) : [];
 
     // Ensure required fields
-    parsed.title = (parsed.title || article.title).substring(0, 60);
-    parsed.description = (parsed.description || article.description).substring(0, 160);
+    parsed.title = normalizeTitle(parsed.title || article.title);
+    parsed.description = normalizeDescription(parsed.description || article.description);
     parsed.enhancedContent = parsed.enhancedContent || article.readableContent?.markdown || article.description;
 
     return {
@@ -140,8 +141,8 @@ function fallbackEnhance(article) {
   const keyTakeaways = sentences.slice(0, 5).map(s => s.trim().substring(0, 150));
 
   return {
-    title: article.title.substring(0, 60),
-    description: article.description.substring(0, 160),
+    title: normalizeTitle(article.title),
+    description: normalizeDescription(article.description),
     tags: article.tags,
     category: article.category,
     keyTakeaways,
