@@ -5,9 +5,11 @@ import {
   CONSENT_GRANTED_SNIPPET,
   CONSENT_DENIED_SNIPPET,
 } from "@/components/ads/consentMode";
+import { siteConfig } from "@/config/site";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-VSCWBGYHE7";
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+const GA_ID = siteConfig.analytics.gaId;
+const ADSENSE_ID = siteConfig.adsense.publisherId;
+const AUTO_ADS_ENABLED = siteConfig.adsense.autoAdsEnabled;
 const CONSENT_KEY = "cookie-consent";
 
 type WindowWithTags = Window & {
@@ -44,7 +46,7 @@ gtag('config', '${GA_ID}', { anonymize_ip: true });
 }
 
 function loadAdSense() {
-  if (!ADSENSE_ID) return;
+  if (!ADSENSE_ID || !AUTO_ADS_ENABLED) return;
   if (document.getElementById("adsense-script")) return;
 
   const w = window as WindowWithTags;

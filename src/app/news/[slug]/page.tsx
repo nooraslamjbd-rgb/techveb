@@ -11,6 +11,7 @@ import {
   stripSourceAttribution,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
+import { truncateAtWord } from "@/lib/text";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import AuthorBox from "@/components/blog/AuthorBox";
 import AdSlot from "@/components/ads/AdSlot";
@@ -36,13 +37,14 @@ export async function generateMetadata({
   if (!post) return {};
 
   const description = getPostDescription(post);
+  const metaTitle = truncateAtWord(post.title, 55);
 
   return {
-    title: `${post.title.substring(0, 55)}`,
+    title: metaTitle,
     description,
     alternates: { canonical: `${siteConfig.url}/news/${slug}` },
     openGraph: {
-      title: post.title.substring(0, 55),
+      title: metaTitle,
       description,
       url: `${siteConfig.url}/news/${slug}`,
       siteName: siteConfig.name,
@@ -58,7 +60,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title.substring(0, 55),
+      title: metaTitle,
       description,
       images: post.image ? [post.image] : ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
     },

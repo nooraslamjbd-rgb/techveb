@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { siteConfig } from "@/config/site";
 
 type WindowWithAds = Window & {
   adsbygoogle?: unknown[];
@@ -17,13 +18,17 @@ export default function AdSlot({
   className?: string;
   minHeight?: number;
 }) {
-  const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+  const publisherId = siteConfig.adsense.publisherId;
 
   useEffect(() => {
     if (!slot) return;
     try {
       const w = window as WindowWithAds;
-      if (w.adsbygoogle) w.adsbygoogle.push({});
+      // The queue must exist before the push. AdSlot effects can run before the
+      // AdSense loader initialises it, and a missing queue silently drops the
+      // ad request, so create it here rather than only checking for it.
+      w.adsbygoogle = w.adsbygoogle || [];
+      w.adsbygoogle.push({});
     } catch {
       /* ad blocked or script unavailable - layout stays intact */
     }
