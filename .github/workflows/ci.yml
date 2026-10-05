@@ -23,3 +23,6 @@ jobs:
 
       - name: Typecheck
         run: npx tsc --noEmit
+
+      - name: Validate content frontmatter
+        run: node scripts/validate-frontmatter.mjs

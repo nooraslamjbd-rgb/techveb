@@ -41,6 +41,22 @@ const SHORT_OK = new Set([
 // left untouched. A trailing hyphen ("D-") IS an unambiguous mid-word cut.
 const ABBREV_2 = /^[A-Z]{2}$/;
 
+// Urdu/Arabic-script titles are skipped by the fragment heuristic. Two-character
+// tokens are ambiguous there without real morphology: dropping the "ne" suffix
+// in "...video ne" is right, but dropping "ge" in "...log hon ge" strands the
+// valid word "hon". A cosmetic fragment is better than broken Urdu on a
+// bilingual site, so only the trailing-space trim applies.
+const ARABIC_SCRIPT = /[\u0600-\u06FF]/;
+
+// Dropping a fragment can expose a dangling function word ("Trump and Xi" ->
+// "Trump and"). Strip those so titles stay readable.
+const TRAILING_STOPWORDS = new Set([
+  "a", "an", "the", "and", "or", "but", "of", "to", "in", "on", "at", "by",
+  "for", "with", "from", "as", "is", "are", "was", "were", "be", "been",
+  "that", "this", "its", "it", "his", "her", "their", "our", "your", "have",
+  "has", "had", "will", "would", "can", "could", "should", "may", "might",
+]);
+
 function stripQuotes(v) {
   const t = (v || "").trim();
   if (t.startsWith('"') && t.endsWith('"')) return t.slice(1, -1);
@@ -65,12 +81,26 @@ function trimDanglingFragment(title) {
   if (words.length < 4) return value;
   const last = words[words.length - 1];
   if (/[.!?:,;"')\]]$/.test(last)) return value;
+  if (ARABIC_SCRIPT.test(value)) return value;
 
-  if (/-$/.test(last)) { words.pop(); return trimEdge(words.join(" ")); }
+  const finish = () => {
+    while (
+      words.length > 1 &&
+      TRAILING_STOPWORDS.has(words[words.length - 1].toLowerCase())
+    ) {
+      words.pop();
+    }
+    return trimEdge(words.join(" "));
+  };
+
+  if (/-$/.test(last)) {
+    words.pop();
+    return finish();
+  }
   if (last.length === 2 && ABBREV_2.test(last)) return value;
   if (last.length <= 2 && !SHORT_OK.has(last.toLowerCase())) {
     words.pop();
-    return trimEdge(words.join(" "));
+    return finish();
   }
   return value;
 }
@@ -162,7 +192,10 @@ for (const dir of DIRS) {
       if (takeM && /^(Home\s*Pakistan|Pakistan\s*Home)/i.test(takeM[2])) {
         const cleaned = cleanTakeaway(takeM[2]);
         if (cleaned !== takeM[2] && cleaned.length >= 10) {
-          nextLines[i] = `${takeM[1]}${cleaned.replace(/"/g, '\\"')}${takeM[3]}`;
+          // Only escape quotes that are not already escaped. A blanket
+          // /"/g turns an existing \" into \\", which ends the YAML scalar
+          // early and makes the whole frontmatter unparseable.
+          nextLines[i] = `${takeM[1]}${cleaned.replace(/(?<!\\)"/g, '\\"')}${takeM[3]}`;
           patch.takeawaysCleaned = (patch.takeawaysCleaned || 0) + 1;
           stats.takeawaysCleaned++;
           dirty = true;
