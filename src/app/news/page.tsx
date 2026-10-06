@@ -26,6 +26,33 @@ export const metadata: Metadata = {
   },
 };
 
+const NEWS_CATEGORY_LABELS: Record<string, string> = {
+  "tech-news": "Tech News",
+  ai: "AI",
+  cybersecurity: "Cybersecurity",
+  business: "Business",
+  sports: "Sports",
+  mobiles: "Mobiles",
+  gaming: "Gaming",
+  education: "Education",
+  entertainment: "Entertainment",
+  "emerging-tech": "Emerging Tech",
+  cloud: "Cloud Computing",
+};
+const NEWS_CATEGORY_ORDER = [
+  "tech-news",
+  "ai",
+  "cybersecurity",
+  "business",
+  "sports",
+  "mobiles",
+  "gaming",
+  "education",
+  "entertainment",
+  "cloud",
+  "emerging-tech",
+];
+
 export default async function NewsPage({
   searchParams,
 }: {
@@ -37,7 +64,20 @@ export default async function NewsPage({
   const PAGE_SIZE = 12;
   const safePage = Math.max(1, parseInt(params.page || "1", 10) || 1);
 
-  let newsArticles = getAllNewsPosts();
+  const allNewsPosts = getAllNewsPosts();
+  let newsArticles = allNewsPosts;
+
+  const newsCategoryCounts = new Map<string, number>();
+  for (const p of allNewsPosts) {
+    const c = p.category || "tech-news";
+    newsCategoryCounts.set(c, (newsCategoryCounts.get(c) || 0) + 1);
+  }
+  const newsCategories = [
+    ...NEWS_CATEGORY_ORDER.filter((c) => newsCategoryCounts.has(c)),
+    ...Array.from(newsCategoryCounts.keys()).filter(
+      (c) => !NEWS_CATEGORY_ORDER.includes(c)
+    ),
+  ];
 
   if (activeCategory) {
     newsArticles = newsArticles.filter((p) => p.category === activeCategory);
@@ -257,13 +297,10 @@ export default async function NewsPage({
         <div className="flex flex-wrap gap-2 mb-6">
           {[
             { label: "All News", slug: null },
-            { label: "Tech News", slug: "tech-news" },
-            { label: "AI", slug: "ai" },
-            { label: "Cybersecurity", slug: "cybersecurity" },
-            { label: "Business", slug: "business" },
-            { label: "Sports", slug: "sports" },
-            { label: "Gaming", slug: "gaming" },
-            { label: "Mobiles", slug: "mobiles" },
+            ...newsCategories.map((c) => ({
+              label: NEWS_CATEGORY_LABELS[c] || c,
+              slug: c,
+            })),
           ].map((cat) => (
             <Link
               key={cat.slug || "all"}

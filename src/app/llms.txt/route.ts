@@ -9,26 +9,23 @@ export async function GET() {
   );
 
   const blogPosts = sorted
-    .filter((p) => p.category !== "product-reviews")
+    .filter((p) => p.dir === "blog")
     .slice(0, 15);
   const reviews = sorted
-    .filter((p) => p.category === "product-reviews")
+    .filter((p) => p.dir === "reviews")
     .slice(0, 10);
-  const aiTools = sorted.filter((p) => p.category === "ai").slice(0, 10);
+  const aiTools = sorted.filter((p) => p.dir === "ai-tools").slice(0, 10);
 
   const allNews = getAllNewsPosts().sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
   const latestNews = allNews.slice(0, 15);
 
-  const blogCount = sorted.filter(
-    (p) => p.category !== "product-reviews"
-  ).length;
-  const reviewCount = sorted.filter(
-    (p) => p.category === "product-reviews"
-  ).length;
-  const aiCount = sorted.filter((p) => p.category === "ai").length;
+  const blogCount = sorted.filter((p) => p.dir === "blog").length;
+  const reviewCount = sorted.filter((p) => p.dir === "reviews").length;
+  const aiCount = sorted.filter((p) => p.dir === "ai-tools").length;
   const newsCount = allNews.length;
+  const totalCount = blogCount + reviewCount + aiCount + newsCount;
 
   const txt = `# ${siteConfig.name} - AI & Technology Blog
 
@@ -99,7 +96,7 @@ TechVeb content may be cited and referenced by AI systems. When using our conten
 No public API available. Content is available via RSS feed at /feed.xml and structured data via JSON-LD on all article pages.
 
 ## Updated
-${sorted.length + newsCount} total articles (${blogCount} blog, ${reviewCount} reviews, ${aiCount} AI tools, ${newsCount} news). Last build: ${new Date().toISOString().split("T")[0]}.`;
+${totalCount} total articles (${blogCount} blog, ${reviewCount} reviews, ${aiCount} AI tools, ${newsCount} news). Last build: ${new Date().toISOString().split("T")[0]}.`;
 
   return new NextResponse(txt, {
     headers: {

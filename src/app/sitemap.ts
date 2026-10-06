@@ -1,6 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, getAllNewsPosts, getAllTags, isJunkSlug } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
+import { getGitLastModified } from "@/lib/git-dates";
+
+function contentLastModified(dir: string, slug: string, updated?: string, date?: string): Date {
+  const gitDate = getGitLastModified(`src/content/${dir}/${slug}.mdx`);
+  const raw = gitDate || updated || date || "2026-08-15";
+  return new Date(raw);
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
@@ -24,21 +31,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPages = getAllPosts("blog").map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.updated || post.date),
+    lastModified: contentLastModified("blog", post.slug, post.updated, post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const reviewPages = getAllPosts("reviews").map((post) => ({
     url: `${baseUrl}/reviews/${post.slug}`,
-    lastModified: new Date(post.updated || post.date),
+    lastModified: contentLastModified("reviews", post.slug, post.updated, post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const aiToolPages = getAllPosts("ai-tools").map((post) => ({
     url: `${baseUrl}/ai-tools/${post.slug}`,
-    lastModified: new Date(post.updated || post.date),
+    lastModified: contentLastModified("ai-tools", post.slug, post.updated, post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -47,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((post) => !isJunkSlug(post.slug) && String(post.title || "").trim().length > 0)
     .map((post) => ({
       url: `${baseUrl}/news/${post.slug}`,
-      lastModified: new Date(post.date),
+      lastModified: contentLastModified("news", post.slug, post.updated, post.date),
       changeFrequency: "daily" as const,
       priority: 0.8,
       ...(post.language ? { languages: { [post.language === "ur" ? "ur" : "en"]: `${baseUrl}/news/${post.slug}` } } : {}),

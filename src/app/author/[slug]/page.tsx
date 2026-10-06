@@ -6,10 +6,11 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 
-const authors: Record<string, { name: string; bio: string; avatar?: string }> = {
+const authors: Record<string, { name: string; bio: string; avatar?: string; bylines?: string[] }> = {
   "techveb-team": {
     name: "TechVeb Team",
-    bio: "The TechVeb team covers the latest in artificial intelligence, technology trends, product reviews, and digital innovation. Our collective expertise spans AI, cybersecurity, cloud computing, and consumer tech.",
+    bio: "The TechVeb team covers the latest in artificial intelligence, technology trends, product reviews, and digital innovation. Our collective expertise spans AI, cybersecurity, cloud computing, and consumer tech, while the news desk curates and attributes breaking technology and world news from trusted sources.",
+    bylines: ["techveb team", "techveb news"],
   },
 };
 
@@ -53,8 +54,11 @@ export default async function AuthorPage({
   const name = author?.name || slug;
 
   const allPosts = getAllPostsFromAllDirs();
+  const bylines = author?.bylines?.length
+    ? author.bylines
+    : [name.toLowerCase()];
   const posts = allPosts
-    .filter((p) => p.author.toLowerCase() === name.toLowerCase())
+    .filter((p) => bylines.includes(p.author.toLowerCase()))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const jsonLd = {
