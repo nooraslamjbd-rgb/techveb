@@ -23,10 +23,12 @@ function buildMap(): Map<string, string> {
       { cwd: process.cwd(), encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }
     );
     let date: string | null = null;
+    let commitCount = 0;
     for (const rawLine of out.split("\n")) {
       const line = rawLine.trimEnd();
       if (/^\d{4}-\d{2}-\d{2}T/.test(line)) {
         date = line;
+        commitCount += 1;
         continue;
       }
       if (!date || !line) continue;
@@ -43,6 +45,10 @@ function buildMap(): Map<string, string> {
       file = cleanPath(file);
       if (file && !map.has(file)) map.set(file, date);
     }
+    // A single commit in the log means the checkout is shallow/limited:
+    // every file would be attributed the tip commit date, which is
+    // misleading. Treat the whole map as unusable in that case.
+    if (commitCount < 2) map.clear();
   } catch {
     // git unavailable or no history: callers fall back to frontmatter dates
   }
