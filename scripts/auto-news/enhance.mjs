@@ -1,5 +1,5 @@
 import { CONFIG, VALID_CATEGORIES } from "./config.mjs";
-import { normalizeTitle, normalizeDescription } from "./text-utils.mjs";
+import { normalizeTitle, normalizeDescription, truncateAtWord } from "./text-utils.mjs";
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -138,7 +138,7 @@ function fallbackEnhance(article) {
 
   // Generate basic key takeaways from content
   const sentences = (article.readableContent?.text || article.description).split(/[.!?]+/).filter(s => s.trim().length > 30);
-  const keyTakeaways = sentences.slice(0, 5).map(s => s.trim().substring(0, 150));
+  const keyTakeaways = sentences.slice(0, 5).map((s) => truncateAtWord(s.trim(), 150));
 
   return {
     title: normalizeTitle(article.title),
@@ -147,7 +147,12 @@ function fallbackEnhance(article) {
     category: article.category,
     keyTakeaways,
     faq: [
-      { q: isUrdu ? `${article.title.substring(0, 50)}؟` : `What is ${article.title.substring(0, 40)}?`, a: article.description.substring(0, 200) },
+      {
+        q: isUrdu
+          ? `${truncateAtWord(article.title, 60)}؟`
+          : `What is ${truncateAtWord(article.title, 60)}?`,
+        a: truncateAtWord(article.description, 200),
+      },
     ],
     content,
   };

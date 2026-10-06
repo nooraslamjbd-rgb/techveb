@@ -1,5 +1,5 @@
 import fs from "fs";
-import { normalizeTitle } from "./text-utils.mjs";
+import { normalizeDescription, normalizeTitle } from "./text-utils.mjs";
 import path from "path";
 import matter from "gray-matter";
 import { fileURLToPath } from "url";
@@ -146,20 +146,20 @@ function rebuildFrontmatter(data, originalFrontmatter) {
     if (key === "faq" && data.faq) {
       lines.push("faq:");
       for (const item of data.faq) {
-        const q = (item.question || "").replace(/"/g, '\\"');
-        const a = (item.answer || "").replace(/"/g, '\\"');
+        const q = (item.question || "").replace(/(?<!\\)"/g, '\\"');
+        const a = (item.answer || "").replace(/(?<!\\)"/g, '\\"');
         lines.push(`  - question: "${q}"`);
         lines.push(`    answer: "${a}"`);
       }
     } else if (key === "keyTakeaways" && data.keyTakeaways) {
       lines.push("keyTakeaways:");
       for (const kt of data.keyTakeaways) {
-        lines.push(`  - "${(kt || "").replace(/"/g, '\\"')}"`);
+        lines.push(`  - "${(kt || "").replace(/(?<!\\)"/g, '\\"')}"`);
       }
     } else if (key === "title" && data.title) {
-      lines.push(`title: "${data.title.replace(/"/g, '\\"')}"`);
+      lines.push(`title: "${data.title.replace(/(?<!\\)"/g, '\\"')}"`);
     } else if (key === "description" && data.description) {
-      lines.push(`description: "${data.description.replace(/"/g, '\\"')}"`);
+      lines.push(`description: "${data.description.replace(/(?<!\\)"/g, '\\"')}"`);
     } else if (key === "tags" && data.tags) {
       lines.push(`tags: [${data.tags.map(t => `"${t}"`).join(", ")}]`);
     } else if (key === "date") {
@@ -173,18 +173,18 @@ function rebuildFrontmatter(data, originalFrontmatter) {
       } else if (typeof value[0] === "object") {
         lines.push(`${key}:`);
         for (const item of value) {
-          const entries = Object.entries(item).map(([k, v]) => `${k}: "${String(v).replace(/"/g, '\\"')}"`).join(", ");
+          const entries = Object.entries(item).map(([k, v]) => `${k}: "${String(v).replace(/(?<!\\)"/g, '\\"')}"`).join(", ");
           lines.push(`  - { ${entries} }`);
         }
       } else {
-        lines.push(`${key}: [${value.map(v => `"${String(v).replace(/"/g, '\\"')}"`).join(", ")}]`);
+        lines.push(`${key}: [${value.map(v => `"${String(v).replace(/(?<!\\)"/g, '\\"')}"`).join(", ")}]`);
       }
     } else if (typeof value === "boolean") {
       lines.push(`${key}: ${value}`);
     } else if (typeof value === "number") {
       lines.push(`${key}: ${value}`);
     } else {
-      lines.push(`${key}: "${String(value || "").replace(/"/g, '\\"')}"`);
+      lines.push(`${key}: "${String(value || "").replace(/(?<!\\)"/g, '\\"')}"`);
     }
   }
 
@@ -192,8 +192,8 @@ function rebuildFrontmatter(data, originalFrontmatter) {
   if (!originalFrontmatter.faq && data.faq) {
     lines.push("faq:");
     for (const item of data.faq) {
-      const q = (item.question || "").replace(/"/g, '\\"');
-      const a = (item.answer || "").replace(/"/g, '\\"');
+      const q = (item.question || "").replace(/(?<!\\)"/g, '\\"');
+      const a = (item.answer || "").replace(/(?<!\\)"/g, '\\"');
       lines.push(`  - question: "${q}"`);
       lines.push(`    answer: "${a}"`);
     }
@@ -201,7 +201,7 @@ function rebuildFrontmatter(data, originalFrontmatter) {
   if (!originalFrontmatter.keyTakeaways && data.keyTakeaways) {
     lines.push("keyTakeaways:");
     for (const kt of data.keyTakeaways) {
-      lines.push(`  - "${(kt || "").replace(/"/g, '\\"')}"`);
+      lines.push(`  - "${(kt || "").replace(/(?<!\\)"/g, '\\"')}"`);
     }
   }
 

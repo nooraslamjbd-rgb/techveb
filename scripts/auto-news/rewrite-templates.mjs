@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { fileURLToPath } from "url";
 import { CONFIG } from "./config.mjs";
+import { normalizeDescription } from "./text-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -161,19 +162,19 @@ function saveRewrittenFile(filePath, raw, frontmatter, newBody, oldDescription) 
   const lines = ["---"];
   for (const [key, value] of Object.entries(frontmatter)) {
     if (key === "description") {
-      const desc = oldDescription.length > 10 ? oldDescription : (frontmatter.title || "").substring(0, 160);
-      lines.push(`description: "${String(desc).replace(/"/g, '\\"')}"`);
+      const desc = oldDescription.length > 10 ? oldDescription : normalizeDescription(frontmatter.title || "");
+      lines.push(`description: "${String(desc).replace(/(?<!\\)"/g, '\\"')}"`);
     } else if (Array.isArray(value)) {
       if (value.length === 0) {
         lines.push(`${key}: []`);
       } else if (typeof value[0] === "object") {
         lines.push(`${key}:`);
         for (const item of value) {
-          const entries = Object.entries(item).map(([k, v]) => `${k}: "${String(v).replace(/"/g, '\\"')}"`).join(", ");
+          const entries = Object.entries(item).map(([k, v]) => `${k}: "${String(v).replace(/(?<!\\)"/g, '\\"')}"`).join(", ");
           lines.push(`  - { ${entries} }`);
         }
       } else {
-        lines.push(`${key}: [${value.map(v => `"${String(v).replace(/"/g, '\\"')}"`).join(", ")}]`);
+        lines.push(`${key}: [${value.map(v => `"${String(v).replace(/(?<!\\)"/g, '\\"')}"`).join(", ")}]`);
       }
     } else if (typeof value === "boolean") {
       lines.push(`${key}: ${value}`);
@@ -185,7 +186,7 @@ function saveRewrittenFile(filePath, raw, frontmatter, newBody, oldDescription) 
       const clamped = !isNaN(d.getTime()) && d.getTime() > Date.now() ? todayDate : (value || todayDate);
       lines.push(`date: "${clamped}"`);
     } else {
-      lines.push(`${key}: "${String(value || "").replace(/"/g, '\\"')}"`);
+      lines.push(`${key}: "${String(value || "").replace(/(?<!\\)"/g, '\\"')}"`);
     }
   }
   lines.push("---");

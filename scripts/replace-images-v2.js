@@ -75,7 +75,7 @@ function parseFrontmatter(content) {
 
 function replaceFrontmatterField(content, key, value) {
   const cleaned = String(value).replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim();
-  const escaped = `"${cleaned.replace(/"/g, '\\"')}"`;
+  const escaped = `"${cleaned.replace(/(?<!\\)"/g, '\\"')}"`;
   const regex = new RegExp(`^${key}:.*$`, "m");
   if (regex.test(content)) {
     return content.replace(regex, `${key}: ${escaped}`);

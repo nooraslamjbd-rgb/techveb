@@ -6,6 +6,12 @@ import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 import * as cheerio from "cheerio";
 import TurndownService from "turndown";
+import { normalizeDescription, normalizeTitle } from "./auto-news/text-utils.mjs";
+
+/** Escape a value for a YAML double-quoted scalar without re-escaping `\"`. */
+function yamlQ(value) {
+  return String(value ?? "").replace(/(?<!\\)"/g, '\\"');
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = path.join(__dirname, "..", "src", "content", "news");
@@ -477,24 +483,24 @@ function createMDX(item, content, heroImage) {
 
   const lines = [
     "---",
-    `title: "${item.title.replace(/"/g, '\\"')}"`,
-    `description: "${item.description.replace(/"/g, '\\"').substring(0, 160)}"`,
+    `title: "${yamlQ(normalizeTitle(item.title))}"`,
+    `description: "${yamlQ(normalizeDescription(item.description))}"`,
     `date: "${ds}"`,
     `author: "TechVeb News"`,
     `category: "${item.category}"`,
-    `tags: [${item.tags.map(t => `"${t}"`).join(", ")}]`,
+    `tags: [${item.tags.map((t) => `"${yamlQ(t)}"`).join(", ")}]`,
   ];
 
   if (heroImage) {
     lines.push(`image: "${heroImage.url}"`);
-    if (heroImage.credit) lines.push(`imageCredit: "${heroImage.credit.replace(/"/g, '\\"')}"`);
+    if (heroImage.credit) lines.push(`imageCredit: "${yamlQ(heroImage.credit)}"`);
     if (heroImage.creditUrl) lines.push(`imageCreditUrl: "${heroImage.creditUrl}"`);
   }
 
   lines.push(
     `language: "${item.language || "en"}"`,
-    `source: "${item.source}"`,
-    `sourceLink: "${item.link}"`,
+    `source: "${yamlQ(item.source)}"`,
+    `sourceLink: "${yamlQ(item.link)}"`,
     "featured: false",
     `readingTime: "${content.readTime} min read"`,
     "---",

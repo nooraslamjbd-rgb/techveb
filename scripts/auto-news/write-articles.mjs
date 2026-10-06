@@ -1,8 +1,21 @@
 import fs from "fs";
 import path from "path";
 import { CONFIG, BLOCKED_IMAGE_DOMAINS } from "./config.mjs";
+import { normalizeDescription, normalizeTitle, truncateAtWord } from "./text-utils.mjs";
 
 export const MIN_WORDS = 150;
+
+/**
+ * Escape a value for a YAML double-quoted scalar.
+ *
+ * Only quotes that are not already escaped are rewritten. A blanket
+ * /"/g turns an existing \" into \\", which is an escaped backslash
+ * followed by a string terminator: the scalar ends early and the whole
+ * frontmatter stops parsing, which fails the deploy's search-index build.
+ */
+function yamlQ(value) {
+  return String(value ?? "").replace(/(?<!\\)"/g, '\\"');
+}
 
 function sanitizeContent(content) {
   if (!content) return content;
@@ -38,7 +51,7 @@ function sanitizeContent(content) {
 
 function fallbackDescription(content) {
   const plain = (content || "").replace(/[#>*_`~|=\-\[\]()!]/g, "").replace(/\s+/g, " ").trim();
-  return plain.length > 160 ? `${plain.slice(0, 157).trim()}…` : plain;
+  return normalizeDescription(plain);
 }
 
 function dedupKey(title) {
@@ -53,18 +66,23 @@ function generateMDX(article, imagePath) {
   const wordCount = (enhanced.content || "").split(/\s+/).filter(Boolean).length;
   const readTime = Math.max(1, Math.round(wordCount / 200));
 
-  const safeTitle = (t) => (t || "").replace(/"/g, '\\"');
-  const safeDesc = (enhanced.description || article.description || "").replace(/"/g, '\\"').trim().substring(0, 160);
-  const description = (safeDesc.length > 15) ? safeDesc : fallbackDescription(enhanced.content || article.description).substring(0, 160);
+  const title = normalizeTitle(enhanced.title || article.title);
+  const enhancedDesc = normalizeDescription(
+    (enhanced.description || article.description || "").trim()
+  );
+  const description =
+    enhancedDesc.length > 15
+      ? enhancedDesc
+      : fallbackDescription(enhanced.content || article.description);
 
   const lines = [
     "---",
-    `title: "${safeTitle(enhanced.title || article.title)}"`,
-    `description: "${description.replace(/"/g, '\\"')}"`,
+    `title: "${yamlQ(title)}"`,
+    `description: "${yamlQ(description)}"`,
     `date: "${dateStr}"`,
-    `author: "${CONFIG.AUTHOR}"`,
+    `author: "${yamlQ(CONFIG.AUTHOR)}"`,
     `category: "${enhanced.category || article.category}"`,
-    `tags: [${(enhanced.tags || article.tags).map(t => `"${t}"`).join(", ")}]`,
+    `tags: [${(enhanced.tags || article.tags).map((t) => `"${yamlQ(t)}"`).join(", ")}]`,
     `language: "${article.language}"`,
   ];
 
@@ -84,8 +102,8 @@ function generateMDX(article, imagePath) {
   if (enhanced.faq && enhanced.faq.length > 0) {
     lines.push("faq:");
     for (const item of enhanced.faq) {
-      const q = (item.q || "").replace(/"/g, '\\"');
-      const a = (item.a || "").replace(/"/g, '\\"');
+      const q = (item.q || "").replace(/(?<!\\)"/g, '\\"');
+      const a = (item.a || "").replace(/(?<!\\)"/g, '\\"');
       lines.push(`  - question: "${q}"`);
       lines.push(`    answer: "${a}"`);
     }
@@ -95,7 +113,7 @@ function generateMDX(article, imagePath) {
   if (enhanced.keyTakeaways && enhanced.keyTakeaways.length > 0) {
     lines.push("keyTakeaways:");
     for (const kt of enhanced.keyTakeaways) {
-      lines.push(`  - "${(kt || "").replace(/"/g, '\\"')}"`);
+      lines.push(`  - "${(kt || "").replace(/(?<!\\)"/g, '\\"')}"`);
     }
   }
 

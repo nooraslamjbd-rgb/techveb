@@ -109,7 +109,7 @@ function parseFrontmatter(content) {
 }
 
 function replaceDescription(frontmatter, newDesc) {
-  const escaped = newDesc.replace(/"/g, '\\"');
+  const escaped = newDesc.replace(/(?<!\\)"/g, '\\"');
   return frontmatter.replace(
     /^description:\s*"[^"]*"/m,
     `description: "${escaped}"`

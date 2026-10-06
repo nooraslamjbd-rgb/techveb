@@ -9,8 +9,17 @@ import { CONFIG, RSS_SOURCES, TITLE_KEYWORDS } from "./config.mjs";
 const turndown = new TurndownService({ headingStyle: "atx", bulletListMarker: "-", codeBlockStyle: "fenced" });
 turndown.addRule("removeJunk", { filter: ["script", "style", "nav", "footer", "aside", "iframe", "form"], replacement: () => "" });
 
+const MAX_SLUG_LEN = 80;
+
 function slugify(t) {
-  return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").substring(0, 80);
+  const full = t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  if (full.length <= MAX_SLUG_LEN) return full;
+  // Slice to the limit and back off to the last hyphen, otherwise the cut lands
+  // inside a word and the slug's final segment is a truncated fragment. That
+  // fragment then spreads into titles and FAQs downstream.
+  const cut = full.slice(0, MAX_SLUG_LEN);
+  const lastDash = cut.lastIndexOf("-");
+  return (lastDash > 0 ? cut.slice(0, lastDash) : cut).replace(/-+$/, "");
 }
 
 function cleanHTML(html) {

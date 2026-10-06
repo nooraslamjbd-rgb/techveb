@@ -47,19 +47,19 @@ for (const dir of CONTENT_DIRS) {
           lines.push(`${key}:`);
           for (const item of value) {
             const entries = Object.entries(item)
-              .map(([k, v]) => `${k}: "${String(v).replace(/"/g, '\\"')}"`)
+              .map(([k, v]) => `${k}: "${String(v).replace(/(?<!\\)"/g, '\\"')}"`)
               .join(", ");
             lines.push(`  - { ${entries} }`);
           }
         } else {
-          lines.push(`${key}: [${value.map((v) => `"${String(v).replace(/"/g, '\\"')}"`).join(", ")}]`);
+          lines.push(`${key}: [${value.map((v) => `"${String(v).replace(/(?<!\\)"/g, '\\"')}"`).join(", ")}]`);
         }
       } else if (typeof value === "boolean") {
         lines.push(`${key}: ${value}`);
       } else if (typeof value === "number") {
         lines.push(`${key}: ${value}`);
       } else {
-        lines.push(`${key}: "${String(value || "").replace(/"/g, '\\"')}"`);
+        lines.push(`${key}: "${String(value || "").replace(/(?<!\\)"/g, '\\"')}"`);
       }
     }
     lines.push("---");
