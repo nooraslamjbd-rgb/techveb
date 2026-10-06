@@ -1,4 +1,5 @@
 import JsonLd from "./JsonLd";
+import { truncateAtWord } from "@/lib/text";
 
 interface ArticleSchemaProps {
   title: string;
@@ -30,7 +31,7 @@ export default function ArticleSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: title,
+    headline: truncateAtWord(title, 70),
     description,
     url,
     image: image || "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png",

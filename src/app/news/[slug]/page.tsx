@@ -76,10 +76,11 @@ export default async function NewsPostPage({
   const post = getNewsPost(slug);
   if (!post) notFound();
 
+  const headline = truncateAtWord(post.title, 55);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    headline: post.title,
+    headline,
     description: getPostDescription(post),
     author: { "@type": "Organization", name: siteConfig.name },
     datePublished: post.date,
