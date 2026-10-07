@@ -119,21 +119,14 @@ export default function Home() {
         <h1 className="sr-only">TechVeb - Technology, AI &amp; Innovation Hub</h1>
       </div>
 
-      {/* Quick Links - News, Business, Sports, Education, Islam */}
+      {/* Quick Links - News, Blog, Reviews, AI Tools */}
       <section className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center gap-3">
           {[
             { label: "News", href: "/news", icon: "📰", color: "bg-red-500/10 hover:bg-red-500/20 text-red-600" },
-            { label: "Business", href: "/business", icon: "💰", color: "bg-green-500/10 hover:bg-green-500/20 text-green-600" },
-            { label: "Sports", href: "/sports", icon: "🏏", color: "bg-orange-500/10 hover:bg-orange-500/20 text-orange-600" },
-            { label: "Recipes", href: "/recipes", icon: "🍛", color: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-600" },
-            { label: "Horoscope", href: "/horoscope", icon: "🔮", color: "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600" },
-            { label: "Dictionary", href: "/dictionary", icon: "📖", color: "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600" },
-            { label: "Poetry", href: "/poetry", icon: "🪶", color: "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600" },
-            { label: "Quotes", href: "/quotes", icon: "💬", color: "bg-pink-500/10 hover:bg-pink-500/20 text-pink-600" },
-            { label: "Jokes", href: "/jokes", icon: "😂", color: "bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-600" },
-            { label: "Education", href: "/education", icon: "🎓", color: "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600" },
-            { label: "Islam", href: "/islam", icon: "☪️", color: "bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600" },
+            { label: "Blog", href: "/blog", icon: "📝", color: "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600" },
+            { label: "Reviews", href: "/reviews", icon: "⭐", color: "bg-amber-500/10 hover:bg-amber-500/20 text-amber-600" },
+            { label: "AI Tools", href: "/ai-tools", icon: "🤖", color: "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600" },
           ].map((item) => (
             <Link
               key={item.label}
@@ -471,12 +464,6 @@ export default function Home() {
             </div>
             <h2 className="font-heading text-xl font-bold sm:text-2xl">Live Market Data</h2>
           </div>
-          <Link
-            href="/business"
-            className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-          >
-            View all &rarr;
-          </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <CurrencyWidget />

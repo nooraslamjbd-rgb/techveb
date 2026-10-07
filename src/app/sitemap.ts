@@ -18,10 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/reviews`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${baseUrl}/ai-tools`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.8 },
-    { url: `${baseUrl}/news`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.8 },
-    { url: `${baseUrl}/business`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
-    { url: `${baseUrl}/sports`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.7 },
-    { url: `${baseUrl}/mobiles`, lastModified: staticLastMod, changeFrequency: "weekly" as const, priority: 0.7 },
+    { url: `${baseUrl}/news`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.6 },
     { url: `${baseUrl}/about`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
     { url: `${baseUrl}/privacy-policy`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
@@ -56,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/news/${post.slug}`,
       lastModified: contentLastModified("news", post.slug, post.updated, post.date),
       changeFrequency: "daily" as const,
-      priority: 0.8,
+      priority: 0.5,
       ...(post.language ? { languages: { [post.language === "ur" ? "ur" : "en"]: `${baseUrl}/news/${post.slug}` } } : {}),
     }));
 

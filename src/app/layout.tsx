@@ -158,7 +158,7 @@ export default function RootLayout({
           "@context": "https://schema.org",
           "@type": "SiteNavigationElement",
           name: ["Home", "News", "Blog", "Business", "Sports", "AI Tools", "Reviews", "Mobiles", "Recipes", "Horoscope", "Dictionary", "Poetry", "Quotes", "Jokes", "Education", "Islam", "About", "Contact"],
-          url: ["/", "/news", "/blog", "/business", "/sports", "/ai-tools", "/reviews", "/mobiles", "/recipes", "/horoscope", "/dictionary", "/poetry", "/quotes", "/jokes", "/education", "/islam", "/about", "/contact"].map((p) => `${siteConfig.url}${p}`),
+          url: ["/", "/news", "/blog", "/reviews", "/ai-tools", "/about", "/contact"].map((p) => `${siteConfig.url}${p}`),
         }} />
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>

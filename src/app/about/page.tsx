@@ -120,6 +120,22 @@ export default function AboutPage() {
             </li>
           </ul>
 
+          <h2>Who Runs TechVeb</h2>
+          <p>
+            TechVeb is published by{" "}
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.author}</a>, a
+            technology-focused editorial publisher based in Pakistan. The site is
+            run and edited by its founder, and technical reviews and guides are
+            written or fact-checked by human editors before publication.
+          </p>
+          <p>
+            We are reachable at{" "}
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> and via
+            our <Link href="/contact">contact page</Link>. We do not publish
+            anonymous opinion, and we are transparent about who is responsible
+            for the content on this website.
+          </p>
+
           <h2>Get In Touch</h2>
           <p>
             Have a question, suggestion, or want to collaborate? We would love to
