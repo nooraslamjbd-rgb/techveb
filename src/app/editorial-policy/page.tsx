@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "TechVeb" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Editorial Policy | TechVeb",
+    description: "How TechVeb selects, sources, and verifies its technology journalism, guides, and news coverage.",
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
+  },
 };
 
 export default function EditorialPolicyPage() {

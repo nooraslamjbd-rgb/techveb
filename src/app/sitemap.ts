@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts, getAllNewsPosts, getAllTags, isJunkSlug } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts, getAllTags, isJunkSlug, isThinPost } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { getGitLastModified } from "@/lib/git-dates";
 
@@ -21,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/news`, lastModified: staticLastMod, changeFrequency: "daily" as const, priority: 0.6 },
     { url: `${baseUrl}/about`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: staticLastMod, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${baseUrl}/editorial-policy`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${baseUrl}/advertising-disclosure`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
     { url: `${baseUrl}/privacy-policy`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
     { url: `${baseUrl}/terms`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
     { url: `${baseUrl}/disclaimer`, lastModified: staticLastMod, changeFrequency: "yearly" as const, priority: 0.3 },
@@ -48,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const newsPages = getAllNewsPosts()
-    .filter((post) => !isJunkSlug(post.slug) && String(post.title || "").trim().length > 0)
+    .filter((post) => !isJunkSlug(post.slug) && !isThinPost(post) && String(post.title || "").trim().length > 0)
     .map((post) => ({
       url: `${baseUrl}/news/${post.slug}`,
       lastModified: contentLastModified("news", post.slug, post.updated, post.date),

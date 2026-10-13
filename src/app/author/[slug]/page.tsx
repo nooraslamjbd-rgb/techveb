@@ -6,11 +6,12 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { siteConfig } from "@/config/site";
 
-const authors: Record<string, { name: string; bio: string; avatar?: string; bylines?: string[] }> = {
+const authors: Record<string, { name: string; bio: string; avatar?: string; bylines?: string[]; sameAs?: string[] }> = {
   "techveb-team": {
     name: "TechVeb Team",
-    bio: "The TechVeb team covers the latest in artificial intelligence, technology trends, product reviews, and digital innovation. Our collective expertise spans AI, cybersecurity, cloud computing, and consumer tech, while the news desk curates and attributes breaking technology and world news from trusted sources.",
+    bio: "The TechVeb team covers the latest in artificial intelligence, technology trends, product reviews, and digital innovation. Our collective expertise spans AI, cybersecurity, cloud computing, and consumer tech, while the news desk curates and attributes breaking technology and world news from trusted sources. Founded and edited by Noor Aslam.",
     bylines: ["techveb team", "techveb news"],
+    sameAs: [siteConfig.social.twitter, siteConfig.social.github].filter(Boolean) as string[],
   },
 };
 
@@ -71,6 +72,7 @@ export default async function AuthorPage({
       "@type": "Person",
       name: name,
       description: author?.bio,
+      ...(author?.sameAs && author.sameAs.length > 0 ? { sameAs: author.sameAs } : {}),
       worksFor: {
         "@type": "Organization",
         name: siteConfig.name,

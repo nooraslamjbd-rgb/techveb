@@ -1,4 +1,4 @@
-import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription, isThinPost } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -16,9 +16,9 @@ export async function GET() {
     .slice(0, 10);
   const aiTools = sorted.filter((p) => p.dir === "ai-tools").slice(0, 10);
 
-  const allNews = getAllNewsPosts().sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  const allNews = getAllNewsPosts()
+    .filter((p) => !isThinPost(p))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const latestNews = allNews.slice(0, 15);
 
   const blogCount = sorted.filter((p) => p.dir === "blog").length;

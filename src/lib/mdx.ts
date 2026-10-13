@@ -74,6 +74,17 @@ export function stripSourceAttribution(content: string): string {
   );
 }
 
+export function wordCount(post: Pick<Post, "content">): number {
+  return (post.content || "").split(/\s+/).filter(Boolean).length;
+}
+
+export function isThinPost(
+  post: Pick<Post, "content">,
+  minWords = 250
+): boolean {
+  return wordCount(post) < minWords;
+}
+
 const contentDir = path.join(process.cwd(), "src", "content");
 
 function getFiles(dir: string): string[] {

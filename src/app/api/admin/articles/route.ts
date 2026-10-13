@@ -35,7 +35,7 @@ export async function GET() {
       image: p.image,
       featured: p.featured,
       status: (p as unknown as Record<string, unknown>).status === "draft" ? "draft" : "published",
-      dir: p.category === "ai" ? "ai-tools" : p.category === "product-reviews" ? "reviews" : "blog",
+      dir: p.dir,
     }));
     return NextResponse.json({ articles, total: articles.length });
   } catch {

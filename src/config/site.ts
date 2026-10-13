@@ -14,7 +14,7 @@ export const siteConfig = {
   adsense: {
     publisherId:
       process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "pub-2205098459492564",
-    autoAdsEnabled: true,
+    autoAdsEnabled: false,
     slots: {
       article: process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE || "",
       sidebar: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || "",

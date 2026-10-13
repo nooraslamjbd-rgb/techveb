@@ -109,9 +109,6 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="apple-touch-icon" href="https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/apple-touch-icon.png" />
         <meta name="theme-color" content="#0060E0" />
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images-assets.nasa.gov" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <Script
           id="consent-mode-v2"
           strategy="beforeInteractive"
@@ -157,8 +154,8 @@ export default function RootLayout({
         <JsonLd data={{
           "@context": "https://schema.org",
           "@type": "SiteNavigationElement",
-          name: ["Home", "News", "Blog", "Business", "Sports", "AI Tools", "Reviews", "Mobiles", "Recipes", "Horoscope", "Dictionary", "Poetry", "Quotes", "Jokes", "Education", "Islam", "About", "Contact"],
-          url: ["/", "/news", "/blog", "/reviews", "/ai-tools", "/about", "/contact"].map((p) => `${siteConfig.url}${p}`),
+          name: ["Home", "News", "Blog", "AI & Machine Learning", "Tech News", "Cloud & DevOps", "Cybersecurity", "Programming", "Gaming", "Reviews", "AI Tools", "About", "Contact"],
+          url: ["/", "/news", "/blog", "/blog?cat=ai", "/blog?cat=tech-news", "/blog?cat=cloud", "/blog?cat=cybersecurity", "/blog?cat=tutorials", "/blog?cat=gaming", "/reviews", "/ai-tools", "/about", "/contact"].map((p) => `${siteConfig.url}${p}`),
         }} />
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>

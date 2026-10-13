@@ -1,10 +1,10 @@
-import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
+import { getAllPostsFromAllDirs, getAllNewsPosts, getPostDescription, isThinPost } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   const allPosts = getAllPostsFromAllDirs();
-  const allNews = getAllNewsPosts();
+  const allNews = getAllNewsPosts().filter((p) => !isThinPost(p));
   const sorted = allPosts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );

@@ -14,6 +14,10 @@ export default function LiveMarketTicker() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) {
+      setLoading(false);
+      return;
+    }
     async function fetchData() {
       try {
         const res = await fetch("/api/live/all");
@@ -79,7 +83,7 @@ export default function LiveMarketTicker() {
   if (loading || items.length === 0) return null;
 
   return (
-    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700/50 overflow-hidden">
+    <div className="hidden md:block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700/50 overflow-hidden">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <div className="flex items-center gap-1 py-1.5">
           <span className="shrink-0 bg-red-600 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded mr-2">

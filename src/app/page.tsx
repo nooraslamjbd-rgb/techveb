@@ -47,15 +47,19 @@ export default function Home() {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
-  const featured = allPosts.find((p) => p.featured) || allPosts[0];
+  const originalPosts = [...blogPosts, ...reviews, ...aiTools].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  const featured = originalPosts.find((p) => p.featured) || originalPosts[0];
   const topNews = allPosts
     .filter((p) => p.category === "tech-news" && p.slug !== featured?.slug)
     .slice(0, 5);
-  const latestPosts = allPosts
+  const latestPosts = originalPosts
     .filter((p) => p.slug !== featured?.slug)
     .slice(0, 9);
 
-  const heroSlides = allPosts.slice(0, 5).map((p) => ({
+  const heroSlides = originalPosts.slice(0, 5).map((p) => ({
     slug: p.slug,
     dir: p.dir,
     title: p.title,
@@ -80,7 +84,7 @@ export default function Home() {
     .filter((p) => p.category === "tech-news" && !topNews.find((t) => t.slug === p.slug) && p.slug !== featured?.slug)
     .slice(0, 4);
 
-  const latestSidebar = allPosts
+  const latestSidebar = originalPosts
     .filter((p) => p.slug !== featured?.slug)
     .slice(0, 5);
 

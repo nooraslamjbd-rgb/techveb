@@ -15,6 +15,7 @@ import { siteConfig } from "@/config/site";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import AuthorBox from "@/components/blog/AuthorBox";
 import AdSlot from "@/components/ads/AdSlot";
+import { shouldShowAds } from "@/lib/ads";
 import RelatedArticles from "@/components/blog/RelatedArticles";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
@@ -170,7 +171,16 @@ export default async function AiToolPostPage({
             </h1>
             <p className="mb-4 text-lg text-muted">{post.description}</p>
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{post.author}</span>
+              {post.author === siteConfig.author ? (
+                <Link
+                  href="/author/techveb-team"
+                  className="font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {post.author}
+                </Link>
+              ) : (
+                <span className="font-medium text-foreground">{post.author}</span>
+              )}
               <span className="h-1 w-1 rounded-full bg-muted-foreground" />
               <TimeAgo date={post.date} />
               {post.updated && (
@@ -218,7 +228,9 @@ export default async function AiToolPostPage({
               </div>
               {post.faq && post.faq.length > 0 && <FAQ items={post.faq} />}
               <NewsletterInline />
-              <AdSlot slot={siteConfig.adsense.slots.article} />
+              {shouldShowAds(post.dir) && (
+                <AdSlot slot={siteConfig.adsense.slots.article} />
+              )}
               <AuthorBox />
               <RelatedArticles posts={related} dir="ai-tools" />
               <Comments slug={slug} />

@@ -1,4 +1,4 @@
-import { getAllPosts, getAllNewsPosts, getPostDescription } from "@/lib/mdx";
+import { getAllPosts, getAllNewsPosts, getPostDescription, isThinPost } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
 import { NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ export async function GET() {
   const posts = getAllPosts("blog");
   const reviews = getAllPosts("reviews");
   const aiTools = getAllPosts("ai-tools");
-  const news = getAllNewsPosts();
+  const news = getAllNewsPosts().filter((p) => !isThinPost(p));
 
   const allItems = [
     ...posts.map((p) => ({ ...p, section: "Blog" })),

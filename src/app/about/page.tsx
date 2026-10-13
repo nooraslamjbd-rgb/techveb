@@ -125,8 +125,9 @@ export default function AboutPage() {
             TechVeb is published by{" "}
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.author}</a>, a
             technology-focused editorial publisher based in Pakistan. The site is
-            run and edited by its founder, and technical reviews and guides are
-            written or fact-checked by human editors before publication.
+            run and edited by its founder, Noor Aslam, and technical reviews and
+            guides are written or fact-checked by human editors before
+            publication.
           </p>
           <p>
             We are reachable at{" "}

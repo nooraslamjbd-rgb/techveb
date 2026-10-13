@@ -15,6 +15,10 @@ export default function LiveNewsTicker() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches) {
+      setLoading(false);
+      return;
+    }
     async function fetchNews() {
       try {
         const res = await fetch("/api/news?limit=20");
@@ -36,7 +40,7 @@ export default function LiveNewsTicker() {
   if (loading || news.length === 0) return null;
 
   return (
-    <div className="bg-gradient-to-r from-blue-600/10 via-blue-500/5 to-blue-600/10 border-b border-border overflow-hidden">
+    <div className="hidden md:block bg-gradient-to-r from-blue-600/10 via-blue-500/5 to-blue-600/10 border-b border-border overflow-hidden">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <div className="flex items-center gap-1 py-1.5">
           <span className="shrink-0 bg-blue-600 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded mr-2">

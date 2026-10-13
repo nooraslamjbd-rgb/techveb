@@ -9,7 +9,6 @@ import { siteConfig } from "@/config/site";
 
 const GA_ID = siteConfig.analytics.gaId;
 const ADSENSE_ID = siteConfig.adsense.publisherId;
-const AUTO_ADS_ENABLED = siteConfig.adsense.autoAdsEnabled;
 const CONSENT_KEY = "cookie-consent";
 
 type WindowWithTags = Window & {
@@ -46,7 +45,7 @@ gtag('config', '${GA_ID}', { anonymize_ip: true });
 }
 
 function loadAdSense() {
-  if (!ADSENSE_ID || !AUTO_ADS_ENABLED) return;
+  if (!ADSENSE_ID) return;
   if (document.getElementById("adsense-script")) return;
 
   const w = window as WindowWithTags;
@@ -69,13 +68,16 @@ export default function CookieConsent() {
     if (consent === "accepted") {
       runSnippet(CONSENT_GRANTED_SNIPPET);
       loadGA();
+      loadAdSense();
     } else if (consent === "declined") {
       runSnippet(CONSENT_DENIED_SNIPPET);
     } else {
       setShow(true);
     }
 
-    loadAdSense();
+    const reopen = () => setShow(true);
+    window.addEventListener("open-cookie-settings", reopen);
+    return () => window.removeEventListener("open-cookie-settings", reopen);
   }, []);
 
   const accept = () => {
@@ -83,6 +85,7 @@ export default function CookieConsent() {
     setShow(false);
     runSnippet(CONSENT_GRANTED_SNIPPET);
     loadGA();
+    loadAdSense();
   };
 
   const decline = () => {

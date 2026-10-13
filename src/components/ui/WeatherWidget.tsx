@@ -36,14 +36,28 @@ export default function WeatherWidget() {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-border bg-surface p-4 animate-pulse">
-        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20 mb-3" />
-        <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-16" />
+      <div className="rounded-xl border border-border bg-surface overflow-hidden animate-pulse">
+        <div className="px-4 py-3 border-b border-border">
+          <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded" />
+        </div>
+        <div className="p-4">
+          <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded mb-3" />
+          <div className="h-3.5 w-24 bg-gray-200 dark:bg-gray-700 rounded mb-3" />
+          <div className="grid grid-cols-2 gap-2">
+            <div className="h-10 rounded-lg bg-gray-200 dark:bg-gray-700" />
+            <div className="h-10 rounded-lg bg-gray-200 dark:bg-gray-700" />
+            <div className="h-10 rounded-lg bg-gray-200 dark:bg-gray-700" />
+          </div>
+        </div>
       </div>
     );
   }
 
-  if (!weather) return null;
+  if (!weather) {
+    return (
+      <div className="min-h-[204px] rounded-xl border border-border bg-surface overflow-hidden" />
+    );
+  }
 
   return (
     <div className="rounded-xl border border-border bg-surface overflow-hidden">

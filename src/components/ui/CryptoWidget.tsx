@@ -35,15 +35,25 @@ export default function CryptoWidget() {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-border bg-surface p-4 animate-pulse">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-2" />
+      <div className="rounded-xl border border-border bg-surface overflow-hidden animate-pulse">
+        <div className="px-4 py-3 border-b border-border">
+          <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded" />
+        </div>
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="flex items-center justify-between px-4 py-2.5">
+            <div className="h-3.5 w-24 bg-gray-200 dark:bg-gray-700 rounded" />
+            <div className="h-3.5 w-16 bg-gray-200 dark:bg-gray-700 rounded" />
+          </div>
         ))}
       </div>
     );
   }
 
-  if (prices.length === 0) return null;
+  if (prices.length === 0) {
+    return (
+      <div className="min-h-[154px] rounded-xl border border-border bg-surface overflow-hidden" />
+    );
+  }
 
   return (
     <div className="rounded-xl border border-border bg-surface overflow-hidden">

@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png", width: 1200, height: 630, alt: "TechVeb" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Advertising Disclosure | TechVeb",
+    description: "How advertising and affiliate relationships work on TechVeb, including Google AdSense and consent choices.",
+    images: ["https://res.cloudinary.com/buccb3t4/image/upload/techveb/brand/og-default.png"],
+  },
 };
 
 export default function AdvertisingDisclosurePage() {

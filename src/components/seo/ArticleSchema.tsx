@@ -1,5 +1,6 @@
 import JsonLd from "./JsonLd";
 import { truncateAtWord } from "@/lib/text";
+import { siteConfig } from "@/config/site";
 
 interface ArticleSchemaProps {
   title: string;
@@ -40,7 +41,7 @@ export default function ArticleSchema({
     author: {
       "@type": "Organization",
       name: author,
-      url: "https://techveb.com/about",
+      url: `${siteConfig.url}/author/techveb-team`,
     },
     publisher: {
       "@type": "Organization",

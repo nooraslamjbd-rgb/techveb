@@ -9,7 +9,14 @@ export default function AuthorBox() {
           {siteConfig.name.charAt(0)}
         </div>
         <div>
-          <h3 className="font-heading text-lg font-bold">{siteConfig.author}</h3>
+          <h3 className="font-heading text-lg font-bold">
+            <Link
+              href="/author/techveb-team"
+              className="hover:text-primary transition-colors"
+            >
+              {siteConfig.author}
+            </Link>
+          </h3>
           <p className="mt-1 text-sm text-muted">
             Your trusted source for the latest in technology, AI innovations, and digital trends.
             We bring you in-depth analysis, expert reviews, and comprehensive guides.

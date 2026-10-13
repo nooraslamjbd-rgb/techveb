@@ -8,6 +8,7 @@ import {
   getAllNewsPosts,
   getNewsPost,
   getPostDescription,
+  isThinPost,
   stripSourceAttribution,
 } from "@/lib/mdx";
 import { siteConfig } from "@/config/site";
@@ -15,6 +16,7 @@ import { truncateAtWord } from "@/lib/text";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import AuthorBox from "@/components/blog/AuthorBox";
 import AdSlot from "@/components/ads/AdSlot";
+import { shouldShowAds } from "@/lib/ads";
 import TableOfContents from "@/components/blog/TableOfContents";
 import ReadingProgress from "@/components/ui/ReadingProgress";
 import ShareButtons from "@/components/ui/ShareButtons";
@@ -43,6 +45,7 @@ export async function generateMetadata({
     title: metaTitle,
     description,
     alternates: { canonical: `${siteConfig.url}/news/${slug}` },
+    robots: isThinPost(post) ? { index: false, follow: true } : undefined,
     openGraph: {
       title: metaTitle,
       description,
@@ -282,7 +285,9 @@ export default async function NewsPostPage({
               <div className="mt-8">
                 <NewsletterInline />
               </div>
-              <AdSlot slot={siteConfig.adsense.slots.article} />
+              {shouldShowAds(post.dir) && (
+                <AdSlot slot={siteConfig.adsense.slots.article} />
+              )}
               <AuthorBox />
               <div className="lg:hidden">
                 <TableOfContents />

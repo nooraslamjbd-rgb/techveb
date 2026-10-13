@@ -230,7 +230,7 @@ export default function ArticlesPage() {
                         Edit
                       </Link>
                       <a
-                        href={`/blog/${article.slug}`}
+                        href={`/${article.dir}/${article.slug}`}
                         target="_blank"
                         className="rounded-lg px-2.5 py-1.5 text-xs font-medium text-gray-400 hover:bg-[#1E293B] hover:text-white"
                       >
