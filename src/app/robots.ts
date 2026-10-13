@@ -53,6 +53,7 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: [
       "https://techveb.com/sitemap.xml",
       "https://techveb.com/news-sitemap.xml",
+      "https://techveb.com/sitemap_index.xml",
     ],
   };
 }

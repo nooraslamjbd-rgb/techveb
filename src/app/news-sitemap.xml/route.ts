@@ -36,6 +36,7 @@ export async function GET() {
         .replace(/'/g, "&apos;");
       return `  <url>
     <loc>${link}</loc>
+    <lastmod>${dateStr}</lastmod>
     <news:news>
       <news:publication>
         <news:name>${siteConfig.name}</news:name>
